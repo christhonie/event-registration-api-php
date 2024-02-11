@@ -1,0 +1,16 @@
+.gitignore
+.php-cs-fixer.dist.php
+.travis.yml
+README.md
+composer.json
+docs/Api/OrderResourceApi.md
+docs/Model/OrderDTO.md
+git_push.sh
+lib/ApiException.php
+lib/Api/OrderResourceApi.php
+lib/Configuration.php
+lib/HeaderSelector.php
+lib/Model/ModelInterface.php
+lib/Model/OrderDTO.php
+lib/ObjectSerializer.php
+phpunit.xml.dist

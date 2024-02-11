@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>za.co.idealogic</groupId>
+	<artifactId>event-service-php-client</artifactId>
+	<version>${revision}</version>
+	<packaging>pom</packaging>
+
+	<name>Event Registration PHP Client</name>
+	<description>PHP client for the Event Admin Service API for event registration.</description>
+
+	<parent>
+		<groupId>za.co.idealogic</groupId>
+		<artifactId>event</artifactId>
+		<version>1.0.13</version>
+	</parent>
+
+	<properties>
+		<revision>1.0</revision>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<version.swagger.codegen>3.0.52</version.swagger.codegen>
+		<swagger.file>swagger.json</swagger.file>
+		<generated-sources-path>${project.build.directory}/generated-sources</generated-sources-path>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>7.2.0</version>
+				<configuration>
+					<generatorName>php</generatorName>
+					<inputSpec>${swagger.file}</inputSpec>
+					<output>.</output>
+					<generateApiTests>false</generateApiTests>
+					<generateModelTests>false</generateModelTests>
+					<configOptions>
+						<artifactVersion>${project.version}</artifactVersion>
+						<appDescription>API Client for the Event Admin Service</appDescription>
+						<packageName>EventRegistrationClient</packageName>
+						<composerPackageName>idealogic/event-registration-api</composerPackageName>
+						<artifactUrl>http://www.idealogic.co.za</artifactUrl>
+						<developerOrganization>Idealogic</developerOrganization>
+						<developerOrganizationUrl>https://www.idealogic.co.za</developerOrganizationUrl>
+						<licenseName>proprietary</licenseName>
+						<invokerPackage>Idealogic\RegistrationAPI</invokerPackage>
+					</configOptions>
+					<apisToGenerate>
+						OrderResource, OrganisationResource, PersonResource
+					</apisToGenerate>
+					<modelsToGenerate>
+						OrderDTO, ParticipantOrderDTO, EventParticipantDTO, OrganisationDTO, PersonDTO, EventDTO, EventCategoryDTO, EventRaceTypeDTO, ProductDTO
+					</modelsToGenerate>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>io.swagger</groupId>
+										<artifactId>swagger-codegen-maven-plugin</artifactId>
+										<versionRange>[${version.swagger.codegen},)</versionRange>
+										<goals>
+											<goal>generate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute/>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>github-christhonie</id>
+			<url>https://maven.pkg.github.com/christhonie/event</url>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>fail</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+</project>
