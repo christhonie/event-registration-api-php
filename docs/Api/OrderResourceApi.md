@@ -32,6 +32,11 @@ countOrders($id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+
 // Configure Bearer (JWT) authorization: jwt
 $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
@@ -120,7 +125,7 @@ try {
 
 ### Authorization
 
-[jwt](../../README.md#jwt)
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
 
 ### HTTP request headers
 
@@ -145,6 +150,11 @@ createOrder($order_dto): \Idealogic\RegistrationAPI\Model\OrderDTO
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Configure Bearer (JWT) authorization: jwt
 $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -178,7 +188,7 @@ try {
 
 ### Authorization
 
-[jwt](../../README.md#jwt)
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
 
 ### HTTP request headers
 
@@ -203,6 +213,11 @@ deleteOrder($id)
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Configure Bearer (JWT) authorization: jwt
 $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -235,7 +250,7 @@ void (empty response body)
 
 ### Authorization
 
-[jwt](../../README.md#jwt)
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
 
 ### HTTP request headers
 
@@ -260,6 +275,11 @@ getAllOrders($pageable, $id_greater_than, $id_less_than, $id_greater_than_or_equ
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Configure Bearer (JWT) authorization: jwt
 $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -351,7 +371,7 @@ try {
 
 ### Authorization
 
-[jwt](../../README.md#jwt)
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
 
 ### HTTP request headers
 
@@ -376,6 +396,11 @@ getOrder($id): \Idealogic\RegistrationAPI\Model\OrderDTO
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Configure Bearer (JWT) authorization: jwt
 $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -409,7 +434,7 @@ try {
 
 ### Authorization
 
-[jwt](../../README.md#jwt)
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
 
 ### HTTP request headers
 
@@ -434,6 +459,11 @@ getParticipantOrder($id): \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Configure Bearer (JWT) authorization: jwt
 $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -467,7 +497,7 @@ try {
 
 ### Authorization
 
-[jwt](../../README.md#jwt)
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
 
 ### HTTP request headers
 
@@ -492,6 +522,11 @@ partialUpdateOrder($id, $order_dto): \Idealogic\RegistrationAPI\Model\OrderDTO
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Configure Bearer (JWT) authorization: jwt
 $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -527,7 +562,7 @@ try {
 
 ### Authorization
 
-[jwt](../../README.md#jwt)
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
 
 ### HTTP request headers
 
@@ -552,6 +587,11 @@ patchParticipantOrder($id, $participant_order_dto): \Idealogic\RegistrationAPI\M
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Configure Bearer (JWT) authorization: jwt
 $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -587,7 +627,7 @@ try {
 
 ### Authorization
 
-[jwt](../../README.md#jwt)
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
 
 ### HTTP request headers
 
@@ -612,6 +652,11 @@ updateOrder($order_dto): \Idealogic\RegistrationAPI\Model\OrderDTO
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Configure Bearer (JWT) authorization: jwt
 $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -645,7 +690,7 @@ try {
 
 ### Authorization
 
-[jwt](../../README.md#jwt)
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
 
 ### HTTP request headers
 
@@ -670,6 +715,11 @@ updateOrder1($id, $order_dto): \Idealogic\RegistrationAPI\Model\OrderDTO
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Configure Bearer (JWT) authorization: jwt
 $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -705,7 +755,7 @@ try {
 
 ### Authorization
 
-[jwt](../../README.md#jwt)
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
 
 ### HTTP request headers
 
@@ -730,6 +780,11 @@ updateParticipantOrder($id, $participant_order_dto): \Idealogic\RegistrationAPI\
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Configure Bearer (JWT) authorization: jwt
 $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
@@ -765,7 +820,7 @@ try {
 
 ### Authorization
 
-[jwt](../../README.md#jwt)
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
 
 ### HTTP request headers
 
