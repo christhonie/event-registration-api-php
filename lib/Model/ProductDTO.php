@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderDTO
+ * ProductDTO
  *
  * PHP version 7.4
  *
@@ -33,15 +33,16 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * OrderDTO Class Doc Comment
+ * ProductDTO Class Doc Comment
  *
  * @category Class
+ * @description A product represent a fee, product or service which can be billed to a Person. Product will be a wrapper for WooCommerce Product.
  * @package  Idealogic\RegistrationAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProductDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrderDTO';
+    protected static $openAPIModelName = 'ProductDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,11 +60,12 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'int',
-        'number' => 'string',
+        'name' => 'string',
         'external_id' => 'string',
-        'status' => 'string',
-        'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
-        'email' => 'string'
+        'price' => 'float',
+        'sales_price' => 'float',
+        'sale_from' => '\DateTime',
+        'sale_to' => '\DateTime'
     ];
 
     /**
@@ -75,11 +77,12 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'id' => 'int64',
-        'number' => null,
+        'name' => null,
         'external_id' => null,
-        'status' => null,
-        'organisation' => null,
-        'email' => null
+        'price' => null,
+        'sales_price' => null,
+        'sale_from' => 'date-time',
+        'sale_to' => 'date-time'
     ];
 
     /**
@@ -89,11 +92,12 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'id' => false,
-        'number' => false,
+        'name' => false,
         'external_id' => false,
-        'status' => false,
-        'organisation' => false,
-        'email' => false
+        'price' => false,
+        'sales_price' => false,
+        'sale_from' => false,
+        'sale_to' => false
     ];
 
     /**
@@ -183,11 +187,12 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'number' => 'number',
+        'name' => 'name',
         'external_id' => 'externalId',
-        'status' => 'status',
-        'organisation' => 'organisation',
-        'email' => 'email'
+        'price' => 'price',
+        'sales_price' => 'salesPrice',
+        'sale_from' => 'saleFrom',
+        'sale_to' => 'saleTo'
     ];
 
     /**
@@ -197,11 +202,12 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
-        'number' => 'setNumber',
+        'name' => 'setName',
         'external_id' => 'setExternalId',
-        'status' => 'setStatus',
-        'organisation' => 'setOrganisation',
-        'email' => 'setEmail'
+        'price' => 'setPrice',
+        'sales_price' => 'setSalesPrice',
+        'sale_from' => 'setSaleFrom',
+        'sale_to' => 'setSaleTo'
     ];
 
     /**
@@ -211,11 +217,12 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
-        'number' => 'getNumber',
+        'name' => 'getName',
         'external_id' => 'getExternalId',
-        'status' => 'getStatus',
-        'organisation' => 'getOrganisation',
-        'email' => 'getEmail'
+        'price' => 'getPrice',
+        'sales_price' => 'getSalesPrice',
+        'sale_from' => 'getSaleFrom',
+        'sale_to' => 'getSaleTo'
     ];
 
     /**
@@ -259,25 +266,6 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const STATUS_PENDING = 'PENDING';
-    public const STATUS_PAID = 'PAID';
-    public const STATUS_REFUNDED = 'REFUNDED';
-    public const STATUS_CANCELLED = 'CANCELLED';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_PENDING,
-            self::STATUS_PAID,
-            self::STATUS_REFUNDED,
-            self::STATUS_CANCELLED,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -295,11 +283,12 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('number', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('external_id', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('organisation', $data ?? [], null);
-        $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('price', $data ?? [], null);
+        $this->setIfExists('sales_price', $data ?? [], null);
+        $this->setIfExists('sale_from', $data ?? [], null);
+        $this->setIfExists('sale_to', $data ?? [], null);
     }
 
     /**
@@ -329,42 +318,28 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['number'] === null) {
-            $invalidProperties[] = "'number' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
-        if ((mb_strlen($this->container['number']) > 12)) {
-            $invalidProperties[] = "invalid value for 'number', the character length must be smaller than or equal to 12.";
-        }
-
-        if ((mb_strlen($this->container['number']) < 0)) {
-            $invalidProperties[] = "invalid value for 'number', the character length must be bigger than or equal to 0.";
+        if ((mb_strlen($this->container['name']) > 50)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 50.";
         }
 
-        if (!is_null($this->container['external_id']) && (mb_strlen($this->container['external_id']) > 32)) {
-            $invalidProperties[] = "invalid value for 'external_id', the character length must be smaller than or equal to 32.";
+        if ((mb_strlen($this->container['name']) < 0)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['external_id']) && (mb_strlen($this->container['external_id']) > 50)) {
+            $invalidProperties[] = "invalid value for 'external_id', the character length must be smaller than or equal to 50.";
         }
 
         if (!is_null($this->container['external_id']) && (mb_strlen($this->container['external_id']) < 0)) {
             $invalidProperties[] = "invalid value for 'external_id', the character length must be bigger than or equal to 0.";
         }
 
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['price'] === null) {
+            $invalidProperties[] = "'price' can't be null";
         }
-
-        if (!is_null($this->container['email']) && (mb_strlen($this->container['email']) > 100)) {
-            $invalidProperties[] = "invalid value for 'email', the character length must be smaller than or equal to 100.";
-        }
-
-        if (!is_null($this->container['email']) && (mb_strlen($this->container['email']) < 0)) {
-            $invalidProperties[] = "invalid value for 'email', the character length must be bigger than or equal to 0.";
-        }
-
         return $invalidProperties;
     }
 
@@ -408,35 +383,35 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets number
+     * Gets name
      *
      * @return string
      */
-    public function getNumber()
+    public function getName()
     {
-        return $this->container['number'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets number
+     * Sets name
      *
-     * @param string $number number
+     * @param string $name name
      *
      * @return self
      */
-    public function setNumber($number)
+    public function setName($name)
     {
-        if (is_null($number)) {
-            throw new \InvalidArgumentException('non-nullable number cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        if ((mb_strlen($number) > 12)) {
-            throw new \InvalidArgumentException('invalid length for $number when calling OrderDTO., must be smaller than or equal to 12.');
+        if ((mb_strlen($name) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling ProductDTO., must be smaller than or equal to 50.');
         }
-        if ((mb_strlen($number) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $number when calling OrderDTO., must be bigger than or equal to 0.');
+        if ((mb_strlen($name) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling ProductDTO., must be bigger than or equal to 0.');
         }
 
-        $this->container['number'] = $number;
+        $this->container['name'] = $name;
 
         return $this;
     }
@@ -454,7 +429,7 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets external_id
      *
-     * @param string|null $external_id Foreign key to external order module
+     * @param string|null $external_id Foreign key to external product module
      *
      * @return self
      */
@@ -463,11 +438,11 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($external_id)) {
             throw new \InvalidArgumentException('non-nullable external_id cannot be null');
         }
-        if ((mb_strlen($external_id) > 32)) {
-            throw new \InvalidArgumentException('invalid length for $external_id when calling OrderDTO., must be smaller than or equal to 32.');
+        if ((mb_strlen($external_id) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $external_id when calling ProductDTO., must be smaller than or equal to 50.');
         }
         if ((mb_strlen($external_id) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $external_id when calling OrderDTO., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid length for $external_id when calling ProductDTO., must be bigger than or equal to 0.');
         }
 
         $this->container['external_id'] = $external_id;
@@ -476,99 +451,109 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets status
+     * Gets price
      *
-     * @return string|null
+     * @return float
      */
-    public function getStatus()
+    public function getPrice()
     {
-        return $this->container['status'];
+        return $this->container['price'];
     }
 
     /**
-     * Sets status
+     * Sets price
      *
-     * @param string|null $status status
+     * @param float $price price
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setPrice($price)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($price)) {
+            throw new \InvalidArgumentException('non-nullable price cannot be null');
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['price'] = $price;
 
         return $this;
     }
 
     /**
-     * Gets organisation
+     * Gets sales_price
      *
-     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO|null
+     * @return float|null
      */
-    public function getOrganisation()
+    public function getSalesPrice()
     {
-        return $this->container['organisation'];
+        return $this->container['sales_price'];
     }
 
     /**
-     * Sets organisation
+     * Sets sales_price
      *
-     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO|null $organisation organisation
+     * @param float|null $sales_price sales_price
      *
      * @return self
      */
-    public function setOrganisation($organisation)
+    public function setSalesPrice($sales_price)
     {
-        if (is_null($organisation)) {
-            throw new \InvalidArgumentException('non-nullable organisation cannot be null');
+        if (is_null($sales_price)) {
+            throw new \InvalidArgumentException('non-nullable sales_price cannot be null');
         }
-        $this->container['organisation'] = $organisation;
+        $this->container['sales_price'] = $sales_price;
 
         return $this;
     }
 
     /**
-     * Gets email
+     * Gets sale_from
      *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getEmail()
+    public function getSaleFrom()
     {
-        return $this->container['email'];
+        return $this->container['sale_from'];
     }
 
     /**
-     * Sets email
+     * Sets sale_from
      *
-     * @param string|null $email Email of the buyer.
+     * @param \DateTime|null $sale_from sale_from
      *
      * @return self
      */
-    public function setEmail($email)
+    public function setSaleFrom($sale_from)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        if (is_null($sale_from)) {
+            throw new \InvalidArgumentException('non-nullable sale_from cannot be null');
         }
-        if ((mb_strlen($email) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $email when calling OrderDTO., must be smaller than or equal to 100.');
-        }
-        if ((mb_strlen($email) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $email when calling OrderDTO., must be bigger than or equal to 0.');
-        }
+        $this->container['sale_from'] = $sale_from;
 
-        $this->container['email'] = $email;
+        return $this;
+    }
+
+    /**
+     * Gets sale_to
+     *
+     * @return \DateTime|null
+     */
+    public function getSaleTo()
+    {
+        return $this->container['sale_to'];
+    }
+
+    /**
+     * Sets sale_to
+     *
+     * @param \DateTime|null $sale_to sale_to
+     *
+     * @return self
+     */
+    public function setSaleTo($sale_to)
+    {
+        if (is_null($sale_to)) {
+            throw new \InvalidArgumentException('non-nullable sale_to cannot be null');
+        }
+        $this->container['sale_to'] = $sale_to;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderResourceApi
+ * PersonResourceApi
  * PHP version 7.4
  *
  * @category Class
@@ -41,14 +41,14 @@ use Idealogic\RegistrationAPI\HeaderSelector;
 use Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * OrderResourceApi Class Doc Comment
+ * PersonResourceApi Class Doc Comment
  *
  * @category Class
  * @package  Idealogic\RegistrationAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class OrderResourceApi
+class PersonResourceApi
 {
     /**
      * @var ClientInterface
@@ -72,37 +72,37 @@ class OrderResourceApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'countOrders' => [
+        'createPerson' => [
             'application/json',
         ],
-        'createOrder' => [
+        'deletePerson' => [
             'application/json',
         ],
-        'deleteOrder' => [
+        'findByExternalUserIdOrCreate' => [
             'application/json',
         ],
-        'getAllOrders' => [
+        'findByID' => [
             'application/json',
         ],
-        'getOrder' => [
+        'findByIdDetails' => [
             'application/json',
         ],
-        'getParticipantOrder' => [
+        'getAllLinkedOrgUsersByPrincipal' => [
             'application/json',
         ],
-        'partialUpdateOrder' => [
-            'application/merge-patch+json',
-        ],
-        'patchParticipantOrder' => [
-            'application/merge-patch+json',
-        ],
-        'updateOrder' => [
+        'getAllPeople' => [
             'application/json',
         ],
-        'updateOrder1' => [
+        'getPerson' => [
             'application/json',
         ],
-        'updateParticipantOrder' => [
+        'match' => [
+            'application/json',
+        ],
+        'queryPerson' => [
+            'application/json',
+        ],
+        'updatePerson' => [
             'application/json',
         ],
     ];
@@ -154,90 +154,36 @@ class OrderResourceApi
     }
 
     /**
-     * Operation countOrders
+     * Operation createPerson
      *
-     * @param  int $id_greater_than id_greater_than (optional)
-     * @param  int $id_less_than id_less_than (optional)
-     * @param  int $id_greater_than_or_equal id_greater_than_or_equal (optional)
-     * @param  int $id_less_than_or_equal id_less_than_or_equal (optional)
-     * @param  int $id_equals id_equals (optional)
-     * @param  int $id_not_equals id_not_equals (optional)
-     * @param  bool $id_specified id_specified (optional)
-     * @param  int[] $id_in id_in (optional)
-     * @param  int[] $id_not_in id_not_in (optional)
-     * @param  string $number_contains number_contains (optional)
-     * @param  string $number_does_not_contain number_does_not_contain (optional)
-     * @param  string $number_equals number_equals (optional)
-     * @param  string $number_not_equals number_not_equals (optional)
-     * @param  bool $number_specified number_specified (optional)
-     * @param  string[] $number_in number_in (optional)
-     * @param  string[] $number_not_in number_not_in (optional)
-     * @param  string $external_id_contains external_id_contains (optional)
-     * @param  string $external_id_does_not_contain external_id_does_not_contain (optional)
-     * @param  string $external_id_equals external_id_equals (optional)
-     * @param  string $external_id_not_equals external_id_not_equals (optional)
-     * @param  bool $external_id_specified external_id_specified (optional)
-     * @param  string[] $external_id_in external_id_in (optional)
-     * @param  string[] $external_id_not_in external_id_not_in (optional)
-     * @param  string $status_equals status_equals (optional)
-     * @param  string $status_not_equals status_not_equals (optional)
-     * @param  bool $status_specified status_specified (optional)
-     * @param  string[] $status_in status_in (optional)
-     * @param  string[] $status_not_in status_not_in (optional)
-     * @param  bool $distinct distinct (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countOrders'] to see the possible values for this operation
+     * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto person_dto (required)
+     * @param  int $organisation_id organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return int
+     * @return \Idealogic\RegistrationAPI\Model\PersonDTO
      */
-    public function countOrders($id_greater_than = null, $id_less_than = null, $id_greater_than_or_equal = null, $id_less_than_or_equal = null, $id_equals = null, $id_not_equals = null, $id_specified = null, $id_in = null, $id_not_in = null, $number_contains = null, $number_does_not_contain = null, $number_equals = null, $number_not_equals = null, $number_specified = null, $number_in = null, $number_not_in = null, $external_id_contains = null, $external_id_does_not_contain = null, $external_id_equals = null, $external_id_not_equals = null, $external_id_specified = null, $external_id_in = null, $external_id_not_in = null, $status_equals = null, $status_not_equals = null, $status_specified = null, $status_in = null, $status_not_in = null, $distinct = null, string $contentType = self::contentTypes['countOrders'][0])
+    public function createPerson($person_dto, $organisation_id = null, string $contentType = self::contentTypes['createPerson'][0])
     {
-        list($response) = $this->countOrdersWithHttpInfo($id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $distinct, $contentType);
+        list($response) = $this->createPersonWithHttpInfo($person_dto, $organisation_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation countOrdersWithHttpInfo
+     * Operation createPersonWithHttpInfo
      *
-     * @param  int $id_greater_than (optional)
-     * @param  int $id_less_than (optional)
-     * @param  int $id_greater_than_or_equal (optional)
-     * @param  int $id_less_than_or_equal (optional)
-     * @param  int $id_equals (optional)
-     * @param  int $id_not_equals (optional)
-     * @param  bool $id_specified (optional)
-     * @param  int[] $id_in (optional)
-     * @param  int[] $id_not_in (optional)
-     * @param  string $number_contains (optional)
-     * @param  string $number_does_not_contain (optional)
-     * @param  string $number_equals (optional)
-     * @param  string $number_not_equals (optional)
-     * @param  bool $number_specified (optional)
-     * @param  string[] $number_in (optional)
-     * @param  string[] $number_not_in (optional)
-     * @param  string $external_id_contains (optional)
-     * @param  string $external_id_does_not_contain (optional)
-     * @param  string $external_id_equals (optional)
-     * @param  string $external_id_not_equals (optional)
-     * @param  bool $external_id_specified (optional)
-     * @param  string[] $external_id_in (optional)
-     * @param  string[] $external_id_not_in (optional)
-     * @param  string $status_equals (optional)
-     * @param  string $status_not_equals (optional)
-     * @param  bool $status_specified (optional)
-     * @param  string[] $status_in (optional)
-     * @param  string[] $status_not_in (optional)
-     * @param  bool $distinct (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countOrders'] to see the possible values for this operation
+     * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of int, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Idealogic\RegistrationAPI\Model\PersonDTO, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countOrdersWithHttpInfo($id_greater_than = null, $id_less_than = null, $id_greater_than_or_equal = null, $id_less_than_or_equal = null, $id_equals = null, $id_not_equals = null, $id_specified = null, $id_in = null, $id_not_in = null, $number_contains = null, $number_does_not_contain = null, $number_equals = null, $number_not_equals = null, $number_specified = null, $number_in = null, $number_not_in = null, $external_id_contains = null, $external_id_does_not_contain = null, $external_id_equals = null, $external_id_not_equals = null, $external_id_specified = null, $external_id_in = null, $external_id_not_in = null, $status_equals = null, $status_not_equals = null, $status_specified = null, $status_in = null, $status_not_in = null, $distinct = null, string $contentType = self::contentTypes['countOrders'][0])
+    public function createPersonWithHttpInfo($person_dto, $organisation_id = null, string $contentType = self::contentTypes['createPerson'][0])
     {
-        $request = $this->countOrdersRequest($id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $distinct, $contentType);
+        $request = $this->createPersonRequest($person_dto, $organisation_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -276,11 +222,11 @@ class OrderResourceApi
 
             switch($statusCode) {
                 case 200:
-                    if ('int' === '\SplFileObject') {
+                    if ('\Idealogic\RegistrationAPI\Model\PersonDTO' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('int' !== 'string') {
+                        if ('\Idealogic\RegistrationAPI\Model\PersonDTO' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -298,13 +244,13 @@ class OrderResourceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, 'int', []),
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonDTO', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = 'int';
+            $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -337,7 +283,7 @@ class OrderResourceApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'int',
+                        '\Idealogic\RegistrationAPI\Model\PersonDTO',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -348,45 +294,18 @@ class OrderResourceApi
     }
 
     /**
-     * Operation countOrdersAsync
+     * Operation createPersonAsync
      *
-     * @param  int $id_greater_than (optional)
-     * @param  int $id_less_than (optional)
-     * @param  int $id_greater_than_or_equal (optional)
-     * @param  int $id_less_than_or_equal (optional)
-     * @param  int $id_equals (optional)
-     * @param  int $id_not_equals (optional)
-     * @param  bool $id_specified (optional)
-     * @param  int[] $id_in (optional)
-     * @param  int[] $id_not_in (optional)
-     * @param  string $number_contains (optional)
-     * @param  string $number_does_not_contain (optional)
-     * @param  string $number_equals (optional)
-     * @param  string $number_not_equals (optional)
-     * @param  bool $number_specified (optional)
-     * @param  string[] $number_in (optional)
-     * @param  string[] $number_not_in (optional)
-     * @param  string $external_id_contains (optional)
-     * @param  string $external_id_does_not_contain (optional)
-     * @param  string $external_id_equals (optional)
-     * @param  string $external_id_not_equals (optional)
-     * @param  bool $external_id_specified (optional)
-     * @param  string[] $external_id_in (optional)
-     * @param  string[] $external_id_not_in (optional)
-     * @param  string $status_equals (optional)
-     * @param  string $status_not_equals (optional)
-     * @param  bool $status_specified (optional)
-     * @param  string[] $status_in (optional)
-     * @param  string[] $status_not_in (optional)
-     * @param  bool $distinct (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countOrders'] to see the possible values for this operation
+     * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countOrdersAsync($id_greater_than = null, $id_less_than = null, $id_greater_than_or_equal = null, $id_less_than_or_equal = null, $id_equals = null, $id_not_equals = null, $id_specified = null, $id_in = null, $id_not_in = null, $number_contains = null, $number_does_not_contain = null, $number_equals = null, $number_not_equals = null, $number_specified = null, $number_in = null, $number_not_in = null, $external_id_contains = null, $external_id_does_not_contain = null, $external_id_equals = null, $external_id_not_equals = null, $external_id_specified = null, $external_id_in = null, $external_id_not_in = null, $status_equals = null, $status_not_equals = null, $status_specified = null, $status_in = null, $status_not_in = null, $distinct = null, string $contentType = self::contentTypes['countOrders'][0])
+    public function createPersonAsync($person_dto, $organisation_id = null, string $contentType = self::contentTypes['createPerson'][0])
     {
-        return $this->countOrdersAsyncWithHttpInfo($id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $distinct, $contentType)
+        return $this->createPersonAsyncWithHttpInfo($person_dto, $organisation_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -395,46 +314,19 @@ class OrderResourceApi
     }
 
     /**
-     * Operation countOrdersAsyncWithHttpInfo
+     * Operation createPersonAsyncWithHttpInfo
      *
-     * @param  int $id_greater_than (optional)
-     * @param  int $id_less_than (optional)
-     * @param  int $id_greater_than_or_equal (optional)
-     * @param  int $id_less_than_or_equal (optional)
-     * @param  int $id_equals (optional)
-     * @param  int $id_not_equals (optional)
-     * @param  bool $id_specified (optional)
-     * @param  int[] $id_in (optional)
-     * @param  int[] $id_not_in (optional)
-     * @param  string $number_contains (optional)
-     * @param  string $number_does_not_contain (optional)
-     * @param  string $number_equals (optional)
-     * @param  string $number_not_equals (optional)
-     * @param  bool $number_specified (optional)
-     * @param  string[] $number_in (optional)
-     * @param  string[] $number_not_in (optional)
-     * @param  string $external_id_contains (optional)
-     * @param  string $external_id_does_not_contain (optional)
-     * @param  string $external_id_equals (optional)
-     * @param  string $external_id_not_equals (optional)
-     * @param  bool $external_id_specified (optional)
-     * @param  string[] $external_id_in (optional)
-     * @param  string[] $external_id_not_in (optional)
-     * @param  string $status_equals (optional)
-     * @param  string $status_not_equals (optional)
-     * @param  bool $status_specified (optional)
-     * @param  string[] $status_in (optional)
-     * @param  string[] $status_not_in (optional)
-     * @param  bool $distinct (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countOrders'] to see the possible values for this operation
+     * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countOrdersAsyncWithHttpInfo($id_greater_than = null, $id_less_than = null, $id_greater_than_or_equal = null, $id_less_than_or_equal = null, $id_equals = null, $id_not_equals = null, $id_specified = null, $id_in = null, $id_not_in = null, $number_contains = null, $number_does_not_contain = null, $number_equals = null, $number_not_equals = null, $number_specified = null, $number_in = null, $number_not_in = null, $external_id_contains = null, $external_id_does_not_contain = null, $external_id_equals = null, $external_id_not_equals = null, $external_id_specified = null, $external_id_in = null, $external_id_not_in = null, $status_equals = null, $status_not_equals = null, $status_specified = null, $status_in = null, $status_not_in = null, $distinct = null, string $contentType = self::contentTypes['countOrders'][0])
+    public function createPersonAsyncWithHttpInfo($person_dto, $organisation_id = null, string $contentType = self::contentTypes['createPerson'][0])
     {
-        $returnType = 'int';
-        $request = $this->countOrdersRequest($id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $distinct, $contentType);
+        $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO';
+        $request = $this->createPersonRequest($person_dto, $organisation_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -473,643 +365,43 @@ class OrderResourceApi
     }
 
     /**
-     * Create request for operation 'countOrders'
+     * Create request for operation 'createPerson'
      *
-     * @param  int $id_greater_than (optional)
-     * @param  int $id_less_than (optional)
-     * @param  int $id_greater_than_or_equal (optional)
-     * @param  int $id_less_than_or_equal (optional)
-     * @param  int $id_equals (optional)
-     * @param  int $id_not_equals (optional)
-     * @param  bool $id_specified (optional)
-     * @param  int[] $id_in (optional)
-     * @param  int[] $id_not_in (optional)
-     * @param  string $number_contains (optional)
-     * @param  string $number_does_not_contain (optional)
-     * @param  string $number_equals (optional)
-     * @param  string $number_not_equals (optional)
-     * @param  bool $number_specified (optional)
-     * @param  string[] $number_in (optional)
-     * @param  string[] $number_not_in (optional)
-     * @param  string $external_id_contains (optional)
-     * @param  string $external_id_does_not_contain (optional)
-     * @param  string $external_id_equals (optional)
-     * @param  string $external_id_not_equals (optional)
-     * @param  bool $external_id_specified (optional)
-     * @param  string[] $external_id_in (optional)
-     * @param  string[] $external_id_not_in (optional)
-     * @param  string $status_equals (optional)
-     * @param  string $status_not_equals (optional)
-     * @param  bool $status_specified (optional)
-     * @param  string[] $status_in (optional)
-     * @param  string[] $status_not_in (optional)
-     * @param  bool $distinct (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countOrders'] to see the possible values for this operation
+     * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countOrdersRequest($id_greater_than = null, $id_less_than = null, $id_greater_than_or_equal = null, $id_less_than_or_equal = null, $id_equals = null, $id_not_equals = null, $id_specified = null, $id_in = null, $id_not_in = null, $number_contains = null, $number_does_not_contain = null, $number_equals = null, $number_not_equals = null, $number_specified = null, $number_in = null, $number_not_in = null, $external_id_contains = null, $external_id_does_not_contain = null, $external_id_equals = null, $external_id_not_equals = null, $external_id_specified = null, $external_id_in = null, $external_id_not_in = null, $status_equals = null, $status_not_equals = null, $status_specified = null, $status_in = null, $status_not_in = null, $distinct = null, string $contentType = self::contentTypes['countOrders'][0])
+    public function createPersonRequest($person_dto, $organisation_id = null, string $contentType = self::contentTypes['createPerson'][0])
     {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        $resourcePath = '/api/orders/count';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_greater_than,
-            'id.greaterThan', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_less_than,
-            'id.lessThan', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_greater_than_or_equal,
-            'id.greaterThanOrEqual', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_less_than_or_equal,
-            'id.lessThanOrEqual', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_equals,
-            'id.equals', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_not_equals,
-            'id.notEquals', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_specified,
-            'id.specified', // param base name
-            'boolean', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_in,
-            'id.in', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_not_in,
-            'id.notIn', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_contains,
-            'number.contains', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_does_not_contain,
-            'number.doesNotContain', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_equals,
-            'number.equals', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_not_equals,
-            'number.notEquals', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_specified,
-            'number.specified', // param base name
-            'boolean', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_in,
-            'number.in', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_not_in,
-            'number.notIn', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_contains,
-            'externalId.contains', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_does_not_contain,
-            'externalId.doesNotContain', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_equals,
-            'externalId.equals', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_not_equals,
-            'externalId.notEquals', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_specified,
-            'externalId.specified', // param base name
-            'boolean', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_in,
-            'externalId.in', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_not_in,
-            'externalId.notIn', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status_equals,
-            'status.equals', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status_not_equals,
-            'status.notEquals', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status_specified,
-            'status.specified', // param base name
-            'boolean', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status_in,
-            'status.in', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status_not_in,
-            'status.notIn', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $distinct,
-            'distinct', // param base name
-            'boolean', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['*/*', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
-        if ($apiKey !== null) {
-            $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires Bearer (JWT) authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation createOrder
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createOrder'] to see the possible values for this operation
-     *
-     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Idealogic\RegistrationAPI\Model\OrderDTO
-     */
-    public function createOrder($order_dto, string $contentType = self::contentTypes['createOrder'][0])
-    {
-        list($response) = $this->createOrderWithHttpInfo($order_dto, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation createOrderWithHttpInfo
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createOrder'] to see the possible values for this operation
-     *
-     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Idealogic\RegistrationAPI\Model\OrderDTO, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function createOrderWithHttpInfo($order_dto, string $contentType = self::contentTypes['createOrder'][0])
-    {
-        $request = $this->createOrderRequest($order_dto, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Idealogic\RegistrationAPI\Model\OrderDTO' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Idealogic\RegistrationAPI\Model\OrderDTO' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\OrderDTO', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Idealogic\RegistrationAPI\Model\OrderDTO',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation createOrderAsync
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createOrder'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createOrderAsync($order_dto, string $contentType = self::contentTypes['createOrder'][0])
-    {
-        return $this->createOrderAsyncWithHttpInfo($order_dto, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation createOrderAsyncWithHttpInfo
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createOrder'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function createOrderAsyncWithHttpInfo($order_dto, string $contentType = self::contentTypes['createOrder'][0])
-    {
-        $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO';
-        $request = $this->createOrderRequest($order_dto, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'createOrder'
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createOrder'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function createOrderRequest($order_dto, string $contentType = self::contentTypes['createOrder'][0])
-    {
-
-        // verify the required parameter 'order_dto' is set
-        if ($order_dto === null || (is_array($order_dto) && count($order_dto) === 0)) {
+        // verify the required parameter 'person_dto' is set
+        if ($person_dto === null || (is_array($person_dto) && count($person_dto) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $order_dto when calling createOrder'
+                'Missing the required parameter $person_dto when calling createPerson'
             );
         }
 
 
-        $resourcePath = '/api/orders';
+
+        $resourcePath = '/api/people';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $organisation_id,
+            'organisationId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
 
 
@@ -1121,12 +413,12 @@ class OrderResourceApi
         );
 
         // for model (json/xml)
-        if (isset($order_dto)) {
+        if (isset($person_dto)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($order_dto));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($person_dto));
             } else {
-                $httpBody = $order_dto;
+                $httpBody = $person_dto;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1184,33 +476,33 @@ class OrderResourceApi
     }
 
     /**
-     * Operation deleteOrder
+     * Operation deletePerson
      *
      * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteOrder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteOrder($id, string $contentType = self::contentTypes['deleteOrder'][0])
+    public function deletePerson($id, string $contentType = self::contentTypes['deletePerson'][0])
     {
-        $this->deleteOrderWithHttpInfo($id, $contentType);
+        $this->deletePersonWithHttpInfo($id, $contentType);
     }
 
     /**
-     * Operation deleteOrderWithHttpInfo
+     * Operation deletePersonWithHttpInfo
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteOrder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteOrderWithHttpInfo($id, string $contentType = self::contentTypes['deleteOrder'][0])
+    public function deletePersonWithHttpInfo($id, string $contentType = self::contentTypes['deletePerson'][0])
     {
-        $request = $this->deleteOrderRequest($id, $contentType);
+        $request = $this->deletePersonRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1257,17 +549,17 @@ class OrderResourceApi
     }
 
     /**
-     * Operation deleteOrderAsync
+     * Operation deletePersonAsync
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteOrder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteOrderAsync($id, string $contentType = self::contentTypes['deleteOrder'][0])
+    public function deletePersonAsync($id, string $contentType = self::contentTypes['deletePerson'][0])
     {
-        return $this->deleteOrderAsyncWithHttpInfo($id, $contentType)
+        return $this->deletePersonAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1276,18 +568,18 @@ class OrderResourceApi
     }
 
     /**
-     * Operation deleteOrderAsyncWithHttpInfo
+     * Operation deletePersonAsyncWithHttpInfo
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteOrder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteOrderAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deleteOrder'][0])
+    public function deletePersonAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deletePerson'][0])
     {
         $returnType = '';
-        $request = $this->deleteOrderRequest($id, $contentType);
+        $request = $this->deletePersonRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1313,26 +605,26 @@ class OrderResourceApi
     }
 
     /**
-     * Create request for operation 'deleteOrder'
+     * Create request for operation 'deletePerson'
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteOrder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteOrderRequest($id, string $contentType = self::contentTypes['deleteOrder'][0])
+    public function deletePersonRequest($id, string $contentType = self::contentTypes['deletePerson'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteOrder'
+                'Missing the required parameter $id when calling deletePerson'
             );
         }
 
 
-        $resourcePath = '/api/orders/{id}';
+        $resourcePath = '/api/people/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1414,92 +706,36 @@ class OrderResourceApi
     }
 
     /**
-     * Operation getAllOrders
+     * Operation findByExternalUserIdOrCreate
      *
-     * @param  Pageable $pageable pageable (required)
-     * @param  int $id_greater_than id_greater_than (optional)
-     * @param  int $id_less_than id_less_than (optional)
-     * @param  int $id_greater_than_or_equal id_greater_than_or_equal (optional)
-     * @param  int $id_less_than_or_equal id_less_than_or_equal (optional)
-     * @param  int $id_equals id_equals (optional)
-     * @param  int $id_not_equals id_not_equals (optional)
-     * @param  bool $id_specified id_specified (optional)
-     * @param  int[] $id_in id_in (optional)
-     * @param  int[] $id_not_in id_not_in (optional)
-     * @param  string $number_contains number_contains (optional)
-     * @param  string $number_does_not_contain number_does_not_contain (optional)
-     * @param  string $number_equals number_equals (optional)
-     * @param  string $number_not_equals number_not_equals (optional)
-     * @param  bool $number_specified number_specified (optional)
-     * @param  string[] $number_in number_in (optional)
-     * @param  string[] $number_not_in number_not_in (optional)
-     * @param  string $external_id_contains external_id_contains (optional)
-     * @param  string $external_id_does_not_contain external_id_does_not_contain (optional)
-     * @param  string $external_id_equals external_id_equals (optional)
-     * @param  string $external_id_not_equals external_id_not_equals (optional)
-     * @param  bool $external_id_specified external_id_specified (optional)
-     * @param  string[] $external_id_in external_id_in (optional)
-     * @param  string[] $external_id_not_in external_id_not_in (optional)
-     * @param  string $status_equals status_equals (optional)
-     * @param  string $status_not_equals status_not_equals (optional)
-     * @param  bool $status_specified status_specified (optional)
-     * @param  string[] $status_in status_in (optional)
-     * @param  string[] $status_not_in status_not_in (optional)
-     * @param  bool $distinct distinct (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllOrders'] to see the possible values for this operation
+     * @param  string $external_user_id external_user_id (required)
+     * @param  int $organisation_id organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByExternalUserIdOrCreate'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Idealogic\RegistrationAPI\Model\OrderDTO[]
+     * @return \Idealogic\RegistrationAPI\Model\PersonDTO
      */
-    public function getAllOrders($pageable, $id_greater_than = null, $id_less_than = null, $id_greater_than_or_equal = null, $id_less_than_or_equal = null, $id_equals = null, $id_not_equals = null, $id_specified = null, $id_in = null, $id_not_in = null, $number_contains = null, $number_does_not_contain = null, $number_equals = null, $number_not_equals = null, $number_specified = null, $number_in = null, $number_not_in = null, $external_id_contains = null, $external_id_does_not_contain = null, $external_id_equals = null, $external_id_not_equals = null, $external_id_specified = null, $external_id_in = null, $external_id_not_in = null, $status_equals = null, $status_not_equals = null, $status_specified = null, $status_in = null, $status_not_in = null, $distinct = null, string $contentType = self::contentTypes['getAllOrders'][0])
+    public function findByExternalUserIdOrCreate($external_user_id, $organisation_id = null, string $contentType = self::contentTypes['findByExternalUserIdOrCreate'][0])
     {
-        list($response) = $this->getAllOrdersWithHttpInfo($pageable, $id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $distinct, $contentType);
+        list($response) = $this->findByExternalUserIdOrCreateWithHttpInfo($external_user_id, $organisation_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation getAllOrdersWithHttpInfo
+     * Operation findByExternalUserIdOrCreateWithHttpInfo
      *
-     * @param  Pageable $pageable (required)
-     * @param  int $id_greater_than (optional)
-     * @param  int $id_less_than (optional)
-     * @param  int $id_greater_than_or_equal (optional)
-     * @param  int $id_less_than_or_equal (optional)
-     * @param  int $id_equals (optional)
-     * @param  int $id_not_equals (optional)
-     * @param  bool $id_specified (optional)
-     * @param  int[] $id_in (optional)
-     * @param  int[] $id_not_in (optional)
-     * @param  string $number_contains (optional)
-     * @param  string $number_does_not_contain (optional)
-     * @param  string $number_equals (optional)
-     * @param  string $number_not_equals (optional)
-     * @param  bool $number_specified (optional)
-     * @param  string[] $number_in (optional)
-     * @param  string[] $number_not_in (optional)
-     * @param  string $external_id_contains (optional)
-     * @param  string $external_id_does_not_contain (optional)
-     * @param  string $external_id_equals (optional)
-     * @param  string $external_id_not_equals (optional)
-     * @param  bool $external_id_specified (optional)
-     * @param  string[] $external_id_in (optional)
-     * @param  string[] $external_id_not_in (optional)
-     * @param  string $status_equals (optional)
-     * @param  string $status_not_equals (optional)
-     * @param  bool $status_specified (optional)
-     * @param  string[] $status_in (optional)
-     * @param  string[] $status_not_in (optional)
-     * @param  bool $distinct (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllOrders'] to see the possible values for this operation
+     * @param  string $external_user_id (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByExternalUserIdOrCreate'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Idealogic\RegistrationAPI\Model\OrderDTO[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Idealogic\RegistrationAPI\Model\PersonDTO, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAllOrdersWithHttpInfo($pageable, $id_greater_than = null, $id_less_than = null, $id_greater_than_or_equal = null, $id_less_than_or_equal = null, $id_equals = null, $id_not_equals = null, $id_specified = null, $id_in = null, $id_not_in = null, $number_contains = null, $number_does_not_contain = null, $number_equals = null, $number_not_equals = null, $number_specified = null, $number_in = null, $number_not_in = null, $external_id_contains = null, $external_id_does_not_contain = null, $external_id_equals = null, $external_id_not_equals = null, $external_id_specified = null, $external_id_in = null, $external_id_not_in = null, $status_equals = null, $status_not_equals = null, $status_specified = null, $status_in = null, $status_not_in = null, $distinct = null, string $contentType = self::contentTypes['getAllOrders'][0])
+    public function findByExternalUserIdOrCreateWithHttpInfo($external_user_id, $organisation_id = null, string $contentType = self::contentTypes['findByExternalUserIdOrCreate'][0])
     {
-        $request = $this->getAllOrdersRequest($pageable, $id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $distinct, $contentType);
+        $request = $this->findByExternalUserIdOrCreateRequest($external_user_id, $organisation_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1538,11 +774,11 @@ class OrderResourceApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Idealogic\RegistrationAPI\Model\OrderDTO[]' === '\SplFileObject') {
+                    if ('\Idealogic\RegistrationAPI\Model\PersonDTO' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Idealogic\RegistrationAPI\Model\OrderDTO[]' !== 'string') {
+                        if ('\Idealogic\RegistrationAPI\Model\PersonDTO' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1560,13 +796,13 @@ class OrderResourceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\OrderDTO[]', []),
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonDTO', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO[]';
+            $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1599,7 +835,7 @@ class OrderResourceApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Idealogic\RegistrationAPI\Model\OrderDTO[]',
+                        '\Idealogic\RegistrationAPI\Model\PersonDTO',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1610,46 +846,18 @@ class OrderResourceApi
     }
 
     /**
-     * Operation getAllOrdersAsync
+     * Operation findByExternalUserIdOrCreateAsync
      *
-     * @param  Pageable $pageable (required)
-     * @param  int $id_greater_than (optional)
-     * @param  int $id_less_than (optional)
-     * @param  int $id_greater_than_or_equal (optional)
-     * @param  int $id_less_than_or_equal (optional)
-     * @param  int $id_equals (optional)
-     * @param  int $id_not_equals (optional)
-     * @param  bool $id_specified (optional)
-     * @param  int[] $id_in (optional)
-     * @param  int[] $id_not_in (optional)
-     * @param  string $number_contains (optional)
-     * @param  string $number_does_not_contain (optional)
-     * @param  string $number_equals (optional)
-     * @param  string $number_not_equals (optional)
-     * @param  bool $number_specified (optional)
-     * @param  string[] $number_in (optional)
-     * @param  string[] $number_not_in (optional)
-     * @param  string $external_id_contains (optional)
-     * @param  string $external_id_does_not_contain (optional)
-     * @param  string $external_id_equals (optional)
-     * @param  string $external_id_not_equals (optional)
-     * @param  bool $external_id_specified (optional)
-     * @param  string[] $external_id_in (optional)
-     * @param  string[] $external_id_not_in (optional)
-     * @param  string $status_equals (optional)
-     * @param  string $status_not_equals (optional)
-     * @param  bool $status_specified (optional)
-     * @param  string[] $status_in (optional)
-     * @param  string[] $status_not_in (optional)
-     * @param  bool $distinct (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllOrders'] to see the possible values for this operation
+     * @param  string $external_user_id (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByExternalUserIdOrCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAllOrdersAsync($pageable, $id_greater_than = null, $id_less_than = null, $id_greater_than_or_equal = null, $id_less_than_or_equal = null, $id_equals = null, $id_not_equals = null, $id_specified = null, $id_in = null, $id_not_in = null, $number_contains = null, $number_does_not_contain = null, $number_equals = null, $number_not_equals = null, $number_specified = null, $number_in = null, $number_not_in = null, $external_id_contains = null, $external_id_does_not_contain = null, $external_id_equals = null, $external_id_not_equals = null, $external_id_specified = null, $external_id_in = null, $external_id_not_in = null, $status_equals = null, $status_not_equals = null, $status_specified = null, $status_in = null, $status_not_in = null, $distinct = null, string $contentType = self::contentTypes['getAllOrders'][0])
+    public function findByExternalUserIdOrCreateAsync($external_user_id, $organisation_id = null, string $contentType = self::contentTypes['findByExternalUserIdOrCreate'][0])
     {
-        return $this->getAllOrdersAsyncWithHttpInfo($pageable, $id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $distinct, $contentType)
+        return $this->findByExternalUserIdOrCreateAsyncWithHttpInfo($external_user_id, $organisation_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1658,47 +866,19 @@ class OrderResourceApi
     }
 
     /**
-     * Operation getAllOrdersAsyncWithHttpInfo
+     * Operation findByExternalUserIdOrCreateAsyncWithHttpInfo
      *
-     * @param  Pageable $pageable (required)
-     * @param  int $id_greater_than (optional)
-     * @param  int $id_less_than (optional)
-     * @param  int $id_greater_than_or_equal (optional)
-     * @param  int $id_less_than_or_equal (optional)
-     * @param  int $id_equals (optional)
-     * @param  int $id_not_equals (optional)
-     * @param  bool $id_specified (optional)
-     * @param  int[] $id_in (optional)
-     * @param  int[] $id_not_in (optional)
-     * @param  string $number_contains (optional)
-     * @param  string $number_does_not_contain (optional)
-     * @param  string $number_equals (optional)
-     * @param  string $number_not_equals (optional)
-     * @param  bool $number_specified (optional)
-     * @param  string[] $number_in (optional)
-     * @param  string[] $number_not_in (optional)
-     * @param  string $external_id_contains (optional)
-     * @param  string $external_id_does_not_contain (optional)
-     * @param  string $external_id_equals (optional)
-     * @param  string $external_id_not_equals (optional)
-     * @param  bool $external_id_specified (optional)
-     * @param  string[] $external_id_in (optional)
-     * @param  string[] $external_id_not_in (optional)
-     * @param  string $status_equals (optional)
-     * @param  string $status_not_equals (optional)
-     * @param  bool $status_specified (optional)
-     * @param  string[] $status_in (optional)
-     * @param  string[] $status_not_in (optional)
-     * @param  bool $distinct (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllOrders'] to see the possible values for this operation
+     * @param  string $external_user_id (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByExternalUserIdOrCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAllOrdersAsyncWithHttpInfo($pageable, $id_greater_than = null, $id_less_than = null, $id_greater_than_or_equal = null, $id_less_than_or_equal = null, $id_equals = null, $id_not_equals = null, $id_specified = null, $id_in = null, $id_not_in = null, $number_contains = null, $number_does_not_contain = null, $number_equals = null, $number_not_equals = null, $number_specified = null, $number_in = null, $number_not_in = null, $external_id_contains = null, $external_id_does_not_contain = null, $external_id_equals = null, $external_id_not_equals = null, $external_id_specified = null, $external_id_in = null, $external_id_not_in = null, $status_equals = null, $status_not_equals = null, $status_specified = null, $status_in = null, $status_not_in = null, $distinct = null, string $contentType = self::contentTypes['getAllOrders'][0])
+    public function findByExternalUserIdOrCreateAsyncWithHttpInfo($external_user_id, $organisation_id = null, string $contentType = self::contentTypes['findByExternalUserIdOrCreate'][0])
     {
-        $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO[]';
-        $request = $this->getAllOrdersRequest($pageable, $id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $distinct, $contentType);
+        $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO';
+        $request = $this->findByExternalUserIdOrCreateRequest($external_user_id, $organisation_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1737,84 +917,28 @@ class OrderResourceApi
     }
 
     /**
-     * Create request for operation 'getAllOrders'
+     * Create request for operation 'findByExternalUserIdOrCreate'
      *
-     * @param  Pageable $pageable (required)
-     * @param  int $id_greater_than (optional)
-     * @param  int $id_less_than (optional)
-     * @param  int $id_greater_than_or_equal (optional)
-     * @param  int $id_less_than_or_equal (optional)
-     * @param  int $id_equals (optional)
-     * @param  int $id_not_equals (optional)
-     * @param  bool $id_specified (optional)
-     * @param  int[] $id_in (optional)
-     * @param  int[] $id_not_in (optional)
-     * @param  string $number_contains (optional)
-     * @param  string $number_does_not_contain (optional)
-     * @param  string $number_equals (optional)
-     * @param  string $number_not_equals (optional)
-     * @param  bool $number_specified (optional)
-     * @param  string[] $number_in (optional)
-     * @param  string[] $number_not_in (optional)
-     * @param  string $external_id_contains (optional)
-     * @param  string $external_id_does_not_contain (optional)
-     * @param  string $external_id_equals (optional)
-     * @param  string $external_id_not_equals (optional)
-     * @param  bool $external_id_specified (optional)
-     * @param  string[] $external_id_in (optional)
-     * @param  string[] $external_id_not_in (optional)
-     * @param  string $status_equals (optional)
-     * @param  string $status_not_equals (optional)
-     * @param  bool $status_specified (optional)
-     * @param  string[] $status_in (optional)
-     * @param  string[] $status_not_in (optional)
-     * @param  bool $distinct (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllOrders'] to see the possible values for this operation
+     * @param  string $external_user_id (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByExternalUserIdOrCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAllOrdersRequest($pageable, $id_greater_than = null, $id_less_than = null, $id_greater_than_or_equal = null, $id_less_than_or_equal = null, $id_equals = null, $id_not_equals = null, $id_specified = null, $id_in = null, $id_not_in = null, $number_contains = null, $number_does_not_contain = null, $number_equals = null, $number_not_equals = null, $number_specified = null, $number_in = null, $number_not_in = null, $external_id_contains = null, $external_id_does_not_contain = null, $external_id_equals = null, $external_id_not_equals = null, $external_id_specified = null, $external_id_in = null, $external_id_not_in = null, $status_equals = null, $status_not_equals = null, $status_specified = null, $status_in = null, $status_not_in = null, $distinct = null, string $contentType = self::contentTypes['getAllOrders'][0])
+    public function findByExternalUserIdOrCreateRequest($external_user_id, $organisation_id = null, string $contentType = self::contentTypes['findByExternalUserIdOrCreate'][0])
     {
 
-        // verify the required parameter 'pageable' is set
-        if ($pageable === null || (is_array($pageable) && count($pageable) === 0)) {
+        // verify the required parameter 'external_user_id' is set
+        if ($external_user_id === null || (is_array($external_user_id) && count($external_user_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $pageable when calling getAllOrders'
+                'Missing the required parameter $external_user_id when calling findByExternalUserIdOrCreate'
             );
         }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        $resourcePath = '/api/orders';
+        $resourcePath = '/api/people/findByExternalUserIdOrCreate';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1823,8 +947,984 @@ class OrderResourceApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_greater_than,
-            'id.greaterThan', // param base name
+            $external_user_id,
+            'externalUserId', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $organisation_id,
+            'organisationId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
+        if ($apiKey !== null) {
+            $headers['X-API-KEY'] = $apiKey;
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation findByID
+     *
+     * @param  string $id_number id_number (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByID'] to see the possible values for this operation
+     *
+     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Idealogic\RegistrationAPI\Model\PersonDTO[]
+     */
+    public function findByID($id_number, string $contentType = self::contentTypes['findByID'][0])
+    {
+        list($response) = $this->findByIDWithHttpInfo($id_number, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation findByIDWithHttpInfo
+     *
+     * @param  string $id_number (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByID'] to see the possible values for this operation
+     *
+     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Idealogic\RegistrationAPI\Model\PersonDTO[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function findByIDWithHttpInfo($id_number, string $contentType = self::contentTypes['findByID'][0])
+    {
+        $request = $this->findByIDRequest($id_number, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonDTO[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\PersonDTO[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation findByIDAsync
+     *
+     * @param  string $id_number (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByID'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function findByIDAsync($id_number, string $contentType = self::contentTypes['findByID'][0])
+    {
+        return $this->findByIDAsyncWithHttpInfo($id_number, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation findByIDAsyncWithHttpInfo
+     *
+     * @param  string $id_number (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByID'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function findByIDAsyncWithHttpInfo($id_number, string $contentType = self::contentTypes['findByID'][0])
+    {
+        $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO[]';
+        $request = $this->findByIDRequest($id_number, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'findByID'
+     *
+     * @param  string $id_number (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByID'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function findByIDRequest($id_number, string $contentType = self::contentTypes['findByID'][0])
+    {
+
+        // verify the required parameter 'id_number' is set
+        if ($id_number === null || (is_array($id_number) && count($id_number) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id_number when calling findByID'
+            );
+        }
+
+
+        $resourcePath = '/api/people/findById';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $id_number,
+            'idNumber', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
+        if ($apiKey !== null) {
+            $headers['X-API-KEY'] = $apiKey;
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation findByIdDetails
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\PersonMatchDTO $person_match_dto person_match_dto (required)
+     * @param  int $organisation_id organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByIdDetails'] to see the possible values for this operation
+     *
+     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Idealogic\RegistrationAPI\Model\PersonDTO[]
+     */
+    public function findByIdDetails($person_match_dto, $organisation_id = null, string $contentType = self::contentTypes['findByIdDetails'][0])
+    {
+        list($response) = $this->findByIdDetailsWithHttpInfo($person_match_dto, $organisation_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation findByIdDetailsWithHttpInfo
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\PersonMatchDTO $person_match_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByIdDetails'] to see the possible values for this operation
+     *
+     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Idealogic\RegistrationAPI\Model\PersonDTO[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function findByIdDetailsWithHttpInfo($person_match_dto, $organisation_id = null, string $contentType = self::contentTypes['findByIdDetails'][0])
+    {
+        $request = $this->findByIdDetailsRequest($person_match_dto, $organisation_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonDTO[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\PersonDTO[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation findByIdDetailsAsync
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\PersonMatchDTO $person_match_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByIdDetails'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function findByIdDetailsAsync($person_match_dto, $organisation_id = null, string $contentType = self::contentTypes['findByIdDetails'][0])
+    {
+        return $this->findByIdDetailsAsyncWithHttpInfo($person_match_dto, $organisation_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation findByIdDetailsAsyncWithHttpInfo
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\PersonMatchDTO $person_match_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByIdDetails'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function findByIdDetailsAsyncWithHttpInfo($person_match_dto, $organisation_id = null, string $contentType = self::contentTypes['findByIdDetails'][0])
+    {
+        $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO[]';
+        $request = $this->findByIdDetailsRequest($person_match_dto, $organisation_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'findByIdDetails'
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\PersonMatchDTO $person_match_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['findByIdDetails'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function findByIdDetailsRequest($person_match_dto, $organisation_id = null, string $contentType = self::contentTypes['findByIdDetails'][0])
+    {
+
+        // verify the required parameter 'person_match_dto' is set
+        if ($person_match_dto === null || (is_array($person_match_dto) && count($person_match_dto) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $person_match_dto when calling findByIdDetails'
+            );
+        }
+
+
+
+        $resourcePath = '/api/people/idsearch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $organisation_id,
+            'organisationId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($person_match_dto)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($person_match_dto));
+            } else {
+                $httpBody = $person_match_dto;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
+        if ($apiKey !== null) {
+            $headers['X-API-KEY'] = $apiKey;
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getAllLinkedOrgUsersByPrincipal
+     *
+     * @param  Pageable $pageable pageable (required)
+     * @param  string $external_user_id external_user_id (required)
+     * @param  int $organisation_id organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllLinkedOrgUsersByPrincipal'] to see the possible values for this operation
+     *
+     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Idealogic\RegistrationAPI\Model\PersonDTO[]
+     */
+    public function getAllLinkedOrgUsersByPrincipal($pageable, $external_user_id, $organisation_id = null, string $contentType = self::contentTypes['getAllLinkedOrgUsersByPrincipal'][0])
+    {
+        list($response) = $this->getAllLinkedOrgUsersByPrincipalWithHttpInfo($pageable, $external_user_id, $organisation_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getAllLinkedOrgUsersByPrincipalWithHttpInfo
+     *
+     * @param  Pageable $pageable (required)
+     * @param  string $external_user_id (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllLinkedOrgUsersByPrincipal'] to see the possible values for this operation
+     *
+     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Idealogic\RegistrationAPI\Model\PersonDTO[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getAllLinkedOrgUsersByPrincipalWithHttpInfo($pageable, $external_user_id, $organisation_id = null, string $contentType = self::contentTypes['getAllLinkedOrgUsersByPrincipal'][0])
+    {
+        $request = $this->getAllLinkedOrgUsersByPrincipalRequest($pageable, $external_user_id, $organisation_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonDTO[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\PersonDTO[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAllLinkedOrgUsersByPrincipalAsync
+     *
+     * @param  Pageable $pageable (required)
+     * @param  string $external_user_id (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllLinkedOrgUsersByPrincipal'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAllLinkedOrgUsersByPrincipalAsync($pageable, $external_user_id, $organisation_id = null, string $contentType = self::contentTypes['getAllLinkedOrgUsersByPrincipal'][0])
+    {
+        return $this->getAllLinkedOrgUsersByPrincipalAsyncWithHttpInfo($pageable, $external_user_id, $organisation_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAllLinkedOrgUsersByPrincipalAsyncWithHttpInfo
+     *
+     * @param  Pageable $pageable (required)
+     * @param  string $external_user_id (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllLinkedOrgUsersByPrincipal'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAllLinkedOrgUsersByPrincipalAsyncWithHttpInfo($pageable, $external_user_id, $organisation_id = null, string $contentType = self::contentTypes['getAllLinkedOrgUsersByPrincipal'][0])
+    {
+        $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO[]';
+        $request = $this->getAllLinkedOrgUsersByPrincipalRequest($pageable, $external_user_id, $organisation_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getAllLinkedOrgUsersByPrincipal'
+     *
+     * @param  Pageable $pageable (required)
+     * @param  string $external_user_id (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllLinkedOrgUsersByPrincipal'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getAllLinkedOrgUsersByPrincipalRequest($pageable, $external_user_id, $organisation_id = null, string $contentType = self::contentTypes['getAllLinkedOrgUsersByPrincipal'][0])
+    {
+
+        // verify the required parameter 'pageable' is set
+        if ($pageable === null || (is_array($pageable) && count($pageable) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $pageable when calling getAllLinkedOrgUsersByPrincipal'
+            );
+        }
+
+        // verify the required parameter 'external_user_id' is set
+        if ($external_user_id === null || (is_array($external_user_id) && count($external_user_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $external_user_id when calling getAllLinkedOrgUsersByPrincipal'
+            );
+        }
+
+
+
+        $resourcePath = '/api/people/linked-to-principal';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $pageable,
+            'pageable', // param base name
+            'object', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $organisation_id,
+            'organisationId', // param base name
             'integer', // openApiType
             'form', // style
             true, // explode
@@ -1832,252 +1932,324 @@ class OrderResourceApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_less_than,
-            'id.lessThan', // param base name
+            $external_user_id,
+            'externalUserId', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
+        if ($apiKey !== null) {
+            $headers['X-API-KEY'] = $apiKey;
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getAllPeople
+     *
+     * @param  Pageable $pageable pageable (required)
+     * @param  int $organisation_id organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllPeople'] to see the possible values for this operation
+     *
+     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Idealogic\RegistrationAPI\Model\PersonDTO[]
+     */
+    public function getAllPeople($pageable, $organisation_id = null, string $contentType = self::contentTypes['getAllPeople'][0])
+    {
+        list($response) = $this->getAllPeopleWithHttpInfo($pageable, $organisation_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getAllPeopleWithHttpInfo
+     *
+     * @param  Pageable $pageable (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllPeople'] to see the possible values for this operation
+     *
+     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Idealogic\RegistrationAPI\Model\PersonDTO[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getAllPeopleWithHttpInfo($pageable, $organisation_id = null, string $contentType = self::contentTypes['getAllPeople'][0])
+    {
+        $request = $this->getAllPeopleRequest($pageable, $organisation_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonDTO[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\PersonDTO[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAllPeopleAsync
+     *
+     * @param  Pageable $pageable (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllPeople'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAllPeopleAsync($pageable, $organisation_id = null, string $contentType = self::contentTypes['getAllPeople'][0])
+    {
+        return $this->getAllPeopleAsyncWithHttpInfo($pageable, $organisation_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAllPeopleAsyncWithHttpInfo
+     *
+     * @param  Pageable $pageable (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllPeople'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAllPeopleAsyncWithHttpInfo($pageable, $organisation_id = null, string $contentType = self::contentTypes['getAllPeople'][0])
+    {
+        $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO[]';
+        $request = $this->getAllPeopleRequest($pageable, $organisation_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getAllPeople'
+     *
+     * @param  Pageable $pageable (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllPeople'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getAllPeopleRequest($pageable, $organisation_id = null, string $contentType = self::contentTypes['getAllPeople'][0])
+    {
+
+        // verify the required parameter 'pageable' is set
+        if ($pageable === null || (is_array($pageable) && count($pageable) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $pageable when calling getAllPeople'
+            );
+        }
+
+
+
+        $resourcePath = '/api/people';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $organisation_id,
+            'organisationId', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_greater_than_or_equal,
-            'id.greaterThanOrEqual', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_less_than_or_equal,
-            'id.lessThanOrEqual', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_equals,
-            'id.equals', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_not_equals,
-            'id.notEquals', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_specified,
-            'id.specified', // param base name
-            'boolean', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_in,
-            'id.in', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $id_not_in,
-            'id.notIn', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_contains,
-            'number.contains', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_does_not_contain,
-            'number.doesNotContain', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_equals,
-            'number.equals', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_not_equals,
-            'number.notEquals', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_specified,
-            'number.specified', // param base name
-            'boolean', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_in,
-            'number.in', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $number_not_in,
-            'number.notIn', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_contains,
-            'externalId.contains', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_does_not_contain,
-            'externalId.doesNotContain', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_equals,
-            'externalId.equals', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_not_equals,
-            'externalId.notEquals', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_specified,
-            'externalId.specified', // param base name
-            'boolean', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_in,
-            'externalId.in', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $external_id_not_in,
-            'externalId.notIn', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status_equals,
-            'status.equals', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status_not_equals,
-            'status.notEquals', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status_specified,
-            'status.specified', // param base name
-            'boolean', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status_in,
-            'status.in', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status_not_in,
-            'status.notIn', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $distinct,
-            'distinct', // param base name
-            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -2158,34 +2330,34 @@ class OrderResourceApi
     }
 
     /**
-     * Operation getOrder
+     * Operation getPerson
      *
      * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOrder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Idealogic\RegistrationAPI\Model\OrderDTO
+     * @return \Idealogic\RegistrationAPI\Model\PersonDTO
      */
-    public function getOrder($id, string $contentType = self::contentTypes['getOrder'][0])
+    public function getPerson($id, string $contentType = self::contentTypes['getPerson'][0])
     {
-        list($response) = $this->getOrderWithHttpInfo($id, $contentType);
+        list($response) = $this->getPersonWithHttpInfo($id, $contentType);
         return $response;
     }
 
     /**
-     * Operation getOrderWithHttpInfo
+     * Operation getPersonWithHttpInfo
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOrder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Idealogic\RegistrationAPI\Model\OrderDTO, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Idealogic\RegistrationAPI\Model\PersonDTO, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getOrderWithHttpInfo($id, string $contentType = self::contentTypes['getOrder'][0])
+    public function getPersonWithHttpInfo($id, string $contentType = self::contentTypes['getPerson'][0])
     {
-        $request = $this->getOrderRequest($id, $contentType);
+        $request = $this->getPersonRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2224,11 +2396,11 @@ class OrderResourceApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Idealogic\RegistrationAPI\Model\OrderDTO' === '\SplFileObject') {
+                    if ('\Idealogic\RegistrationAPI\Model\PersonDTO' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Idealogic\RegistrationAPI\Model\OrderDTO' !== 'string') {
+                        if ('\Idealogic\RegistrationAPI\Model\PersonDTO' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2246,13 +2418,13 @@ class OrderResourceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\OrderDTO', []),
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonDTO', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO';
+            $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2285,7 +2457,7 @@ class OrderResourceApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Idealogic\RegistrationAPI\Model\OrderDTO',
+                        '\Idealogic\RegistrationAPI\Model\PersonDTO',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2296,17 +2468,17 @@ class OrderResourceApi
     }
 
     /**
-     * Operation getOrderAsync
+     * Operation getPersonAsync
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOrder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getOrderAsync($id, string $contentType = self::contentTypes['getOrder'][0])
+    public function getPersonAsync($id, string $contentType = self::contentTypes['getPerson'][0])
     {
-        return $this->getOrderAsyncWithHttpInfo($id, $contentType)
+        return $this->getPersonAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2315,18 +2487,18 @@ class OrderResourceApi
     }
 
     /**
-     * Operation getOrderAsyncWithHttpInfo
+     * Operation getPersonAsyncWithHttpInfo
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOrder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getOrderAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getOrder'][0])
+    public function getPersonAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getPerson'][0])
     {
-        $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO';
-        $request = $this->getOrderRequest($id, $contentType);
+        $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO';
+        $request = $this->getPersonRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2365,26 +2537,26 @@ class OrderResourceApi
     }
 
     /**
-     * Create request for operation 'getOrder'
+     * Create request for operation 'getPerson'
      *
      * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getOrder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getOrderRequest($id, string $contentType = self::contentTypes['getOrder'][0])
+    public function getPersonRequest($id, string $contentType = self::contentTypes['getPerson'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getOrder'
+                'Missing the required parameter $id when calling getPerson'
             );
         }
 
 
-        $resourcePath = '/api/orders/{id}';
+        $resourcePath = '/api/people/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2466,34 +2638,36 @@ class OrderResourceApi
     }
 
     /**
-     * Operation getParticipantOrder
+     * Operation match
      *
-     * @param  int $id id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getParticipantOrder'] to see the possible values for this operation
+     * @param  PersonDTO $person_dto person_dto (required)
+     * @param  int $organisation_id organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['match'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO
+     * @return \Idealogic\RegistrationAPI\Model\PersonDTO[]
      */
-    public function getParticipantOrder($id, string $contentType = self::contentTypes['getParticipantOrder'][0])
+    public function match($person_dto, $organisation_id = null, string $contentType = self::contentTypes['match'][0])
     {
-        list($response) = $this->getParticipantOrderWithHttpInfo($id, $contentType);
+        list($response) = $this->matchWithHttpInfo($person_dto, $organisation_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation getParticipantOrderWithHttpInfo
+     * Operation matchWithHttpInfo
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getParticipantOrder'] to see the possible values for this operation
+     * @param  PersonDTO $person_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['match'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Idealogic\RegistrationAPI\Model\PersonDTO[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function getParticipantOrderWithHttpInfo($id, string $contentType = self::contentTypes['getParticipantOrder'][0])
+    public function matchWithHttpInfo($person_dto, $organisation_id = null, string $contentType = self::contentTypes['match'][0])
     {
-        $request = $this->getParticipantOrderRequest($id, $contentType);
+        $request = $this->matchRequest($person_dto, $organisation_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2532,11 +2706,11 @@ class OrderResourceApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Idealogic\RegistrationAPI\Model\ParticipantOrderDTO' === '\SplFileObject') {
+                    if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Idealogic\RegistrationAPI\Model\ParticipantOrderDTO' !== 'string') {
+                        if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2554,13 +2728,13 @@ class OrderResourceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\ParticipantOrderDTO', []),
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonDTO[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Idealogic\RegistrationAPI\Model\ParticipantOrderDTO';
+            $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2593,7 +2767,7 @@ class OrderResourceApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Idealogic\RegistrationAPI\Model\ParticipantOrderDTO',
+                        '\Idealogic\RegistrationAPI\Model\PersonDTO[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2604,17 +2778,18 @@ class OrderResourceApi
     }
 
     /**
-     * Operation getParticipantOrderAsync
+     * Operation matchAsync
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getParticipantOrder'] to see the possible values for this operation
+     * @param  PersonDTO $person_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['match'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getParticipantOrderAsync($id, string $contentType = self::contentTypes['getParticipantOrder'][0])
+    public function matchAsync($person_dto, $organisation_id = null, string $contentType = self::contentTypes['match'][0])
     {
-        return $this->getParticipantOrderAsyncWithHttpInfo($id, $contentType)
+        return $this->matchAsyncWithHttpInfo($person_dto, $organisation_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2623,18 +2798,19 @@ class OrderResourceApi
     }
 
     /**
-     * Operation getParticipantOrderAsyncWithHttpInfo
+     * Operation matchAsyncWithHttpInfo
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getParticipantOrder'] to see the possible values for this operation
+     * @param  PersonDTO $person_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['match'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getParticipantOrderAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getParticipantOrder'][0])
+    public function matchAsyncWithHttpInfo($person_dto, $organisation_id = null, string $contentType = self::contentTypes['match'][0])
     {
-        $returnType = '\Idealogic\RegistrationAPI\Model\ParticipantOrderDTO';
-        $request = $this->getParticipantOrderRequest($id, $contentType);
+        $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO[]';
+        $request = $this->matchRequest($person_dto, $organisation_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2673,42 +2849,54 @@ class OrderResourceApi
     }
 
     /**
-     * Create request for operation 'getParticipantOrder'
+     * Create request for operation 'match'
      *
-     * @param  int $id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getParticipantOrder'] to see the possible values for this operation
+     * @param  PersonDTO $person_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['match'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getParticipantOrderRequest($id, string $contentType = self::contentTypes['getParticipantOrder'][0])
+    public function matchRequest($person_dto, $organisation_id = null, string $contentType = self::contentTypes['match'][0])
     {
 
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // verify the required parameter 'person_dto' is set
+        if ($person_dto === null || (is_array($person_dto) && count($person_dto) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getParticipantOrder'
+                'Missing the required parameter $person_dto when calling match'
             );
         }
 
 
-        $resourcePath = '/api/orders/create-cart/participants/{id}';
+
+        $resourcePath = '/api/people/match';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $person_dto,
+            'personDTO', // param base name
+            'object', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $organisation_id,
+            'organisationId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
 
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -2774,36 +2962,36 @@ class OrderResourceApi
     }
 
     /**
-     * Operation partialUpdateOrder
+     * Operation queryPerson
      *
-     * @param  int $id id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['partialUpdateOrder'] to see the possible values for this operation
+     * @param  string $q q (required)
+     * @param  Pageable $pageable pageable (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['queryPerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Idealogic\RegistrationAPI\Model\OrderDTO
+     * @return \Idealogic\RegistrationAPI\Model\PersonDTO[]|\Idealogic\RegistrationAPI\Model\PersonDTO[]
      */
-    public function partialUpdateOrder($id, $order_dto, string $contentType = self::contentTypes['partialUpdateOrder'][0])
+    public function queryPerson($q, $pageable, string $contentType = self::contentTypes['queryPerson'][0])
     {
-        list($response) = $this->partialUpdateOrderWithHttpInfo($id, $order_dto, $contentType);
+        list($response) = $this->queryPersonWithHttpInfo($q, $pageable, $contentType);
         return $response;
     }
 
     /**
-     * Operation partialUpdateOrderWithHttpInfo
+     * Operation queryPersonWithHttpInfo
      *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['partialUpdateOrder'] to see the possible values for this operation
+     * @param  string $q (required)
+     * @param  Pageable $pageable (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['queryPerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Idealogic\RegistrationAPI\Model\OrderDTO, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Idealogic\RegistrationAPI\Model\PersonDTO[]|\Idealogic\RegistrationAPI\Model\PersonDTO[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function partialUpdateOrderWithHttpInfo($id, $order_dto, string $contentType = self::contentTypes['partialUpdateOrder'][0])
+    public function queryPersonWithHttpInfo($q, $pageable, string $contentType = self::contentTypes['queryPerson'][0])
     {
-        $request = $this->partialUpdateOrderRequest($id, $order_dto, $contentType);
+        $request = $this->queryPersonRequest($q, $pageable, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2841,12 +3029,12 @@ class OrderResourceApi
             }
 
             switch($statusCode) {
-                case 200:
-                    if ('\Idealogic\RegistrationAPI\Model\OrderDTO' === '\SplFileObject') {
+                case 403:
+                    if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Idealogic\RegistrationAPI\Model\OrderDTO' !== 'string') {
+                        if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2864,13 +3052,40 @@ class OrderResourceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\OrderDTO', []),
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonDTO[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 200:
+                    if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\PersonDTO[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonDTO[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO';
+            $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2900,10 +3115,18 @@ class OrderResourceApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\PersonDTO[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Idealogic\RegistrationAPI\Model\OrderDTO',
+                        '\Idealogic\RegistrationAPI\Model\PersonDTO[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2914,18 +3137,18 @@ class OrderResourceApi
     }
 
     /**
-     * Operation partialUpdateOrderAsync
+     * Operation queryPersonAsync
      *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['partialUpdateOrder'] to see the possible values for this operation
+     * @param  string $q (required)
+     * @param  Pageable $pageable (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['queryPerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function partialUpdateOrderAsync($id, $order_dto, string $contentType = self::contentTypes['partialUpdateOrder'][0])
+    public function queryPersonAsync($q, $pageable, string $contentType = self::contentTypes['queryPerson'][0])
     {
-        return $this->partialUpdateOrderAsyncWithHttpInfo($id, $order_dto, $contentType)
+        return $this->queryPersonAsyncWithHttpInfo($q, $pageable, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2934,19 +3157,19 @@ class OrderResourceApi
     }
 
     /**
-     * Operation partialUpdateOrderAsyncWithHttpInfo
+     * Operation queryPersonAsyncWithHttpInfo
      *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['partialUpdateOrder'] to see the possible values for this operation
+     * @param  string $q (required)
+     * @param  Pageable $pageable (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['queryPerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function partialUpdateOrderAsyncWithHttpInfo($id, $order_dto, string $contentType = self::contentTypes['partialUpdateOrder'][0])
+    public function queryPersonAsyncWithHttpInfo($q, $pageable, string $contentType = self::contentTypes['queryPerson'][0])
     {
-        $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO';
-        $request = $this->partialUpdateOrderRequest($id, $order_dto, $contentType);
+        $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO[]';
+        $request = $this->queryPersonRequest($q, $pageable, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2985,50 +3208,60 @@ class OrderResourceApi
     }
 
     /**
-     * Create request for operation 'partialUpdateOrder'
+     * Create request for operation 'queryPerson'
      *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['partialUpdateOrder'] to see the possible values for this operation
+     * @param  string $q (required)
+     * @param  Pageable $pageable (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['queryPerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function partialUpdateOrderRequest($id, $order_dto, string $contentType = self::contentTypes['partialUpdateOrder'][0])
+    public function queryPersonRequest($q, $pageable, string $contentType = self::contentTypes['queryPerson'][0])
     {
 
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // verify the required parameter 'q' is set
+        if ($q === null || (is_array($q) && count($q) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling partialUpdateOrder'
+                'Missing the required parameter $q when calling queryPerson'
             );
         }
 
-        // verify the required parameter 'order_dto' is set
-        if ($order_dto === null || (is_array($order_dto) && count($order_dto) === 0)) {
+        // verify the required parameter 'pageable' is set
+        if ($pageable === null || (is_array($pageable) && count($pageable) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $order_dto when calling partialUpdateOrder'
+                'Missing the required parameter $pageable when calling queryPerson'
             );
         }
 
 
-        $resourcePath = '/api/orders/{id}';
+        $resourcePath = '/api/people/query';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $q,
+            'q', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $pageable,
+            'pageable', // param base name
+            'object', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -3038,14 +3271,7 @@ class OrderResourceApi
         );
 
         // for model (json/xml)
-        if (isset($order_dto)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($order_dto));
-            } else {
-                $httpBody = $order_dto;
-            }
-        } elseif (count($formParams) > 0) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -3093,7 +3319,7 @@ class OrderResourceApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'PATCH',
+            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -3101,36 +3327,36 @@ class OrderResourceApi
     }
 
     /**
-     * Operation patchParticipantOrder
+     * Operation updatePerson
      *
-     * @param  int $id id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO $participant_order_dto participant_order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchParticipantOrder'] to see the possible values for this operation
+     * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto person_dto (required)
+     * @param  int $organisation_id organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Idealogic\RegistrationAPI\Model\OrderDTO
+     * @return \Idealogic\RegistrationAPI\Model\PersonDTO
      */
-    public function patchParticipantOrder($id, $participant_order_dto, string $contentType = self::contentTypes['patchParticipantOrder'][0])
+    public function updatePerson($person_dto, $organisation_id = null, string $contentType = self::contentTypes['updatePerson'][0])
     {
-        list($response) = $this->patchParticipantOrderWithHttpInfo($id, $participant_order_dto, $contentType);
+        list($response) = $this->updatePersonWithHttpInfo($person_dto, $organisation_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation patchParticipantOrderWithHttpInfo
+     * Operation updatePersonWithHttpInfo
      *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO $participant_order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchParticipantOrder'] to see the possible values for this operation
+     * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Idealogic\RegistrationAPI\Model\OrderDTO, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Idealogic\RegistrationAPI\Model\PersonDTO, HTTP status code, HTTP response headers (array of strings)
      */
-    public function patchParticipantOrderWithHttpInfo($id, $participant_order_dto, string $contentType = self::contentTypes['patchParticipantOrder'][0])
+    public function updatePersonWithHttpInfo($person_dto, $organisation_id = null, string $contentType = self::contentTypes['updatePerson'][0])
     {
-        $request = $this->patchParticipantOrderRequest($id, $participant_order_dto, $contentType);
+        $request = $this->updatePersonRequest($person_dto, $organisation_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3169,11 +3395,11 @@ class OrderResourceApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Idealogic\RegistrationAPI\Model\OrderDTO' === '\SplFileObject') {
+                    if ('\Idealogic\RegistrationAPI\Model\PersonDTO' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Idealogic\RegistrationAPI\Model\OrderDTO' !== 'string') {
+                        if ('\Idealogic\RegistrationAPI\Model\PersonDTO' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3191,13 +3417,13 @@ class OrderResourceApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\OrderDTO', []),
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonDTO', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO';
+            $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3230,7 +3456,7 @@ class OrderResourceApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Idealogic\RegistrationAPI\Model\OrderDTO',
+                        '\Idealogic\RegistrationAPI\Model\PersonDTO',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3241,18 +3467,18 @@ class OrderResourceApi
     }
 
     /**
-     * Operation patchParticipantOrderAsync
+     * Operation updatePersonAsync
      *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO $participant_order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchParticipantOrder'] to see the possible values for this operation
+     * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function patchParticipantOrderAsync($id, $participant_order_dto, string $contentType = self::contentTypes['patchParticipantOrder'][0])
+    public function updatePersonAsync($person_dto, $organisation_id = null, string $contentType = self::contentTypes['updatePerson'][0])
     {
-        return $this->patchParticipantOrderAsyncWithHttpInfo($id, $participant_order_dto, $contentType)
+        return $this->updatePersonAsyncWithHttpInfo($person_dto, $organisation_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3261,19 +3487,19 @@ class OrderResourceApi
     }
 
     /**
-     * Operation patchParticipantOrderAsyncWithHttpInfo
+     * Operation updatePersonAsyncWithHttpInfo
      *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO $participant_order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchParticipantOrder'] to see the possible values for this operation
+     * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function patchParticipantOrderAsyncWithHttpInfo($id, $participant_order_dto, string $contentType = self::contentTypes['patchParticipantOrder'][0])
+    public function updatePersonAsyncWithHttpInfo($person_dto, $organisation_id = null, string $contentType = self::contentTypes['updatePerson'][0])
     {
-        $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO';
-        $request = $this->patchParticipantOrderRequest($id, $participant_order_dto, $contentType);
+        $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO';
+        $request = $this->updatePersonRequest($person_dto, $organisation_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3312,355 +3538,43 @@ class OrderResourceApi
     }
 
     /**
-     * Create request for operation 'patchParticipantOrder'
+     * Create request for operation 'updatePerson'
      *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO $participant_order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchParticipantOrder'] to see the possible values for this operation
+     * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function patchParticipantOrderRequest($id, $participant_order_dto, string $contentType = self::contentTypes['patchParticipantOrder'][0])
+    public function updatePersonRequest($person_dto, $organisation_id = null, string $contentType = self::contentTypes['updatePerson'][0])
     {
 
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // verify the required parameter 'person_dto' is set
+        if ($person_dto === null || (is_array($person_dto) && count($person_dto) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling patchParticipantOrder'
-            );
-        }
-
-        // verify the required parameter 'participant_order_dto' is set
-        if ($participant_order_dto === null || (is_array($participant_order_dto) && count($participant_order_dto) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $participant_order_dto when calling patchParticipantOrder'
+                'Missing the required parameter $person_dto when calling updatePerson'
             );
         }
 
 
-        $resourcePath = '/api/orders/participant/{id}';
+
+        $resourcePath = '/api/people';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['*/*', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($participant_order_dto)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($participant_order_dto));
-            } else {
-                $httpBody = $participant_order_dto;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
-        if ($apiKey !== null) {
-            $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires Bearer (JWT) authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'PATCH',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation updateOrder
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrder'] to see the possible values for this operation
-     *
-     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Idealogic\RegistrationAPI\Model\OrderDTO
-     */
-    public function updateOrder($order_dto, string $contentType = self::contentTypes['updateOrder'][0])
-    {
-        list($response) = $this->updateOrderWithHttpInfo($order_dto, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation updateOrderWithHttpInfo
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrder'] to see the possible values for this operation
-     *
-     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Idealogic\RegistrationAPI\Model\OrderDTO, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function updateOrderWithHttpInfo($order_dto, string $contentType = self::contentTypes['updateOrder'][0])
-    {
-        $request = $this->updateOrderRequest($order_dto, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Idealogic\RegistrationAPI\Model\OrderDTO' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Idealogic\RegistrationAPI\Model\OrderDTO' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\OrderDTO', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Idealogic\RegistrationAPI\Model\OrderDTO',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation updateOrderAsync
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrder'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateOrderAsync($order_dto, string $contentType = self::contentTypes['updateOrder'][0])
-    {
-        return $this->updateOrderAsyncWithHttpInfo($order_dto, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation updateOrderAsyncWithHttpInfo
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrder'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateOrderAsyncWithHttpInfo($order_dto, string $contentType = self::contentTypes['updateOrder'][0])
-    {
-        $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO';
-        $request = $this->updateOrderRequest($order_dto, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'updateOrder'
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrder'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateOrderRequest($order_dto, string $contentType = self::contentTypes['updateOrder'][0])
-    {
-
-        // verify the required parameter 'order_dto' is set
-        if ($order_dto === null || (is_array($order_dto) && count($order_dto) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order_dto when calling updateOrder'
-            );
-        }
-
-
-        $resourcePath = '/api/orders';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $organisation_id,
+            'organisationId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
 
 
@@ -3672,666 +3586,12 @@ class OrderResourceApi
         );
 
         // for model (json/xml)
-        if (isset($order_dto)) {
+        if (isset($person_dto)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($order_dto));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($person_dto));
             } else {
-                $httpBody = $order_dto;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
-        if ($apiKey !== null) {
-            $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires Bearer (JWT) authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation updateOrder1
-     *
-     * @param  int $id id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrder1'] to see the possible values for this operation
-     *
-     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Idealogic\RegistrationAPI\Model\OrderDTO
-     */
-    public function updateOrder1($id, $order_dto, string $contentType = self::contentTypes['updateOrder1'][0])
-    {
-        list($response) = $this->updateOrder1WithHttpInfo($id, $order_dto, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation updateOrder1WithHttpInfo
-     *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrder1'] to see the possible values for this operation
-     *
-     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Idealogic\RegistrationAPI\Model\OrderDTO, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function updateOrder1WithHttpInfo($id, $order_dto, string $contentType = self::contentTypes['updateOrder1'][0])
-    {
-        $request = $this->updateOrder1Request($id, $order_dto, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Idealogic\RegistrationAPI\Model\OrderDTO' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Idealogic\RegistrationAPI\Model\OrderDTO' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\OrderDTO', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Idealogic\RegistrationAPI\Model\OrderDTO',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation updateOrder1Async
-     *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrder1'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateOrder1Async($id, $order_dto, string $contentType = self::contentTypes['updateOrder1'][0])
-    {
-        return $this->updateOrder1AsyncWithHttpInfo($id, $order_dto, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation updateOrder1AsyncWithHttpInfo
-     *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrder1'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateOrder1AsyncWithHttpInfo($id, $order_dto, string $contentType = self::contentTypes['updateOrder1'][0])
-    {
-        $returnType = '\Idealogic\RegistrationAPI\Model\OrderDTO';
-        $request = $this->updateOrder1Request($id, $order_dto, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'updateOrder1'
-     *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\OrderDTO $order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateOrder1'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateOrder1Request($id, $order_dto, string $contentType = self::contentTypes['updateOrder1'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateOrder1'
-            );
-        }
-
-        // verify the required parameter 'order_dto' is set
-        if ($order_dto === null || (is_array($order_dto) && count($order_dto) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order_dto when calling updateOrder1'
-            );
-        }
-
-
-        $resourcePath = '/api/orders/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['*/*', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($order_dto)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($order_dto));
-            } else {
-                $httpBody = $order_dto;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
-        if ($apiKey !== null) {
-            $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires Bearer (JWT) authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation updateParticipantOrder
-     *
-     * @param  int $id id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO $participant_order_dto participant_order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateParticipantOrder'] to see the possible values for this operation
-     *
-     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO
-     */
-    public function updateParticipantOrder($id, $participant_order_dto, string $contentType = self::contentTypes['updateParticipantOrder'][0])
-    {
-        list($response) = $this->updateParticipantOrderWithHttpInfo($id, $participant_order_dto, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation updateParticipantOrderWithHttpInfo
-     *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO $participant_order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateParticipantOrder'] to see the possible values for this operation
-     *
-     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function updateParticipantOrderWithHttpInfo($id, $participant_order_dto, string $contentType = self::contentTypes['updateParticipantOrder'][0])
-    {
-        $request = $this->updateParticipantOrderRequest($id, $participant_order_dto, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Idealogic\RegistrationAPI\Model\ParticipantOrderDTO' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Idealogic\RegistrationAPI\Model\ParticipantOrderDTO' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\ParticipantOrderDTO', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Idealogic\RegistrationAPI\Model\ParticipantOrderDTO';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Idealogic\RegistrationAPI\Model\ParticipantOrderDTO',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation updateParticipantOrderAsync
-     *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO $participant_order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateParticipantOrder'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateParticipantOrderAsync($id, $participant_order_dto, string $contentType = self::contentTypes['updateParticipantOrder'][0])
-    {
-        return $this->updateParticipantOrderAsyncWithHttpInfo($id, $participant_order_dto, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation updateParticipantOrderAsyncWithHttpInfo
-     *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO $participant_order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateParticipantOrder'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function updateParticipantOrderAsyncWithHttpInfo($id, $participant_order_dto, string $contentType = self::contentTypes['updateParticipantOrder'][0])
-    {
-        $returnType = '\Idealogic\RegistrationAPI\Model\ParticipantOrderDTO';
-        $request = $this->updateParticipantOrderRequest($id, $participant_order_dto, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'updateParticipantOrder'
-     *
-     * @param  int $id (required)
-     * @param  \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO $participant_order_dto (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateParticipantOrder'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function updateParticipantOrderRequest($id, $participant_order_dto, string $contentType = self::contentTypes['updateParticipantOrder'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateParticipantOrder'
-            );
-        }
-
-        // verify the required parameter 'participant_order_dto' is set
-        if ($participant_order_dto === null || (is_array($participant_order_dto) && count($participant_order_dto) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $participant_order_dto when calling updateParticipantOrder'
-            );
-        }
-
-
-        $resourcePath = '/api/orders/participant/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['*/*', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($participant_order_dto)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($participant_order_dto));
-            } else {
-                $httpBody = $participant_order_dto;
+                $httpBody = $person_dto;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderDTO
+ * EventRaceTypeDTO
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * OrderDTO Class Doc Comment
+ * EventRaceTypeDTO Class Doc Comment
  *
  * @category Class
  * @package  Idealogic\RegistrationAPI
@@ -41,7 +41,7 @@ use \Idealogic\RegistrationAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class EventRaceTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrderDTO';
+    protected static $openAPIModelName = 'EventRaceTypeDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,11 +59,9 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'int',
-        'number' => 'string',
-        'external_id' => 'string',
-        'status' => 'string',
-        'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
-        'email' => 'string'
+        'name' => 'string',
+        'race_type' => '\Idealogic\RegistrationAPI\Model\RaceTypeDTO',
+        'event' => '\Idealogic\RegistrationAPI\Model\EventDTO'
     ];
 
     /**
@@ -75,11 +73,9 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'id' => 'int64',
-        'number' => null,
-        'external_id' => null,
-        'status' => null,
-        'organisation' => null,
-        'email' => null
+        'name' => null,
+        'race_type' => null,
+        'event' => null
     ];
 
     /**
@@ -89,11 +85,9 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'id' => false,
-        'number' => false,
-        'external_id' => false,
-        'status' => false,
-        'organisation' => false,
-        'email' => false
+        'name' => false,
+        'race_type' => false,
+        'event' => false
     ];
 
     /**
@@ -183,11 +177,9 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'number' => 'number',
-        'external_id' => 'externalId',
-        'status' => 'status',
-        'organisation' => 'organisation',
-        'email' => 'email'
+        'name' => 'name',
+        'race_type' => 'raceType',
+        'event' => 'event'
     ];
 
     /**
@@ -197,11 +189,9 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
-        'number' => 'setNumber',
-        'external_id' => 'setExternalId',
-        'status' => 'setStatus',
-        'organisation' => 'setOrganisation',
-        'email' => 'setEmail'
+        'name' => 'setName',
+        'race_type' => 'setRaceType',
+        'event' => 'setEvent'
     ];
 
     /**
@@ -211,11 +201,9 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
-        'number' => 'getNumber',
-        'external_id' => 'getExternalId',
-        'status' => 'getStatus',
-        'organisation' => 'getOrganisation',
-        'email' => 'getEmail'
+        'name' => 'getName',
+        'race_type' => 'getRaceType',
+        'event' => 'getEvent'
     ];
 
     /**
@@ -259,25 +247,6 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const STATUS_PENDING = 'PENDING';
-    public const STATUS_PAID = 'PAID';
-    public const STATUS_REFUNDED = 'REFUNDED';
-    public const STATUS_CANCELLED = 'CANCELLED';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_PENDING,
-            self::STATUS_PAID,
-            self::STATUS_REFUNDED,
-            self::STATUS_CANCELLED,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -295,11 +264,9 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('number', $data ?? [], null);
-        $this->setIfExists('external_id', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('organisation', $data ?? [], null);
-        $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('race_type', $data ?? [], null);
+        $this->setIfExists('event', $data ?? [], null);
     }
 
     /**
@@ -328,42 +295,6 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        if ($this->container['number'] === null) {
-            $invalidProperties[] = "'number' can't be null";
-        }
-        if ((mb_strlen($this->container['number']) > 12)) {
-            $invalidProperties[] = "invalid value for 'number', the character length must be smaller than or equal to 12.";
-        }
-
-        if ((mb_strlen($this->container['number']) < 0)) {
-            $invalidProperties[] = "invalid value for 'number', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['external_id']) && (mb_strlen($this->container['external_id']) > 32)) {
-            $invalidProperties[] = "invalid value for 'external_id', the character length must be smaller than or equal to 32.";
-        }
-
-        if (!is_null($this->container['external_id']) && (mb_strlen($this->container['external_id']) < 0)) {
-            $invalidProperties[] = "invalid value for 'external_id', the character length must be bigger than or equal to 0.";
-        }
-
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if (!is_null($this->container['email']) && (mb_strlen($this->container['email']) > 100)) {
-            $invalidProperties[] = "invalid value for 'email', the character length must be smaller than or equal to 100.";
-        }
-
-        if (!is_null($this->container['email']) && (mb_strlen($this->container['email']) < 0)) {
-            $invalidProperties[] = "invalid value for 'email', the character length must be bigger than or equal to 0.";
-        }
 
         return $invalidProperties;
     }
@@ -408,167 +339,82 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets number
-     *
-     * @return string
-     */
-    public function getNumber()
-    {
-        return $this->container['number'];
-    }
-
-    /**
-     * Sets number
-     *
-     * @param string $number number
-     *
-     * @return self
-     */
-    public function setNumber($number)
-    {
-        if (is_null($number)) {
-            throw new \InvalidArgumentException('non-nullable number cannot be null');
-        }
-        if ((mb_strlen($number) > 12)) {
-            throw new \InvalidArgumentException('invalid length for $number when calling OrderDTO., must be smaller than or equal to 12.');
-        }
-        if ((mb_strlen($number) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $number when calling OrderDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['number'] = $number;
-
-        return $this;
-    }
-
-    /**
-     * Gets external_id
+     * Gets name
      *
      * @return string|null
      */
-    public function getExternalId()
+    public function getName()
     {
-        return $this->container['external_id'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets external_id
+     * Sets name
      *
-     * @param string|null $external_id Foreign key to external order module
+     * @param string|null $name name
      *
      * @return self
      */
-    public function setExternalId($external_id)
+    public function setName($name)
     {
-        if (is_null($external_id)) {
-            throw new \InvalidArgumentException('non-nullable external_id cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        if ((mb_strlen($external_id) > 32)) {
-            throw new \InvalidArgumentException('invalid length for $external_id when calling OrderDTO., must be smaller than or equal to 32.');
-        }
-        if ((mb_strlen($external_id) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $external_id when calling OrderDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['external_id'] = $external_id;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets status
+     * Gets race_type
      *
-     * @return string|null
+     * @return \Idealogic\RegistrationAPI\Model\RaceTypeDTO|null
      */
-    public function getStatus()
+    public function getRaceType()
     {
-        return $this->container['status'];
+        return $this->container['race_type'];
     }
 
     /**
-     * Sets status
+     * Sets race_type
      *
-     * @param string|null $status status
+     * @param \Idealogic\RegistrationAPI\Model\RaceTypeDTO|null $race_type race_type
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setRaceType($race_type)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($race_type)) {
+            throw new \InvalidArgumentException('non-nullable race_type cannot be null');
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['race_type'] = $race_type;
 
         return $this;
     }
 
     /**
-     * Gets organisation
+     * Gets event
      *
-     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO|null
+     * @return \Idealogic\RegistrationAPI\Model\EventDTO|null
      */
-    public function getOrganisation()
+    public function getEvent()
     {
-        return $this->container['organisation'];
+        return $this->container['event'];
     }
 
     /**
-     * Sets organisation
+     * Sets event
      *
-     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO|null $organisation organisation
+     * @param \Idealogic\RegistrationAPI\Model\EventDTO|null $event event
      *
      * @return self
      */
-    public function setOrganisation($organisation)
+    public function setEvent($event)
     {
-        if (is_null($organisation)) {
-            throw new \InvalidArgumentException('non-nullable organisation cannot be null');
+        if (is_null($event)) {
+            throw new \InvalidArgumentException('non-nullable event cannot be null');
         }
-        $this->container['organisation'] = $organisation;
-
-        return $this;
-    }
-
-    /**
-     * Gets email
-     *
-     * @return string|null
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     *
-     * @param string|null $email Email of the buyer.
-     *
-     * @return self
-     */
-    public function setEmail($email)
-    {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
-        if ((mb_strlen($email) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $email when calling OrderDTO., must be smaller than or equal to 100.');
-        }
-        if ((mb_strlen($email) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $email when calling OrderDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['email'] = $email;
+        $this->container['event'] = $event;
 
         return $this;
     }

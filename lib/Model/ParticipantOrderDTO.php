@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderDTO
+ * ParticipantOrderDTO
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * OrderDTO Class Doc Comment
+ * ParticipantOrderDTO Class Doc Comment
  *
  * @category Class
  * @package  Idealogic\RegistrationAPI
@@ -41,7 +41,7 @@ use \Idealogic\RegistrationAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrderDTO';
+    protected static $openAPIModelName = 'ParticipantOrderDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -63,7 +63,8 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'external_id' => 'string',
         'status' => 'string',
         'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
-        'email' => 'string'
+        'email' => 'string',
+        'event_participants' => '\Idealogic\RegistrationAPI\Model\EventParticipantDTO[]'
     ];
 
     /**
@@ -79,7 +80,8 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'external_id' => null,
         'status' => null,
         'organisation' => null,
-        'email' => null
+        'email' => null,
+        'event_participants' => null
     ];
 
     /**
@@ -93,7 +95,8 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'external_id' => false,
         'status' => false,
         'organisation' => false,
-        'email' => false
+        'email' => false,
+        'event_participants' => false
     ];
 
     /**
@@ -187,7 +190,8 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'external_id' => 'externalId',
         'status' => 'status',
         'organisation' => 'organisation',
-        'email' => 'email'
+        'email' => 'email',
+        'event_participants' => 'eventParticipants'
     ];
 
     /**
@@ -201,7 +205,8 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'external_id' => 'setExternalId',
         'status' => 'setStatus',
         'organisation' => 'setOrganisation',
-        'email' => 'setEmail'
+        'email' => 'setEmail',
+        'event_participants' => 'setEventParticipants'
     ];
 
     /**
@@ -215,7 +220,8 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'external_id' => 'getExternalId',
         'status' => 'getStatus',
         'organisation' => 'getOrganisation',
-        'email' => 'getEmail'
+        'email' => 'getEmail',
+        'event_participants' => 'getEventParticipants'
     ];
 
     /**
@@ -300,6 +306,7 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('organisation', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('event_participants', $data ?? [], null);
     }
 
     /**
@@ -430,10 +437,10 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable number cannot be null');
         }
         if ((mb_strlen($number) > 12)) {
-            throw new \InvalidArgumentException('invalid length for $number when calling OrderDTO., must be smaller than or equal to 12.');
+            throw new \InvalidArgumentException('invalid length for $number when calling ParticipantOrderDTO., must be smaller than or equal to 12.');
         }
         if ((mb_strlen($number) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $number when calling OrderDTO., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid length for $number when calling ParticipantOrderDTO., must be bigger than or equal to 0.');
         }
 
         $this->container['number'] = $number;
@@ -464,10 +471,10 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable external_id cannot be null');
         }
         if ((mb_strlen($external_id) > 32)) {
-            throw new \InvalidArgumentException('invalid length for $external_id when calling OrderDTO., must be smaller than or equal to 32.');
+            throw new \InvalidArgumentException('invalid length for $external_id when calling ParticipantOrderDTO., must be smaller than or equal to 32.');
         }
         if ((mb_strlen($external_id) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $external_id when calling OrderDTO., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid length for $external_id when calling ParticipantOrderDTO., must be bigger than or equal to 0.');
         }
 
         $this->container['external_id'] = $external_id;
@@ -562,13 +569,40 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable email cannot be null');
         }
         if ((mb_strlen($email) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $email when calling OrderDTO., must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid length for $email when calling ParticipantOrderDTO., must be smaller than or equal to 100.');
         }
         if ((mb_strlen($email) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $email when calling OrderDTO., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid length for $email when calling ParticipantOrderDTO., must be bigger than or equal to 0.');
         }
 
         $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets event_participants
+     *
+     * @return \Idealogic\RegistrationAPI\Model\EventParticipantDTO[]|null
+     */
+    public function getEventParticipants()
+    {
+        return $this->container['event_participants'];
+    }
+
+    /**
+     * Sets event_participants
+     *
+     * @param \Idealogic\RegistrationAPI\Model\EventParticipantDTO[]|null $event_participants event_participants
+     *
+     * @return self
+     */
+    public function setEventParticipants($event_participants)
+    {
+        if (is_null($event_participants)) {
+            throw new \InvalidArgumentException('non-nullable event_participants cannot be null');
+        }
+        $this->container['event_participants'] = $event_participants;
 
         return $this;
     }

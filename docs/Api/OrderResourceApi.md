@@ -1,6 +1,6 @@
 # Idealogic\RegistrationAPI\OrderResourceApi
 
-All URIs are relative to http://localhost:12504, except if the operation defines another base path.
+All URIs are relative to https://admin-service.idealogic.co.za, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
