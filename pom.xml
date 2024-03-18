@@ -21,7 +21,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<version.swagger.codegen>3.0.52</version.swagger.codegen>
-		<swagger.file>swagger.json</swagger.file>
+		<swagger.file>api-docs.json</swagger.file>
 		<generated-sources-path>${project.build.directory}/generated-sources</generated-sources-path>
 	</properties>
 
@@ -37,6 +37,7 @@
 					<output>.</output>
 					<generateApiTests>false</generateApiTests>
 					<generateModelTests>false</generateModelTests>
+					<generateSupportingFiles>false</generateSupportingFiles>
 					<configOptions>
 						<artifactVersion>${project.version}</artifactVersion>
 						<appDescription>API Client for the Event Admin Service</appDescription>
@@ -49,10 +50,10 @@
 						<invokerPackage>Idealogic\RegistrationAPI</invokerPackage>
 					</configOptions>
 					<apisToGenerate>
-						OrderResource, OrganisationResource, PersonResource
+						OrderResource,OrganisationResource,PersonResource
 					</apisToGenerate>
 					<modelsToGenerate>
-						OrderDTO, ParticipantOrderDTO, EventParticipantDTO, OrganisationDTO, PersonDTO, EventDTO, EventCategoryDTO, EventRaceTypeDTO, ProductDTO
+						OrderDTO,ParticipantOrderDTO,EventParticipantDTO,OrganisationDTO,PersonDTO,EventDTO,EventCategoryDTO,EventRaceTypeDTO,ProductDTO
 					</modelsToGenerate>
 				</configuration>
 				<executions>
