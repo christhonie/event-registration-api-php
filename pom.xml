@@ -16,7 +16,7 @@
 	</parent>
 
 	<properties>
-		<revision>2.0.3</revision>
+		<revision>2.0.6-SNAPSHOT</revision>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -26,6 +26,7 @@
 	</properties>
 
 	<build>
+		<defaultGoal>generate-sources</defaultGoal>
 		<plugins>
 			<plugin>
 				<groupId>org.openapitools</groupId>
@@ -50,10 +51,10 @@
 						<invokerPackage>Idealogic\RegistrationAPI</invokerPackage>
 					</configOptions>
 					<apisToGenerate>
-						OrderResource,OrganisationResource,PersonResource
+						OrderResource,OrganisationResource,PersonResource,ResultSet,RaceResult,CustomList,CustomListValue
 					</apisToGenerate>
 					<modelsToGenerate>
-						OrderDTO,ParticipantOrderDTO,EventParticipantDTO,OrganisationDTO,PersonDTO,EventDTO,EventCategoryDTO,EventRaceTypeDTO,ProductDTO
+						OrganisationDTO,DisciplineDTO,PersonDTO,SeriesDTO,EventDTO,CategoryDTO,EventCategoryDTO,CourseTypeDTO,CourseDTO,EventRaceTypeDTO,StartGroupDTO,RaceDTO,RoundDTO,ProductDTO,OrderDTO,ParticipantOrderDTO,EventParticipantDTO,StartGroupParticipantDTO,ResultSetDTO,RaceResultDTO,CustomListDTO,CustomListValueDTO,NumberTypeDTO,TagTypeDTO
 					</modelsToGenerate>
 				</configuration>
 				<executions>
