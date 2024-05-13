@@ -1,6 +1,6 @@
 <?php
 /**
- * OrganisationDTO
+ * DisciplineDTO
  *
  * PHP version 7.4
  *
@@ -33,16 +33,15 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * OrganisationDTO Class Doc Comment
+ * DisciplineDTO Class Doc Comment
  *
  * @category Class
- * @description The organisation sanctioning the series. Used to filter the EventCategories.
  * @package  Idealogic\RegistrationAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class DisciplineDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +50,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrganisationDTO';
+    protected static $openAPIModelName = 'DisciplineDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +60,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'id' => 'int',
         'name' => 'string',
-        'parent' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO'
+        'responsible_organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO'
     ];
 
     /**
@@ -74,7 +73,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'id' => 'int64',
         'name' => null,
-        'parent' => null
+        'responsible_organisation' => null
     ];
 
     /**
@@ -85,7 +84,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'id' => false,
         'name' => false,
-        'parent' => false
+        'responsible_organisation' => false
     ];
 
     /**
@@ -176,7 +175,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'id' => 'id',
         'name' => 'name',
-        'parent' => 'parent'
+        'responsible_organisation' => 'responsibleOrganisation'
     ];
 
     /**
@@ -187,7 +186,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'id' => 'setId',
         'name' => 'setName',
-        'parent' => 'setParent'
+        'responsible_organisation' => 'setResponsibleOrganisation'
     ];
 
     /**
@@ -198,7 +197,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'id' => 'getId',
         'name' => 'getName',
-        'parent' => 'getParent'
+        'responsible_organisation' => 'getResponsibleOrganisation'
     ];
 
     /**
@@ -260,7 +259,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('parent', $data ?? [], null);
+        $this->setIfExists('responsible_organisation', $data ?? [], null);
     }
 
     /**
@@ -366,10 +365,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         if ((mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling OrganisationDTO., must be smaller than or equal to 50.');
+            throw new \InvalidArgumentException('invalid length for $name when calling DisciplineDTO., must be smaller than or equal to 50.');
         }
         if ((mb_strlen($name) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling OrganisationDTO., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid length for $name when calling DisciplineDTO., must be bigger than or equal to 0.');
         }
 
         $this->container['name'] = $name;
@@ -378,28 +377,28 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets parent
+     * Gets responsible_organisation
      *
      * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO|null
      */
-    public function getParent()
+    public function getResponsibleOrganisation()
     {
-        return $this->container['parent'];
+        return $this->container['responsible_organisation'];
     }
 
     /**
-     * Sets parent
+     * Sets responsible_organisation
      *
-     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO|null $parent parent
+     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO|null $responsible_organisation responsible_organisation
      *
      * @return self
      */
-    public function setParent($parent)
+    public function setResponsibleOrganisation($responsible_organisation)
     {
-        if (is_null($parent)) {
-            throw new \InvalidArgumentException('non-nullable parent cannot be null');
+        if (is_null($responsible_organisation)) {
+            throw new \InvalidArgumentException('non-nullable responsible_organisation cannot be null');
         }
-        $this->container['parent'] = $parent;
+        $this->container['responsible_organisation'] = $responsible_organisation;
 
         return $this;
     }

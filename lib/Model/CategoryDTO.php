@@ -1,6 +1,6 @@
 <?php
 /**
- * EventCategoryDTO
+ * CategoryDTO
  *
  * PHP version 7.4
  *
@@ -33,16 +33,16 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * EventCategoryDTO Class Doc Comment
+ * CategoryDTO Class Doc Comment
  *
  * @category Class
- * @description A catogory associated with a Series or Event. It allows setting Series and Event specific details, such as Products. Rather than having a SeriesCategory and EventCategory, this entity combines both into one. If Series is set, then it is a Series category, otherwise an Event category.
+ * @description High level categories, defined at organisational level, which is used as a basis for Series and Event specific categories. These categories are linked to the organisations who define them in regulations and rules. It provides a mechanism to link different category configurations across many events which are common, and can then be used for leader boards or records.
  * @package  Idealogic\RegistrationAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class CategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'EventCategoryDTO';
+    protected static $openAPIModelName = 'CategoryDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -64,14 +64,9 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'min_age' => 'int',
         'max_age' => 'int',
         'gender' => 'string',
-        'entry_category' => 'bool',
-        'race_category' => 'bool',
-        'source_category' => '\Idealogic\RegistrationAPI\Model\CategoryDTO',
-        'product' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
-        'series_category' => '\Idealogic\RegistrationAPI\Model\EventCategoryDTO',
-        'feeder_categories' => '\Idealogic\RegistrationAPI\Model\EventCategoryDTO[]',
-        'series' => '\Idealogic\RegistrationAPI\Model\SeriesDTO',
-        'event' => '\Idealogic\RegistrationAPI\Model\EventDTO'
+        'owner_organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
+        'disciplines' => '\Idealogic\RegistrationAPI\Model\DisciplineDTO[]',
+        'feeder_categories' => '\Idealogic\RegistrationAPI\Model\CategoryDTO[]'
     ];
 
     /**
@@ -87,14 +82,9 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'min_age' => 'int32',
         'max_age' => 'int32',
         'gender' => null,
-        'entry_category' => null,
-        'race_category' => null,
-        'source_category' => null,
-        'product' => null,
-        'series_category' => null,
-        'feeder_categories' => null,
-        'series' => null,
-        'event' => null
+        'owner_organisation' => null,
+        'disciplines' => null,
+        'feeder_categories' => null
     ];
 
     /**
@@ -108,14 +98,9 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'min_age' => false,
         'max_age' => false,
         'gender' => false,
-        'entry_category' => false,
-        'race_category' => false,
-        'source_category' => false,
-        'product' => false,
-        'series_category' => false,
-        'feeder_categories' => false,
-        'series' => false,
-        'event' => false
+        'owner_organisation' => false,
+        'disciplines' => false,
+        'feeder_categories' => false
     ];
 
     /**
@@ -209,14 +194,9 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'min_age' => 'minAge',
         'max_age' => 'maxAge',
         'gender' => 'gender',
-        'entry_category' => 'entryCategory',
-        'race_category' => 'raceCategory',
-        'source_category' => 'sourceCategory',
-        'product' => 'product',
-        'series_category' => 'seriesCategory',
-        'feeder_categories' => 'feederCategories',
-        'series' => 'series',
-        'event' => 'event'
+        'owner_organisation' => 'ownerOrganisation',
+        'disciplines' => 'disciplines',
+        'feeder_categories' => 'feederCategories'
     ];
 
     /**
@@ -230,14 +210,9 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'min_age' => 'setMinAge',
         'max_age' => 'setMaxAge',
         'gender' => 'setGender',
-        'entry_category' => 'setEntryCategory',
-        'race_category' => 'setRaceCategory',
-        'source_category' => 'setSourceCategory',
-        'product' => 'setProduct',
-        'series_category' => 'setSeriesCategory',
-        'feeder_categories' => 'setFeederCategories',
-        'series' => 'setSeries',
-        'event' => 'setEvent'
+        'owner_organisation' => 'setOwnerOrganisation',
+        'disciplines' => 'setDisciplines',
+        'feeder_categories' => 'setFeederCategories'
     ];
 
     /**
@@ -251,14 +226,9 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'min_age' => 'getMinAge',
         'max_age' => 'getMaxAge',
         'gender' => 'getGender',
-        'entry_category' => 'getEntryCategory',
-        'race_category' => 'getRaceCategory',
-        'source_category' => 'getSourceCategory',
-        'product' => 'getProduct',
-        'series_category' => 'getSeriesCategory',
-        'feeder_categories' => 'getFeederCategories',
-        'series' => 'getSeries',
-        'event' => 'getEvent'
+        'owner_organisation' => 'getOwnerOrganisation',
+        'disciplines' => 'getDisciplines',
+        'feeder_categories' => 'getFeederCategories'
     ];
 
     /**
@@ -340,14 +310,9 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('min_age', $data ?? [], null);
         $this->setIfExists('max_age', $data ?? [], null);
         $this->setIfExists('gender', $data ?? [], null);
-        $this->setIfExists('entry_category', $data ?? [], null);
-        $this->setIfExists('race_category', $data ?? [], null);
-        $this->setIfExists('source_category', $data ?? [], null);
-        $this->setIfExists('product', $data ?? [], null);
-        $this->setIfExists('series_category', $data ?? [], null);
+        $this->setIfExists('owner_organisation', $data ?? [], null);
+        $this->setIfExists('disciplines', $data ?? [], null);
         $this->setIfExists('feeder_categories', $data ?? [], null);
-        $this->setIfExists('series', $data ?? [], null);
-        $this->setIfExists('event', $data ?? [], null);
     }
 
     /**
@@ -462,10 +427,10 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         if ((mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling EventCategoryDTO., must be smaller than or equal to 50.');
+            throw new \InvalidArgumentException('invalid length for $name when calling CategoryDTO., must be smaller than or equal to 50.');
         }
         if ((mb_strlen($name) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling EventCategoryDTO., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid length for $name when calling CategoryDTO., must be bigger than or equal to 0.');
         }
 
         $this->container['name'] = $name;
@@ -486,7 +451,7 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets min_age
      *
-     * @param int|null $min_age Override minimum allowed age for this category. Leave blank if not applicable.
+     * @param int|null $min_age Minimum allowed age for this category. Leave blank if not applicable.
      *
      * @return self
      */
@@ -513,7 +478,7 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets max_age
      *
-     * @param int|null $max_age Override maximum allowed age for this category. Leave blank if not applicable.
+     * @param int|null $max_age Maximum allowed age for this category. Leave blank if not applicable.
      *
      * @return self
      */
@@ -540,7 +505,7 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets gender
      *
-     * @param string|null $gender Override gender restriction for this category. Leave blank if not applicable.
+     * @param string|null $gender Gender restriction for this category. Leave blank if not applicable.
      *
      * @return self
      */
@@ -565,136 +530,57 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets entry_category
+     * Gets owner_organisation
      *
-     * @return bool|null
+     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO|null
      */
-    public function getEntryCategory()
+    public function getOwnerOrganisation()
     {
-        return $this->container['entry_category'];
+        return $this->container['owner_organisation'];
     }
 
     /**
-     * Sets entry_category
+     * Sets owner_organisation
      *
-     * @param bool|null $entry_category Indicate if this category can be used for new entries.
+     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO|null $owner_organisation owner_organisation
      *
      * @return self
      */
-    public function setEntryCategory($entry_category)
+    public function setOwnerOrganisation($owner_organisation)
     {
-        if (is_null($entry_category)) {
-            throw new \InvalidArgumentException('non-nullable entry_category cannot be null');
+        if (is_null($owner_organisation)) {
+            throw new \InvalidArgumentException('non-nullable owner_organisation cannot be null');
         }
-        $this->container['entry_category'] = $entry_category;
+        $this->container['owner_organisation'] = $owner_organisation;
 
         return $this;
     }
 
     /**
-     * Gets race_category
+     * Gets disciplines
      *
-     * @return bool|null
+     * @return \Idealogic\RegistrationAPI\Model\DisciplineDTO[]|null
      */
-    public function getRaceCategory()
+    public function getDisciplines()
     {
-        return $this->container['race_category'];
+        return $this->container['disciplines'];
     }
 
     /**
-     * Sets race_category
+     * Sets disciplines
      *
-     * @param bool|null $race_category Indicate if this category can be used in races.
+     * @param \Idealogic\RegistrationAPI\Model\DisciplineDTO[]|null $disciplines disciplines
      *
      * @return self
      */
-    public function setRaceCategory($race_category)
+    public function setDisciplines($disciplines)
     {
-        if (is_null($race_category)) {
-            throw new \InvalidArgumentException('non-nullable race_category cannot be null');
+        if (is_null($disciplines)) {
+            throw new \InvalidArgumentException('non-nullable disciplines cannot be null');
         }
-        $this->container['race_category'] = $race_category;
 
-        return $this;
-    }
 
-    /**
-     * Gets source_category
-     *
-     * @return \Idealogic\RegistrationAPI\Model\CategoryDTO|null
-     */
-    public function getSourceCategory()
-    {
-        return $this->container['source_category'];
-    }
-
-    /**
-     * Sets source_category
-     *
-     * @param \Idealogic\RegistrationAPI\Model\CategoryDTO|null $source_category source_category
-     *
-     * @return self
-     */
-    public function setSourceCategory($source_category)
-    {
-        if (is_null($source_category)) {
-            throw new \InvalidArgumentException('non-nullable source_category cannot be null');
-        }
-        $this->container['source_category'] = $source_category;
-
-        return $this;
-    }
-
-    /**
-     * Gets product
-     *
-     * @return \Idealogic\RegistrationAPI\Model\ProductDTO|null
-     */
-    public function getProduct()
-    {
-        return $this->container['product'];
-    }
-
-    /**
-     * Sets product
-     *
-     * @param \Idealogic\RegistrationAPI\Model\ProductDTO|null $product product
-     *
-     * @return self
-     */
-    public function setProduct($product)
-    {
-        if (is_null($product)) {
-            throw new \InvalidArgumentException('non-nullable product cannot be null');
-        }
-        $this->container['product'] = $product;
-
-        return $this;
-    }
-
-    /**
-     * Gets series_category
-     *
-     * @return \Idealogic\RegistrationAPI\Model\EventCategoryDTO|null
-     */
-    public function getSeriesCategory()
-    {
-        return $this->container['series_category'];
-    }
-
-    /**
-     * Sets series_category
-     *
-     * @param \Idealogic\RegistrationAPI\Model\EventCategoryDTO|null $series_category series_category
-     *
-     * @return self
-     */
-    public function setSeriesCategory($series_category)
-    {
-        if (is_null($series_category)) {
-            throw new \InvalidArgumentException('non-nullable series_category cannot be null');
-        }
-        $this->container['series_category'] = $series_category;
+        $this->container['disciplines'] = $disciplines;
 
         return $this;
     }
@@ -702,7 +588,7 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets feeder_categories
      *
-     * @return \Idealogic\RegistrationAPI\Model\EventCategoryDTO[]|null
+     * @return \Idealogic\RegistrationAPI\Model\CategoryDTO[]|null
      */
     public function getFeederCategories()
     {
@@ -712,7 +598,7 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets feeder_categories
      *
-     * @param \Idealogic\RegistrationAPI\Model\EventCategoryDTO[]|null $feeder_categories feeder_categories
+     * @param \Idealogic\RegistrationAPI\Model\CategoryDTO[]|null $feeder_categories feeder_categories
      *
      * @return self
      */
@@ -724,60 +610,6 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
         $this->container['feeder_categories'] = $feeder_categories;
-
-        return $this;
-    }
-
-    /**
-     * Gets series
-     *
-     * @return \Idealogic\RegistrationAPI\Model\SeriesDTO|null
-     */
-    public function getSeries()
-    {
-        return $this->container['series'];
-    }
-
-    /**
-     * Sets series
-     *
-     * @param \Idealogic\RegistrationAPI\Model\SeriesDTO|null $series series
-     *
-     * @return self
-     */
-    public function setSeries($series)
-    {
-        if (is_null($series)) {
-            throw new \InvalidArgumentException('non-nullable series cannot be null');
-        }
-        $this->container['series'] = $series;
-
-        return $this;
-    }
-
-    /**
-     * Gets event
-     *
-     * @return \Idealogic\RegistrationAPI\Model\EventDTO|null
-     */
-    public function getEvent()
-    {
-        return $this->container['event'];
-    }
-
-    /**
-     * Sets event
-     *
-     * @param \Idealogic\RegistrationAPI\Model\EventDTO|null $event event
-     *
-     * @return self
-     */
-    public function setEvent($event)
-    {
-        if (is_null($event)) {
-            throw new \InvalidArgumentException('non-nullable event cannot be null');
-        }
-        $this->container['event'] = $event;
 
         return $this;
     }

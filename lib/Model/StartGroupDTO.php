@@ -1,6 +1,6 @@
 <?php
 /**
- * OrganisationDTO
+ * StartGroupDTO
  *
  * PHP version 7.4
  *
@@ -33,16 +33,15 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * OrganisationDTO Class Doc Comment
+ * StartGroupDTO Class Doc Comment
  *
  * @category Class
- * @description The organisation sanctioning the series. Used to filter the EventCategories.
  * @package  Idealogic\RegistrationAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class StartGroupDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +50,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrganisationDTO';
+    protected static $openAPIModelName = 'StartGroupDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +60,11 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'id' => 'int',
         'name' => 'string',
-        'parent' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO'
+        'start_time' => '\DateTime',
+        'seq' => 'int',
+        'race' => '\Idealogic\RegistrationAPI\Model\RaceDTO',
+        'round' => '\Idealogic\RegistrationAPI\Model\RoundDTO',
+        'program_entry' => '\Idealogic\RegistrationAPI\Model\ProgramEntryDTO'
     ];
 
     /**
@@ -74,7 +77,11 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'id' => 'int64',
         'name' => null,
-        'parent' => null
+        'start_time' => 'date-time',
+        'seq' => 'int32',
+        'race' => null,
+        'round' => null,
+        'program_entry' => null
     ];
 
     /**
@@ -85,7 +92,11 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'id' => false,
         'name' => false,
-        'parent' => false
+        'start_time' => false,
+        'seq' => false,
+        'race' => false,
+        'round' => false,
+        'program_entry' => false
     ];
 
     /**
@@ -176,7 +187,11 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'id' => 'id',
         'name' => 'name',
-        'parent' => 'parent'
+        'start_time' => 'startTime',
+        'seq' => 'seq',
+        'race' => 'race',
+        'round' => 'round',
+        'program_entry' => 'programEntry'
     ];
 
     /**
@@ -187,7 +202,11 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'id' => 'setId',
         'name' => 'setName',
-        'parent' => 'setParent'
+        'start_time' => 'setStartTime',
+        'seq' => 'setSeq',
+        'race' => 'setRace',
+        'round' => 'setRound',
+        'program_entry' => 'setProgramEntry'
     ];
 
     /**
@@ -198,7 +217,11 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'id' => 'getId',
         'name' => 'getName',
-        'parent' => 'getParent'
+        'start_time' => 'getStartTime',
+        'seq' => 'getSeq',
+        'race' => 'getRace',
+        'round' => 'getRound',
+        'program_entry' => 'getProgramEntry'
     ];
 
     /**
@@ -260,7 +283,11 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('parent', $data ?? [], null);
+        $this->setIfExists('start_time', $data ?? [], null);
+        $this->setIfExists('seq', $data ?? [], null);
+        $this->setIfExists('race', $data ?? [], null);
+        $this->setIfExists('round', $data ?? [], null);
+        $this->setIfExists('program_entry', $data ?? [], null);
     }
 
     /**
@@ -290,17 +317,9 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['start_time'] === null) {
+            $invalidProperties[] = "'start_time' can't be null";
         }
-        if ((mb_strlen($this->container['name']) > 50)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 50.";
-        }
-
-        if ((mb_strlen($this->container['name']) < 0)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 0.";
-        }
-
         return $invalidProperties;
     }
 
@@ -346,7 +365,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -356,7 +375,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param string|null $name name
      *
      * @return self
      */
@@ -365,41 +384,142 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        if ((mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling OrganisationDTO., must be smaller than or equal to 50.');
-        }
-        if ((mb_strlen($name) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling OrganisationDTO., must be bigger than or equal to 0.');
-        }
-
         $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets parent
+     * Gets start_time
      *
-     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO|null
+     * @return \DateTime
      */
-    public function getParent()
+    public function getStartTime()
     {
-        return $this->container['parent'];
+        return $this->container['start_time'];
     }
 
     /**
-     * Sets parent
+     * Sets start_time
      *
-     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO|null $parent parent
+     * @param \DateTime $start_time Time when the group started.
      *
      * @return self
      */
-    public function setParent($parent)
+    public function setStartTime($start_time)
     {
-        if (is_null($parent)) {
-            throw new \InvalidArgumentException('non-nullable parent cannot be null');
+        if (is_null($start_time)) {
+            throw new \InvalidArgumentException('non-nullable start_time cannot be null');
         }
-        $this->container['parent'] = $parent;
+        $this->container['start_time'] = $start_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets seq
+     *
+     * @return int|null
+     */
+    public function getSeq()
+    {
+        return $this->container['seq'];
+    }
+
+    /**
+     * Sets seq
+     *
+     * @param int|null $seq Sequence of this start group in the Race.
+     *
+     * @return self
+     */
+    public function setSeq($seq)
+    {
+        if (is_null($seq)) {
+            throw new \InvalidArgumentException('non-nullable seq cannot be null');
+        }
+        $this->container['seq'] = $seq;
+
+        return $this;
+    }
+
+    /**
+     * Gets race
+     *
+     * @return \Idealogic\RegistrationAPI\Model\RaceDTO|null
+     */
+    public function getRace()
+    {
+        return $this->container['race'];
+    }
+
+    /**
+     * Sets race
+     *
+     * @param \Idealogic\RegistrationAPI\Model\RaceDTO|null $race race
+     *
+     * @return self
+     */
+    public function setRace($race)
+    {
+        if (is_null($race)) {
+            throw new \InvalidArgumentException('non-nullable race cannot be null');
+        }
+        $this->container['race'] = $race;
+
+        return $this;
+    }
+
+    /**
+     * Gets round
+     *
+     * @return \Idealogic\RegistrationAPI\Model\RoundDTO|null
+     */
+    public function getRound()
+    {
+        return $this->container['round'];
+    }
+
+    /**
+     * Sets round
+     *
+     * @param \Idealogic\RegistrationAPI\Model\RoundDTO|null $round round
+     *
+     * @return self
+     */
+    public function setRound($round)
+    {
+        if (is_null($round)) {
+            throw new \InvalidArgumentException('non-nullable round cannot be null');
+        }
+        $this->container['round'] = $round;
+
+        return $this;
+    }
+
+    /**
+     * Gets program_entry
+     *
+     * @return \Idealogic\RegistrationAPI\Model\ProgramEntryDTO|null
+     */
+    public function getProgramEntry()
+    {
+        return $this->container['program_entry'];
+    }
+
+    /**
+     * Sets program_entry
+     *
+     * @param \Idealogic\RegistrationAPI\Model\ProgramEntryDTO|null $program_entry program_entry
+     *
+     * @return self
+     */
+    public function setProgramEntry($program_entry)
+    {
+        if (is_null($program_entry)) {
+            throw new \InvalidArgumentException('non-nullable program_entry cannot be null');
+        }
+        $this->container['program_entry'] = $program_entry;
 
         return $this;
     }

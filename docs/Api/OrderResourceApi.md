@@ -1,6 +1,6 @@
 # Idealogic\RegistrationAPI\OrderResourceApi
 
-All URIs are relative to https://admin-service.idealogic.co.za, except if the operation defines another base path.
+All URIs are relative to https://admin-service-stage.idealogic.co.za, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
@@ -20,7 +20,7 @@ All URIs are relative to https://admin-service.idealogic.co.za, except if the op
 ## `countOrders()`
 
 ```php
-countOrders($id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $distinct): int
+countOrders($id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $email_contains, $email_does_not_contain, $email_equals, $email_not_equals, $email_specified, $email_in, $email_not_in, $url_contains, $url_does_not_contain, $url_equals, $url_not_equals, $url_specified, $url_in, $url_not_in, $organisation_id_greater_than, $organisation_id_less_than, $organisation_id_greater_than_or_equal, $organisation_id_less_than_or_equal, $organisation_id_equals, $organisation_id_not_equals, $organisation_id_specified, $organisation_id_in, $organisation_id_not_in, $buyer_id_greater_than, $buyer_id_less_than, $buyer_id_greater_than_or_equal, $buyer_id_less_than_or_equal, $buyer_id_equals, $buyer_id_not_equals, $buyer_id_specified, $buyer_id_in, $buyer_id_not_in, $distinct): int
 ```
 
 
@@ -75,10 +75,42 @@ $status_not_equals = 'status_not_equals_example'; // string
 $status_specified = True; // bool
 $status_in = array('status_in_example'); // string[]
 $status_not_in = array('status_not_in_example'); // string[]
+$email_contains = 'email_contains_example'; // string
+$email_does_not_contain = 'email_does_not_contain_example'; // string
+$email_equals = 'email_equals_example'; // string
+$email_not_equals = 'email_not_equals_example'; // string
+$email_specified = True; // bool
+$email_in = array('email_in_example'); // string[]
+$email_not_in = array('email_not_in_example'); // string[]
+$url_contains = 'url_contains_example'; // string
+$url_does_not_contain = 'url_does_not_contain_example'; // string
+$url_equals = 'url_equals_example'; // string
+$url_not_equals = 'url_not_equals_example'; // string
+$url_specified = True; // bool
+$url_in = array('url_in_example'); // string[]
+$url_not_in = array('url_not_in_example'); // string[]
+$organisation_id_greater_than = 56; // int
+$organisation_id_less_than = 56; // int
+$organisation_id_greater_than_or_equal = 56; // int
+$organisation_id_less_than_or_equal = 56; // int
+$organisation_id_equals = 56; // int
+$organisation_id_not_equals = 56; // int
+$organisation_id_specified = True; // bool
+$organisation_id_in = array(56); // int[]
+$organisation_id_not_in = array(56); // int[]
+$buyer_id_greater_than = 56; // int
+$buyer_id_less_than = 56; // int
+$buyer_id_greater_than_or_equal = 56; // int
+$buyer_id_less_than_or_equal = 56; // int
+$buyer_id_equals = 56; // int
+$buyer_id_not_equals = 56; // int
+$buyer_id_specified = True; // bool
+$buyer_id_in = array(56); // int[]
+$buyer_id_not_in = array(56); // int[]
 $distinct = True; // bool
 
 try {
-    $result = $apiInstance->countOrders($id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $distinct);
+    $result = $apiInstance->countOrders($id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $email_contains, $email_does_not_contain, $email_equals, $email_not_equals, $email_specified, $email_in, $email_not_in, $url_contains, $url_does_not_contain, $url_equals, $url_not_equals, $url_specified, $url_in, $url_not_in, $organisation_id_greater_than, $organisation_id_less_than, $organisation_id_greater_than_or_equal, $organisation_id_less_than_or_equal, $organisation_id_equals, $organisation_id_not_equals, $organisation_id_specified, $organisation_id_in, $organisation_id_not_in, $buyer_id_greater_than, $buyer_id_less_than, $buyer_id_greater_than_or_equal, $buyer_id_less_than_or_equal, $buyer_id_equals, $buyer_id_not_equals, $buyer_id_specified, $buyer_id_in, $buyer_id_not_in, $distinct);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrderResourceApi->countOrders: ', $e->getMessage(), PHP_EOL;
@@ -117,6 +149,38 @@ try {
 | **status_specified** | **bool**|  | [optional] |
 | **status_in** | [**string[]**](../Model/string.md)|  | [optional] |
 | **status_not_in** | [**string[]**](../Model/string.md)|  | [optional] |
+| **email_contains** | **string**|  | [optional] |
+| **email_does_not_contain** | **string**|  | [optional] |
+| **email_equals** | **string**|  | [optional] |
+| **email_not_equals** | **string**|  | [optional] |
+| **email_specified** | **bool**|  | [optional] |
+| **email_in** | [**string[]**](../Model/string.md)|  | [optional] |
+| **email_not_in** | [**string[]**](../Model/string.md)|  | [optional] |
+| **url_contains** | **string**|  | [optional] |
+| **url_does_not_contain** | **string**|  | [optional] |
+| **url_equals** | **string**|  | [optional] |
+| **url_not_equals** | **string**|  | [optional] |
+| **url_specified** | **bool**|  | [optional] |
+| **url_in** | [**string[]**](../Model/string.md)|  | [optional] |
+| **url_not_in** | [**string[]**](../Model/string.md)|  | [optional] |
+| **organisation_id_greater_than** | **int**|  | [optional] |
+| **organisation_id_less_than** | **int**|  | [optional] |
+| **organisation_id_greater_than_or_equal** | **int**|  | [optional] |
+| **organisation_id_less_than_or_equal** | **int**|  | [optional] |
+| **organisation_id_equals** | **int**|  | [optional] |
+| **organisation_id_not_equals** | **int**|  | [optional] |
+| **organisation_id_specified** | **bool**|  | [optional] |
+| **organisation_id_in** | [**int[]**](../Model/int.md)|  | [optional] |
+| **organisation_id_not_in** | [**int[]**](../Model/int.md)|  | [optional] |
+| **buyer_id_greater_than** | **int**|  | [optional] |
+| **buyer_id_less_than** | **int**|  | [optional] |
+| **buyer_id_greater_than_or_equal** | **int**|  | [optional] |
+| **buyer_id_less_than_or_equal** | **int**|  | [optional] |
+| **buyer_id_equals** | **int**|  | [optional] |
+| **buyer_id_not_equals** | **int**|  | [optional] |
+| **buyer_id_specified** | **bool**|  | [optional] |
+| **buyer_id_in** | [**int[]**](../Model/int.md)|  | [optional] |
+| **buyer_id_not_in** | [**int[]**](../Model/int.md)|  | [optional] |
 | **distinct** | **bool**|  | [optional] |
 
 ### Return type
@@ -264,7 +328,7 @@ void (empty response body)
 ## `getAllOrders()`
 
 ```php
-getAllOrders($pageable, $id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $distinct): \Idealogic\RegistrationAPI\Model\OrderDTO[]
+getAllOrders($pageable, $id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $email_contains, $email_does_not_contain, $email_equals, $email_not_equals, $email_specified, $email_in, $email_not_in, $url_contains, $url_does_not_contain, $url_equals, $url_not_equals, $url_specified, $url_in, $url_not_in, $organisation_id_greater_than, $organisation_id_less_than, $organisation_id_greater_than_or_equal, $organisation_id_less_than_or_equal, $organisation_id_equals, $organisation_id_not_equals, $organisation_id_specified, $organisation_id_in, $organisation_id_not_in, $buyer_id_greater_than, $buyer_id_less_than, $buyer_id_greater_than_or_equal, $buyer_id_less_than_or_equal, $buyer_id_equals, $buyer_id_not_equals, $buyer_id_specified, $buyer_id_in, $buyer_id_not_in, $distinct): \Idealogic\RegistrationAPI\Model\OrderDTO[]
 ```
 
 
@@ -320,10 +384,42 @@ $status_not_equals = 'status_not_equals_example'; // string
 $status_specified = True; // bool
 $status_in = array('status_in_example'); // string[]
 $status_not_in = array('status_not_in_example'); // string[]
+$email_contains = 'email_contains_example'; // string
+$email_does_not_contain = 'email_does_not_contain_example'; // string
+$email_equals = 'email_equals_example'; // string
+$email_not_equals = 'email_not_equals_example'; // string
+$email_specified = True; // bool
+$email_in = array('email_in_example'); // string[]
+$email_not_in = array('email_not_in_example'); // string[]
+$url_contains = 'url_contains_example'; // string
+$url_does_not_contain = 'url_does_not_contain_example'; // string
+$url_equals = 'url_equals_example'; // string
+$url_not_equals = 'url_not_equals_example'; // string
+$url_specified = True; // bool
+$url_in = array('url_in_example'); // string[]
+$url_not_in = array('url_not_in_example'); // string[]
+$organisation_id_greater_than = 56; // int
+$organisation_id_less_than = 56; // int
+$organisation_id_greater_than_or_equal = 56; // int
+$organisation_id_less_than_or_equal = 56; // int
+$organisation_id_equals = 56; // int
+$organisation_id_not_equals = 56; // int
+$organisation_id_specified = True; // bool
+$organisation_id_in = array(56); // int[]
+$organisation_id_not_in = array(56); // int[]
+$buyer_id_greater_than = 56; // int
+$buyer_id_less_than = 56; // int
+$buyer_id_greater_than_or_equal = 56; // int
+$buyer_id_less_than_or_equal = 56; // int
+$buyer_id_equals = 56; // int
+$buyer_id_not_equals = 56; // int
+$buyer_id_specified = True; // bool
+$buyer_id_in = array(56); // int[]
+$buyer_id_not_in = array(56); // int[]
 $distinct = True; // bool
 
 try {
-    $result = $apiInstance->getAllOrders($pageable, $id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $distinct);
+    $result = $apiInstance->getAllOrders($pageable, $id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $email_contains, $email_does_not_contain, $email_equals, $email_not_equals, $email_specified, $email_in, $email_not_in, $url_contains, $url_does_not_contain, $url_equals, $url_not_equals, $url_specified, $url_in, $url_not_in, $organisation_id_greater_than, $organisation_id_less_than, $organisation_id_greater_than_or_equal, $organisation_id_less_than_or_equal, $organisation_id_equals, $organisation_id_not_equals, $organisation_id_specified, $organisation_id_in, $organisation_id_not_in, $buyer_id_greater_than, $buyer_id_less_than, $buyer_id_greater_than_or_equal, $buyer_id_less_than_or_equal, $buyer_id_equals, $buyer_id_not_equals, $buyer_id_specified, $buyer_id_in, $buyer_id_not_in, $distinct);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrderResourceApi->getAllOrders: ', $e->getMessage(), PHP_EOL;
@@ -363,6 +459,38 @@ try {
 | **status_specified** | **bool**|  | [optional] |
 | **status_in** | [**string[]**](../Model/string.md)|  | [optional] |
 | **status_not_in** | [**string[]**](../Model/string.md)|  | [optional] |
+| **email_contains** | **string**|  | [optional] |
+| **email_does_not_contain** | **string**|  | [optional] |
+| **email_equals** | **string**|  | [optional] |
+| **email_not_equals** | **string**|  | [optional] |
+| **email_specified** | **bool**|  | [optional] |
+| **email_in** | [**string[]**](../Model/string.md)|  | [optional] |
+| **email_not_in** | [**string[]**](../Model/string.md)|  | [optional] |
+| **url_contains** | **string**|  | [optional] |
+| **url_does_not_contain** | **string**|  | [optional] |
+| **url_equals** | **string**|  | [optional] |
+| **url_not_equals** | **string**|  | [optional] |
+| **url_specified** | **bool**|  | [optional] |
+| **url_in** | [**string[]**](../Model/string.md)|  | [optional] |
+| **url_not_in** | [**string[]**](../Model/string.md)|  | [optional] |
+| **organisation_id_greater_than** | **int**|  | [optional] |
+| **organisation_id_less_than** | **int**|  | [optional] |
+| **organisation_id_greater_than_or_equal** | **int**|  | [optional] |
+| **organisation_id_less_than_or_equal** | **int**|  | [optional] |
+| **organisation_id_equals** | **int**|  | [optional] |
+| **organisation_id_not_equals** | **int**|  | [optional] |
+| **organisation_id_specified** | **bool**|  | [optional] |
+| **organisation_id_in** | [**int[]**](../Model/int.md)|  | [optional] |
+| **organisation_id_not_in** | [**int[]**](../Model/int.md)|  | [optional] |
+| **buyer_id_greater_than** | **int**|  | [optional] |
+| **buyer_id_less_than** | **int**|  | [optional] |
+| **buyer_id_greater_than_or_equal** | **int**|  | [optional] |
+| **buyer_id_less_than_or_equal** | **int**|  | [optional] |
+| **buyer_id_equals** | **int**|  | [optional] |
+| **buyer_id_not_equals** | **int**|  | [optional] |
+| **buyer_id_specified** | **bool**|  | [optional] |
+| **buyer_id_in** | [**int[]**](../Model/int.md)|  | [optional] |
+| **buyer_id_not_in** | [**int[]**](../Model/int.md)|  | [optional] |
 | **distinct** | **bool**|  | [optional] |
 
 ### Return type
@@ -566,7 +694,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: `application/merge-patch+json`
+- **Content-Type**: `application/json`, `application/merge-patch+json`
 - **Accept**: `*/*`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -576,7 +704,7 @@ try {
 ## `patchParticipantOrder()`
 
 ```php
-patchParticipantOrder($id, $participant_order_dto): \Idealogic\RegistrationAPI\Model\OrderDTO
+patchParticipantOrder($id, $participant_order_dto): \Idealogic\RegistrationAPI\Model\ParticipantOrderDTO
 ```
 
 
@@ -623,7 +751,7 @@ try {
 
 ### Return type
 
-[**\Idealogic\RegistrationAPI\Model\OrderDTO**](../Model/OrderDTO.md)
+[**\Idealogic\RegistrationAPI\Model\ParticipantOrderDTO**](../Model/ParticipantOrderDTO.md)
 
 ### Authorization
 

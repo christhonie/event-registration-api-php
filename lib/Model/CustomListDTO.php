@@ -1,6 +1,6 @@
 <?php
 /**
- * OrganisationDTO
+ * CustomListDTO
  *
  * PHP version 7.4
  *
@@ -33,16 +33,16 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * OrganisationDTO Class Doc Comment
+ * CustomListDTO Class Doc Comment
  *
  * @category Class
- * @description The organisation sanctioning the series. Used to filter the EventCategories.
+ * @description Custom code list 3 - Codes from this list can be used for participant list_3 entries.
  * @package  Idealogic\RegistrationAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class CustomListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrganisationDTO';
+    protected static $openAPIModelName = 'CustomListDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +61,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'id' => 'int',
         'name' => 'string',
-        'parent' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO'
+        'display_name' => 'string',
+        'display_code' => 'bool',
+        'meta_key' => 'string',
+        'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO'
     ];
 
     /**
@@ -74,7 +77,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'id' => 'int64',
         'name' => null,
-        'parent' => null
+        'display_name' => null,
+        'display_code' => null,
+        'meta_key' => null,
+        'organisation' => null
     ];
 
     /**
@@ -85,7 +91,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'id' => false,
         'name' => false,
-        'parent' => false
+        'display_name' => false,
+        'display_code' => false,
+        'meta_key' => false,
+        'organisation' => false
     ];
 
     /**
@@ -176,7 +185,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'id' => 'id',
         'name' => 'name',
-        'parent' => 'parent'
+        'display_name' => 'displayName',
+        'display_code' => 'displayCode',
+        'meta_key' => 'metaKey',
+        'organisation' => 'organisation'
     ];
 
     /**
@@ -187,7 +199,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'id' => 'setId',
         'name' => 'setName',
-        'parent' => 'setParent'
+        'display_name' => 'setDisplayName',
+        'display_code' => 'setDisplayCode',
+        'meta_key' => 'setMetaKey',
+        'organisation' => 'setOrganisation'
     ];
 
     /**
@@ -198,7 +213,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'id' => 'getId',
         'name' => 'getName',
-        'parent' => 'getParent'
+        'display_name' => 'getDisplayName',
+        'display_code' => 'getDisplayCode',
+        'meta_key' => 'getMetaKey',
+        'organisation' => 'getOrganisation'
     ];
 
     /**
@@ -260,7 +278,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('parent', $data ?? [], null);
+        $this->setIfExists('display_name', $data ?? [], null);
+        $this->setIfExists('display_code', $data ?? [], null);
+        $this->setIfExists('meta_key', $data ?? [], null);
+        $this->setIfExists('organisation', $data ?? [], null);
     }
 
     /**
@@ -299,6 +320,25 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if ((mb_strlen($this->container['name']) < 0)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['display_name']) && (mb_strlen($this->container['display_name']) > 50)) {
+            $invalidProperties[] = "invalid value for 'display_name', the character length must be smaller than or equal to 50.";
+        }
+
+        if (!is_null($this->container['display_name']) && (mb_strlen($this->container['display_name']) < 0)) {
+            $invalidProperties[] = "invalid value for 'display_name', the character length must be bigger than or equal to 0.";
+        }
+
+        if ($this->container['display_code'] === null) {
+            $invalidProperties[] = "'display_code' can't be null";
+        }
+        if (!is_null($this->container['meta_key']) && (mb_strlen($this->container['meta_key']) > 50)) {
+            $invalidProperties[] = "invalid value for 'meta_key', the character length must be smaller than or equal to 50.";
+        }
+
+        if (!is_null($this->container['meta_key']) && (mb_strlen($this->container['meta_key']) < 0)) {
+            $invalidProperties[] = "invalid value for 'meta_key', the character length must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -356,7 +396,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param string $name A unique name for the list.
      *
      * @return self
      */
@@ -366,10 +406,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         if ((mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling OrganisationDTO., must be smaller than or equal to 50.');
+            throw new \InvalidArgumentException('invalid length for $name when calling CustomListDTO., must be smaller than or equal to 50.');
         }
         if ((mb_strlen($name) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling OrganisationDTO., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid length for $name when calling CustomListDTO., must be bigger than or equal to 0.');
         }
 
         $this->container['name'] = $name;
@@ -378,28 +418,123 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets parent
+     * Gets display_name
      *
-     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO|null
+     * @return string|null
      */
-    public function getParent()
+    public function getDisplayName()
     {
-        return $this->container['parent'];
+        return $this->container['display_name'];
     }
 
     /**
-     * Sets parent
+     * Sets display_name
      *
-     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO|null $parent parent
+     * @param string|null $display_name The display name used on-screen or in reports
      *
      * @return self
      */
-    public function setParent($parent)
+    public function setDisplayName($display_name)
     {
-        if (is_null($parent)) {
-            throw new \InvalidArgumentException('non-nullable parent cannot be null');
+        if (is_null($display_name)) {
+            throw new \InvalidArgumentException('non-nullable display_name cannot be null');
         }
-        $this->container['parent'] = $parent;
+        if ((mb_strlen($display_name) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $display_name when calling CustomListDTO., must be smaller than or equal to 50.');
+        }
+        if ((mb_strlen($display_name) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $display_name when calling CustomListDTO., must be bigger than or equal to 0.');
+        }
+
+        $this->container['display_name'] = $display_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets display_code
+     *
+     * @return bool
+     */
+    public function getDisplayCode()
+    {
+        return $this->container['display_code'];
+    }
+
+    /**
+     * Sets display_code
+     *
+     * @param bool $display_code display_code
+     *
+     * @return self
+     */
+    public function setDisplayCode($display_code)
+    {
+        if (is_null($display_code)) {
+            throw new \InvalidArgumentException('non-nullable display_code cannot be null');
+        }
+        $this->container['display_code'] = $display_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta_key
+     *
+     * @return string|null
+     */
+    public function getMetaKey()
+    {
+        return $this->container['meta_key'];
+    }
+
+    /**
+     * Sets meta_key
+     *
+     * @param string|null $meta_key Meta key to associate values from this list to a Person.
+     *
+     * @return self
+     */
+    public function setMetaKey($meta_key)
+    {
+        if (is_null($meta_key)) {
+            throw new \InvalidArgumentException('non-nullable meta_key cannot be null');
+        }
+        if ((mb_strlen($meta_key) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $meta_key when calling CustomListDTO., must be smaller than or equal to 50.');
+        }
+        if ((mb_strlen($meta_key) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $meta_key when calling CustomListDTO., must be bigger than or equal to 0.');
+        }
+
+        $this->container['meta_key'] = $meta_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets organisation
+     *
+     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO|null
+     */
+    public function getOrganisation()
+    {
+        return $this->container['organisation'];
+    }
+
+    /**
+     * Sets organisation
+     *
+     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO|null $organisation organisation
+     *
+     * @return self
+     */
+    public function setOrganisation($organisation)
+    {
+        if (is_null($organisation)) {
+            throw new \InvalidArgumentException('non-nullable organisation cannot be null');
+        }
+        $this->container['organisation'] = $organisation;
 
         return $this;
     }

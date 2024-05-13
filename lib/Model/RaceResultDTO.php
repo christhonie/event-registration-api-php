@@ -1,6 +1,6 @@
 <?php
 /**
- * ParticipantOrderDTO
+ * RaceResultDTO
  *
  * PHP version 7.4
  *
@@ -33,15 +33,16 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * ParticipantOrderDTO Class Doc Comment
+ * RaceResultDTO Class Doc Comment
  *
  * @category Class
+ * @description Final and consolidated result outcome for a race. In races with multiple start groups and/or rounds, this entity represents the final outcome for the race.
  * @package  Idealogic\RegistrationAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class RaceResultDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ParticipantOrderDTO';
+    protected static $openAPIModelName = 'RaceResultDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,14 +60,18 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPITypes = [
         'id' => 'int',
-        'number' => 'string',
-        'external_id' => 'string',
+        'position' => 'int',
+        'duration_milli_second' => 'int',
+        'laps' => 'int',
+        'points' => 'int',
         'status' => 'string',
-        'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
-        'email' => 'string',
-        'url' => 'string',
-        'buyer' => '\Idealogic\RegistrationAPI\Model\OrgUserDTO',
-        'event_participants' => '\Idealogic\RegistrationAPI\Model\EventParticipantDTO[]'
+        'person' => '\Idealogic\RegistrationAPI\Model\PersonDTO',
+        'event_participant' => '\Idealogic\RegistrationAPI\Model\EventParticipantDTO',
+        'start_group_participant' => '\Idealogic\RegistrationAPI\Model\StartGroupParticipantDTO',
+        'custom1' => '\Idealogic\RegistrationAPI\Model\CustomListValueDTO',
+        'custom2' => '\Idealogic\RegistrationAPI\Model\CustomListValueDTO',
+        'custom3' => '\Idealogic\RegistrationAPI\Model\CustomListValueDTO',
+        'result_set' => '\Idealogic\RegistrationAPI\Model\ResultSetDTO'
     ];
 
     /**
@@ -78,14 +83,18 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPIFormats = [
         'id' => 'int64',
-        'number' => null,
-        'external_id' => null,
+        'position' => 'int32',
+        'duration_milli_second' => 'int64',
+        'laps' => 'int32',
+        'points' => 'int32',
         'status' => null,
-        'organisation' => null,
-        'email' => null,
-        'url' => null,
-        'buyer' => null,
-        'event_participants' => null
+        'person' => null,
+        'event_participant' => null,
+        'start_group_participant' => null,
+        'custom1' => null,
+        'custom2' => null,
+        'custom3' => null,
+        'result_set' => null
     ];
 
     /**
@@ -95,14 +104,18 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static array $openAPINullables = [
         'id' => false,
-        'number' => false,
-        'external_id' => false,
+        'position' => false,
+        'duration_milli_second' => false,
+        'laps' => false,
+        'points' => false,
         'status' => false,
-        'organisation' => false,
-        'email' => false,
-        'url' => false,
-        'buyer' => false,
-        'event_participants' => false
+        'person' => false,
+        'event_participant' => false,
+        'start_group_participant' => false,
+        'custom1' => false,
+        'custom2' => false,
+        'custom3' => false,
+        'result_set' => false
     ];
 
     /**
@@ -192,14 +205,18 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'number' => 'number',
-        'external_id' => 'externalId',
+        'position' => 'position',
+        'duration_milli_second' => 'durationMilliSecond',
+        'laps' => 'laps',
+        'points' => 'points',
         'status' => 'status',
-        'organisation' => 'organisation',
-        'email' => 'email',
-        'url' => 'url',
-        'buyer' => 'buyer',
-        'event_participants' => 'eventParticipants'
+        'person' => 'person',
+        'event_participant' => 'eventParticipant',
+        'start_group_participant' => 'startGroupParticipant',
+        'custom1' => 'custom1',
+        'custom2' => 'custom2',
+        'custom3' => 'custom3',
+        'result_set' => 'resultSet'
     ];
 
     /**
@@ -209,14 +226,18 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $setters = [
         'id' => 'setId',
-        'number' => 'setNumber',
-        'external_id' => 'setExternalId',
+        'position' => 'setPosition',
+        'duration_milli_second' => 'setDurationMilliSecond',
+        'laps' => 'setLaps',
+        'points' => 'setPoints',
         'status' => 'setStatus',
-        'organisation' => 'setOrganisation',
-        'email' => 'setEmail',
-        'url' => 'setUrl',
-        'buyer' => 'setBuyer',
-        'event_participants' => 'setEventParticipants'
+        'person' => 'setPerson',
+        'event_participant' => 'setEventParticipant',
+        'start_group_participant' => 'setStartGroupParticipant',
+        'custom1' => 'setCustom1',
+        'custom2' => 'setCustom2',
+        'custom3' => 'setCustom3',
+        'result_set' => 'setResultSet'
     ];
 
     /**
@@ -226,14 +247,18 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $getters = [
         'id' => 'getId',
-        'number' => 'getNumber',
-        'external_id' => 'getExternalId',
+        'position' => 'getPosition',
+        'duration_milli_second' => 'getDurationMilliSecond',
+        'laps' => 'getLaps',
+        'points' => 'getPoints',
         'status' => 'getStatus',
-        'organisation' => 'getOrganisation',
-        'email' => 'getEmail',
-        'url' => 'getUrl',
-        'buyer' => 'getBuyer',
-        'event_participants' => 'getEventParticipants'
+        'person' => 'getPerson',
+        'event_participant' => 'getEventParticipant',
+        'start_group_participant' => 'getStartGroupParticipant',
+        'custom1' => 'getCustom1',
+        'custom2' => 'getCustom2',
+        'custom3' => 'getCustom3',
+        'result_set' => 'getResultSet'
     ];
 
     /**
@@ -277,10 +302,12 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-    public const STATUS_PENDING = 'PENDING';
-    public const STATUS_PAID = 'PAID';
-    public const STATUS_REFUNDED = 'REFUNDED';
-    public const STATUS_CANCELLED = 'CANCELLED';
+    public const STATUS_FINISHED = 'FINISHED';
+    public const STATUS_DID_NOT_START = 'DID_NOT_START';
+    public const STATUS_DID_NOT_FINISH = 'DID_NOT_FINISH';
+    public const STATUS_RELEGATED = 'RELEGATED';
+    public const STATUS_DISQUALIFIED = 'DISQUALIFIED';
+    public const STATUS_LAPPED = 'LAPPED';
 
     /**
      * Gets allowable values of the enum
@@ -290,10 +317,12 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_PENDING,
-            self::STATUS_PAID,
-            self::STATUS_REFUNDED,
-            self::STATUS_CANCELLED,
+            self::STATUS_FINISHED,
+            self::STATUS_DID_NOT_START,
+            self::STATUS_DID_NOT_FINISH,
+            self::STATUS_RELEGATED,
+            self::STATUS_DISQUALIFIED,
+            self::STATUS_LAPPED,
         ];
     }
 
@@ -313,14 +342,18 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     public function __construct(array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('number', $data ?? [], null);
-        $this->setIfExists('external_id', $data ?? [], null);
+        $this->setIfExists('position', $data ?? [], null);
+        $this->setIfExists('duration_milli_second', $data ?? [], null);
+        $this->setIfExists('laps', $data ?? [], null);
+        $this->setIfExists('points', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('organisation', $data ?? [], null);
-        $this->setIfExists('email', $data ?? [], null);
-        $this->setIfExists('url', $data ?? [], null);
-        $this->setIfExists('buyer', $data ?? [], null);
-        $this->setIfExists('event_participants', $data ?? [], null);
+        $this->setIfExists('person', $data ?? [], null);
+        $this->setIfExists('event_participant', $data ?? [], null);
+        $this->setIfExists('start_group_participant', $data ?? [], null);
+        $this->setIfExists('custom1', $data ?? [], null);
+        $this->setIfExists('custom2', $data ?? [], null);
+        $this->setIfExists('custom3', $data ?? [], null);
+        $this->setIfExists('result_set', $data ?? [], null);
     }
 
     /**
@@ -350,25 +383,6 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if ($this->container['number'] === null) {
-            $invalidProperties[] = "'number' can't be null";
-        }
-        if ((mb_strlen($this->container['number']) > 12)) {
-            $invalidProperties[] = "invalid value for 'number', the character length must be smaller than or equal to 12.";
-        }
-
-        if ((mb_strlen($this->container['number']) < 0)) {
-            $invalidProperties[] = "invalid value for 'number', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['external_id']) && (mb_strlen($this->container['external_id']) > 32)) {
-            $invalidProperties[] = "invalid value for 'external_id', the character length must be smaller than or equal to 32.";
-        }
-
-        if (!is_null($this->container['external_id']) && (mb_strlen($this->container['external_id']) < 0)) {
-            $invalidProperties[] = "invalid value for 'external_id', the character length must be bigger than or equal to 0.";
-        }
-
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -376,22 +390,6 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
                 $this->container['status'],
                 implode("', '", $allowedValues)
             );
-        }
-
-        if (!is_null($this->container['email']) && (mb_strlen($this->container['email']) > 100)) {
-            $invalidProperties[] = "invalid value for 'email', the character length must be smaller than or equal to 100.";
-        }
-
-        if (!is_null($this->container['email']) && (mb_strlen($this->container['email']) < 0)) {
-            $invalidProperties[] = "invalid value for 'email', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['url']) && (mb_strlen($this->container['url']) > 200)) {
-            $invalidProperties[] = "invalid value for 'url', the character length must be smaller than or equal to 200.";
-        }
-
-        if (!is_null($this->container['url']) && (mb_strlen($this->container['url']) < 0)) {
-            $invalidProperties[] = "invalid value for 'url', the character length must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -437,69 +435,109 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
-     * Gets number
+     * Gets position
      *
-     * @return string
+     * @return int|null
      */
-    public function getNumber()
+    public function getPosition()
     {
-        return $this->container['number'];
+        return $this->container['position'];
     }
 
     /**
-     * Sets number
+     * Sets position
      *
-     * @param string $number number
+     * @param int|null $position Position in the race. First place will be 1, followed by second as 2, etc.
      *
      * @return self
      */
-    public function setNumber($number)
+    public function setPosition($position)
     {
-        if (is_null($number)) {
-            throw new \InvalidArgumentException('non-nullable number cannot be null');
+        if (is_null($position)) {
+            throw new \InvalidArgumentException('non-nullable position cannot be null');
         }
-        if ((mb_strlen($number) > 12)) {
-            throw new \InvalidArgumentException('invalid length for $number when calling ParticipantOrderDTO., must be smaller than or equal to 12.');
-        }
-        if ((mb_strlen($number) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $number when calling ParticipantOrderDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['number'] = $number;
+        $this->container['position'] = $position;
 
         return $this;
     }
 
     /**
-     * Gets external_id
+     * Gets duration_milli_second
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getExternalId()
+    public function getDurationMilliSecond()
     {
-        return $this->container['external_id'];
+        return $this->container['duration_milli_second'];
     }
 
     /**
-     * Sets external_id
+     * Sets duration_milli_second
      *
-     * @param string|null $external_id Foreign key to external order module
+     * @param int|null $duration_milli_second For duration based outcomes this indicates the duration underpinning the result.
      *
      * @return self
      */
-    public function setExternalId($external_id)
+    public function setDurationMilliSecond($duration_milli_second)
     {
-        if (is_null($external_id)) {
-            throw new \InvalidArgumentException('non-nullable external_id cannot be null');
+        if (is_null($duration_milli_second)) {
+            throw new \InvalidArgumentException('non-nullable duration_milli_second cannot be null');
         }
-        if ((mb_strlen($external_id) > 32)) {
-            throw new \InvalidArgumentException('invalid length for $external_id when calling ParticipantOrderDTO., must be smaller than or equal to 32.');
-        }
-        if ((mb_strlen($external_id) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $external_id when calling ParticipantOrderDTO., must be bigger than or equal to 0.');
-        }
+        $this->container['duration_milli_second'] = $duration_milli_second;
 
-        $this->container['external_id'] = $external_id;
+        return $this;
+    }
+
+    /**
+     * Gets laps
+     *
+     * @return int|null
+     */
+    public function getLaps()
+    {
+        return $this->container['laps'];
+    }
+
+    /**
+     * Sets laps
+     *
+     * @param int|null $laps Number of laps completed. Optional.
+     *
+     * @return self
+     */
+    public function setLaps($laps)
+    {
+        if (is_null($laps)) {
+            throw new \InvalidArgumentException('non-nullable laps cannot be null');
+        }
+        $this->container['laps'] = $laps;
+
+        return $this;
+    }
+
+    /**
+     * Gets points
+     *
+     * @return int|null
+     */
+    public function getPoints()
+    {
+        return $this->container['points'];
+    }
+
+    /**
+     * Sets points
+     *
+     * @param int|null $points For points based outcomes this indicates the points underpinning the result.
+     *
+     * @return self
+     */
+    public function setPoints($points)
+    {
+        if (is_null($points)) {
+            throw new \InvalidArgumentException('non-nullable points cannot be null');
+        }
+        $this->container['points'] = $points;
 
         return $this;
     }
@@ -542,150 +580,190 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
-     * Gets organisation
+     * Gets person
      *
-     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO|null
+     * @return \Idealogic\RegistrationAPI\Model\PersonDTO|null
      */
-    public function getOrganisation()
+    public function getPerson()
     {
-        return $this->container['organisation'];
+        return $this->container['person'];
     }
 
     /**
-     * Sets organisation
+     * Sets person
      *
-     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO|null $organisation organisation
+     * @param \Idealogic\RegistrationAPI\Model\PersonDTO|null $person person
      *
      * @return self
      */
-    public function setOrganisation($organisation)
+    public function setPerson($person)
     {
-        if (is_null($organisation)) {
-            throw new \InvalidArgumentException('non-nullable organisation cannot be null');
+        if (is_null($person)) {
+            throw new \InvalidArgumentException('non-nullable person cannot be null');
         }
-        $this->container['organisation'] = $organisation;
+        $this->container['person'] = $person;
 
         return $this;
     }
 
     /**
-     * Gets email
+     * Gets event_participant
      *
-     * @return string|null
+     * @return \Idealogic\RegistrationAPI\Model\EventParticipantDTO|null
      */
-    public function getEmail()
+    public function getEventParticipant()
     {
-        return $this->container['email'];
+        return $this->container['event_participant'];
     }
 
     /**
-     * Sets email
+     * Sets event_participant
      *
-     * @param string|null $email Email of the buyer.
+     * @param \Idealogic\RegistrationAPI\Model\EventParticipantDTO|null $event_participant event_participant
      *
      * @return self
      */
-    public function setEmail($email)
+    public function setEventParticipant($event_participant)
     {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        if (is_null($event_participant)) {
+            throw new \InvalidArgumentException('non-nullable event_participant cannot be null');
         }
-        if ((mb_strlen($email) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $email when calling ParticipantOrderDTO., must be smaller than or equal to 100.');
-        }
-        if ((mb_strlen($email) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $email when calling ParticipantOrderDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['email'] = $email;
+        $this->container['event_participant'] = $event_participant;
 
         return $this;
     }
 
     /**
-     * Gets url
+     * Gets start_group_participant
      *
-     * @return string|null
+     * @return \Idealogic\RegistrationAPI\Model\StartGroupParticipantDTO|null
      */
-    public function getUrl()
+    public function getStartGroupParticipant()
     {
-        return $this->container['url'];
+        return $this->container['start_group_participant'];
     }
 
     /**
-     * Sets url
+     * Sets start_group_participant
      *
-     * @param string|null $url url
+     * @param \Idealogic\RegistrationAPI\Model\StartGroupParticipantDTO|null $start_group_participant start_group_participant
      *
      * @return self
      */
-    public function setUrl($url)
+    public function setStartGroupParticipant($start_group_participant)
     {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
+        if (is_null($start_group_participant)) {
+            throw new \InvalidArgumentException('non-nullable start_group_participant cannot be null');
         }
-        if ((mb_strlen($url) > 200)) {
-            throw new \InvalidArgumentException('invalid length for $url when calling ParticipantOrderDTO., must be smaller than or equal to 200.');
-        }
-        if ((mb_strlen($url) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $url when calling ParticipantOrderDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['url'] = $url;
+        $this->container['start_group_participant'] = $start_group_participant;
 
         return $this;
     }
 
     /**
-     * Gets buyer
+     * Gets custom1
      *
-     * @return \Idealogic\RegistrationAPI\Model\OrgUserDTO|null
+     * @return \Idealogic\RegistrationAPI\Model\CustomListValueDTO|null
      */
-    public function getBuyer()
+    public function getCustom1()
     {
-        return $this->container['buyer'];
+        return $this->container['custom1'];
     }
 
     /**
-     * Sets buyer
+     * Sets custom1
      *
-     * @param \Idealogic\RegistrationAPI\Model\OrgUserDTO|null $buyer buyer
+     * @param \Idealogic\RegistrationAPI\Model\CustomListValueDTO|null $custom1 custom1
      *
      * @return self
      */
-    public function setBuyer($buyer)
+    public function setCustom1($custom1)
     {
-        if (is_null($buyer)) {
-            throw new \InvalidArgumentException('non-nullable buyer cannot be null');
+        if (is_null($custom1)) {
+            throw new \InvalidArgumentException('non-nullable custom1 cannot be null');
         }
-        $this->container['buyer'] = $buyer;
+        $this->container['custom1'] = $custom1;
 
         return $this;
     }
 
     /**
-     * Gets event_participants
+     * Gets custom2
      *
-     * @return \Idealogic\RegistrationAPI\Model\EventParticipantDTO[]|null
+     * @return \Idealogic\RegistrationAPI\Model\CustomListValueDTO|null
      */
-    public function getEventParticipants()
+    public function getCustom2()
     {
-        return $this->container['event_participants'];
+        return $this->container['custom2'];
     }
 
     /**
-     * Sets event_participants
+     * Sets custom2
      *
-     * @param \Idealogic\RegistrationAPI\Model\EventParticipantDTO[]|null $event_participants event_participants
+     * @param \Idealogic\RegistrationAPI\Model\CustomListValueDTO|null $custom2 custom2
      *
      * @return self
      */
-    public function setEventParticipants($event_participants)
+    public function setCustom2($custom2)
     {
-        if (is_null($event_participants)) {
-            throw new \InvalidArgumentException('non-nullable event_participants cannot be null');
+        if (is_null($custom2)) {
+            throw new \InvalidArgumentException('non-nullable custom2 cannot be null');
         }
-        $this->container['event_participants'] = $event_participants;
+        $this->container['custom2'] = $custom2;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom3
+     *
+     * @return \Idealogic\RegistrationAPI\Model\CustomListValueDTO|null
+     */
+    public function getCustom3()
+    {
+        return $this->container['custom3'];
+    }
+
+    /**
+     * Sets custom3
+     *
+     * @param \Idealogic\RegistrationAPI\Model\CustomListValueDTO|null $custom3 custom3
+     *
+     * @return self
+     */
+    public function setCustom3($custom3)
+    {
+        if (is_null($custom3)) {
+            throw new \InvalidArgumentException('non-nullable custom3 cannot be null');
+        }
+        $this->container['custom3'] = $custom3;
+
+        return $this;
+    }
+
+    /**
+     * Gets result_set
+     *
+     * @return \Idealogic\RegistrationAPI\Model\ResultSetDTO|null
+     */
+    public function getResultSet()
+    {
+        return $this->container['result_set'];
+    }
+
+    /**
+     * Sets result_set
+     *
+     * @param \Idealogic\RegistrationAPI\Model\ResultSetDTO|null $result_set result_set
+     *
+     * @return self
+     */
+    public function setResultSet($result_set)
+    {
+        if (is_null($result_set)) {
+            throw new \InvalidArgumentException('non-nullable result_set cannot be null');
+        }
+        $this->container['result_set'] = $result_set;
 
         return $this;
     }

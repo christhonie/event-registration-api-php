@@ -32,6 +32,12 @@ Name | Type | Description | Notes
 **csa_day_license_disallow** | **bool** | Set to TRUE to disapply CSA day licenses for this event. If set it overrides the value set in the Series. |
 **form_id** | **int** | Set the Person questionnaire form to be used during registration. If set it overrides the value set in the Series. | [optional]
 **product_mode** | **string** | Determines how category products will be handled. If set it overrides the value set in the Series. | [optional]
+**custom_list1_required** | **bool** |  |
+**custom_list2_required** | **bool** |  |
+**custom_list3_required** | **bool** |  |
+**custom_list1_name** | **string** |  | [optional]
+**custom_list2_name** | **string** |  | [optional]
+**custom_list3_name** | **string** |  | [optional]
 **number_type** | [**\Idealogic\RegistrationAPI\Model\NumberTypeDTO**](NumberTypeDTO.md) |  | [optional]
 **tag_type** | [**\Idealogic\RegistrationAPI\Model\TagTypeDTO**](TagTypeDTO.md) |  | [optional]
 **series** | [**\Idealogic\RegistrationAPI\Model\SeriesDTO**](SeriesDTO.md) |  | [optional]
@@ -42,6 +48,9 @@ Name | Type | Description | Notes
 **product_number_first** | [**\Idealogic\RegistrationAPI\Model\ProductDTO**](ProductDTO.md) |  | [optional]
 **product_tag_add** | [**\Idealogic\RegistrationAPI\Model\ProductDTO**](ProductDTO.md) |  | [optional]
 **product_tag_first** | [**\Idealogic\RegistrationAPI\Model\ProductDTO**](ProductDTO.md) |  | [optional]
+**custom_list1** | [**\Idealogic\RegistrationAPI\Model\CustomListDTO**](CustomListDTO.md) |  | [optional]
+**custom_list2** | [**\Idealogic\RegistrationAPI\Model\CustomListDTO**](CustomListDTO.md) |  | [optional]
+**custom_list3** | [**\Idealogic\RegistrationAPI\Model\CustomListDTO**](CustomListDTO.md) |  | [optional]
 **categories** | [**\Idealogic\RegistrationAPI\Model\EventCategoryDTO[]**](EventCategoryDTO.md) | Categories used by the event. | [optional]
 **diciplines** | [**\Idealogic\RegistrationAPI\Model\DisciplineDTO[]**](DisciplineDTO.md) |  | [optional]
 **race_types** | [**\Idealogic\RegistrationAPI\Model\RaceTypeDTO[]**](RaceTypeDTO.md) |  | [optional]

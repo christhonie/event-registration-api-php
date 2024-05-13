@@ -1,6 +1,6 @@
 <?php
 /**
- * EventDTO
+ * SeriesDTO
  *
  * PHP version 7.4
  *
@@ -33,16 +33,16 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * EventDTO Class Doc Comment
+ * SeriesDTO Class Doc Comment
  *
  * @category Class
- * @description An event is a collection of one or more races (activities) are held on a day or series of days.
+ * @description A series is a collection of events. They are grouped together to have a final outcome in terms of standing or ranking, or alternatively to share common configuration parameters (i.e. re-usable race numbers) and/or fees (i.e. an annual series entry).  An event could be part of multiple series.  A series can be marked as private if it is used solely for administrative/operational purposes, such as tracking participants in a given season.
  * @package  Idealogic\RegistrationAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class SeriesDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'EventDTO';
+    protected static $openAPIModelName = 'SeriesDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,28 +59,12 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'created_by' => 'string',
+        'created_on' => '\DateTime',
+        'last_modified_by' => 'string',
+        'last_modified_on' => '\DateTime',
         'id' => 'int',
         'name' => 'string',
-        'venue' => 'string',
-        'address' => 'string',
-        'city' => 'string',
-        'postal_code' => 'string',
-        'province' => 'string',
-        'country' => 'string',
-        'latitude' => 'float',
-        'longitude' => 'float',
-        'contact_email' => 'string',
-        'contact_name' => 'string',
-        'contact_url' => 'string',
-        'timezone' => 'string',
-        'start_date_time' => '\DateTime',
-        'end_date_time' => '\DateTime',
-        'all_day' => 'bool',
-        'ticket_url' => 'string',
-        'cost' => 'string',
-        'result_time_rounding' => 'int',
-        'mobii_race_id' => 'string',
-        'calendar_type' => 'string',
         'csa_membership_required' => 'bool',
         'csa_license_required' => 'bool',
         'csa_strict_registration' => 'bool',
@@ -95,9 +79,9 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list3_name' => 'string',
         'number_type' => '\Idealogic\RegistrationAPI\Model\NumberTypeDTO',
         'tag_type' => '\Idealogic\RegistrationAPI\Model\TagTypeDTO',
-        'series' => '\Idealogic\RegistrationAPI\Model\SeriesDTO',
         'sanctioning_organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
         'organiser' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
+        'series_product_default' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
         'product_default' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
         'product_number_add' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
         'product_number_first' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
@@ -106,9 +90,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list1' => '\Idealogic\RegistrationAPI\Model\CustomListDTO',
         'custom_list2' => '\Idealogic\RegistrationAPI\Model\CustomListDTO',
         'custom_list3' => '\Idealogic\RegistrationAPI\Model\CustomListDTO',
-        'categories' => '\Idealogic\RegistrationAPI\Model\EventCategoryDTO[]',
-        'diciplines' => '\Idealogic\RegistrationAPI\Model\DisciplineDTO[]',
-        'race_types' => '\Idealogic\RegistrationAPI\Model\RaceTypeDTO[]'
+        'disciplines' => '\Idealogic\RegistrationAPI\Model\DisciplineDTO[]'
     ];
 
     /**
@@ -119,28 +101,12 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'created_by' => null,
+        'created_on' => 'date-time',
+        'last_modified_by' => null,
+        'last_modified_on' => 'date-time',
         'id' => 'int64',
         'name' => null,
-        'venue' => null,
-        'address' => null,
-        'city' => null,
-        'postal_code' => null,
-        'province' => null,
-        'country' => null,
-        'latitude' => null,
-        'longitude' => null,
-        'contact_email' => null,
-        'contact_name' => null,
-        'contact_url' => null,
-        'timezone' => null,
-        'start_date_time' => 'date-time',
-        'end_date_time' => 'date-time',
-        'all_day' => null,
-        'ticket_url' => null,
-        'cost' => null,
-        'result_time_rounding' => 'int32',
-        'mobii_race_id' => null,
-        'calendar_type' => null,
         'csa_membership_required' => null,
         'csa_license_required' => null,
         'csa_strict_registration' => null,
@@ -155,9 +121,9 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list3_name' => null,
         'number_type' => null,
         'tag_type' => null,
-        'series' => null,
         'sanctioning_organisation' => null,
         'organiser' => null,
+        'series_product_default' => null,
         'product_default' => null,
         'product_number_add' => null,
         'product_number_first' => null,
@@ -166,9 +132,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list1' => null,
         'custom_list2' => null,
         'custom_list3' => null,
-        'categories' => null,
-        'diciplines' => null,
-        'race_types' => null
+        'disciplines' => null
     ];
 
     /**
@@ -177,28 +141,12 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'created_by' => false,
+        'created_on' => false,
+        'last_modified_by' => false,
+        'last_modified_on' => false,
         'id' => false,
         'name' => false,
-        'venue' => false,
-        'address' => false,
-        'city' => false,
-        'postal_code' => false,
-        'province' => false,
-        'country' => false,
-        'latitude' => false,
-        'longitude' => false,
-        'contact_email' => false,
-        'contact_name' => false,
-        'contact_url' => false,
-        'timezone' => false,
-        'start_date_time' => false,
-        'end_date_time' => false,
-        'all_day' => false,
-        'ticket_url' => false,
-        'cost' => false,
-        'result_time_rounding' => false,
-        'mobii_race_id' => false,
-        'calendar_type' => false,
         'csa_membership_required' => false,
         'csa_license_required' => false,
         'csa_strict_registration' => false,
@@ -213,9 +161,9 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list3_name' => false,
         'number_type' => false,
         'tag_type' => false,
-        'series' => false,
         'sanctioning_organisation' => false,
         'organiser' => false,
+        'series_product_default' => false,
         'product_default' => false,
         'product_number_add' => false,
         'product_number_first' => false,
@@ -224,9 +172,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list1' => false,
         'custom_list2' => false,
         'custom_list3' => false,
-        'categories' => false,
-        'diciplines' => false,
-        'race_types' => false
+        'disciplines' => false
     ];
 
     /**
@@ -315,28 +261,12 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'created_by' => 'createdBy',
+        'created_on' => 'createdOn',
+        'last_modified_by' => 'lastModifiedBy',
+        'last_modified_on' => 'lastModifiedOn',
         'id' => 'id',
         'name' => 'name',
-        'venue' => 'venue',
-        'address' => 'address',
-        'city' => 'city',
-        'postal_code' => 'postalCode',
-        'province' => 'province',
-        'country' => 'country',
-        'latitude' => 'latitude',
-        'longitude' => 'longitude',
-        'contact_email' => 'contactEmail',
-        'contact_name' => 'contactName',
-        'contact_url' => 'contactURL',
-        'timezone' => 'timezone',
-        'start_date_time' => 'startDateTime',
-        'end_date_time' => 'endDateTime',
-        'all_day' => 'allDay',
-        'ticket_url' => 'ticketURL',
-        'cost' => 'cost',
-        'result_time_rounding' => 'resultTimeRounding',
-        'mobii_race_id' => 'mobiiRaceId',
-        'calendar_type' => 'calendarType',
         'csa_membership_required' => 'csaMembershipRequired',
         'csa_license_required' => 'csaLicenseRequired',
         'csa_strict_registration' => 'csaStrictRegistration',
@@ -351,9 +281,9 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list3_name' => 'customList3Name',
         'number_type' => 'numberType',
         'tag_type' => 'tagType',
-        'series' => 'series',
         'sanctioning_organisation' => 'sanctioningOrganisation',
         'organiser' => 'organiser',
+        'series_product_default' => 'seriesProductDefault',
         'product_default' => 'productDefault',
         'product_number_add' => 'productNumberAdd',
         'product_number_first' => 'productNumberFirst',
@@ -362,9 +292,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list1' => 'customList1',
         'custom_list2' => 'customList2',
         'custom_list3' => 'customList3',
-        'categories' => 'categories',
-        'diciplines' => 'diciplines',
-        'race_types' => 'raceTypes'
+        'disciplines' => 'disciplines'
     ];
 
     /**
@@ -373,28 +301,12 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'created_by' => 'setCreatedBy',
+        'created_on' => 'setCreatedOn',
+        'last_modified_by' => 'setLastModifiedBy',
+        'last_modified_on' => 'setLastModifiedOn',
         'id' => 'setId',
         'name' => 'setName',
-        'venue' => 'setVenue',
-        'address' => 'setAddress',
-        'city' => 'setCity',
-        'postal_code' => 'setPostalCode',
-        'province' => 'setProvince',
-        'country' => 'setCountry',
-        'latitude' => 'setLatitude',
-        'longitude' => 'setLongitude',
-        'contact_email' => 'setContactEmail',
-        'contact_name' => 'setContactName',
-        'contact_url' => 'setContactUrl',
-        'timezone' => 'setTimezone',
-        'start_date_time' => 'setStartDateTime',
-        'end_date_time' => 'setEndDateTime',
-        'all_day' => 'setAllDay',
-        'ticket_url' => 'setTicketUrl',
-        'cost' => 'setCost',
-        'result_time_rounding' => 'setResultTimeRounding',
-        'mobii_race_id' => 'setMobiiRaceId',
-        'calendar_type' => 'setCalendarType',
         'csa_membership_required' => 'setCsaMembershipRequired',
         'csa_license_required' => 'setCsaLicenseRequired',
         'csa_strict_registration' => 'setCsaStrictRegistration',
@@ -409,9 +321,9 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list3_name' => 'setCustomList3Name',
         'number_type' => 'setNumberType',
         'tag_type' => 'setTagType',
-        'series' => 'setSeries',
         'sanctioning_organisation' => 'setSanctioningOrganisation',
         'organiser' => 'setOrganiser',
+        'series_product_default' => 'setSeriesProductDefault',
         'product_default' => 'setProductDefault',
         'product_number_add' => 'setProductNumberAdd',
         'product_number_first' => 'setProductNumberFirst',
@@ -420,9 +332,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list1' => 'setCustomList1',
         'custom_list2' => 'setCustomList2',
         'custom_list3' => 'setCustomList3',
-        'categories' => 'setCategories',
-        'diciplines' => 'setDiciplines',
-        'race_types' => 'setRaceTypes'
+        'disciplines' => 'setDisciplines'
     ];
 
     /**
@@ -431,28 +341,12 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'created_by' => 'getCreatedBy',
+        'created_on' => 'getCreatedOn',
+        'last_modified_by' => 'getLastModifiedBy',
+        'last_modified_on' => 'getLastModifiedOn',
         'id' => 'getId',
         'name' => 'getName',
-        'venue' => 'getVenue',
-        'address' => 'getAddress',
-        'city' => 'getCity',
-        'postal_code' => 'getPostalCode',
-        'province' => 'getProvince',
-        'country' => 'getCountry',
-        'latitude' => 'getLatitude',
-        'longitude' => 'getLongitude',
-        'contact_email' => 'getContactEmail',
-        'contact_name' => 'getContactName',
-        'contact_url' => 'getContactUrl',
-        'timezone' => 'getTimezone',
-        'start_date_time' => 'getStartDateTime',
-        'end_date_time' => 'getEndDateTime',
-        'all_day' => 'getAllDay',
-        'ticket_url' => 'getTicketUrl',
-        'cost' => 'getCost',
-        'result_time_rounding' => 'getResultTimeRounding',
-        'mobii_race_id' => 'getMobiiRaceId',
-        'calendar_type' => 'getCalendarType',
         'csa_membership_required' => 'getCsaMembershipRequired',
         'csa_license_required' => 'getCsaLicenseRequired',
         'csa_strict_registration' => 'getCsaStrictRegistration',
@@ -467,9 +361,9 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list3_name' => 'getCustomList3Name',
         'number_type' => 'getNumberType',
         'tag_type' => 'getTagType',
-        'series' => 'getSeries',
         'sanctioning_organisation' => 'getSanctioningOrganisation',
         'organiser' => 'getOrganiser',
+        'series_product_default' => 'getSeriesProductDefault',
         'product_default' => 'getProductDefault',
         'product_number_add' => 'getProductNumberAdd',
         'product_number_first' => 'getProductNumberFirst',
@@ -478,9 +372,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list1' => 'getCustomList1',
         'custom_list2' => 'getCustomList2',
         'custom_list3' => 'getCustomList3',
-        'categories' => 'getCategories',
-        'diciplines' => 'getDiciplines',
-        'race_types' => 'getRaceTypes'
+        'disciplines' => 'getDisciplines'
     ];
 
     /**
@@ -557,28 +449,12 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('created_by', $data ?? [], null);
+        $this->setIfExists('created_on', $data ?? [], null);
+        $this->setIfExists('last_modified_by', $data ?? [], null);
+        $this->setIfExists('last_modified_on', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('venue', $data ?? [], null);
-        $this->setIfExists('address', $data ?? [], null);
-        $this->setIfExists('city', $data ?? [], null);
-        $this->setIfExists('postal_code', $data ?? [], null);
-        $this->setIfExists('province', $data ?? [], null);
-        $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('latitude', $data ?? [], null);
-        $this->setIfExists('longitude', $data ?? [], null);
-        $this->setIfExists('contact_email', $data ?? [], null);
-        $this->setIfExists('contact_name', $data ?? [], null);
-        $this->setIfExists('contact_url', $data ?? [], null);
-        $this->setIfExists('timezone', $data ?? [], null);
-        $this->setIfExists('start_date_time', $data ?? [], null);
-        $this->setIfExists('end_date_time', $data ?? [], null);
-        $this->setIfExists('all_day', $data ?? [], null);
-        $this->setIfExists('ticket_url', $data ?? [], null);
-        $this->setIfExists('cost', $data ?? [], null);
-        $this->setIfExists('result_time_rounding', $data ?? [], null);
-        $this->setIfExists('mobii_race_id', $data ?? [], null);
-        $this->setIfExists('calendar_type', $data ?? [], null);
         $this->setIfExists('csa_membership_required', $data ?? [], null);
         $this->setIfExists('csa_license_required', $data ?? [], null);
         $this->setIfExists('csa_strict_registration', $data ?? [], null);
@@ -593,9 +469,9 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('custom_list3_name', $data ?? [], null);
         $this->setIfExists('number_type', $data ?? [], null);
         $this->setIfExists('tag_type', $data ?? [], null);
-        $this->setIfExists('series', $data ?? [], null);
         $this->setIfExists('sanctioning_organisation', $data ?? [], null);
         $this->setIfExists('organiser', $data ?? [], null);
+        $this->setIfExists('series_product_default', $data ?? [], null);
         $this->setIfExists('product_default', $data ?? [], null);
         $this->setIfExists('product_number_add', $data ?? [], null);
         $this->setIfExists('product_number_first', $data ?? [], null);
@@ -604,9 +480,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('custom_list1', $data ?? [], null);
         $this->setIfExists('custom_list2', $data ?? [], null);
         $this->setIfExists('custom_list3', $data ?? [], null);
-        $this->setIfExists('categories', $data ?? [], null);
-        $this->setIfExists('diciplines', $data ?? [], null);
-        $this->setIfExists('race_types', $data ?? [], null);
+        $this->setIfExists('disciplines', $data ?? [], null);
     }
 
     /**
@@ -645,130 +519,6 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if ((mb_strlen($this->container['name']) < 0)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['venue']) && (mb_strlen($this->container['venue']) > 100)) {
-            $invalidProperties[] = "invalid value for 'venue', the character length must be smaller than or equal to 100.";
-        }
-
-        if (!is_null($this->container['venue']) && (mb_strlen($this->container['venue']) < 0)) {
-            $invalidProperties[] = "invalid value for 'venue', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['address']) && (mb_strlen($this->container['address']) > 200)) {
-            $invalidProperties[] = "invalid value for 'address', the character length must be smaller than or equal to 200.";
-        }
-
-        if (!is_null($this->container['address']) && (mb_strlen($this->container['address']) < 0)) {
-            $invalidProperties[] = "invalid value for 'address', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['city']) && (mb_strlen($this->container['city']) > 50)) {
-            $invalidProperties[] = "invalid value for 'city', the character length must be smaller than or equal to 50.";
-        }
-
-        if (!is_null($this->container['city']) && (mb_strlen($this->container['city']) < 0)) {
-            $invalidProperties[] = "invalid value for 'city', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['postal_code']) && (mb_strlen($this->container['postal_code']) > 10)) {
-            $invalidProperties[] = "invalid value for 'postal_code', the character length must be smaller than or equal to 10.";
-        }
-
-        if (!is_null($this->container['postal_code']) && (mb_strlen($this->container['postal_code']) < 0)) {
-            $invalidProperties[] = "invalid value for 'postal_code', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['province']) && (mb_strlen($this->container['province']) > 50)) {
-            $invalidProperties[] = "invalid value for 'province', the character length must be smaller than or equal to 50.";
-        }
-
-        if (!is_null($this->container['province']) && (mb_strlen($this->container['province']) < 0)) {
-            $invalidProperties[] = "invalid value for 'province', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['country']) && (mb_strlen($this->container['country']) > 50)) {
-            $invalidProperties[] = "invalid value for 'country', the character length must be smaller than or equal to 50.";
-        }
-
-        if (!is_null($this->container['country']) && (mb_strlen($this->container['country']) < 0)) {
-            $invalidProperties[] = "invalid value for 'country', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['contact_email']) && (mb_strlen($this->container['contact_email']) > 100)) {
-            $invalidProperties[] = "invalid value for 'contact_email', the character length must be smaller than or equal to 100.";
-        }
-
-        if (!is_null($this->container['contact_email']) && (mb_strlen($this->container['contact_email']) < 0)) {
-            $invalidProperties[] = "invalid value for 'contact_email', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['contact_name']) && (mb_strlen($this->container['contact_name']) > 50)) {
-            $invalidProperties[] = "invalid value for 'contact_name', the character length must be smaller than or equal to 50.";
-        }
-
-        if (!is_null($this->container['contact_name']) && (mb_strlen($this->container['contact_name']) < 0)) {
-            $invalidProperties[] = "invalid value for 'contact_name', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['contact_url']) && (mb_strlen($this->container['contact_url']) > 255)) {
-            $invalidProperties[] = "invalid value for 'contact_url', the character length must be smaller than or equal to 255.";
-        }
-
-        if (!is_null($this->container['contact_url']) && (mb_strlen($this->container['contact_url']) < 0)) {
-            $invalidProperties[] = "invalid value for 'contact_url', the character length must be bigger than or equal to 0.";
-        }
-
-        if ($this->container['timezone'] === null) {
-            $invalidProperties[] = "'timezone' can't be null";
-        }
-        if ((mb_strlen($this->container['timezone']) > 50)) {
-            $invalidProperties[] = "invalid value for 'timezone', the character length must be smaller than or equal to 50.";
-        }
-
-        if ((mb_strlen($this->container['timezone']) < 0)) {
-            $invalidProperties[] = "invalid value for 'timezone', the character length must be bigger than or equal to 0.";
-        }
-
-        if ($this->container['start_date_time'] === null) {
-            $invalidProperties[] = "'start_date_time' can't be null";
-        }
-        if ($this->container['end_date_time'] === null) {
-            $invalidProperties[] = "'end_date_time' can't be null";
-        }
-        if ($this->container['all_day'] === null) {
-            $invalidProperties[] = "'all_day' can't be null";
-        }
-        if (!is_null($this->container['ticket_url']) && (mb_strlen($this->container['ticket_url']) > 255)) {
-            $invalidProperties[] = "invalid value for 'ticket_url', the character length must be smaller than or equal to 255.";
-        }
-
-        if (!is_null($this->container['ticket_url']) && (mb_strlen($this->container['ticket_url']) < 0)) {
-            $invalidProperties[] = "invalid value for 'ticket_url', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['cost']) && (mb_strlen($this->container['cost']) > 20)) {
-            $invalidProperties[] = "invalid value for 'cost', the character length must be smaller than or equal to 20.";
-        }
-
-        if (!is_null($this->container['cost']) && (mb_strlen($this->container['cost']) < 0)) {
-            $invalidProperties[] = "invalid value for 'cost', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['mobii_race_id']) && (mb_strlen($this->container['mobii_race_id']) > 50)) {
-            $invalidProperties[] = "invalid value for 'mobii_race_id', the character length must be smaller than or equal to 50.";
-        }
-
-        if (!is_null($this->container['mobii_race_id']) && (mb_strlen($this->container['mobii_race_id']) < 0)) {
-            $invalidProperties[] = "invalid value for 'mobii_race_id', the character length must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['calendar_type']) && (mb_strlen($this->container['calendar_type']) > 200)) {
-            $invalidProperties[] = "invalid value for 'calendar_type', the character length must be smaller than or equal to 200.";
-        }
-
-        if (!is_null($this->container['calendar_type']) && (mb_strlen($this->container['calendar_type']) < 0)) {
-            $invalidProperties[] = "invalid value for 'calendar_type', the character length must be bigger than or equal to 0.";
         }
 
         if ($this->container['csa_membership_required'] === null) {
@@ -841,6 +591,114 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets created_by
+     *
+     * @return string|null
+     */
+    public function getCreatedBy()
+    {
+        return $this->container['created_by'];
+    }
+
+    /**
+     * Sets created_by
+     *
+     * @param string|null $created_by created_by
+     *
+     * @return self
+     */
+    public function setCreatedBy($created_by)
+    {
+        if (is_null($created_by)) {
+            throw new \InvalidArgumentException('non-nullable created_by cannot be null');
+        }
+        $this->container['created_by'] = $created_by;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_on
+     *
+     * @return \DateTime|null
+     */
+    public function getCreatedOn()
+    {
+        return $this->container['created_on'];
+    }
+
+    /**
+     * Sets created_on
+     *
+     * @param \DateTime|null $created_on created_on
+     *
+     * @return self
+     */
+    public function setCreatedOn($created_on)
+    {
+        if (is_null($created_on)) {
+            throw new \InvalidArgumentException('non-nullable created_on cannot be null');
+        }
+        $this->container['created_on'] = $created_on;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_modified_by
+     *
+     * @return string|null
+     */
+    public function getLastModifiedBy()
+    {
+        return $this->container['last_modified_by'];
+    }
+
+    /**
+     * Sets last_modified_by
+     *
+     * @param string|null $last_modified_by last_modified_by
+     *
+     * @return self
+     */
+    public function setLastModifiedBy($last_modified_by)
+    {
+        if (is_null($last_modified_by)) {
+            throw new \InvalidArgumentException('non-nullable last_modified_by cannot be null');
+        }
+        $this->container['last_modified_by'] = $last_modified_by;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_modified_on
+     *
+     * @return \DateTime|null
+     */
+    public function getLastModifiedOn()
+    {
+        return $this->container['last_modified_on'];
+    }
+
+    /**
+     * Sets last_modified_on
+     *
+     * @param \DateTime|null $last_modified_on last_modified_on
+     *
+     * @return self
+     */
+    public function setLastModifiedOn($last_modified_on)
+    {
+        if (is_null($last_modified_on)) {
+            throw new \InvalidArgumentException('non-nullable last_modified_on cannot be null');
+        }
+        $this->container['last_modified_on'] = $last_modified_on;
+
+        return $this;
+    }
+
+    /**
      * Gets id
      *
      * @return int|null
@@ -890,651 +748,13 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         if ((mb_strlen($name) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling EventDTO., must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid length for $name when calling SeriesDTO., must be smaller than or equal to 100.');
         }
         if ((mb_strlen($name) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling EventDTO., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid length for $name when calling SeriesDTO., must be bigger than or equal to 0.');
         }
 
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets venue
-     *
-     * @return string|null
-     */
-    public function getVenue()
-    {
-        return $this->container['venue'];
-    }
-
-    /**
-     * Sets venue
-     *
-     * @param string|null $venue venue
-     *
-     * @return self
-     */
-    public function setVenue($venue)
-    {
-        if (is_null($venue)) {
-            throw new \InvalidArgumentException('non-nullable venue cannot be null');
-        }
-        if ((mb_strlen($venue) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $venue when calling EventDTO., must be smaller than or equal to 100.');
-        }
-        if ((mb_strlen($venue) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $venue when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['venue'] = $venue;
-
-        return $this;
-    }
-
-    /**
-     * Gets address
-     *
-     * @return string|null
-     */
-    public function getAddress()
-    {
-        return $this->container['address'];
-    }
-
-    /**
-     * Sets address
-     *
-     * @param string|null $address address
-     *
-     * @return self
-     */
-    public function setAddress($address)
-    {
-        if (is_null($address)) {
-            throw new \InvalidArgumentException('non-nullable address cannot be null');
-        }
-        if ((mb_strlen($address) > 200)) {
-            throw new \InvalidArgumentException('invalid length for $address when calling EventDTO., must be smaller than or equal to 200.');
-        }
-        if ((mb_strlen($address) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $address when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['address'] = $address;
-
-        return $this;
-    }
-
-    /**
-     * Gets city
-     *
-     * @return string|null
-     */
-    public function getCity()
-    {
-        return $this->container['city'];
-    }
-
-    /**
-     * Sets city
-     *
-     * @param string|null $city city
-     *
-     * @return self
-     */
-    public function setCity($city)
-    {
-        if (is_null($city)) {
-            throw new \InvalidArgumentException('non-nullable city cannot be null');
-        }
-        if ((mb_strlen($city) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $city when calling EventDTO., must be smaller than or equal to 50.');
-        }
-        if ((mb_strlen($city) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $city when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['city'] = $city;
-
-        return $this;
-    }
-
-    /**
-     * Gets postal_code
-     *
-     * @return string|null
-     */
-    public function getPostalCode()
-    {
-        return $this->container['postal_code'];
-    }
-
-    /**
-     * Sets postal_code
-     *
-     * @param string|null $postal_code postal_code
-     *
-     * @return self
-     */
-    public function setPostalCode($postal_code)
-    {
-        if (is_null($postal_code)) {
-            throw new \InvalidArgumentException('non-nullable postal_code cannot be null');
-        }
-        if ((mb_strlen($postal_code) > 10)) {
-            throw new \InvalidArgumentException('invalid length for $postal_code when calling EventDTO., must be smaller than or equal to 10.');
-        }
-        if ((mb_strlen($postal_code) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $postal_code when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['postal_code'] = $postal_code;
-
-        return $this;
-    }
-
-    /**
-     * Gets province
-     *
-     * @return string|null
-     */
-    public function getProvince()
-    {
-        return $this->container['province'];
-    }
-
-    /**
-     * Sets province
-     *
-     * @param string|null $province province
-     *
-     * @return self
-     */
-    public function setProvince($province)
-    {
-        if (is_null($province)) {
-            throw new \InvalidArgumentException('non-nullable province cannot be null');
-        }
-        if ((mb_strlen($province) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $province when calling EventDTO., must be smaller than or equal to 50.');
-        }
-        if ((mb_strlen($province) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $province when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['province'] = $province;
-
-        return $this;
-    }
-
-    /**
-     * Gets country
-     *
-     * @return string|null
-     */
-    public function getCountry()
-    {
-        return $this->container['country'];
-    }
-
-    /**
-     * Sets country
-     *
-     * @param string|null $country country
-     *
-     * @return self
-     */
-    public function setCountry($country)
-    {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
-        }
-        if ((mb_strlen($country) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $country when calling EventDTO., must be smaller than or equal to 50.');
-        }
-        if ((mb_strlen($country) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $country when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['country'] = $country;
-
-        return $this;
-    }
-
-    /**
-     * Gets latitude
-     *
-     * @return float|null
-     */
-    public function getLatitude()
-    {
-        return $this->container['latitude'];
-    }
-
-    /**
-     * Sets latitude
-     *
-     * @param float|null $latitude latitude
-     *
-     * @return self
-     */
-    public function setLatitude($latitude)
-    {
-        if (is_null($latitude)) {
-            throw new \InvalidArgumentException('non-nullable latitude cannot be null');
-        }
-        $this->container['latitude'] = $latitude;
-
-        return $this;
-    }
-
-    /**
-     * Gets longitude
-     *
-     * @return float|null
-     */
-    public function getLongitude()
-    {
-        return $this->container['longitude'];
-    }
-
-    /**
-     * Sets longitude
-     *
-     * @param float|null $longitude longitude
-     *
-     * @return self
-     */
-    public function setLongitude($longitude)
-    {
-        if (is_null($longitude)) {
-            throw new \InvalidArgumentException('non-nullable longitude cannot be null');
-        }
-        $this->container['longitude'] = $longitude;
-
-        return $this;
-    }
-
-    /**
-     * Gets contact_email
-     *
-     * @return string|null
-     */
-    public function getContactEmail()
-    {
-        return $this->container['contact_email'];
-    }
-
-    /**
-     * Sets contact_email
-     *
-     * @param string|null $contact_email contact_email
-     *
-     * @return self
-     */
-    public function setContactEmail($contact_email)
-    {
-        if (is_null($contact_email)) {
-            throw new \InvalidArgumentException('non-nullable contact_email cannot be null');
-        }
-        if ((mb_strlen($contact_email) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $contact_email when calling EventDTO., must be smaller than or equal to 100.');
-        }
-        if ((mb_strlen($contact_email) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $contact_email when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['contact_email'] = $contact_email;
-
-        return $this;
-    }
-
-    /**
-     * Gets contact_name
-     *
-     * @return string|null
-     */
-    public function getContactName()
-    {
-        return $this->container['contact_name'];
-    }
-
-    /**
-     * Sets contact_name
-     *
-     * @param string|null $contact_name contact_name
-     *
-     * @return self
-     */
-    public function setContactName($contact_name)
-    {
-        if (is_null($contact_name)) {
-            throw new \InvalidArgumentException('non-nullable contact_name cannot be null');
-        }
-        if ((mb_strlen($contact_name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $contact_name when calling EventDTO., must be smaller than or equal to 50.');
-        }
-        if ((mb_strlen($contact_name) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $contact_name when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['contact_name'] = $contact_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets contact_url
-     *
-     * @return string|null
-     */
-    public function getContactUrl()
-    {
-        return $this->container['contact_url'];
-    }
-
-    /**
-     * Sets contact_url
-     *
-     * @param string|null $contact_url contact_url
-     *
-     * @return self
-     */
-    public function setContactUrl($contact_url)
-    {
-        if (is_null($contact_url)) {
-            throw new \InvalidArgumentException('non-nullable contact_url cannot be null');
-        }
-        if ((mb_strlen($contact_url) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $contact_url when calling EventDTO., must be smaller than or equal to 255.');
-        }
-        if ((mb_strlen($contact_url) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $contact_url when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['contact_url'] = $contact_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets timezone
-     *
-     * @return string
-     */
-    public function getTimezone()
-    {
-        return $this->container['timezone'];
-    }
-
-    /**
-     * Sets timezone
-     *
-     * @param string $timezone timezone
-     *
-     * @return self
-     */
-    public function setTimezone($timezone)
-    {
-        if (is_null($timezone)) {
-            throw new \InvalidArgumentException('non-nullable timezone cannot be null');
-        }
-        if ((mb_strlen($timezone) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $timezone when calling EventDTO., must be smaller than or equal to 50.');
-        }
-        if ((mb_strlen($timezone) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $timezone when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['timezone'] = $timezone;
-
-        return $this;
-    }
-
-    /**
-     * Gets start_date_time
-     *
-     * @return \DateTime
-     */
-    public function getStartDateTime()
-    {
-        return $this->container['start_date_time'];
-    }
-
-    /**
-     * Sets start_date_time
-     *
-     * @param \DateTime $start_date_time start_date_time
-     *
-     * @return self
-     */
-    public function setStartDateTime($start_date_time)
-    {
-        if (is_null($start_date_time)) {
-            throw new \InvalidArgumentException('non-nullable start_date_time cannot be null');
-        }
-        $this->container['start_date_time'] = $start_date_time;
-
-        return $this;
-    }
-
-    /**
-     * Gets end_date_time
-     *
-     * @return \DateTime
-     */
-    public function getEndDateTime()
-    {
-        return $this->container['end_date_time'];
-    }
-
-    /**
-     * Sets end_date_time
-     *
-     * @param \DateTime $end_date_time end_date_time
-     *
-     * @return self
-     */
-    public function setEndDateTime($end_date_time)
-    {
-        if (is_null($end_date_time)) {
-            throw new \InvalidArgumentException('non-nullable end_date_time cannot be null');
-        }
-        $this->container['end_date_time'] = $end_date_time;
-
-        return $this;
-    }
-
-    /**
-     * Gets all_day
-     *
-     * @return bool
-     */
-    public function getAllDay()
-    {
-        return $this->container['all_day'];
-    }
-
-    /**
-     * Sets all_day
-     *
-     * @param bool $all_day all_day
-     *
-     * @return self
-     */
-    public function setAllDay($all_day)
-    {
-        if (is_null($all_day)) {
-            throw new \InvalidArgumentException('non-nullable all_day cannot be null');
-        }
-        $this->container['all_day'] = $all_day;
-
-        return $this;
-    }
-
-    /**
-     * Gets ticket_url
-     *
-     * @return string|null
-     */
-    public function getTicketUrl()
-    {
-        return $this->container['ticket_url'];
-    }
-
-    /**
-     * Sets ticket_url
-     *
-     * @param string|null $ticket_url ticket_url
-     *
-     * @return self
-     */
-    public function setTicketUrl($ticket_url)
-    {
-        if (is_null($ticket_url)) {
-            throw new \InvalidArgumentException('non-nullable ticket_url cannot be null');
-        }
-        if ((mb_strlen($ticket_url) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $ticket_url when calling EventDTO., must be smaller than or equal to 255.');
-        }
-        if ((mb_strlen($ticket_url) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $ticket_url when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['ticket_url'] = $ticket_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets cost
-     *
-     * @return string|null
-     */
-    public function getCost()
-    {
-        return $this->container['cost'];
-    }
-
-    /**
-     * Sets cost
-     *
-     * @param string|null $cost cost
-     *
-     * @return self
-     */
-    public function setCost($cost)
-    {
-        if (is_null($cost)) {
-            throw new \InvalidArgumentException('non-nullable cost cannot be null');
-        }
-        if ((mb_strlen($cost) > 20)) {
-            throw new \InvalidArgumentException('invalid length for $cost when calling EventDTO., must be smaller than or equal to 20.');
-        }
-        if ((mb_strlen($cost) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $cost when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['cost'] = $cost;
-
-        return $this;
-    }
-
-    /**
-     * Gets result_time_rounding
-     *
-     * @return int|null
-     */
-    public function getResultTimeRounding()
-    {
-        return $this->container['result_time_rounding'];
-    }
-
-    /**
-     * Sets result_time_rounding
-     *
-     * @param int|null $result_time_rounding result_time_rounding
-     *
-     * @return self
-     */
-    public function setResultTimeRounding($result_time_rounding)
-    {
-        if (is_null($result_time_rounding)) {
-            throw new \InvalidArgumentException('non-nullable result_time_rounding cannot be null');
-        }
-        $this->container['result_time_rounding'] = $result_time_rounding;
-
-        return $this;
-    }
-
-    /**
-     * Gets mobii_race_id
-     *
-     * @return string|null
-     */
-    public function getMobiiRaceId()
-    {
-        return $this->container['mobii_race_id'];
-    }
-
-    /**
-     * Sets mobii_race_id
-     *
-     * @param string|null $mobii_race_id mobii_race_id
-     *
-     * @return self
-     */
-    public function setMobiiRaceId($mobii_race_id)
-    {
-        if (is_null($mobii_race_id)) {
-            throw new \InvalidArgumentException('non-nullable mobii_race_id cannot be null');
-        }
-        if ((mb_strlen($mobii_race_id) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $mobii_race_id when calling EventDTO., must be smaller than or equal to 50.');
-        }
-        if ((mb_strlen($mobii_race_id) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $mobii_race_id when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['mobii_race_id'] = $mobii_race_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets calendar_type
-     *
-     * @return string|null
-     */
-    public function getCalendarType()
-    {
-        return $this->container['calendar_type'];
-    }
-
-    /**
-     * Sets calendar_type
-     *
-     * @param string|null $calendar_type Product/component used to visualise the calendar listing.
-     *
-     * @return self
-     */
-    public function setCalendarType($calendar_type)
-    {
-        if (is_null($calendar_type)) {
-            throw new \InvalidArgumentException('non-nullable calendar_type cannot be null');
-        }
-        if ((mb_strlen($calendar_type) > 200)) {
-            throw new \InvalidArgumentException('invalid length for $calendar_type when calling EventDTO., must be smaller than or equal to 200.');
-        }
-        if ((mb_strlen($calendar_type) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $calendar_type when calling EventDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['calendar_type'] = $calendar_type;
 
         return $this;
     }
@@ -1552,7 +772,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets csa_membership_required
      *
-     * @param bool $csa_membership_required Should CSA Membership checking be enabled for this event? If set it overrides the value set in the Series.
+     * @param bool $csa_membership_required Should CSA Membership checking be enabled for this series?
      *
      * @return self
      */
@@ -1579,7 +799,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets csa_license_required
      *
-     * @param bool $csa_license_required Should CSA License checking be enabled for this event? If set it overrides the value set in the Series.
+     * @param bool $csa_license_required Should CSA License checking be enabled for this series?
      *
      * @return self
      */
@@ -1606,7 +826,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets csa_strict_registration
      *
-     * @param bool $csa_strict_registration Set to TRUE if CSA membership and license checking cannot be skipped during registration. If set it overrides the value set in the Series.
+     * @param bool $csa_strict_registration Set to TRUE if CSA membership and license checking cannot be skipped during registration.
      *
      * @return self
      */
@@ -1633,7 +853,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets csa_day_license_disallow
      *
-     * @param bool $csa_day_license_disallow Set to TRUE to disapply CSA day licenses for this event. If set it overrides the value set in the Series.
+     * @param bool $csa_day_license_disallow Set to TRUE to disapply CSA day licenses for events in this series.
      *
      * @return self
      */
@@ -1660,7 +880,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets form_id
      *
-     * @param int|null $form_id Set the Person questionnaire form to be used during registration. If set it overrides the value set in the Series.
+     * @param int|null $form_id Set the Person questionnaire form to be used during registration.
      *
      * @return self
      */
@@ -1687,7 +907,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets product_mode
      *
-     * @param string|null $product_mode Determines how category products will be handled. If set it overrides the value set in the Series.
+     * @param string|null $product_mode Determines how category products will be handled.
      *
      * @return self
      */
@@ -1815,10 +1035,10 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable custom_list1_name cannot be null');
         }
         if ((mb_strlen($custom_list1_name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $custom_list1_name when calling EventDTO., must be smaller than or equal to 50.');
+            throw new \InvalidArgumentException('invalid length for $custom_list1_name when calling SeriesDTO., must be smaller than or equal to 50.');
         }
         if ((mb_strlen($custom_list1_name) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $custom_list1_name when calling EventDTO., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid length for $custom_list1_name when calling SeriesDTO., must be bigger than or equal to 0.');
         }
 
         $this->container['custom_list1_name'] = $custom_list1_name;
@@ -1849,10 +1069,10 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable custom_list2_name cannot be null');
         }
         if ((mb_strlen($custom_list2_name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $custom_list2_name when calling EventDTO., must be smaller than or equal to 50.');
+            throw new \InvalidArgumentException('invalid length for $custom_list2_name when calling SeriesDTO., must be smaller than or equal to 50.');
         }
         if ((mb_strlen($custom_list2_name) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $custom_list2_name when calling EventDTO., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid length for $custom_list2_name when calling SeriesDTO., must be bigger than or equal to 0.');
         }
 
         $this->container['custom_list2_name'] = $custom_list2_name;
@@ -1883,10 +1103,10 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable custom_list3_name cannot be null');
         }
         if ((mb_strlen($custom_list3_name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $custom_list3_name when calling EventDTO., must be smaller than or equal to 50.');
+            throw new \InvalidArgumentException('invalid length for $custom_list3_name when calling SeriesDTO., must be smaller than or equal to 50.');
         }
         if ((mb_strlen($custom_list3_name) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $custom_list3_name when calling EventDTO., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid length for $custom_list3_name when calling SeriesDTO., must be bigger than or equal to 0.');
         }
 
         $this->container['custom_list3_name'] = $custom_list3_name;
@@ -1949,33 +1169,6 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets series
-     *
-     * @return \Idealogic\RegistrationAPI\Model\SeriesDTO|null
-     */
-    public function getSeries()
-    {
-        return $this->container['series'];
-    }
-
-    /**
-     * Sets series
-     *
-     * @param \Idealogic\RegistrationAPI\Model\SeriesDTO|null $series series
-     *
-     * @return self
-     */
-    public function setSeries($series)
-    {
-        if (is_null($series)) {
-            throw new \InvalidArgumentException('non-nullable series cannot be null');
-        }
-        $this->container['series'] = $series;
-
-        return $this;
-    }
-
-    /**
      * Gets sanctioning_organisation
      *
      * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO|null
@@ -2025,6 +1218,33 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable organiser cannot be null');
         }
         $this->container['organiser'] = $organiser;
+
+        return $this;
+    }
+
+    /**
+     * Gets series_product_default
+     *
+     * @return \Idealogic\RegistrationAPI\Model\ProductDTO|null
+     */
+    public function getSeriesProductDefault()
+    {
+        return $this->container['series_product_default'];
+    }
+
+    /**
+     * Sets series_product_default
+     *
+     * @param \Idealogic\RegistrationAPI\Model\ProductDTO|null $series_product_default series_product_default
+     *
+     * @return self
+     */
+    public function setSeriesProductDefault($series_product_default)
+    {
+        if (is_null($series_product_default)) {
+            throw new \InvalidArgumentException('non-nullable series_product_default cannot be null');
+        }
+        $this->container['series_product_default'] = $series_product_default;
 
         return $this;
     }
@@ -2246,88 +1466,30 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets categories
-     *
-     * @return \Idealogic\RegistrationAPI\Model\EventCategoryDTO[]|null
-     */
-    public function getCategories()
-    {
-        return $this->container['categories'];
-    }
-
-    /**
-     * Sets categories
-     *
-     * @param \Idealogic\RegistrationAPI\Model\EventCategoryDTO[]|null $categories Categories used by the event.
-     *
-     * @return self
-     */
-    public function setCategories($categories)
-    {
-        if (is_null($categories)) {
-            throw new \InvalidArgumentException('non-nullable categories cannot be null');
-        }
-
-
-        $this->container['categories'] = $categories;
-
-        return $this;
-    }
-
-    /**
-     * Gets diciplines
+     * Gets disciplines
      *
      * @return \Idealogic\RegistrationAPI\Model\DisciplineDTO[]|null
      */
-    public function getDiciplines()
+    public function getDisciplines()
     {
-        return $this->container['diciplines'];
+        return $this->container['disciplines'];
     }
 
     /**
-     * Sets diciplines
+     * Sets disciplines
      *
-     * @param \Idealogic\RegistrationAPI\Model\DisciplineDTO[]|null $diciplines diciplines
+     * @param \Idealogic\RegistrationAPI\Model\DisciplineDTO[]|null $disciplines Disciplines used by the series.
      *
      * @return self
      */
-    public function setDiciplines($diciplines)
+    public function setDisciplines($disciplines)
     {
-        if (is_null($diciplines)) {
-            throw new \InvalidArgumentException('non-nullable diciplines cannot be null');
+        if (is_null($disciplines)) {
+            throw new \InvalidArgumentException('non-nullable disciplines cannot be null');
         }
 
 
-        $this->container['diciplines'] = $diciplines;
-
-        return $this;
-    }
-
-    /**
-     * Gets race_types
-     *
-     * @return \Idealogic\RegistrationAPI\Model\RaceTypeDTO[]|null
-     */
-    public function getRaceTypes()
-    {
-        return $this->container['race_types'];
-    }
-
-    /**
-     * Sets race_types
-     *
-     * @param \Idealogic\RegistrationAPI\Model\RaceTypeDTO[]|null $race_types race_types
-     *
-     * @return self
-     */
-    public function setRaceTypes($race_types)
-    {
-        if (is_null($race_types)) {
-            throw new \InvalidArgumentException('non-nullable race_types cannot be null');
-        }
-
-
-        $this->container['race_types'] = $race_types;
+        $this->container['disciplines'] = $disciplines;
 
         return $this;
     }

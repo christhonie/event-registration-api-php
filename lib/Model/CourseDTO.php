@@ -1,6 +1,6 @@
 <?php
 /**
- * OrganisationDTO
+ * CourseDTO
  *
  * PHP version 7.4
  *
@@ -33,16 +33,15 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * OrganisationDTO Class Doc Comment
+ * CourseDTO Class Doc Comment
  *
  * @category Class
- * @description The organisation sanctioning the series. Used to filter the EventCategories.
  * @package  Idealogic\RegistrationAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class CourseDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +50,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrganisationDTO';
+    protected static $openAPIModelName = 'CourseDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +60,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'id' => 'int',
         'name' => 'string',
-        'parent' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO'
+        'display_name' => 'string',
+        'distance_meters' => 'int',
+        'event' => '\Idealogic\RegistrationAPI\Model\EventDTO',
+        'type' => '\Idealogic\RegistrationAPI\Model\CourseTypeDTO'
     ];
 
     /**
@@ -74,7 +76,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'id' => 'int64',
         'name' => null,
-        'parent' => null
+        'display_name' => null,
+        'distance_meters' => 'int32',
+        'event' => null,
+        'type' => null
     ];
 
     /**
@@ -85,7 +90,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'id' => false,
         'name' => false,
-        'parent' => false
+        'display_name' => false,
+        'distance_meters' => false,
+        'event' => false,
+        'type' => false
     ];
 
     /**
@@ -176,7 +184,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'id' => 'id',
         'name' => 'name',
-        'parent' => 'parent'
+        'display_name' => 'displayName',
+        'distance_meters' => 'distanceMeters',
+        'event' => 'event',
+        'type' => 'type'
     ];
 
     /**
@@ -187,7 +198,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'id' => 'setId',
         'name' => 'setName',
-        'parent' => 'setParent'
+        'display_name' => 'setDisplayName',
+        'distance_meters' => 'setDistanceMeters',
+        'event' => 'setEvent',
+        'type' => 'setType'
     ];
 
     /**
@@ -198,7 +212,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'id' => 'getId',
         'name' => 'getName',
-        'parent' => 'getParent'
+        'display_name' => 'getDisplayName',
+        'distance_meters' => 'getDistanceMeters',
+        'event' => 'getEvent',
+        'type' => 'getType'
     ];
 
     /**
@@ -260,7 +277,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('parent', $data ?? [], null);
+        $this->setIfExists('display_name', $data ?? [], null);
+        $this->setIfExists('distance_meters', $data ?? [], null);
+        $this->setIfExists('event', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -299,6 +319,14 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if ((mb_strlen($this->container['name']) < 0)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['display_name']) && (mb_strlen($this->container['display_name']) > 50)) {
+            $invalidProperties[] = "invalid value for 'display_name', the character length must be smaller than or equal to 50.";
+        }
+
+        if (!is_null($this->container['display_name']) && (mb_strlen($this->container['display_name']) < 0)) {
+            $invalidProperties[] = "invalid value for 'display_name', the character length must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -366,10 +394,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         if ((mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling OrganisationDTO., must be smaller than or equal to 50.');
+            throw new \InvalidArgumentException('invalid length for $name when calling CourseDTO., must be smaller than or equal to 50.');
         }
         if ((mb_strlen($name) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling OrganisationDTO., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid length for $name when calling CourseDTO., must be bigger than or equal to 0.');
         }
 
         $this->container['name'] = $name;
@@ -378,28 +406,116 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets parent
+     * Gets display_name
      *
-     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO|null
+     * @return string|null
      */
-    public function getParent()
+    public function getDisplayName()
     {
-        return $this->container['parent'];
+        return $this->container['display_name'];
     }
 
     /**
-     * Sets parent
+     * Sets display_name
      *
-     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO|null $parent parent
+     * @param string|null $display_name Used for reports and displays.
      *
      * @return self
      */
-    public function setParent($parent)
+    public function setDisplayName($display_name)
     {
-        if (is_null($parent)) {
-            throw new \InvalidArgumentException('non-nullable parent cannot be null');
+        if (is_null($display_name)) {
+            throw new \InvalidArgumentException('non-nullable display_name cannot be null');
         }
-        $this->container['parent'] = $parent;
+        if ((mb_strlen($display_name) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $display_name when calling CourseDTO., must be smaller than or equal to 50.');
+        }
+        if ((mb_strlen($display_name) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $display_name when calling CourseDTO., must be bigger than or equal to 0.');
+        }
+
+        $this->container['display_name'] = $display_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets distance_meters
+     *
+     * @return int|null
+     */
+    public function getDistanceMeters()
+    {
+        return $this->container['distance_meters'];
+    }
+
+    /**
+     * Sets distance_meters
+     *
+     * @param int|null $distance_meters distance_meters
+     *
+     * @return self
+     */
+    public function setDistanceMeters($distance_meters)
+    {
+        if (is_null($distance_meters)) {
+            throw new \InvalidArgumentException('non-nullable distance_meters cannot be null');
+        }
+        $this->container['distance_meters'] = $distance_meters;
+
+        return $this;
+    }
+
+    /**
+     * Gets event
+     *
+     * @return \Idealogic\RegistrationAPI\Model\EventDTO|null
+     */
+    public function getEvent()
+    {
+        return $this->container['event'];
+    }
+
+    /**
+     * Sets event
+     *
+     * @param \Idealogic\RegistrationAPI\Model\EventDTO|null $event event
+     *
+     * @return self
+     */
+    public function setEvent($event)
+    {
+        if (is_null($event)) {
+            throw new \InvalidArgumentException('non-nullable event cannot be null');
+        }
+        $this->container['event'] = $event;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return \Idealogic\RegistrationAPI\Model\CourseTypeDTO|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param \Idealogic\RegistrationAPI\Model\CourseTypeDTO|null $type type
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }

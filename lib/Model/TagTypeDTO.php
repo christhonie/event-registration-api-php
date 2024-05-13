@@ -1,6 +1,6 @@
 <?php
 /**
- * OrganisationDTO
+ * TagTypeDTO
  *
  * PHP version 7.4
  *
@@ -33,16 +33,15 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * OrganisationDTO Class Doc Comment
+ * TagTypeDTO Class Doc Comment
  *
  * @category Class
- * @description The organisation sanctioning the series. Used to filter the EventCategories.
  * @package  Idealogic\RegistrationAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class TagTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +50,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrganisationDTO';
+    protected static $openAPIModelName = 'TagTypeDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +60,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'id' => 'int',
         'name' => 'string',
-        'parent' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO'
+        'description' => 'string',
+        'format' => 'string',
+        'valid_from' => '\DateTime',
+        'valid_to' => '\DateTime'
     ];
 
     /**
@@ -74,7 +76,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'id' => 'int64',
         'name' => null,
-        'parent' => null
+        'description' => null,
+        'format' => null,
+        'valid_from' => 'date-time',
+        'valid_to' => 'date-time'
     ];
 
     /**
@@ -85,7 +90,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'id' => false,
         'name' => false,
-        'parent' => false
+        'description' => false,
+        'format' => false,
+        'valid_from' => false,
+        'valid_to' => false
     ];
 
     /**
@@ -176,7 +184,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'id' => 'id',
         'name' => 'name',
-        'parent' => 'parent'
+        'description' => 'description',
+        'format' => 'format',
+        'valid_from' => 'validFrom',
+        'valid_to' => 'validTo'
     ];
 
     /**
@@ -187,7 +198,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'id' => 'setId',
         'name' => 'setName',
-        'parent' => 'setParent'
+        'description' => 'setDescription',
+        'format' => 'setFormat',
+        'valid_from' => 'setValidFrom',
+        'valid_to' => 'setValidTo'
     ];
 
     /**
@@ -198,7 +212,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'id' => 'getId',
         'name' => 'getName',
-        'parent' => 'getParent'
+        'description' => 'getDescription',
+        'format' => 'getFormat',
+        'valid_from' => 'getValidFrom',
+        'valid_to' => 'getValidTo'
     ];
 
     /**
@@ -260,7 +277,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('parent', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('format', $data ?? [], null);
+        $this->setIfExists('valid_from', $data ?? [], null);
+        $this->setIfExists('valid_to', $data ?? [], null);
     }
 
     /**
@@ -290,17 +310,33 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ((mb_strlen($this->container['name']) > 50)) {
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 50)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 50.";
         }
 
-        if ((mb_strlen($this->container['name']) < 0)) {
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) < 0)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 0.";
         }
 
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 200)) {
+            $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 200.";
+        }
+
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) < 0)) {
+            $invalidProperties[] = "invalid value for 'description', the character length must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['format']) && (mb_strlen($this->container['format']) > 20)) {
+            $invalidProperties[] = "invalid value for 'format', the character length must be smaller than or equal to 20.";
+        }
+
+        if (!is_null($this->container['format']) && (mb_strlen($this->container['format']) < 0)) {
+            $invalidProperties[] = "invalid value for 'format', the character length must be bigger than or equal to 0.";
+        }
+
+        if ($this->container['valid_from'] === null) {
+            $invalidProperties[] = "'valid_from' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -346,7 +382,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -356,7 +392,7 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param string|null $name name
      *
      * @return self
      */
@@ -366,10 +402,10 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         if ((mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling OrganisationDTO., must be smaller than or equal to 50.');
+            throw new \InvalidArgumentException('invalid length for $name when calling TagTypeDTO., must be smaller than or equal to 50.');
         }
         if ((mb_strlen($name) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling OrganisationDTO., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid length for $name when calling TagTypeDTO., must be bigger than or equal to 0.');
         }
 
         $this->container['name'] = $name;
@@ -378,28 +414,123 @@ class OrganisationDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets parent
+     * Gets description
      *
-     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO|null
+     * @return string|null
      */
-    public function getParent()
+    public function getDescription()
     {
-        return $this->container['parent'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets parent
+     * Sets description
      *
-     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO|null $parent parent
+     * @param string|null $description description
      *
      * @return self
      */
-    public function setParent($parent)
+    public function setDescription($description)
     {
-        if (is_null($parent)) {
-            throw new \InvalidArgumentException('non-nullable parent cannot be null');
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
-        $this->container['parent'] = $parent;
+        if ((mb_strlen($description) > 200)) {
+            throw new \InvalidArgumentException('invalid length for $description when calling TagTypeDTO., must be smaller than or equal to 200.');
+        }
+        if ((mb_strlen($description) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $description when calling TagTypeDTO., must be bigger than or equal to 0.');
+        }
+
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets format
+     *
+     * @return string|null
+     */
+    public function getFormat()
+    {
+        return $this->container['format'];
+    }
+
+    /**
+     * Sets format
+     *
+     * @param string|null $format Format string, using Java String.format() specification, to display the tag number based on the sequence number. A mandatory %d field has to be provided.
+     *
+     * @return self
+     */
+    public function setFormat($format)
+    {
+        if (is_null($format)) {
+            throw new \InvalidArgumentException('non-nullable format cannot be null');
+        }
+        if ((mb_strlen($format) > 20)) {
+            throw new \InvalidArgumentException('invalid length for $format when calling TagTypeDTO., must be smaller than or equal to 20.');
+        }
+        if ((mb_strlen($format) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $format when calling TagTypeDTO., must be bigger than or equal to 0.');
+        }
+
+        $this->container['format'] = $format;
+
+        return $this;
+    }
+
+    /**
+     * Gets valid_from
+     *
+     * @return \DateTime
+     */
+    public function getValidFrom()
+    {
+        return $this->container['valid_from'];
+    }
+
+    /**
+     * Sets valid_from
+     *
+     * @param \DateTime $valid_from The default and earliest date tags of this type can be valid.
+     *
+     * @return self
+     */
+    public function setValidFrom($valid_from)
+    {
+        if (is_null($valid_from)) {
+            throw new \InvalidArgumentException('non-nullable valid_from cannot be null');
+        }
+        $this->container['valid_from'] = $valid_from;
+
+        return $this;
+    }
+
+    /**
+     * Gets valid_to
+     *
+     * @return \DateTime|null
+     */
+    public function getValidTo()
+    {
+        return $this->container['valid_to'];
+    }
+
+    /**
+     * Sets valid_to
+     *
+     * @param \DateTime|null $valid_to The default and latest date tags of this type can be valid. Leave blank to leave unconstrained.
+     *
+     * @return self
+     */
+    public function setValidTo($valid_to)
+    {
+        if (is_null($valid_to)) {
+            throw new \InvalidArgumentException('non-nullable valid_to cannot be null');
+        }
+        $this->container['valid_to'] = $valid_to;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * EventCategoryDTO
+ * StartGroupParticipantDTO
  *
  * PHP version 7.4
  *
@@ -33,16 +33,16 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * EventCategoryDTO Class Doc Comment
+ * StartGroupParticipantDTO Class Doc Comment
  *
  * @category Class
- * @description A catogory associated with a Series or Event. It allows setting Series and Event specific details, such as Products. Rather than having a SeriesCategory and EventCategory, this entity combines both into one. If Series is set, then it is a Series category, otherwise an Event category.
+ * @description Defines a Participant starting in a StartGroup.
  * @package  Idealogic\RegistrationAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class StartGroupParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'EventCategoryDTO';
+    protected static $openAPIModelName = 'StartGroupParticipantDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,17 +61,14 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'id' => 'int',
         'name' => 'string',
-        'min_age' => 'int',
-        'max_age' => 'int',
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'date_of_birth' => '\DateTime',
         'gender' => 'string',
-        'entry_category' => 'bool',
-        'race_category' => 'bool',
-        'source_category' => '\Idealogic\RegistrationAPI\Model\CategoryDTO',
-        'product' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
-        'series_category' => '\Idealogic\RegistrationAPI\Model\EventCategoryDTO',
-        'feeder_categories' => '\Idealogic\RegistrationAPI\Model\EventCategoryDTO[]',
-        'series' => '\Idealogic\RegistrationAPI\Model\SeriesDTO',
-        'event' => '\Idealogic\RegistrationAPI\Model\EventDTO'
+        'age' => 'int',
+        'seq' => 'int',
+        'start_group' => '\Idealogic\RegistrationAPI\Model\StartGroupDTO',
+        'event_participant' => '\Idealogic\RegistrationAPI\Model\EventParticipantDTO'
     ];
 
     /**
@@ -84,17 +81,14 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'id' => 'int64',
         'name' => null,
-        'min_age' => 'int32',
-        'max_age' => 'int32',
+        'first_name' => null,
+        'last_name' => null,
+        'date_of_birth' => 'date',
         'gender' => null,
-        'entry_category' => null,
-        'race_category' => null,
-        'source_category' => null,
-        'product' => null,
-        'series_category' => null,
-        'feeder_categories' => null,
-        'series' => null,
-        'event' => null
+        'age' => 'int32',
+        'seq' => 'int32',
+        'start_group' => null,
+        'event_participant' => null
     ];
 
     /**
@@ -105,17 +99,14 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'id' => false,
         'name' => false,
-        'min_age' => false,
-        'max_age' => false,
+        'first_name' => false,
+        'last_name' => false,
+        'date_of_birth' => false,
         'gender' => false,
-        'entry_category' => false,
-        'race_category' => false,
-        'source_category' => false,
-        'product' => false,
-        'series_category' => false,
-        'feeder_categories' => false,
-        'series' => false,
-        'event' => false
+        'age' => false,
+        'seq' => false,
+        'start_group' => false,
+        'event_participant' => false
     ];
 
     /**
@@ -206,17 +197,14 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'id' => 'id',
         'name' => 'name',
-        'min_age' => 'minAge',
-        'max_age' => 'maxAge',
+        'first_name' => 'firstName',
+        'last_name' => 'lastName',
+        'date_of_birth' => 'dateOfBirth',
         'gender' => 'gender',
-        'entry_category' => 'entryCategory',
-        'race_category' => 'raceCategory',
-        'source_category' => 'sourceCategory',
-        'product' => 'product',
-        'series_category' => 'seriesCategory',
-        'feeder_categories' => 'feederCategories',
-        'series' => 'series',
-        'event' => 'event'
+        'age' => 'age',
+        'seq' => 'seq',
+        'start_group' => 'startGroup',
+        'event_participant' => 'eventParticipant'
     ];
 
     /**
@@ -227,17 +215,14 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'id' => 'setId',
         'name' => 'setName',
-        'min_age' => 'setMinAge',
-        'max_age' => 'setMaxAge',
+        'first_name' => 'setFirstName',
+        'last_name' => 'setLastName',
+        'date_of_birth' => 'setDateOfBirth',
         'gender' => 'setGender',
-        'entry_category' => 'setEntryCategory',
-        'race_category' => 'setRaceCategory',
-        'source_category' => 'setSourceCategory',
-        'product' => 'setProduct',
-        'series_category' => 'setSeriesCategory',
-        'feeder_categories' => 'setFeederCategories',
-        'series' => 'setSeries',
-        'event' => 'setEvent'
+        'age' => 'setAge',
+        'seq' => 'setSeq',
+        'start_group' => 'setStartGroup',
+        'event_participant' => 'setEventParticipant'
     ];
 
     /**
@@ -248,17 +233,14 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'id' => 'getId',
         'name' => 'getName',
-        'min_age' => 'getMinAge',
-        'max_age' => 'getMaxAge',
+        'first_name' => 'getFirstName',
+        'last_name' => 'getLastName',
+        'date_of_birth' => 'getDateOfBirth',
         'gender' => 'getGender',
-        'entry_category' => 'getEntryCategory',
-        'race_category' => 'getRaceCategory',
-        'source_category' => 'getSourceCategory',
-        'product' => 'getProduct',
-        'series_category' => 'getSeriesCategory',
-        'feeder_categories' => 'getFeederCategories',
-        'series' => 'getSeries',
-        'event' => 'getEvent'
+        'age' => 'getAge',
+        'seq' => 'getSeq',
+        'start_group' => 'getStartGroup',
+        'event_participant' => 'getEventParticipant'
     ];
 
     /**
@@ -337,17 +319,14 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('min_age', $data ?? [], null);
-        $this->setIfExists('max_age', $data ?? [], null);
+        $this->setIfExists('first_name', $data ?? [], null);
+        $this->setIfExists('last_name', $data ?? [], null);
+        $this->setIfExists('date_of_birth', $data ?? [], null);
         $this->setIfExists('gender', $data ?? [], null);
-        $this->setIfExists('entry_category', $data ?? [], null);
-        $this->setIfExists('race_category', $data ?? [], null);
-        $this->setIfExists('source_category', $data ?? [], null);
-        $this->setIfExists('product', $data ?? [], null);
-        $this->setIfExists('series_category', $data ?? [], null);
-        $this->setIfExists('feeder_categories', $data ?? [], null);
-        $this->setIfExists('series', $data ?? [], null);
-        $this->setIfExists('event', $data ?? [], null);
+        $this->setIfExists('age', $data ?? [], null);
+        $this->setIfExists('seq', $data ?? [], null);
+        $this->setIfExists('start_group', $data ?? [], null);
+        $this->setIfExists('event_participant', $data ?? [], null);
     }
 
     /**
@@ -376,17 +355,6 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ((mb_strlen($this->container['name']) > 50)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 50.";
-        }
-
-        if ((mb_strlen($this->container['name']) < 0)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 0.";
-        }
 
         $allowedValues = $this->getGenderAllowableValues();
         if (!is_null($this->container['gender']) && !in_array($this->container['gender'], $allowedValues, true)) {
@@ -442,7 +410,7 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -452,7 +420,7 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param string|null $name name
      *
      * @return self
      */
@@ -461,68 +429,88 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        if ((mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling EventCategoryDTO., must be smaller than or equal to 50.');
-        }
-        if ((mb_strlen($name) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling EventCategoryDTO., must be bigger than or equal to 0.');
-        }
-
         $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets min_age
+     * Gets first_name
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getMinAge()
+    public function getFirstName()
     {
-        return $this->container['min_age'];
+        return $this->container['first_name'];
     }
 
     /**
-     * Sets min_age
+     * Sets first_name
      *
-     * @param int|null $min_age Override minimum allowed age for this category. Leave blank if not applicable.
+     * @param string|null $first_name first_name
      *
      * @return self
      */
-    public function setMinAge($min_age)
+    public function setFirstName($first_name)
     {
-        if (is_null($min_age)) {
-            throw new \InvalidArgumentException('non-nullable min_age cannot be null');
+        if (is_null($first_name)) {
+            throw new \InvalidArgumentException('non-nullable first_name cannot be null');
         }
-        $this->container['min_age'] = $min_age;
+        $this->container['first_name'] = $first_name;
 
         return $this;
     }
 
     /**
-     * Gets max_age
+     * Gets last_name
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getMaxAge()
+    public function getLastName()
     {
-        return $this->container['max_age'];
+        return $this->container['last_name'];
     }
 
     /**
-     * Sets max_age
+     * Sets last_name
      *
-     * @param int|null $max_age Override maximum allowed age for this category. Leave blank if not applicable.
+     * @param string|null $last_name last_name
      *
      * @return self
      */
-    public function setMaxAge($max_age)
+    public function setLastName($last_name)
     {
-        if (is_null($max_age)) {
-            throw new \InvalidArgumentException('non-nullable max_age cannot be null');
+        if (is_null($last_name)) {
+            throw new \InvalidArgumentException('non-nullable last_name cannot be null');
         }
-        $this->container['max_age'] = $max_age;
+        $this->container['last_name'] = $last_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets date_of_birth
+     *
+     * @return \DateTime|null
+     */
+    public function getDateOfBirth()
+    {
+        return $this->container['date_of_birth'];
+    }
+
+    /**
+     * Sets date_of_birth
+     *
+     * @param \DateTime|null $date_of_birth date_of_birth
+     *
+     * @return self
+     */
+    public function setDateOfBirth($date_of_birth)
+    {
+        if (is_null($date_of_birth)) {
+            throw new \InvalidArgumentException('non-nullable date_of_birth cannot be null');
+        }
+        $this->container['date_of_birth'] = $date_of_birth;
 
         return $this;
     }
@@ -540,7 +528,7 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets gender
      *
-     * @param string|null $gender Override gender restriction for this category. Leave blank if not applicable.
+     * @param string|null $gender gender
      *
      * @return self
      */
@@ -565,219 +553,109 @@ class EventCategoryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets entry_category
+     * Gets age
      *
-     * @return bool|null
+     * @return int|null
      */
-    public function getEntryCategory()
+    public function getAge()
     {
-        return $this->container['entry_category'];
+        return $this->container['age'];
     }
 
     /**
-     * Sets entry_category
+     * Sets age
      *
-     * @param bool|null $entry_category Indicate if this category can be used for new entries.
+     * @param int|null $age Age on the day of the race.
      *
      * @return self
      */
-    public function setEntryCategory($entry_category)
+    public function setAge($age)
     {
-        if (is_null($entry_category)) {
-            throw new \InvalidArgumentException('non-nullable entry_category cannot be null');
+        if (is_null($age)) {
+            throw new \InvalidArgumentException('non-nullable age cannot be null');
         }
-        $this->container['entry_category'] = $entry_category;
+        $this->container['age'] = $age;
 
         return $this;
     }
 
     /**
-     * Gets race_category
+     * Gets seq
      *
-     * @return bool|null
+     * @return int|null
      */
-    public function getRaceCategory()
+    public function getSeq()
     {
-        return $this->container['race_category'];
+        return $this->container['seq'];
     }
 
     /**
-     * Sets race_category
+     * Sets seq
      *
-     * @param bool|null $race_category Indicate if this category can be used in races.
+     * @param int|null $seq Sequence of this participant in the start group.
      *
      * @return self
      */
-    public function setRaceCategory($race_category)
+    public function setSeq($seq)
     {
-        if (is_null($race_category)) {
-            throw new \InvalidArgumentException('non-nullable race_category cannot be null');
+        if (is_null($seq)) {
+            throw new \InvalidArgumentException('non-nullable seq cannot be null');
         }
-        $this->container['race_category'] = $race_category;
+        $this->container['seq'] = $seq;
 
         return $this;
     }
 
     /**
-     * Gets source_category
+     * Gets start_group
      *
-     * @return \Idealogic\RegistrationAPI\Model\CategoryDTO|null
+     * @return \Idealogic\RegistrationAPI\Model\StartGroupDTO|null
      */
-    public function getSourceCategory()
+    public function getStartGroup()
     {
-        return $this->container['source_category'];
+        return $this->container['start_group'];
     }
 
     /**
-     * Sets source_category
+     * Sets start_group
      *
-     * @param \Idealogic\RegistrationAPI\Model\CategoryDTO|null $source_category source_category
+     * @param \Idealogic\RegistrationAPI\Model\StartGroupDTO|null $start_group start_group
      *
      * @return self
      */
-    public function setSourceCategory($source_category)
+    public function setStartGroup($start_group)
     {
-        if (is_null($source_category)) {
-            throw new \InvalidArgumentException('non-nullable source_category cannot be null');
+        if (is_null($start_group)) {
+            throw new \InvalidArgumentException('non-nullable start_group cannot be null');
         }
-        $this->container['source_category'] = $source_category;
+        $this->container['start_group'] = $start_group;
 
         return $this;
     }
 
     /**
-     * Gets product
+     * Gets event_participant
      *
-     * @return \Idealogic\RegistrationAPI\Model\ProductDTO|null
+     * @return \Idealogic\RegistrationAPI\Model\EventParticipantDTO|null
      */
-    public function getProduct()
+    public function getEventParticipant()
     {
-        return $this->container['product'];
+        return $this->container['event_participant'];
     }
 
     /**
-     * Sets product
+     * Sets event_participant
      *
-     * @param \Idealogic\RegistrationAPI\Model\ProductDTO|null $product product
+     * @param \Idealogic\RegistrationAPI\Model\EventParticipantDTO|null $event_participant event_participant
      *
      * @return self
      */
-    public function setProduct($product)
+    public function setEventParticipant($event_participant)
     {
-        if (is_null($product)) {
-            throw new \InvalidArgumentException('non-nullable product cannot be null');
+        if (is_null($event_participant)) {
+            throw new \InvalidArgumentException('non-nullable event_participant cannot be null');
         }
-        $this->container['product'] = $product;
-
-        return $this;
-    }
-
-    /**
-     * Gets series_category
-     *
-     * @return \Idealogic\RegistrationAPI\Model\EventCategoryDTO|null
-     */
-    public function getSeriesCategory()
-    {
-        return $this->container['series_category'];
-    }
-
-    /**
-     * Sets series_category
-     *
-     * @param \Idealogic\RegistrationAPI\Model\EventCategoryDTO|null $series_category series_category
-     *
-     * @return self
-     */
-    public function setSeriesCategory($series_category)
-    {
-        if (is_null($series_category)) {
-            throw new \InvalidArgumentException('non-nullable series_category cannot be null');
-        }
-        $this->container['series_category'] = $series_category;
-
-        return $this;
-    }
-
-    /**
-     * Gets feeder_categories
-     *
-     * @return \Idealogic\RegistrationAPI\Model\EventCategoryDTO[]|null
-     */
-    public function getFeederCategories()
-    {
-        return $this->container['feeder_categories'];
-    }
-
-    /**
-     * Sets feeder_categories
-     *
-     * @param \Idealogic\RegistrationAPI\Model\EventCategoryDTO[]|null $feeder_categories feeder_categories
-     *
-     * @return self
-     */
-    public function setFeederCategories($feeder_categories)
-    {
-        if (is_null($feeder_categories)) {
-            throw new \InvalidArgumentException('non-nullable feeder_categories cannot be null');
-        }
-
-
-        $this->container['feeder_categories'] = $feeder_categories;
-
-        return $this;
-    }
-
-    /**
-     * Gets series
-     *
-     * @return \Idealogic\RegistrationAPI\Model\SeriesDTO|null
-     */
-    public function getSeries()
-    {
-        return $this->container['series'];
-    }
-
-    /**
-     * Sets series
-     *
-     * @param \Idealogic\RegistrationAPI\Model\SeriesDTO|null $series series
-     *
-     * @return self
-     */
-    public function setSeries($series)
-    {
-        if (is_null($series)) {
-            throw new \InvalidArgumentException('non-nullable series cannot be null');
-        }
-        $this->container['series'] = $series;
-
-        return $this;
-    }
-
-    /**
-     * Gets event
-     *
-     * @return \Idealogic\RegistrationAPI\Model\EventDTO|null
-     */
-    public function getEvent()
-    {
-        return $this->container['event'];
-    }
-
-    /**
-     * Sets event
-     *
-     * @param \Idealogic\RegistrationAPI\Model\EventDTO|null $event event
-     *
-     * @return self
-     */
-    public function setEvent($event)
-    {
-        if (is_null($event)) {
-            throw new \InvalidArgumentException('non-nullable event cannot be null');
-        }
-        $this->container['event'] = $event;
+        $this->container['event_participant'] = $event_participant;
 
         return $this;
     }
