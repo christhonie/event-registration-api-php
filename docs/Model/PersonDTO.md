@@ -6,15 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional]
 **name** | **string** | Dynamic field to display the Person&#39;s name and date of birth. Used for display purposes. | [optional]
-**first_name** | **string** |  |
-**last_name** | **string** |  |
-**title** | **string** |  | [optional]
+**first_name** | **string** |  | [optional]
+**last_name** | **string** |  | [optional]
+**date_of_birth** | **\DateTime** |  | [optional]
+**gender** | **string** |  |
+**email** | **string** |  | [optional]
+**contact_number** | **string** | Telephone number. Usually a cellphone number. | [optional]
 **identity_number** | **string** | Number associated with the identification type. | [optional]
 **identity_type** | **string** | Identificaiton type, such as a national ID or passport. | [optional]
-**email** | **string** |  | [optional]
-**date_of_birth** | **\DateTime** |  | [optional]
-**gender** | **string** |  | [optional]
-**contact_number** | **string** | Telephone number. Usually a cellphone number. | [optional]
+**identity_country** | [**\Idealogic\RegistrationAPI\Model\CountryDTO**](CountryDTO.md) |  |
+**title** | **string** |  | [optional]
 **language** | **string** | Native language or preferred contact language. | [optional]
 **emergency_contact_name** | **string** | Emergency contact persons&#39;s name. | [optional]
 **emergency_contact_number** | **string** | Emergency contact person&#39;s contact number. | [optional]
@@ -32,7 +33,6 @@ Name | Type | Description | Notes
 **medical_allergies** | **string** |  | [optional]
 **medication** | **string** |  | [optional]
 **medical_conditions** | **string** |  | [optional]
-**identity_country** | [**\Idealogic\RegistrationAPI\Model\CountryDTO**](CountryDTO.md) |  | [optional]
 **nationality** | [**\Idealogic\RegistrationAPI\Model\CountryDTO**](CountryDTO.md) |  | [optional]
 **school** | **string** |  | [optional]
 **user_id** | **string** |  | [optional]
@@ -42,10 +42,7 @@ Name | Type | Description | Notes
 **identity_country_invalid** | **bool** |  | [optional]
 **date_of_birth_invalid** | **bool** |  | [optional]
 **gender_invalid** | **bool** |  | [optional]
-**managed_by** | [**\Idealogic\RegistrationAPI\Model\PersonDTO[]**](PersonDTO.md) |  | [optional]
-**add_managed_by** | **int** |  | [optional]
-**add_managed_by_type** | **string** |  | [optional]
-**link_type** | **string** |  | [optional]
+**process_instances** | [**\Idealogic\RegistrationAPI\Model\ProcessInstanceDTO[]**](ProcessInstanceDTO.md) |  | [optional]
 **identity_country_code** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

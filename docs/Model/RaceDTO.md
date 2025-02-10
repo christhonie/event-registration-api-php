@@ -16,11 +16,9 @@ Name | Type | Description | Notes
 **end_time** | **\DateTime** | Time when timing for the group ended. | [optional]
 **finish_time** | **\DateTime** | Time when the first participant in this group finished. | [optional]
 **finish_duration_milli_seconds** | **int** | The race duration in milli seconds of the fastest Participant in this group. | [optional]
-**event_race_type** | [**\Idealogic\RegistrationAPI\Model\EventRaceTypeDTO**](EventRaceTypeDTO.md) |  | [optional]
-**course** | [**\Idealogic\RegistrationAPI\Model\CourseDTO**](CourseDTO.md) |  | [optional]
-**event_category** | [**\Idealogic\RegistrationAPI\Model\EventCategoryDTO**](EventCategoryDTO.md) |  | [optional]
+**event_race_type** | [**\Idealogic\RegistrationAPI\Model\EventRaceTypeDTO**](EventRaceTypeDTO.md) |  |
+**course** | [**\Idealogic\RegistrationAPI\Model\CourseDTO**](CourseDTO.md) |  |
+**event_category** | [**\Idealogic\RegistrationAPI\Model\EventCategoryDTO**](EventCategoryDTO.md) |  |
 **config** | [**\Idealogic\RegistrationAPI\Model\RaceTypeConfigDTO**](RaceTypeConfigDTO.md) |  | [optional]
-**event** | [**\Idealogic\RegistrationAPI\Model\EventDTO**](EventDTO.md) |  | [optional]
-**start_groups** | [**\Idealogic\RegistrationAPI\Model\StartGroupDTO[]**](StartGroupDTO.md) | StartGroups linked to this race. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **custom_list1_name** | **string** |  | [optional]
 **custom_list2_name** | **string** |  | [optional]
 **custom_list3_name** | **string** |  | [optional]
+**last_update** | **\DateTime** |  | [optional]
 **replaces** | [**\Idealogic\RegistrationAPI\Model\ResultSetDTO**](ResultSetDTO.md) |  | [optional]
 **series** | [**\Idealogic\RegistrationAPI\Model\SeriesDTO**](SeriesDTO.md) |  | [optional]
 **event** | [**\Idealogic\RegistrationAPI\Model\EventDTO**](EventDTO.md) |  | [optional]

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **email** | **string** |  | [optional]
 **identity_number** | **string** |  | [optional]
 **identity_type** | **string** |  | [optional]
-**identity_country** | **string** |  | [optional]
+**identity_country** | [**\Idealogic\RegistrationAPI\Model\CountryDTO**](CountryDTO.md) |  | [optional]
 **date_of_birth** | **\DateTime** |  | [optional]
 **gender** | **string** |  |
 **age** | **int** | Age on the first day of the event. | [optional]
@@ -20,18 +20,17 @@ Name | Type | Description | Notes
 **active** | **bool** |  | [optional]
 **override_indicator** | **bool** |  | [optional]
 **team_indicator** | **bool** |  | [optional]
-**event** | [**\Idealogic\RegistrationAPI\Model\EventDTO**](EventDTO.md) |  | [optional]
-**person** | [**\Idealogic\RegistrationAPI\Model\PersonDTO**](PersonDTO.md) |  | [optional]
-**category** | [**\Idealogic\RegistrationAPI\Model\EventCategoryDTO**](EventCategoryDTO.md) |  | [optional]
+**event** | [**\Idealogic\RegistrationAPI\Model\EventDTO**](EventDTO.md) |  |
+**series** | [**\Idealogic\RegistrationAPI\Model\SeriesDTO**](SeriesDTO.md) |  | [optional]
+**person** | [**\Idealogic\RegistrationAPI\Model\PersonNameDTO**](PersonNameDTO.md) |  |
+**category** | [**\Idealogic\RegistrationAPI\Model\EventCategoryDTO**](EventCategoryDTO.md) |  |
 **team** | [**\Idealogic\RegistrationAPI\Model\EventParticipantDTO**](EventParticipantDTO.md) |  | [optional]
 **number** | [**\Idealogic\RegistrationAPI\Model\RaceNumberDTO**](RaceNumberDTO.md) |  | [optional]
 **tag** | [**\Idealogic\RegistrationAPI\Model\TagDTO**](TagDTO.md) |  | [optional]
-**order** | [**\Idealogic\RegistrationAPI\Model\OrderDTO**](OrderDTO.md) |  | [optional]
 **custom1** | [**\Idealogic\RegistrationAPI\Model\CustomListValueDTO**](CustomListValueDTO.md) |  | [optional]
 **custom2** | [**\Idealogic\RegistrationAPI\Model\CustomListValueDTO**](CustomListValueDTO.md) |  | [optional]
 **custom3** | [**\Idealogic\RegistrationAPI\Model\CustomListValueDTO**](CustomListValueDTO.md) |  | [optional]
-**teams** | [**\Idealogic\RegistrationAPI\Model\EventParticipantDTO[]**](EventParticipantDTO.md) |  | [optional]
-**event_race_types** | [**\Idealogic\RegistrationAPI\Model\EventRaceTypeDTO[]**](EventRaceTypeDTO.md) |  | [optional]
-**product** | [**\Idealogic\RegistrationAPI\Model\ProductDTO**](ProductDTO.md) |  | [optional]
+**enrol_instance** | [**\Idealogic\RegistrationAPI\Model\ProcessInstanceDTO**](ProcessInstanceDTO.md) |  | [optional]
+**orders** | [**\Idealogic\RegistrationAPI\Model\OrderDTO[]**](OrderDTO.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

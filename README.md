@@ -59,72 +59,73 @@ $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->se
 $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
-$apiInstance = new Idealogic\RegistrationAPI\Api\OrderResourceApi(
+$apiInstance = new Idealogic\RegistrationAPI\Api\OrganisationResourceApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$id_greater_than = 56; // int
-$id_less_than = 56; // int
-$id_greater_than_or_equal = 56; // int
-$id_less_than_or_equal = 56; // int
-$id_equals = 56; // int
-$id_not_equals = 56; // int
-$id_specified = True; // bool
-$id_in = array(56); // int[]
-$id_not_in = array(56); // int[]
-$number_contains = 'number_contains_example'; // string
-$number_does_not_contain = 'number_does_not_contain_example'; // string
-$number_equals = 'number_equals_example'; // string
-$number_not_equals = 'number_not_equals_example'; // string
-$number_specified = True; // bool
-$number_in = array('number_in_example'); // string[]
-$number_not_in = array('number_not_in_example'); // string[]
-$external_id_contains = 'external_id_contains_example'; // string
-$external_id_does_not_contain = 'external_id_does_not_contain_example'; // string
-$external_id_equals = 'external_id_equals_example'; // string
-$external_id_not_equals = 'external_id_not_equals_example'; // string
-$external_id_specified = True; // bool
-$external_id_in = array('external_id_in_example'); // string[]
-$external_id_not_in = array('external_id_not_in_example'); // string[]
-$status_equals = 'status_equals_example'; // string
-$status_not_equals = 'status_not_equals_example'; // string
-$status_specified = True; // bool
-$status_in = array('status_in_example'); // string[]
-$status_not_in = array('status_not_in_example'); // string[]
-$distinct = True; // bool
+$organisation_dto = new \Idealogic\RegistrationAPI\Model\OrganisationDTO(); // \Idealogic\RegistrationAPI\Model\OrganisationDTO
 
 try {
-    $result = $apiInstance->countOrders($id_greater_than, $id_less_than, $id_greater_than_or_equal, $id_less_than_or_equal, $id_equals, $id_not_equals, $id_specified, $id_in, $id_not_in, $number_contains, $number_does_not_contain, $number_equals, $number_not_equals, $number_specified, $number_in, $number_not_in, $external_id_contains, $external_id_does_not_contain, $external_id_equals, $external_id_not_equals, $external_id_specified, $external_id_in, $external_id_not_in, $status_equals, $status_not_equals, $status_specified, $status_in, $status_not_in, $distinct);
+    $result = $apiInstance->createOrganisation($organisation_dto);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling OrderResourceApi->countOrders: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling OrganisationResourceApi->createOrganisation: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
 
 ## API Endpoints
 
-All URIs are relative to *http://localhost:12504*
+All URIs are relative to *https://admin-service-dev.idealogic.co.za*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*OrderResourceApi* | [**countOrders**](docs/Api/OrderResourceApi.md#countorders) | **GET** /api/orders/count | 
-*OrderResourceApi* | [**createOrder**](docs/Api/OrderResourceApi.md#createorder) | **POST** /api/orders | 
-*OrderResourceApi* | [**deleteOrder**](docs/Api/OrderResourceApi.md#deleteorder) | **DELETE** /api/orders/{id} | 
-*OrderResourceApi* | [**getAllOrders**](docs/Api/OrderResourceApi.md#getallorders) | **GET** /api/orders | 
-*OrderResourceApi* | [**getOrder**](docs/Api/OrderResourceApi.md#getorder) | **GET** /api/orders/{id} | 
-*OrderResourceApi* | [**getParticipantOrder**](docs/Api/OrderResourceApi.md#getparticipantorder) | **GET** /api/orders/create-cart/participants/{id} | 
-*OrderResourceApi* | [**partialUpdateOrder**](docs/Api/OrderResourceApi.md#partialupdateorder) | **PATCH** /api/orders/{id} | 
-*OrderResourceApi* | [**patchParticipantOrder**](docs/Api/OrderResourceApi.md#patchparticipantorder) | **PATCH** /api/orders/participant/{id} | 
-*OrderResourceApi* | [**updateOrder**](docs/Api/OrderResourceApi.md#updateorder) | **PUT** /api/orders | 
-*OrderResourceApi* | [**updateOrder1**](docs/Api/OrderResourceApi.md#updateorder1) | **PUT** /api/orders/{id} | 
-*OrderResourceApi* | [**updateParticipantOrder**](docs/Api/OrderResourceApi.md#updateparticipantorder) | **PUT** /api/orders/participant/{id} | 
+*OrganisationResourceApi* | [**createOrganisation**](docs/Api/OrganisationResourceApi.md#createorganisation) | **POST** /api/organisations | 
+*OrganisationResourceApi* | [**deleteOrganisation**](docs/Api/OrganisationResourceApi.md#deleteorganisation) | **DELETE** /api/organisations/{id} | 
+*OrganisationResourceApi* | [**getAllOrganisations**](docs/Api/OrganisationResourceApi.md#getallorganisations) | **GET** /api/organisations | 
+*OrganisationResourceApi* | [**getOrganisation**](docs/Api/OrganisationResourceApi.md#getorganisation) | **GET** /api/organisations/{id} | 
+*OrganisationResourceApi* | [**partialUpdateOrganisation**](docs/Api/OrganisationResourceApi.md#partialupdateorganisation) | **PATCH** /api/organisations/{id} | 
+*OrganisationResourceApi* | [**updateOrganisation**](docs/Api/OrganisationResourceApi.md#updateorganisation) | **PUT** /api/organisations/{id} | 
+*PersonResourceApi* | [**createPerson**](docs/Api/PersonResourceApi.md#createperson) | **POST** /api/people | 
+*PersonResourceApi* | [**deletePerson**](docs/Api/PersonResourceApi.md#deleteperson) | **DELETE** /api/people/{id} | 
+*PersonResourceApi* | [**findByID**](docs/Api/PersonResourceApi.md#findbyid) | **GET** /api/people/findById | 
+*PersonResourceApi* | [**findByIdDetails**](docs/Api/PersonResourceApi.md#findbyiddetails) | **POST** /api/people/idsearch | 
+*PersonResourceApi* | [**findByUserKeyOrCreate**](docs/Api/PersonResourceApi.md#findbyuserkeyorcreate) | **GET** /api/people/findByUserKeyOrCreate | 
+*PersonResourceApi* | [**getAllLinkedOrgUsersByPrincipal**](docs/Api/PersonResourceApi.md#getalllinkedorgusersbyprincipal) | **GET** /api/people/linked-to-principal | 
+*PersonResourceApi* | [**getAllPeople**](docs/Api/PersonResourceApi.md#getallpeople) | **GET** /api/people | 
+*PersonResourceApi* | [**getPerson**](docs/Api/PersonResourceApi.md#getperson) | **GET** /api/people/{id} | 
+*PersonResourceApi* | [**match**](docs/Api/PersonResourceApi.md#match) | **GET** /api/people/match | 
+*PersonResourceApi* | [**partialUpdatePerson**](docs/Api/PersonResourceApi.md#partialupdateperson) | **PATCH** /api/people/{id} | 
+*PersonResourceApi* | [**queryPerson**](docs/Api/PersonResourceApi.md#queryperson) | **GET** /api/people/query | 
+*PersonResourceApi* | [**updatePerson**](docs/Api/PersonResourceApi.md#updateperson) | **PUT** /api/people/{id} | 
 
 ## Models
 
+- [CategoryDTO](docs/Model/CategoryDTO.md)
+- [CourseDTO](docs/Model/CourseDTO.md)
+- [CourseTypeDTO](docs/Model/CourseTypeDTO.md)
+- [CustomListDTO](docs/Model/CustomListDTO.md)
+- [CustomListValueDTO](docs/Model/CustomListValueDTO.md)
+- [DisciplineDTO](docs/Model/DisciplineDTO.md)
+- [EventCategoryDTO](docs/Model/EventCategoryDTO.md)
+- [EventDTO](docs/Model/EventDTO.md)
+- [EventParticipantDTO](docs/Model/EventParticipantDTO.md)
+- [EventRaceTypeDTO](docs/Model/EventRaceTypeDTO.md)
+- [NumberTypeDTO](docs/Model/NumberTypeDTO.md)
 - [OrderDTO](docs/Model/OrderDTO.md)
+- [OrganisationDTO](docs/Model/OrganisationDTO.md)
+- [PersonDTO](docs/Model/PersonDTO.md)
+- [ProductDTO](docs/Model/ProductDTO.md)
+- [RaceDTO](docs/Model/RaceDTO.md)
+- [RaceResultDTO](docs/Model/RaceResultDTO.md)
+- [ResultSetDTO](docs/Model/ResultSetDTO.md)
+- [RoundDTO](docs/Model/RoundDTO.md)
+- [SeriesDTO](docs/Model/SeriesDTO.md)
+- [StartGroupDTO](docs/Model/StartGroupDTO.md)
+- [StartGroupParticipantDTO](docs/Model/StartGroupParticipantDTO.md)
+- [TagTypeDTO](docs/Model/TagTypeDTO.md)
 
 ## Authorization
 
@@ -157,6 +158,6 @@ development@idealogic.co.za
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `1.3.0-SNAPSHOT`
-    - Package version: `1.0.1`
+- API version: `2.2.0-SNAPSHOT`
+    - Package version: `2.0.6-SNAPSHOT`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

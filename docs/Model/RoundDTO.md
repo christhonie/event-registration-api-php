@@ -17,8 +17,8 @@ Name | Type | Description | Notes
 **end_time** | **\DateTime** | Time when timing for the group ended. | [optional]
 **finish_time** | **\DateTime** | Time when the first participant in this group finished. | [optional]
 **finish_duration_milli_seconds** | **int** | The race duration in milli seconds of the fastest Participant in this group. | [optional]
-**race** | [**\Idealogic\RegistrationAPI\Model\RaceDTO**](RaceDTO.md) |  | [optional]
-**round_type** | [**\Idealogic\RegistrationAPI\Model\RoundTypeDTO**](RoundTypeDTO.md) |  | [optional]
+**race** | [**\Idealogic\RegistrationAPI\Model\RaceDTO**](RaceDTO.md) |  |
+**round_type** | [**\Idealogic\RegistrationAPI\Model\RoundTypeDTO**](RoundTypeDTO.md) |  |
 **parent** | [**\Idealogic\RegistrationAPI\Model\RoundDTO**](RoundDTO.md) |  | [optional]
 **prev_round** | [**\Idealogic\RegistrationAPI\Model\RoundDTO**](RoundDTO.md) |  | [optional]
 

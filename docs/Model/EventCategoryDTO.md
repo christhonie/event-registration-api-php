@@ -14,8 +14,9 @@ Name | Type | Description | Notes
 **source_category** | [**\Idealogic\RegistrationAPI\Model\CategoryDTO**](CategoryDTO.md) |  | [optional]
 **product** | [**\Idealogic\RegistrationAPI\Model\ProductDTO**](ProductDTO.md) |  | [optional]
 **series_category** | [**\Idealogic\RegistrationAPI\Model\EventCategoryDTO**](EventCategoryDTO.md) |  | [optional]
-**feeder_categories** | [**\Idealogic\RegistrationAPI\Model\EventCategoryDTO[]**](EventCategoryDTO.md) |  | [optional]
+**feeder_categories** | [**\Idealogic\RegistrationAPI\Model\EventCategoryDTO[]**](EventCategoryDTO.md) | Event Categories that feed into this event. Only applicable for race categories (raceCategory &#x3D; true) and where sourceCategories are not set (thus ad-hoc EventCategories). | [optional]
 **series** | [**\Idealogic\RegistrationAPI\Model\SeriesDTO**](SeriesDTO.md) |  | [optional]
 **event** | [**\Idealogic\RegistrationAPI\Model\EventDTO**](EventDTO.md) |  | [optional]
+**target_categories** | [**\Idealogic\RegistrationAPI\Model\EventCategoryDTO[]**](EventCategoryDTO.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
