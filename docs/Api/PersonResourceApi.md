@@ -1,6 +1,6 @@
 # Idealogic\RegistrationAPI\PersonResourceApi
 
-All URIs are relative to https://admin-service.idealogic.co.za, except if the operation defines another base path.
+All URIs are relative to https://admin-service-stage.idealogic.co.za, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
