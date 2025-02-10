@@ -16,8 +16,8 @@ composer.phar
 
 git_push.sh
 
-swagger.json
-
 .flattened-pom.xml
+.openapi-generator/
 
 .idea/
+
