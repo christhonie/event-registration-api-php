@@ -19,3 +19,5 @@ git_push.sh
 swagger.json
 
 .flattened-pom.xml
+
+.idea/

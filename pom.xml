@@ -6,7 +6,7 @@
 	<version>${revision}</version>
 	<packaging>pom</packaging>
 
-	<name>Event Registration PHP Client</name>
+	<name>Event Membership Registration PHP Client</name>
 	<description>PHP client for the Event Admin Service API for event registration.</description>
 
 	<parent>
@@ -20,14 +20,44 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<version.swagger.codegen>3.0.52</version.swagger.codegen>
-		<swagger.file>api-docs.json</swagger.file>
-		<generated-sources-path>${project.build.directory}/generated-sources</generated-sources-path>
+		<openapi-generator.version>7.10.0</openapi-generator.version>
+		<swagger.file>openapi.json</swagger.file>
 	</properties>
 
 	<build>
 		<defaultGoal>generate-sources</defaultGoal>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.2.0</version> <!-- Use the latest version -->
+				<executions>
+					<execution>
+						<id>clean-generated-sources</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>${project.basedir}/docs</directory>
+									<includes>
+										<include>**/*</include>
+									</includes>
+								</fileset>
+								<fileset>
+									<directory>${project.basedir}/lib</directory>
+									<includes>
+										<include>**/*</include>
+									</includes>
+								</fileset>
+							</filesets>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
@@ -38,7 +68,7 @@
 					<output>.</output>
 					<generateApiTests>false</generateApiTests>
 					<generateModelTests>false</generateModelTests>
-					<generateSupportingFiles>false</generateSupportingFiles>
+					<generateSupportingFiles>true</generateSupportingFiles>
 					<configOptions>
 						<artifactVersion>${project.version}</artifactVersion>
 						<appDescription>API Client for the Event Admin Service</appDescription>
@@ -51,10 +81,10 @@
 						<invokerPackage>Idealogic\RegistrationAPI</invokerPackage>
 					</configOptions>
 					<apisToGenerate>
-						OrderResource,OrganisationResource,PersonResource,ResultSet,RaceResult,CustomList,CustomListValue
+						OrganisationResource,PersonResource,ResultSet,RaceResult,CustomList,CustomListValue,OrderResourceEx,MembershipResourceEx
 					</apisToGenerate>
 					<modelsToGenerate>
-						OrganisationDTO,DisciplineDTO,PersonDTO,SeriesDTO,EventDTO,CategoryDTO,EventCategoryDTO,CourseTypeDTO,CourseDTO,EventRaceTypeDTO,StartGroupDTO,RaceDTO,RoundDTO,ProductDTO,OrderDTO,ParticipantOrderDTO,EventParticipantDTO,StartGroupParticipantDTO,ResultSetDTO,RaceResultDTO,CustomListDTO,CustomListValueDTO,NumberTypeDTO,TagTypeDTO
+						OrganisationDTO,DisciplineDTO,PersonDTO,SeriesDTO,EventDTO,CategoryDTO,EventCategoryDTO,CourseTypeDTO,CourseDTO,EventRaceTypeDTO,StartGroupDTO,RaceDTO,RoundDTO,ProductDTO,OrderDTO,ParticipantOrderDTO,EventParticipantDTO,StartGroupParticipantDTO,ResultSetDTO,RaceResultDTO,CustomListDTO,CustomListValueDTO,NumberTypeDTO,TagTypeDTO,MembershipStatusDTO,MembershipStatus,LatestPeriodMembershipStatusResponseDTO,MembershipAddResponseDTO,MembershipOrderStatusRequestDTO,,OrderStatus,MembershipOrderLineItemDTO,MembershipOrderStatusResponseDTO
 					</modelsToGenerate>
 				</configuration>
 				<executions>
@@ -66,35 +96,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>io.swagger</groupId>
-										<artifactId>swagger-codegen-maven-plugin</artifactId>
-										<versionRange>[${version.swagger.codegen},)</versionRange>
-										<goals>
-											<goal>generate</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<execute/>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 	</build>
 
 	<repositories>

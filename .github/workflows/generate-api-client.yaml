@@ -1,0 +1,44 @@
+name: Generate and Publish Angular API Client
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-publish:
+    name: '📦 Generate and Publish'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: 11
+        distribution: 'temurin'
+        cache: maven
+        server-id: github-christhonie # Value of the distributionManagement/repository/id field of the pom.xml
+        server-username: MAVEN_USERNAME # env variable for username in deploy
+        server-password: MAVEN_PASSWORD # env variable for token in deploy
+
+    - name: Generate API Client
+      run: mvn clean compile --batch-mode --no-transfer-progress
+      env:
+        MAVEN_USERNAME: christhonie
+        MAVEN_PASSWORD: ${{ secrets.EVENT_PACKAGE_REPO_TOKEN }}
+
+    - name: Commit Changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "GitHub Actions"
+        git add .
+        git commit -m "Update API client based on latest OpenAPI spec" || echo "No changes to commit"
+        git push origin main
