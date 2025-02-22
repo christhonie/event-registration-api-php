@@ -16,7 +16,7 @@
 	</parent>
 
 	<properties>
-		<revision>2.2.0</revision>
+		<revision>2.2.1</revision>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -84,7 +84,7 @@
 						OrganisationResource,PersonResource,ResultSet,RaceResult,CustomList,CustomListValue,OrderResourceEx,MembershipResourceEx
 					</apisToGenerate>
 					<modelsToGenerate>
-						OrganisationDTO,DisciplineDTO,PersonDTO,SeriesDTO,EventDTO,CategoryDTO,EventCategoryDTO,CourseTypeDTO,CourseDTO,EventRaceTypeDTO,StartGroupDTO,RaceDTO,RoundDTO,ProductDTO,OrderDTO,ParticipantOrderDTO,EventParticipantDTO,StartGroupParticipantDTO,ResultSetDTO,RaceResultDTO,CustomListDTO,CustomListValueDTO,NumberTypeDTO,TagTypeDTO,MembershipStatusDTO,MembershipStatus,LatestPeriodMembershipStatusResponseDTO,MembershipAddResponseDTO,MembershipOrderStatusRequestDTO,,OrderStatus,MembershipOrderLineItemDTO,MembershipOrderStatusResponseDTO
+						OrganisationDTO,DisciplineDTO,PersonDTO,SeriesDTO,EventDTO,CategoryDTO,EventCategoryDTO,CourseTypeDTO,CourseDTO,EventRaceTypeDTO,StartGroupDTO,RaceDTO,RoundDTO,ProductDTO,OrderDTO,ParticipantOrderDTO,EventParticipantDTO,StartGroupParticipantDTO,ResultSetDTO,RaceResultDTO,CustomListDTO,CustomListValueDTO,NumberTypeDTO,TagTypeDTO,MembershipStatusDTO,MembershipStatus,LatestPeriodMembershipStatusResponseDTO,MembershipAddResponseDTO,MembershipOrderUpdateRequestDTO,,OrderStatus,MembershipOrderLineItemDTO,MembershipOrderUpdateResponseDTO
 					</modelsToGenerate>
 				</configuration>
 				<executions>
