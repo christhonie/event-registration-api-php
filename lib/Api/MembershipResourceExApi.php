@@ -75,9 +75,6 @@ class MembershipResourceExApi
         'addMembership' => [
             'application/json',
         ],
-        'addMembershipOrder' => [
-            'application/json',
-        ],
         'enrolMemberships' => [
             'application/json',
         ],
@@ -91,6 +88,9 @@ class MembershipResourceExApi
             'application/json',
         ],
         'importMembership' => [
+            'application/json',
+        ],
+        'updateMembershipOrder' => [
             'application/json',
         ],
     ];
@@ -407,328 +407,6 @@ class MembershipResourceExApi
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($membership_add_request_dto));
             } else {
                 $httpBody = $membership_add_request_dto;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
-        if ($apiKey !== null) {
-            $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires Bearer (JWT) authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation addMembershipOrder
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\MembershipOrderStatusRequestDTO $membership_order_status_request_dto membership_order_status_request_dto (required)
-     * @param  int $organisation_id organisation_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addMembershipOrder'] to see the possible values for this operation
-     *
-     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Idealogic\RegistrationAPI\Model\MembershipOrderStatusResponseDTO
-     */
-    public function addMembershipOrder($membership_order_status_request_dto, $organisation_id = null, string $contentType = self::contentTypes['addMembershipOrder'][0])
-    {
-        list($response) = $this->addMembershipOrderWithHttpInfo($membership_order_status_request_dto, $organisation_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation addMembershipOrderWithHttpInfo
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\MembershipOrderStatusRequestDTO $membership_order_status_request_dto (required)
-     * @param  int $organisation_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addMembershipOrder'] to see the possible values for this operation
-     *
-     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Idealogic\RegistrationAPI\Model\MembershipOrderStatusResponseDTO, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function addMembershipOrderWithHttpInfo($membership_order_status_request_dto, $organisation_id = null, string $contentType = self::contentTypes['addMembershipOrder'][0])
-    {
-        $request = $this->addMembershipOrderRequest($membership_order_status_request_dto, $organisation_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Idealogic\RegistrationAPI\Model\MembershipOrderStatusResponseDTO' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Idealogic\RegistrationAPI\Model\MembershipOrderStatusResponseDTO' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\MembershipOrderStatusResponseDTO', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Idealogic\RegistrationAPI\Model\MembershipOrderStatusResponseDTO';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Idealogic\RegistrationAPI\Model\MembershipOrderStatusResponseDTO',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation addMembershipOrderAsync
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\MembershipOrderStatusRequestDTO $membership_order_status_request_dto (required)
-     * @param  int $organisation_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addMembershipOrder'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function addMembershipOrderAsync($membership_order_status_request_dto, $organisation_id = null, string $contentType = self::contentTypes['addMembershipOrder'][0])
-    {
-        return $this->addMembershipOrderAsyncWithHttpInfo($membership_order_status_request_dto, $organisation_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation addMembershipOrderAsyncWithHttpInfo
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\MembershipOrderStatusRequestDTO $membership_order_status_request_dto (required)
-     * @param  int $organisation_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addMembershipOrder'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function addMembershipOrderAsyncWithHttpInfo($membership_order_status_request_dto, $organisation_id = null, string $contentType = self::contentTypes['addMembershipOrder'][0])
-    {
-        $returnType = '\Idealogic\RegistrationAPI\Model\MembershipOrderStatusResponseDTO';
-        $request = $this->addMembershipOrderRequest($membership_order_status_request_dto, $organisation_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'addMembershipOrder'
-     *
-     * @param  \Idealogic\RegistrationAPI\Model\MembershipOrderStatusRequestDTO $membership_order_status_request_dto (required)
-     * @param  int $organisation_id (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addMembershipOrder'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function addMembershipOrderRequest($membership_order_status_request_dto, $organisation_id = null, string $contentType = self::contentTypes['addMembershipOrder'][0])
-    {
-
-        // verify the required parameter 'membership_order_status_request_dto' is set
-        if ($membership_order_status_request_dto === null || (is_array($membership_order_status_request_dto) && count($membership_order_status_request_dto) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $membership_order_status_request_dto when calling addMembershipOrder'
-            );
-        }
-
-
-
-        $resourcePath = '/api/memberships/order';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $organisation_id,
-            'organisationId', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['*/*', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($membership_order_status_request_dto)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($membership_order_status_request_dto));
-            } else {
-                $httpBody = $membership_order_status_request_dto;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2473,6 +2151,328 @@ class MembershipResourceExApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateMembershipOrder
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateRequestDTO $membership_order_update_request_dto membership_order_update_request_dto (required)
+     * @param  int $organisation_id organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMembershipOrder'] to see the possible values for this operation
+     *
+     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO
+     */
+    public function updateMembershipOrder($membership_order_update_request_dto, $organisation_id = null, string $contentType = self::contentTypes['updateMembershipOrder'][0])
+    {
+        list($response) = $this->updateMembershipOrderWithHttpInfo($membership_order_update_request_dto, $organisation_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateMembershipOrderWithHttpInfo
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateRequestDTO $membership_order_update_request_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMembershipOrder'] to see the possible values for this operation
+     *
+     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateMembershipOrderWithHttpInfo($membership_order_update_request_dto, $organisation_id = null, string $contentType = self::contentTypes['updateMembershipOrder'][0])
+    {
+        $request = $this->updateMembershipOrderRequest($membership_order_update_request_dto, $organisation_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateMembershipOrderAsync
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateRequestDTO $membership_order_update_request_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMembershipOrder'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateMembershipOrderAsync($membership_order_update_request_dto, $organisation_id = null, string $contentType = self::contentTypes['updateMembershipOrder'][0])
+    {
+        return $this->updateMembershipOrderAsyncWithHttpInfo($membership_order_update_request_dto, $organisation_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateMembershipOrderAsyncWithHttpInfo
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateRequestDTO $membership_order_update_request_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMembershipOrder'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateMembershipOrderAsyncWithHttpInfo($membership_order_update_request_dto, $organisation_id = null, string $contentType = self::contentTypes['updateMembershipOrder'][0])
+    {
+        $returnType = '\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO';
+        $request = $this->updateMembershipOrderRequest($membership_order_update_request_dto, $organisation_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateMembershipOrder'
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateRequestDTO $membership_order_update_request_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMembershipOrder'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateMembershipOrderRequest($membership_order_update_request_dto, $organisation_id = null, string $contentType = self::contentTypes['updateMembershipOrder'][0])
+    {
+
+        // verify the required parameter 'membership_order_update_request_dto' is set
+        if ($membership_order_update_request_dto === null || (is_array($membership_order_update_request_dto) && count($membership_order_update_request_dto) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $membership_order_update_request_dto when calling updateMembershipOrder'
+            );
+        }
+
+
+
+        $resourcePath = '/api/memberships/order';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $organisation_id,
+            'organisationId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($membership_order_update_request_dto)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($membership_order_update_request_dto));
+            } else {
+                $httpBody = $membership_order_update_request_dto;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
+        if ($apiKey !== null) {
+            $headers['X-API-KEY'] = $apiKey;
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

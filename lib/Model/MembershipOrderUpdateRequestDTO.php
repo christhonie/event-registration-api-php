@@ -1,6 +1,6 @@
 <?php
 /**
- * MembershipOrderStatusResponseDTO
+ * MembershipOrderUpdateRequestDTO
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * MembershipOrderStatusResponseDTO Class Doc Comment
+ * MembershipOrderUpdateRequestDTO Class Doc Comment
  *
  * @category Class
  * @package  Idealogic\RegistrationAPI
@@ -41,7 +41,7 @@ use \Idealogic\RegistrationAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MembershipOrderStatusResponseDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class MembershipOrderStatusResponseDTO implements ModelInterface, ArrayAccess, \
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MembershipOrderStatusResponseDTO';
+    protected static $openAPIModelName = 'MembershipOrderUpdateRequestDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +58,13 @@ class MembershipOrderStatusResponseDTO implements ModelInterface, ArrayAccess, \
       * @var string[]
       */
     protected static $openAPITypes = [
-        'card_attachment_url' => 'string',
-        'card_attachment_filename' => 'string',
-        'card_data' => 'string',
-        'member_list' => '\Idealogic\RegistrationAPI\Model\MembershipStatusDTO[]'
+        'remove' => 'bool',
+        'id' => 'int',
+        'number' => 'string',
+        'external_id' => 'string',
+        'status' => 'string',
+        'email' => 'string',
+        'line_items' => '\Idealogic\RegistrationAPI\Model\MembershipOrderLineItemDTO[]'
     ];
 
     /**
@@ -72,10 +75,13 @@ class MembershipOrderStatusResponseDTO implements ModelInterface, ArrayAccess, \
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'card_attachment_url' => null,
-        'card_attachment_filename' => null,
-        'card_data' => null,
-        'member_list' => null
+        'remove' => null,
+        'id' => 'int64',
+        'number' => null,
+        'external_id' => null,
+        'status' => null,
+        'email' => null,
+        'line_items' => null
     ];
 
     /**
@@ -84,10 +90,13 @@ class MembershipOrderStatusResponseDTO implements ModelInterface, ArrayAccess, \
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'card_attachment_url' => false,
-        'card_attachment_filename' => false,
-        'card_data' => false,
-        'member_list' => false
+        'remove' => false,
+        'id' => false,
+        'number' => false,
+        'external_id' => false,
+        'status' => false,
+        'email' => false,
+        'line_items' => false
     ];
 
     /**
@@ -176,10 +185,13 @@ class MembershipOrderStatusResponseDTO implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $attributeMap = [
-        'card_attachment_url' => 'cardAttachmentURL',
-        'card_attachment_filename' => 'cardAttachmentFilename',
-        'card_data' => 'cardData',
-        'member_list' => 'memberList'
+        'remove' => 'remove',
+        'id' => 'id',
+        'number' => 'number',
+        'external_id' => 'externalId',
+        'status' => 'status',
+        'email' => 'email',
+        'line_items' => 'lineItems'
     ];
 
     /**
@@ -188,10 +200,13 @@ class MembershipOrderStatusResponseDTO implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $setters = [
-        'card_attachment_url' => 'setCardAttachmentUrl',
-        'card_attachment_filename' => 'setCardAttachmentFilename',
-        'card_data' => 'setCardData',
-        'member_list' => 'setMemberList'
+        'remove' => 'setRemove',
+        'id' => 'setId',
+        'number' => 'setNumber',
+        'external_id' => 'setExternalId',
+        'status' => 'setStatus',
+        'email' => 'setEmail',
+        'line_items' => 'setLineItems'
     ];
 
     /**
@@ -200,10 +215,13 @@ class MembershipOrderStatusResponseDTO implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $getters = [
-        'card_attachment_url' => 'getCardAttachmentUrl',
-        'card_attachment_filename' => 'getCardAttachmentFilename',
-        'card_data' => 'getCardData',
-        'member_list' => 'getMemberList'
+        'remove' => 'getRemove',
+        'id' => 'getId',
+        'number' => 'getNumber',
+        'external_id' => 'getExternalId',
+        'status' => 'getStatus',
+        'email' => 'getEmail',
+        'line_items' => 'getLineItems'
     ];
 
     /**
@@ -247,6 +265,25 @@ class MembershipOrderStatusResponseDTO implements ModelInterface, ArrayAccess, \
         return self::$openAPIModelName;
     }
 
+    public const STATUS_PENDING = 'PENDING';
+    public const STATUS_PAID = 'PAID';
+    public const STATUS_REFUNDED = 'REFUNDED';
+    public const STATUS_CANCELLED = 'CANCELLED';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_PENDING,
+            self::STATUS_PAID,
+            self::STATUS_REFUNDED,
+            self::STATUS_CANCELLED,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -263,10 +300,13 @@ class MembershipOrderStatusResponseDTO implements ModelInterface, ArrayAccess, \
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('card_attachment_url', $data ?? [], null);
-        $this->setIfExists('card_attachment_filename', $data ?? [], null);
-        $this->setIfExists('card_data', $data ?? [], null);
-        $this->setIfExists('member_list', $data ?? [], null);
+        $this->setIfExists('remove', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('number', $data ?? [], null);
+        $this->setIfExists('external_id', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('line_items', $data ?? [], null);
     }
 
     /**
@@ -296,6 +336,15 @@ class MembershipOrderStatusResponseDTO implements ModelInterface, ArrayAccess, \
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -312,109 +361,200 @@ class MembershipOrderStatusResponseDTO implements ModelInterface, ArrayAccess, \
 
 
     /**
-     * Gets card_attachment_url
+     * Gets remove
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getCardAttachmentUrl()
+    public function getRemove()
     {
-        return $this->container['card_attachment_url'];
+        return $this->container['remove'];
     }
 
     /**
-     * Sets card_attachment_url
+     * Sets remove
      *
-     * @param string|null $card_attachment_url card_attachment_url
+     * @param bool|null $remove remove
      *
      * @return self
      */
-    public function setCardAttachmentUrl($card_attachment_url)
+    public function setRemove($remove)
     {
-        if (is_null($card_attachment_url)) {
-            throw new \InvalidArgumentException('non-nullable card_attachment_url cannot be null');
+        if (is_null($remove)) {
+            throw new \InvalidArgumentException('non-nullable remove cannot be null');
         }
-        $this->container['card_attachment_url'] = $card_attachment_url;
+        $this->container['remove'] = $remove;
 
         return $this;
     }
 
     /**
-     * Gets card_attachment_filename
+     * Gets id
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getCardAttachmentFilename()
+    public function getId()
     {
-        return $this->container['card_attachment_filename'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets card_attachment_filename
+     * Sets id
      *
-     * @param string|null $card_attachment_filename card_attachment_filename
+     * @param int|null $id ID of the Order in this system to update
      *
      * @return self
      */
-    public function setCardAttachmentFilename($card_attachment_filename)
+    public function setId($id)
     {
-        if (is_null($card_attachment_filename)) {
-            throw new \InvalidArgumentException('non-nullable card_attachment_filename cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-        $this->container['card_attachment_filename'] = $card_attachment_filename;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets card_data
+     * Gets number
      *
      * @return string|null
      */
-    public function getCardData()
+    public function getNumber()
     {
-        return $this->container['card_data'];
+        return $this->container['number'];
     }
 
     /**
-     * Sets card_data
+     * Sets number
      *
-     * @param string|null $card_data card_data
+     * @param string|null $number Order number, as seen by the user
      *
      * @return self
      */
-    public function setCardData($card_data)
+    public function setNumber($number)
     {
-        if (is_null($card_data)) {
-            throw new \InvalidArgumentException('non-nullable card_data cannot be null');
+        if (is_null($number)) {
+            throw new \InvalidArgumentException('non-nullable number cannot be null');
         }
-        $this->container['card_data'] = $card_data;
+        $this->container['number'] = $number;
 
         return $this;
     }
 
     /**
-     * Gets member_list
+     * Gets external_id
      *
-     * @return \Idealogic\RegistrationAPI\Model\MembershipStatusDTO[]|null
+     * @return string|null
      */
-    public function getMemberList()
+    public function getExternalId()
     {
-        return $this->container['member_list'];
+        return $this->container['external_id'];
     }
 
     /**
-     * Sets member_list
+     * Sets external_id
      *
-     * @param \Idealogic\RegistrationAPI\Model\MembershipStatusDTO[]|null $member_list member_list
+     * @param string|null $external_id Order ID in the external system, typically the primary key
      *
      * @return self
      */
-    public function setMemberList($member_list)
+    public function setExternalId($external_id)
     {
-        if (is_null($member_list)) {
-            throw new \InvalidArgumentException('non-nullable member_list cannot be null');
+        if (is_null($external_id)) {
+            throw new \InvalidArgumentException('non-nullable external_id cannot be null');
         }
-        $this->container['member_list'] = $member_list;
+        $this->container['external_id'] = $external_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string|null $status Current status of the order
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets email
+     *
+     * @return string|null
+     */
+    public function getEmail()
+    {
+        return $this->container['email'];
+    }
+
+    /**
+     * Sets email
+     *
+     * @param string|null $email Email address associated with the order
+     *
+     * @return self
+     */
+    public function setEmail($email)
+    {
+        if (is_null($email)) {
+            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        }
+        $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets line_items
+     *
+     * @return \Idealogic\RegistrationAPI\Model\MembershipOrderLineItemDTO[]|null
+     */
+    public function getLineItems()
+    {
+        return $this->container['line_items'];
+    }
+
+    /**
+     * Sets line_items
+     *
+     * @param \Idealogic\RegistrationAPI\Model\MembershipOrderLineItemDTO[]|null $line_items List of line items in the order
+     *
+     * @return self
+     */
+    public function setLineItems($line_items)
+    {
+        if (is_null($line_items)) {
+            throw new \InvalidArgumentException('non-nullable line_items cannot be null');
+        }
+        $this->container['line_items'] = $line_items;
 
         return $this;
     }

@@ -5,12 +5,12 @@ All URIs are relative to https://admin-service-dev.idealogic.co.za, except if th
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**addMembership()**](MembershipResourceExApi.md#addMembership) | **POST** /api/memberships/add |  |
-| [**addMembershipOrder()**](MembershipResourceExApi.md#addMembershipOrder) | **POST** /api/memberships/order |  |
 | [**enrolMemberships()**](MembershipResourceExApi.md#enrolMemberships) | **POST** /api/memberships/enrol |  |
 | [**getLinkedMembers()**](MembershipResourceExApi.md#getLinkedMembers) | **GET** /api/memberships/linkedStatus/{externalUserId} |  |
 | [**getMemberStatusByLatestPeriodForMembershipType()**](MembershipResourceExApi.md#getMemberStatusByLatestPeriodForMembershipType) | **GET** /api/memberships/status/latestPeriod |  |
 | [**getMembershipAttachment()**](MembershipResourceExApi.md#getMembershipAttachment) | **GET** /api/memberships/attachment/{uuid} |  |
 | [**importMembership()**](MembershipResourceExApi.md#importMembership) | **PUT** /api/memberships/import |  |
+| [**updateMembershipOrder()**](MembershipResourceExApi.md#updateMembershipOrder) | **POST** /api/memberships/order |  |
 
 
 ## `addMembership()`
@@ -64,71 +64,6 @@ try {
 ### Return type
 
 [**\Idealogic\RegistrationAPI\Model\MembershipAddResponseDTO**](../Model/MembershipAddResponseDTO.md)
-
-### Authorization
-
-[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `*/*`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `addMembershipOrder()`
-
-```php
-addMembershipOrder($membership_order_status_request_dto, $organisation_id): \Idealogic\RegistrationAPI\Model\MembershipOrderStatusResponseDTO
-```
-
-
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: apiKey
-$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure Bearer (JWT) authorization: jwt
-$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new Idealogic\RegistrationAPI\Api\MembershipResourceExApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$membership_order_status_request_dto = new \Idealogic\RegistrationAPI\Model\MembershipOrderStatusRequestDTO(); // \Idealogic\RegistrationAPI\Model\MembershipOrderStatusRequestDTO
-$organisation_id = 56; // int
-
-try {
-    $result = $apiInstance->addMembershipOrder($membership_order_status_request_dto, $organisation_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling MembershipResourceExApi->addMembershipOrder: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **membership_order_status_request_dto** | [**\Idealogic\RegistrationAPI\Model\MembershipOrderStatusRequestDTO**](../Model/MembershipOrderStatusRequestDTO.md)|  | |
-| **organisation_id** | **int**|  | [optional] |
-
-### Return type
-
-[**\Idealogic\RegistrationAPI\Model\MembershipOrderStatusResponseDTO**](../Model/MembershipOrderStatusResponseDTO.md)
 
 ### Authorization
 
@@ -470,6 +405,71 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `*/*`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateMembershipOrder()`
+
+```php
+updateMembershipOrder($membership_order_update_request_dto, $organisation_id): \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+
+// Configure Bearer (JWT) authorization: jwt
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Idealogic\RegistrationAPI\Api\MembershipResourceExApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$membership_order_update_request_dto = new \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateRequestDTO(); // \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateRequestDTO
+$organisation_id = 56; // int
+
+try {
+    $result = $apiInstance->updateMembershipOrder($membership_order_update_request_dto, $organisation_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MembershipResourceExApi->updateMembershipOrder: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **membership_order_update_request_dto** | [**\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateRequestDTO**](../Model/MembershipOrderUpdateRequestDTO.md)|  | |
+| **organisation_id** | **int**|  | [optional] |
+
+### Return type
+
+[**\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO**](../Model/MembershipOrderUpdateResponseDTO.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `*/*`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

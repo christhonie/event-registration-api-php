@@ -36,6 +36,7 @@ use \Idealogic\RegistrationAPI\ObjectSerializer;
  * MembershipOrderLineItemDTO Class Doc Comment
  *
  * @category Class
+ * @description List of line items in the order
  * @package  Idealogic\RegistrationAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -58,9 +59,9 @@ class MembershipOrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSe
       * @var string[]
       */
     protected static $openAPITypes = [
-        'member_id' => 'int',
-        'product_id' => 'string',
-        'product_amount' => 'float'
+        'membership_id' => 'int',
+        'product' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
+        'product_id' => '\Idealogic\RegistrationAPI\Model\ProductDTO'
     ];
 
     /**
@@ -71,9 +72,9 @@ class MembershipOrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSe
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'member_id' => 'int64',
-        'product_id' => null,
-        'product_amount' => null
+        'membership_id' => 'int64',
+        'product' => null,
+        'product_id' => null
     ];
 
     /**
@@ -82,9 +83,9 @@ class MembershipOrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSe
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'member_id' => false,
-        'product_id' => false,
-        'product_amount' => false
+        'membership_id' => false,
+        'product' => false,
+        'product_id' => false
     ];
 
     /**
@@ -173,9 +174,9 @@ class MembershipOrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $attributeMap = [
-        'member_id' => 'memberId',
-        'product_id' => 'productId',
-        'product_amount' => 'productAmount'
+        'membership_id' => 'membershipId',
+        'product' => 'product',
+        'product_id' => 'productId'
     ];
 
     /**
@@ -184,9 +185,9 @@ class MembershipOrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $setters = [
-        'member_id' => 'setMemberId',
-        'product_id' => 'setProductId',
-        'product_amount' => 'setProductAmount'
+        'membership_id' => 'setMembershipId',
+        'product' => 'setProduct',
+        'product_id' => 'setProductId'
     ];
 
     /**
@@ -195,9 +196,9 @@ class MembershipOrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $getters = [
-        'member_id' => 'getMemberId',
-        'product_id' => 'getProductId',
-        'product_amount' => 'getProductAmount'
+        'membership_id' => 'getMembershipId',
+        'product' => 'getProduct',
+        'product_id' => 'getProductId'
     ];
 
     /**
@@ -257,9 +258,9 @@ class MembershipOrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('member_id', $data ?? [], null);
+        $this->setIfExists('membership_id', $data ?? [], null);
+        $this->setIfExists('product', $data ?? [], null);
         $this->setIfExists('product_id', $data ?? [], null);
-        $this->setIfExists('product_amount', $data ?? [], null);
     }
 
     /**
@@ -289,6 +290,12 @@ class MembershipOrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSe
     {
         $invalidProperties = [];
 
+        if ($this->container['membership_id'] === null) {
+            $invalidProperties[] = "'membership_id' can't be null";
+        }
+        if ($this->container['product'] === null) {
+            $invalidProperties[] = "'product' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -305,28 +312,55 @@ class MembershipOrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSe
 
 
     /**
-     * Gets member_id
+     * Gets membership_id
      *
-     * @return int|null
+     * @return int
      */
-    public function getMemberId()
+    public function getMembershipId()
     {
-        return $this->container['member_id'];
+        return $this->container['membership_id'];
     }
 
     /**
-     * Sets member_id
+     * Sets membership_id
      *
-     * @param int|null $member_id member_id
+     * @param int $membership_id ID of the Membership record in the backend
      *
      * @return self
      */
-    public function setMemberId($member_id)
+    public function setMembershipId($membership_id)
     {
-        if (is_null($member_id)) {
-            throw new \InvalidArgumentException('non-nullable member_id cannot be null');
+        if (is_null($membership_id)) {
+            throw new \InvalidArgumentException('non-nullable membership_id cannot be null');
         }
-        $this->container['member_id'] = $member_id;
+        $this->container['membership_id'] = $membership_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets product
+     *
+     * @return \Idealogic\RegistrationAPI\Model\ProductDTO
+     */
+    public function getProduct()
+    {
+        return $this->container['product'];
+    }
+
+    /**
+     * Sets product
+     *
+     * @param \Idealogic\RegistrationAPI\Model\ProductDTO $product product
+     *
+     * @return self
+     */
+    public function setProduct($product)
+    {
+        if (is_null($product)) {
+            throw new \InvalidArgumentException('non-nullable product cannot be null');
+        }
+        $this->container['product'] = $product;
 
         return $this;
     }
@@ -334,7 +368,7 @@ class MembershipOrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets product_id
      *
-     * @return string|null
+     * @return \Idealogic\RegistrationAPI\Model\ProductDTO|null
      */
     public function getProductId()
     {
@@ -344,7 +378,7 @@ class MembershipOrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets product_id
      *
-     * @param string|null $product_id product_id
+     * @param \Idealogic\RegistrationAPI\Model\ProductDTO|null $product_id product_id
      *
      * @return self
      */
@@ -354,33 +388,6 @@ class MembershipOrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSe
             throw new \InvalidArgumentException('non-nullable product_id cannot be null');
         }
         $this->container['product_id'] = $product_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets product_amount
-     *
-     * @return float|null
-     */
-    public function getProductAmount()
-    {
-        return $this->container['product_amount'];
-    }
-
-    /**
-     * Sets product_amount
-     *
-     * @param float|null $product_amount product_amount
-     *
-     * @return self
-     */
-    public function setProductAmount($product_amount)
-    {
-        if (is_null($product_amount)) {
-            throw new \InvalidArgumentException('non-nullable product_amount cannot be null');
-        }
-        $this->container['product_amount'] = $product_amount;
 
         return $this;
     }

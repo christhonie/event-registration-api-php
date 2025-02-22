@@ -1,4 +1,4 @@
-# # MembershipOrderStatusResponseDTO
+# # MembershipOrderUpdateResponseDTO
 
 ## Properties
 

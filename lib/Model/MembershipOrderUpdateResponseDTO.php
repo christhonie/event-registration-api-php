@@ -1,6 +1,6 @@
 <?php
 /**
- * MembershipOrderStatusRequestDTO
+ * MembershipOrderUpdateResponseDTO
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * MembershipOrderStatusRequestDTO Class Doc Comment
+ * MembershipOrderUpdateResponseDTO Class Doc Comment
  *
  * @category Class
  * @package  Idealogic\RegistrationAPI
@@ -41,7 +41,7 @@ use \Idealogic\RegistrationAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MembershipOrderStatusRequestDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class MembershipOrderUpdateResponseDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class MembershipOrderStatusRequestDTO implements ModelInterface, ArrayAccess, \J
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MembershipOrderStatusRequestDTO';
+    protected static $openAPIModelName = 'MembershipOrderUpdateResponseDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,11 +58,10 @@ class MembershipOrderStatusRequestDTO implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static $openAPITypes = [
-        'remove' => 'bool',
-        'order_id' => 'int',
-        'order_number' => 'string',
-        'status' => 'string',
-        'membership_details' => '\Idealogic\RegistrationAPI\Model\MembershipOrderLineItemDTO[]'
+        'card_attachment_url' => 'string',
+        'card_attachment_filename' => 'string',
+        'card_data' => 'string',
+        'member_list' => '\Idealogic\RegistrationAPI\Model\MembershipStatusDTO[]'
     ];
 
     /**
@@ -73,11 +72,10 @@ class MembershipOrderStatusRequestDTO implements ModelInterface, ArrayAccess, \J
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'remove' => null,
-        'order_id' => 'int64',
-        'order_number' => null,
-        'status' => null,
-        'membership_details' => null
+        'card_attachment_url' => null,
+        'card_attachment_filename' => null,
+        'card_data' => null,
+        'member_list' => null
     ];
 
     /**
@@ -86,11 +84,10 @@ class MembershipOrderStatusRequestDTO implements ModelInterface, ArrayAccess, \J
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'remove' => false,
-        'order_id' => false,
-        'order_number' => false,
-        'status' => false,
-        'membership_details' => false
+        'card_attachment_url' => false,
+        'card_attachment_filename' => false,
+        'card_data' => false,
+        'member_list' => false
     ];
 
     /**
@@ -179,11 +176,10 @@ class MembershipOrderStatusRequestDTO implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $attributeMap = [
-        'remove' => 'remove',
-        'order_id' => 'orderId',
-        'order_number' => 'orderNumber',
-        'status' => 'status',
-        'membership_details' => 'membershipDetails'
+        'card_attachment_url' => 'cardAttachmentURL',
+        'card_attachment_filename' => 'cardAttachmentFilename',
+        'card_data' => 'cardData',
+        'member_list' => 'memberList'
     ];
 
     /**
@@ -192,11 +188,10 @@ class MembershipOrderStatusRequestDTO implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $setters = [
-        'remove' => 'setRemove',
-        'order_id' => 'setOrderId',
-        'order_number' => 'setOrderNumber',
-        'status' => 'setStatus',
-        'membership_details' => 'setMembershipDetails'
+        'card_attachment_url' => 'setCardAttachmentUrl',
+        'card_attachment_filename' => 'setCardAttachmentFilename',
+        'card_data' => 'setCardData',
+        'member_list' => 'setMemberList'
     ];
 
     /**
@@ -205,11 +200,10 @@ class MembershipOrderStatusRequestDTO implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $getters = [
-        'remove' => 'getRemove',
-        'order_id' => 'getOrderId',
-        'order_number' => 'getOrderNumber',
-        'status' => 'getStatus',
-        'membership_details' => 'getMembershipDetails'
+        'card_attachment_url' => 'getCardAttachmentUrl',
+        'card_attachment_filename' => 'getCardAttachmentFilename',
+        'card_data' => 'getCardData',
+        'member_list' => 'getMemberList'
     ];
 
     /**
@@ -253,25 +247,6 @@ class MembershipOrderStatusRequestDTO implements ModelInterface, ArrayAccess, \J
         return self::$openAPIModelName;
     }
 
-    public const STATUS_PENDING = 'PENDING';
-    public const STATUS_PAID = 'PAID';
-    public const STATUS_REFUNDED = 'REFUNDED';
-    public const STATUS_CANCELLED = 'CANCELLED';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_PENDING,
-            self::STATUS_PAID,
-            self::STATUS_REFUNDED,
-            self::STATUS_CANCELLED,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -288,11 +263,10 @@ class MembershipOrderStatusRequestDTO implements ModelInterface, ArrayAccess, \J
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('remove', $data ?? [], null);
-        $this->setIfExists('order_id', $data ?? [], null);
-        $this->setIfExists('order_number', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('membership_details', $data ?? [], null);
+        $this->setIfExists('card_attachment_url', $data ?? [], null);
+        $this->setIfExists('card_attachment_filename', $data ?? [], null);
+        $this->setIfExists('card_data', $data ?? [], null);
+        $this->setIfExists('member_list', $data ?? [], null);
     }
 
     /**
@@ -322,15 +296,6 @@ class MembershipOrderStatusRequestDTO implements ModelInterface, ArrayAccess, \J
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -347,146 +312,109 @@ class MembershipOrderStatusRequestDTO implements ModelInterface, ArrayAccess, \J
 
 
     /**
-     * Gets remove
-     *
-     * @return bool|null
-     */
-    public function getRemove()
-    {
-        return $this->container['remove'];
-    }
-
-    /**
-     * Sets remove
-     *
-     * @param bool|null $remove remove
-     *
-     * @return self
-     */
-    public function setRemove($remove)
-    {
-        if (is_null($remove)) {
-            throw new \InvalidArgumentException('non-nullable remove cannot be null');
-        }
-        $this->container['remove'] = $remove;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_id
-     *
-     * @return int|null
-     */
-    public function getOrderId()
-    {
-        return $this->container['order_id'];
-    }
-
-    /**
-     * Sets order_id
-     *
-     * @param int|null $order_id order_id
-     *
-     * @return self
-     */
-    public function setOrderId($order_id)
-    {
-        if (is_null($order_id)) {
-            throw new \InvalidArgumentException('non-nullable order_id cannot be null');
-        }
-        $this->container['order_id'] = $order_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_number
+     * Gets card_attachment_url
      *
      * @return string|null
      */
-    public function getOrderNumber()
+    public function getCardAttachmentUrl()
     {
-        return $this->container['order_number'];
+        return $this->container['card_attachment_url'];
     }
 
     /**
-     * Sets order_number
+     * Sets card_attachment_url
      *
-     * @param string|null $order_number order_number
+     * @param string|null $card_attachment_url card_attachment_url
      *
      * @return self
      */
-    public function setOrderNumber($order_number)
+    public function setCardAttachmentUrl($card_attachment_url)
     {
-        if (is_null($order_number)) {
-            throw new \InvalidArgumentException('non-nullable order_number cannot be null');
+        if (is_null($card_attachment_url)) {
+            throw new \InvalidArgumentException('non-nullable card_attachment_url cannot be null');
         }
-        $this->container['order_number'] = $order_number;
+        $this->container['card_attachment_url'] = $card_attachment_url;
 
         return $this;
     }
 
     /**
-     * Gets status
+     * Gets card_attachment_filename
      *
      * @return string|null
      */
-    public function getStatus()
+    public function getCardAttachmentFilename()
     {
-        return $this->container['status'];
+        return $this->container['card_attachment_filename'];
     }
 
     /**
-     * Sets status
+     * Sets card_attachment_filename
      *
-     * @param string|null $status status
+     * @param string|null $card_attachment_filename card_attachment_filename
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setCardAttachmentFilename($card_attachment_filename)
     {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        if (is_null($card_attachment_filename)) {
+            throw new \InvalidArgumentException('non-nullable card_attachment_filename cannot be null');
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['card_attachment_filename'] = $card_attachment_filename;
 
         return $this;
     }
 
     /**
-     * Gets membership_details
+     * Gets card_data
      *
-     * @return \Idealogic\RegistrationAPI\Model\MembershipOrderLineItemDTO[]|null
+     * @return string|null
      */
-    public function getMembershipDetails()
+    public function getCardData()
     {
-        return $this->container['membership_details'];
+        return $this->container['card_data'];
     }
 
     /**
-     * Sets membership_details
+     * Sets card_data
      *
-     * @param \Idealogic\RegistrationAPI\Model\MembershipOrderLineItemDTO[]|null $membership_details membership_details
+     * @param string|null $card_data card_data
      *
      * @return self
      */
-    public function setMembershipDetails($membership_details)
+    public function setCardData($card_data)
     {
-        if (is_null($membership_details)) {
-            throw new \InvalidArgumentException('non-nullable membership_details cannot be null');
+        if (is_null($card_data)) {
+            throw new \InvalidArgumentException('non-nullable card_data cannot be null');
         }
-        $this->container['membership_details'] = $membership_details;
+        $this->container['card_data'] = $card_data;
+
+        return $this;
+    }
+
+    /**
+     * Gets member_list
+     *
+     * @return \Idealogic\RegistrationAPI\Model\MembershipStatusDTO[]|null
+     */
+    public function getMemberList()
+    {
+        return $this->container['member_list'];
+    }
+
+    /**
+     * Sets member_list
+     *
+     * @param \Idealogic\RegistrationAPI\Model\MembershipStatusDTO[]|null $member_list member_list
+     *
+     * @return self
+     */
+    public function setMemberList($member_list)
+    {
+        if (is_null($member_list)) {
+            throw new \InvalidArgumentException('non-nullable member_list cannot be null');
+        }
+        $this->container['member_list'] = $member_list;
 
         return $this;
     }
