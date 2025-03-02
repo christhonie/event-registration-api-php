@@ -21,7 +21,7 @@ All URIs are relative to https://admin-service-dev.idealogic.co.za, except if th
 ## `createPerson()`
 
 ```php
-createPerson($person_dto, $organisation_id): \Idealogic\RegistrationAPI\Model\PersonDTO
+createPerson($person_dto, $organisation_id, $user_key): \Idealogic\RegistrationAPI\Model\PersonDTO
 ```
 
 
@@ -50,9 +50,10 @@ $apiInstance = new Idealogic\RegistrationAPI\Api\PersonResourceApi(
 );
 $person_dto = new \Idealogic\RegistrationAPI\Model\PersonDTO(); // \Idealogic\RegistrationAPI\Model\PersonDTO
 $organisation_id = 56; // int
+$user_key = 'user_key_example'; // string
 
 try {
-    $result = $apiInstance->createPerson($person_dto, $organisation_id);
+    $result = $apiInstance->createPerson($person_dto, $organisation_id, $user_key);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PersonResourceApi->createPerson: ', $e->getMessage(), PHP_EOL;
@@ -65,6 +66,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **person_dto** | [**\Idealogic\RegistrationAPI\Model\PersonDTO**](../Model/PersonDTO.md)|  | |
 | **organisation_id** | **int**|  | [optional] |
+| **user_key** | **string**|  | [optional] |
 
 ### Return type
 
@@ -86,7 +88,7 @@ try {
 ## `deletePerson()`
 
 ```php
-deletePerson($id)
+deletePerson($id, $user_key, $organisation_id)
 ```
 
 
@@ -114,9 +116,11 @@ $apiInstance = new Idealogic\RegistrationAPI\Api\PersonResourceApi(
     $config
 );
 $id = 56; // int
+$user_key = 'user_key_example'; // string
+$organisation_id = 56; // int
 
 try {
-    $apiInstance->deletePerson($id);
+    $apiInstance->deletePerson($id, $user_key, $organisation_id);
 } catch (Exception $e) {
     echo 'Exception when calling PersonResourceApi->deletePerson: ', $e->getMessage(), PHP_EOL;
 }
@@ -127,6 +131,8 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **int**|  | |
+| **user_key** | **string**|  | |
+| **organisation_id** | **int**|  | [optional] |
 
 ### Return type
 
@@ -737,7 +743,7 @@ try {
 ## `updatePerson()`
 
 ```php
-updatePerson($id, $person_dto, $organisation_id): \Idealogic\RegistrationAPI\Model\PersonDTO
+updatePerson($id, $person_dto, $organisation_id, $user_key): \Idealogic\RegistrationAPI\Model\PersonDTO
 ```
 
 
@@ -767,9 +773,10 @@ $apiInstance = new Idealogic\RegistrationAPI\Api\PersonResourceApi(
 $id = 56; // int
 $person_dto = new \Idealogic\RegistrationAPI\Model\PersonDTO(); // \Idealogic\RegistrationAPI\Model\PersonDTO
 $organisation_id = 56; // int
+$user_key = 'user_key_example'; // string
 
 try {
-    $result = $apiInstance->updatePerson($id, $person_dto, $organisation_id);
+    $result = $apiInstance->updatePerson($id, $person_dto, $organisation_id, $user_key);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PersonResourceApi->updatePerson: ', $e->getMessage(), PHP_EOL;
@@ -783,6 +790,7 @@ try {
 | **id** | **int**|  | |
 | **person_dto** | [**\Idealogic\RegistrationAPI\Model\PersonDTO**](../Model/PersonDTO.md)|  | |
 | **organisation_id** | **int**|  | [optional] |
+| **user_key** | **string**|  | [optional] |
 
 ### Return type
 

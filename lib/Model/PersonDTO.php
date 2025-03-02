@@ -583,9 +583,6 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['gender'] === null) {
-            $invalidProperties[] = "'gender' can't be null";
-        }
         $allowedValues = $this->getGenderAllowableValues();
         if (!is_null($this->container['gender']) && !in_array($this->container['gender'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -760,7 +757,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets gender
      *
-     * @return string
+     * @return string|null
      */
     public function getGender()
     {
@@ -770,7 +767,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets gender
      *
-     * @param string $gender gender
+     * @param string|null $gender gender
      *
      * @return self
      */

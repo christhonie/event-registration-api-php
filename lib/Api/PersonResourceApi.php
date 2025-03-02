@@ -162,16 +162,16 @@ class PersonResourceApi
      *
      * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto person_dto (required)
      * @param  int $organisation_id organisation_id (optional)
+     * @param  string $user_key user_key (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Idealogic\RegistrationAPI\Model\PersonDTO
-     * @deprecated
      */
-    public function createPerson($person_dto, $organisation_id = null, string $contentType = self::contentTypes['createPerson'][0])
+    public function createPerson($person_dto, $organisation_id = null, $user_key = null, string $contentType = self::contentTypes['createPerson'][0])
     {
-        list($response) = $this->createPersonWithHttpInfo($person_dto, $organisation_id, $contentType);
+        list($response) = $this->createPersonWithHttpInfo($person_dto, $organisation_id, $user_key, $contentType);
         return $response;
     }
 
@@ -180,16 +180,16 @@ class PersonResourceApi
      *
      * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
      * @param  int $organisation_id (optional)
+     * @param  string $user_key (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Idealogic\RegistrationAPI\Model\PersonDTO, HTTP status code, HTTP response headers (array of strings)
-     * @deprecated
      */
-    public function createPersonWithHttpInfo($person_dto, $organisation_id = null, string $contentType = self::contentTypes['createPerson'][0])
+    public function createPersonWithHttpInfo($person_dto, $organisation_id = null, $user_key = null, string $contentType = self::contentTypes['createPerson'][0])
     {
-        $request = $this->createPersonRequest($person_dto, $organisation_id, $contentType);
+        $request = $this->createPersonRequest($person_dto, $organisation_id, $user_key, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -304,15 +304,15 @@ class PersonResourceApi
      *
      * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
      * @param  int $organisation_id (optional)
+     * @param  string $user_key (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
-     * @deprecated
      */
-    public function createPersonAsync($person_dto, $organisation_id = null, string $contentType = self::contentTypes['createPerson'][0])
+    public function createPersonAsync($person_dto, $organisation_id = null, $user_key = null, string $contentType = self::contentTypes['createPerson'][0])
     {
-        return $this->createPersonAsyncWithHttpInfo($person_dto, $organisation_id, $contentType)
+        return $this->createPersonAsyncWithHttpInfo($person_dto, $organisation_id, $user_key, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -325,16 +325,16 @@ class PersonResourceApi
      *
      * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
      * @param  int $organisation_id (optional)
+     * @param  string $user_key (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
-     * @deprecated
      */
-    public function createPersonAsyncWithHttpInfo($person_dto, $organisation_id = null, string $contentType = self::contentTypes['createPerson'][0])
+    public function createPersonAsyncWithHttpInfo($person_dto, $organisation_id = null, $user_key = null, string $contentType = self::contentTypes['createPerson'][0])
     {
         $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO';
-        $request = $this->createPersonRequest($person_dto, $organisation_id, $contentType);
+        $request = $this->createPersonRequest($person_dto, $organisation_id, $user_key, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -377,13 +377,13 @@ class PersonResourceApi
      *
      * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
      * @param  int $organisation_id (optional)
+     * @param  string $user_key (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
-     * @deprecated
      */
-    public function createPersonRequest($person_dto, $organisation_id = null, string $contentType = self::contentTypes['createPerson'][0])
+    public function createPersonRequest($person_dto, $organisation_id = null, $user_key = null, string $contentType = self::contentTypes['createPerson'][0])
     {
 
         // verify the required parameter 'person_dto' is set
@@ -392,6 +392,7 @@ class PersonResourceApi
                 'Missing the required parameter $person_dto when calling createPerson'
             );
         }
+
 
 
 
@@ -407,6 +408,15 @@ class PersonResourceApi
             $organisation_id,
             'organisationId', // param base name
             'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $user_key,
+            'userKey', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -488,30 +498,34 @@ class PersonResourceApi
      * Operation deletePerson
      *
      * @param  int $id id (required)
+     * @param  string $user_key user_key (required)
+     * @param  int $organisation_id organisation_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePerson($id, string $contentType = self::contentTypes['deletePerson'][0])
+    public function deletePerson($id, $user_key, $organisation_id = null, string $contentType = self::contentTypes['deletePerson'][0])
     {
-        $this->deletePersonWithHttpInfo($id, $contentType);
+        $this->deletePersonWithHttpInfo($id, $user_key, $organisation_id, $contentType);
     }
 
     /**
      * Operation deletePersonWithHttpInfo
      *
      * @param  int $id (required)
+     * @param  string $user_key (required)
+     * @param  int $organisation_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePersonWithHttpInfo($id, string $contentType = self::contentTypes['deletePerson'][0])
+    public function deletePersonWithHttpInfo($id, $user_key, $organisation_id = null, string $contentType = self::contentTypes['deletePerson'][0])
     {
-        $request = $this->deletePersonRequest($id, $contentType);
+        $request = $this->deletePersonRequest($id, $user_key, $organisation_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -561,14 +575,16 @@ class PersonResourceApi
      * Operation deletePersonAsync
      *
      * @param  int $id (required)
+     * @param  string $user_key (required)
+     * @param  int $organisation_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePersonAsync($id, string $contentType = self::contentTypes['deletePerson'][0])
+    public function deletePersonAsync($id, $user_key, $organisation_id = null, string $contentType = self::contentTypes['deletePerson'][0])
     {
-        return $this->deletePersonAsyncWithHttpInfo($id, $contentType)
+        return $this->deletePersonAsyncWithHttpInfo($id, $user_key, $organisation_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -580,15 +596,17 @@ class PersonResourceApi
      * Operation deletePersonAsyncWithHttpInfo
      *
      * @param  int $id (required)
+     * @param  string $user_key (required)
+     * @param  int $organisation_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePersonAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deletePerson'][0])
+    public function deletePersonAsyncWithHttpInfo($id, $user_key, $organisation_id = null, string $contentType = self::contentTypes['deletePerson'][0])
     {
         $returnType = '';
-        $request = $this->deletePersonRequest($id, $contentType);
+        $request = $this->deletePersonRequest($id, $user_key, $organisation_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -617,12 +635,14 @@ class PersonResourceApi
      * Create request for operation 'deletePerson'
      *
      * @param  int $id (required)
+     * @param  string $user_key (required)
+     * @param  int $organisation_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePersonRequest($id, string $contentType = self::contentTypes['deletePerson'][0])
+    public function deletePersonRequest($id, $user_key, $organisation_id = null, string $contentType = self::contentTypes['deletePerson'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -632,6 +652,14 @@ class PersonResourceApi
             );
         }
 
+        // verify the required parameter 'user_key' is set
+        if ($user_key === null || (is_array($user_key) && count($user_key) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $user_key when calling deletePerson'
+            );
+        }
+
+
 
         $resourcePath = '/api/people/{id}';
         $formParams = [];
@@ -640,6 +668,24 @@ class PersonResourceApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $organisation_id,
+            'organisationId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $user_key,
+            'userKey', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
 
 
         // path params
@@ -1587,21 +1633,21 @@ class PersonResourceApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $user_key,
-            'userKey', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $organisation_id,
             'organisationId', // param base name
             'integer', // openApiType
             'form', // style
             true, // explode
             false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $user_key,
+            'userKey', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
         ) ?? []);
 
 
@@ -3713,6 +3759,7 @@ class PersonResourceApi
      * @param  int $id id (required)
      * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto person_dto (required)
      * @param  int $organisation_id organisation_id (optional)
+     * @param  string $user_key user_key (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3720,9 +3767,9 @@ class PersonResourceApi
      * @return \Idealogic\RegistrationAPI\Model\PersonDTO
      * @deprecated
      */
-    public function updatePerson($id, $person_dto, $organisation_id = null, string $contentType = self::contentTypes['updatePerson'][0])
+    public function updatePerson($id, $person_dto, $organisation_id = null, $user_key = null, string $contentType = self::contentTypes['updatePerson'][0])
     {
-        list($response) = $this->updatePersonWithHttpInfo($id, $person_dto, $organisation_id, $contentType);
+        list($response) = $this->updatePersonWithHttpInfo($id, $person_dto, $organisation_id, $user_key, $contentType);
         return $response;
     }
 
@@ -3732,6 +3779,7 @@ class PersonResourceApi
      * @param  int $id (required)
      * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
      * @param  int $organisation_id (optional)
+     * @param  string $user_key (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePerson'] to see the possible values for this operation
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3739,9 +3787,9 @@ class PersonResourceApi
      * @return array of \Idealogic\RegistrationAPI\Model\PersonDTO, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
-    public function updatePersonWithHttpInfo($id, $person_dto, $organisation_id = null, string $contentType = self::contentTypes['updatePerson'][0])
+    public function updatePersonWithHttpInfo($id, $person_dto, $organisation_id = null, $user_key = null, string $contentType = self::contentTypes['updatePerson'][0])
     {
-        $request = $this->updatePersonRequest($id, $person_dto, $organisation_id, $contentType);
+        $request = $this->updatePersonRequest($id, $person_dto, $organisation_id, $user_key, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3857,15 +3905,16 @@ class PersonResourceApi
      * @param  int $id (required)
      * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
      * @param  int $organisation_id (optional)
+     * @param  string $user_key (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function updatePersonAsync($id, $person_dto, $organisation_id = null, string $contentType = self::contentTypes['updatePerson'][0])
+    public function updatePersonAsync($id, $person_dto, $organisation_id = null, $user_key = null, string $contentType = self::contentTypes['updatePerson'][0])
     {
-        return $this->updatePersonAsyncWithHttpInfo($id, $person_dto, $organisation_id, $contentType)
+        return $this->updatePersonAsyncWithHttpInfo($id, $person_dto, $organisation_id, $user_key, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3879,16 +3928,17 @@ class PersonResourceApi
      * @param  int $id (required)
      * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
      * @param  int $organisation_id (optional)
+     * @param  string $user_key (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      * @deprecated
      */
-    public function updatePersonAsyncWithHttpInfo($id, $person_dto, $organisation_id = null, string $contentType = self::contentTypes['updatePerson'][0])
+    public function updatePersonAsyncWithHttpInfo($id, $person_dto, $organisation_id = null, $user_key = null, string $contentType = self::contentTypes['updatePerson'][0])
     {
         $returnType = '\Idealogic\RegistrationAPI\Model\PersonDTO';
-        $request = $this->updatePersonRequest($id, $person_dto, $organisation_id, $contentType);
+        $request = $this->updatePersonRequest($id, $person_dto, $organisation_id, $user_key, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3932,13 +3982,14 @@ class PersonResourceApi
      * @param  int $id (required)
      * @param  \Idealogic\RegistrationAPI\Model\PersonDTO $person_dto (required)
      * @param  int $organisation_id (optional)
+     * @param  string $user_key (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePerson'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      * @deprecated
      */
-    public function updatePersonRequest($id, $person_dto, $organisation_id = null, string $contentType = self::contentTypes['updatePerson'][0])
+    public function updatePersonRequest($id, $person_dto, $organisation_id = null, $user_key = null, string $contentType = self::contentTypes['updatePerson'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -3957,6 +4008,7 @@ class PersonResourceApi
 
 
 
+
         $resourcePath = '/api/people/{id}';
         $formParams = [];
         $queryParams = [];
@@ -3969,6 +4021,15 @@ class PersonResourceApi
             $organisation_id,
             'organisationId', // param base name
             'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $user_key,
+            'userKey', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required

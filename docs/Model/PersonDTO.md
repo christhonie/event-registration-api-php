@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **first_name** | **string** |  | [optional]
 **last_name** | **string** |  | [optional]
 **date_of_birth** | **\DateTime** |  | [optional]
-**gender** | **string** |  |
+**gender** | **string** |  | [optional]
 **email** | **string** |  | [optional]
 **contact_number** | **string** | Telephone number. Usually a cellphone number. | [optional]
 **identity_number** | **string** | Number associated with the identification type. | [optional]
