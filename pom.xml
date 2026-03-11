@@ -84,7 +84,7 @@
 						OrganisationResource,PersonResource,ResultSet,RaceResult,CustomList,CustomListValue,OrderResourceEx,MembershipResourceEx
 					</apisToGenerate>
 					<modelsToGenerate>
-						OrganisationDTO,DisciplineDTO,PersonDTO,SeriesDTO,EventDTO,CategoryDTO,EventCategoryDTO,CourseTypeDTO,CourseDTO,EventRaceTypeDTO,StartGroupDTO,RaceDTO,RoundDTO,ProductDTO,OrderDTO,ParticipantOrderDTO,EventParticipantDTO,StartGroupParticipantDTO,ResultSetDTO,RaceResultDTO,CustomListDTO,CustomListValueDTO,NumberTypeDTO,TagTypeDTO,MembershipStatusDTO,MembershipStatus,LatestPeriodMembershipStatusResponseDTO,MembershipAddResponseDTO,MembershipOrderUpdateRequestDTO,,OrderStatus,MembershipOrderLineItemDTO,MembershipOrderUpdateResponseDTO
+						OrganisationDTO,DisciplineDTO,PersonDTO,SeriesDTO,EventDTO,CategoryDTO,EventCategoryDTO,CourseTypeDTO,CourseDTO,EventRaceTypeDTO,StartGroupDTO,RaceDTO,RoundDTO,ProductDTO,OrderDTO,ParticipantOrderDTO,EventParticipantDTO,StartGroupParticipantDTO,ResultSetDTO,RaceResultDTO,CustomListDTO,CustomListValueDTO,NumberTypeDTO,TagTypeDTO,MembershipStatusDTO,MembershipStatus,LatestPeriodMembershipStatusResponseDTO,MembershipAddResponseDTO,MembershipOrderUpdateRequestDTO,OrderStatus,MembershipOrderLineItemDTO,MembershipOrderUpdateResponseDTO,RegistrationSystemDTO
 					</modelsToGenerate>
 				</configuration>
 				<executions>
