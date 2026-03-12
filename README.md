@@ -138,6 +138,7 @@ Class | Method | HTTP request | Description
 - [ProductDTO](docs/Model/ProductDTO.md)
 - [RaceDTO](docs/Model/RaceDTO.md)
 - [RaceResultDTO](docs/Model/RaceResultDTO.md)
+- [RegistrationSystemDTO](docs/Model/RegistrationSystemDTO.md)
 - [ResultSetDTO](docs/Model/ResultSetDTO.md)
 - [RoundDTO](docs/Model/RoundDTO.md)
 - [SeriesDTO](docs/Model/SeriesDTO.md)
