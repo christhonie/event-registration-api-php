@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional]
-**name** | **string** |  |
-**external_id** | **string** | Foreign key to external product module | [optional]
+**name** | **mixed** |  |
+**external_id** | **mixed** | Foreign key to external product module | [optional]
 **price** | **float** |  |
 **sales_price** | **float** |  | [optional]
 **sale_from** | **\DateTime** |  | [optional]

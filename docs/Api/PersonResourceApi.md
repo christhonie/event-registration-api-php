@@ -1,6 +1,6 @@
 # Idealogic\RegistrationAPI\PersonResourceApi
 
-All URIs are relative to https://admin-service-dev.idealogic.co.za, except if the operation defines another base path.
+All URIs are relative to http://localhost:12504, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
@@ -347,7 +347,7 @@ try {
 ## `getAllLinkedOrgUsersByPrincipal()`
 
 ```php
-getAllLinkedOrgUsersByPrincipal($pageable, $user_key, $organisation_id): \Idealogic\RegistrationAPI\Model\EmbeddedLinkedPersonDTO[]
+getAllLinkedOrgUsersByPrincipal($arg0, $user_key, $organisation_id): mixed
 ```
 
 
@@ -374,12 +374,12 @@ $apiInstance = new Idealogic\RegistrationAPI\Api\PersonResourceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$pageable = new \Idealogic\RegistrationAPI\Model\Pageable(); // Pageable
+$arg0 = new \Idealogic\RegistrationAPI\Model\Pageable(); // Pageable
 $user_key = 'user_key_example'; // string
 $organisation_id = 56; // int
 
 try {
-    $result = $apiInstance->getAllLinkedOrgUsersByPrincipal($pageable, $user_key, $organisation_id);
+    $result = $apiInstance->getAllLinkedOrgUsersByPrincipal($arg0, $user_key, $organisation_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PersonResourceApi->getAllLinkedOrgUsersByPrincipal: ', $e->getMessage(), PHP_EOL;
@@ -390,13 +390,13 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **pageable** | [**Pageable**](../Model/.md)|  | |
+| **arg0** | [**Pageable**](../Model/.md)|  | |
 | **user_key** | **string**|  | |
 | **organisation_id** | **int**|  | [optional] |
 
 ### Return type
 
-[**\Idealogic\RegistrationAPI\Model\EmbeddedLinkedPersonDTO[]**](../Model/EmbeddedLinkedPersonDTO.md)
+**mixed**
 
 ### Authorization
 
@@ -575,7 +575,7 @@ $apiInstance = new Idealogic\RegistrationAPI\Api\PersonResourceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$person_dto = new \Idealogic\RegistrationAPI\Model\PersonDTO(); // PersonDTO
+$person_dto = new \Idealogic\RegistrationAPI\Model\PersonDTO(); // \Idealogic\RegistrationAPI\Model\PersonDTO
 $organisation_id = 56; // int
 
 try {
@@ -590,7 +590,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **person_dto** | [**PersonDTO**](../Model/.md)|  | |
+| **person_dto** | [**\Idealogic\RegistrationAPI\Model\PersonDTO**](../Model/PersonDTO.md)|  | |
 | **organisation_id** | **int**|  | [optional] |
 
 ### Return type
@@ -603,7 +603,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: `*/*`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -678,7 +678,7 @@ try {
 ## `queryPerson()`
 
 ```php
-queryPerson($q, $pageable): \Idealogic\RegistrationAPI\Model\PersonDTO[]
+queryPerson($q, $arg1): mixed
 ```
 
 
@@ -706,10 +706,10 @@ $apiInstance = new Idealogic\RegistrationAPI\Api\PersonResourceApi(
     $config
 );
 $q = 'q_example'; // string
-$pageable = new \Idealogic\RegistrationAPI\Model\Pageable(); // Pageable
+$arg1 = new \Idealogic\RegistrationAPI\Model\Pageable(); // Pageable
 
 try {
-    $result = $apiInstance->queryPerson($q, $pageable);
+    $result = $apiInstance->queryPerson($q, $arg1);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PersonResourceApi->queryPerson: ', $e->getMessage(), PHP_EOL;
@@ -721,11 +721,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **q** | **string**|  | |
-| **pageable** | [**Pageable**](../Model/.md)|  | |
+| **arg1** | [**Pageable**](../Model/.md)|  | |
 
 ### Return type
 
-[**\Idealogic\RegistrationAPI\Model\PersonDTO[]**](../Model/PersonDTO.md)
+**mixed**
 
 ### Authorization
 

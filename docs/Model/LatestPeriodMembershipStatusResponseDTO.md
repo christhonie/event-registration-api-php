@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**membership_type_name** | **string** |  | [optional]
-**membership_period_id** | **int** |  | [optional]
-**membership_period_name** | **string** |  | [optional]
-**main_member_id** | **int** |  | [optional]
-**status** | [**\Idealogic\RegistrationAPI\Model\MembershipStatusDTO[]**](MembershipStatusDTO.md) |  | [optional]
+**membership_type_name** | **mixed** |  | [optional]
+**membership_period_id** | **mixed** |  | [optional]
+**membership_period_name** | **mixed** |  | [optional]
+**main_member_id** | **mixed** |  | [optional]
+**status** | **mixed** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

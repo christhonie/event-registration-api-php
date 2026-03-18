@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**card_attachment_url** | **string** |  | [optional]
-**card_attachment_filename** | **string** |  | [optional]
-**card_data** | **string** |  | [optional]
-**member_list** | [**\Idealogic\RegistrationAPI\Model\MembershipStatusDTO[]**](MembershipStatusDTO.md) |  | [optional]
+**card_attachment_url** | **mixed** |  | [optional]
+**card_attachment_filename** | **mixed** |  | [optional]
+**card_data** | **mixed** |  | [optional]
+**member_list** | **mixed** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

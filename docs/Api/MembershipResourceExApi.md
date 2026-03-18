@@ -1,6 +1,6 @@
 # Idealogic\RegistrationAPI\MembershipResourceExApi
 
-All URIs are relative to https://admin-service-dev.idealogic.co.za, except if the operation defines another base path.
+All URIs are relative to http://localhost:12504, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
@@ -9,6 +9,7 @@ All URIs are relative to https://admin-service-dev.idealogic.co.za, except if th
 | [**getLinkedMembers()**](MembershipResourceExApi.md#getLinkedMembers) | **GET** /api/memberships/linkedStatus/{externalUserId} |  |
 | [**getMemberStatusByLatestPeriodForMembershipType()**](MembershipResourceExApi.md#getMemberStatusByLatestPeriodForMembershipType) | **GET** /api/memberships/status/latestPeriod |  |
 | [**getMembershipAttachment()**](MembershipResourceExApi.md#getMembershipAttachment) | **GET** /api/memberships/attachment/{uuid} |  |
+| [**getMyLinkedMembers()**](MembershipResourceExApi.md#getMyLinkedMembers) | **GET** /api/memberships/my-linked-status |  |
 | [**importMembership()**](MembershipResourceExApi.md#importMembership) | **PUT** /api/memberships/import |  |
 | [**updateMembershipOrder()**](MembershipResourceExApi.md#updateMembershipOrder) | **POST** /api/memberships/order |  |
 
@@ -175,7 +176,7 @@ $apiInstance = new Idealogic\RegistrationAPI\Api\MembershipResourceExApi(
 );
 $external_user_id = 'external_user_id_example'; // string
 $organisation_id = 56; // int
-$membership_type_id = 56; // int
+$membership_type_id = NULL; // mixed
 
 try {
     $result = $apiInstance->getLinkedMembers($external_user_id, $organisation_id, $membership_type_id);
@@ -191,7 +192,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **external_user_id** | **string**|  | |
 | **organisation_id** | **int**|  | [optional] |
-| **membership_type_id** | **int**|  | [optional] |
+| **membership_type_id** | [**mixed**](../Model/.md)|  | [optional] |
 
 ### Return type
 
@@ -280,7 +281,7 @@ try {
 ## `getMembershipAttachment()`
 
 ```php
-getMembershipAttachment($uuid, $organisation_id): string[]
+getMembershipAttachment($uuid, $organisation_id): mixed
 ```
 
 
@@ -327,7 +328,7 @@ try {
 
 ### Return type
 
-**string[]**
+**mixed**
 
 ### Authorization
 
@@ -337,6 +338,69 @@ try {
 
 - **Content-Type**: Not defined
 - **Accept**: `application/pdf`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getMyLinkedMembers()`
+
+```php
+getMyLinkedMembers($membership_type_id): \Idealogic\RegistrationAPI\Model\MembershipStatusDTO[]
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+
+// Configure Bearer (JWT) authorization: jwt
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Idealogic\RegistrationAPI\Api\MembershipResourceExApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$membership_type_id = 56; // int
+
+try {
+    $result = $apiInstance->getMyLinkedMembers($membership_type_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MembershipResourceExApi->getMyLinkedMembers: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **membership_type_id** | **int**|  | [optional] |
+
+### Return type
+
+[**\Idealogic\RegistrationAPI\Model\MembershipStatusDTO[]**](../Model/MembershipStatusDTO.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `*/*`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

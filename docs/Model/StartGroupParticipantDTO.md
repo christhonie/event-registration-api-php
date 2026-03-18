@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional]
-**name** | **string** |  | [optional]
-**first_name** | **string** |  | [optional]
-**last_name** | **string** |  | [optional]
-**date_of_birth** | **\DateTime** |  | [optional]
-**gender** | **string** |  | [optional]
-**age** | **int** | Age on the day of the race. | [optional]
-**seq** | **int** | Sequence of this participant in the start group. | [optional]
+**id** | **mixed** |  | [optional]
+**name** | **mixed** |  | [optional]
+**first_name** | **mixed** |  | [optional]
+**last_name** | **mixed** |  | [optional]
+**date_of_birth** | **mixed** |  | [optional]
+**gender** | **mixed** |  | [optional]
+**age** | **mixed** | Age on the day of the race. | [optional]
+**seq** | **mixed** | Sequence of this participant in the start group. | [optional]
 **start_group** | [**\Idealogic\RegistrationAPI\Model\StartGroupDTO**](StartGroupDTO.md) |  |
 **event_participant** | [**\Idealogic\RegistrationAPI\Model\EventParticipantDTO**](EventParticipantDTO.md) |  |
 
