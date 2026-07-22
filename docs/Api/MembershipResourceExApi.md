@@ -1,16 +1,17 @@
 # Idealogic\RegistrationAPI\MembershipResourceExApi
 
-All URIs are relative to http://localhost:12504, except if the operation defines another base path.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**addMembership()**](MembershipResourceExApi.md#addMembership) | **POST** /api/memberships/add |  |
 | [**enrolMemberships()**](MembershipResourceExApi.md#enrolMemberships) | **POST** /api/memberships/enrol |  |
+| [**getImportResults1()**](MembershipResourceExApi.md#getImportResults1) | **GET** /api/memberships/import/{jobId} |  |
 | [**getLinkedMembers()**](MembershipResourceExApi.md#getLinkedMembers) | **GET** /api/memberships/linkedStatus/{externalUserId} |  |
 | [**getMemberStatusByLatestPeriodForMembershipType()**](MembershipResourceExApi.md#getMemberStatusByLatestPeriodForMembershipType) | **GET** /api/memberships/status/latestPeriod |  |
 | [**getMembershipAttachment()**](MembershipResourceExApi.md#getMembershipAttachment) | **GET** /api/memberships/attachment/{uuid} |  |
 | [**getMyLinkedMembers()**](MembershipResourceExApi.md#getMyLinkedMembers) | **GET** /api/memberships/my-linked-status |  |
-| [**importMembership()**](MembershipResourceExApi.md#importMembership) | **PUT** /api/memberships/import |  |
+| [**importMemberships()**](MembershipResourceExApi.md#importMemberships) | **PUT** /api/memberships/import |  |
 | [**updateMembershipOrder()**](MembershipResourceExApi.md#updateMembershipOrder) | **POST** /api/memberships/order |  |
 
 
@@ -138,6 +139,69 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `*/*`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getImportResults1()`
+
+```php
+getImportResults1($job_id): \Idealogic\RegistrationAPI\Model\MembershipImportResultDTO
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+
+// Configure Bearer (JWT) authorization: jwt
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Idealogic\RegistrationAPI\Api\MembershipResourceExApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$job_id = NULL; // mixed
+
+try {
+    $result = $apiInstance->getImportResults1($job_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MembershipResourceExApi->getImportResults1: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **job_id** | [**mixed**](../Model/.md)|  | |
+
+### Return type
+
+[**\Idealogic\RegistrationAPI\Model\MembershipImportResultDTO**](../Model/MembershipImportResultDTO.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `*/*`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -406,10 +470,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `importMembership()`
+## `importMemberships()`
 
 ```php
-importMembership($file, $sheet_index, $period_id, $org_id): \Idealogic\RegistrationAPI\Model\MembershipAddResponseDTO[]
+importMemberships($period_id, $sheet_index, $org_id, $import_results_request): \Idealogic\RegistrationAPI\Model\ImportJobDTO
 ```
 
 
@@ -436,16 +500,16 @@ $apiInstance = new Idealogic\RegistrationAPI\Api\MembershipResourceExApi(
     new GuzzleHttp\Client(),
     $config
 );
-$file = 'file_example'; // string
-$sheet_index = 56; // int
 $period_id = 56; // int
+$sheet_index = 0; // int
 $org_id = 56; // int
+$import_results_request = new \Idealogic\RegistrationAPI\Model\ImportResultsRequest(); // \Idealogic\RegistrationAPI\Model\ImportResultsRequest
 
 try {
-    $result = $apiInstance->importMembership($file, $sheet_index, $period_id, $org_id);
+    $result = $apiInstance->importMemberships($period_id, $sheet_index, $org_id, $import_results_request);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MembershipResourceExApi->importMembership: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MembershipResourceExApi->importMemberships: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -453,14 +517,14 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | **string**|  | |
-| **sheet_index** | **int**|  | |
 | **period_id** | **int**|  | |
+| **sheet_index** | **int**|  | [optional] [default to 0] |
 | **org_id** | **int**|  | [optional] |
+| **import_results_request** | [**\Idealogic\RegistrationAPI\Model\ImportResultsRequest**](../Model/ImportResultsRequest.md)|  | [optional] |
 
 ### Return type
 
-[**\Idealogic\RegistrationAPI\Model\MembershipAddResponseDTO[]**](../Model/MembershipAddResponseDTO.md)
+[**\Idealogic\RegistrationAPI\Model\ImportJobDTO**](../Model/ImportJobDTO.md)
 
 ### Authorization
 
@@ -468,7 +532,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: `*/*`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

@@ -32,6 +32,7 @@ Name | Type | Description | Notes
 **order_external_id** | **mixed** |  | [optional]
 **order_status** | **mixed** |  | [optional]
 **message** | **mixed** |  | [optional]
+**payment_url** | **mixed** |  | [optional]
 **renew_period_id** | **mixed** |  | [optional]
 **renew_period_name** | **mixed** |  | [optional]
 

@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **email** | **mixed** | Email address associated with the order | [optional]
 **discount** | **mixed** | Order-level coupon discount total | [optional]
 **refund_amount** | **mixed** | Cumulative refund amount | [optional]
+**payment_date_time** | **mixed** | Date and time the payment was made | [optional]
+**payment_amount** | **mixed** | Amount paid | [optional]
 **line_items** | **mixed** | List of line items in the order | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

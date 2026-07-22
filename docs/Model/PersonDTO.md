@@ -38,6 +38,7 @@ Name | Type | Description | Notes
 **user_id** | **mixed** |  | [optional]
 **org_user_id** | **mixed** |  | [optional]
 **main_member_user_key** | **mixed** |  | [optional]
+**source_system_person_id** | **mixed** |  | [optional]
 **validation_errors** | **mixed** |  | [optional]
 **identity_number_invalid** | **mixed** |  | [optional]
 **identity_country_invalid** | **mixed** |  | [optional]

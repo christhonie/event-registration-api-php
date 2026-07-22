@@ -20,6 +20,9 @@ Name | Type | Description | Notes
 **active** | **bool** |  | [optional]
 **override_indicator** | **bool** |  | [optional]
 **team_indicator** | **bool** |  | [optional]
+**compliance_status** | **string** |  | [optional]
+**requires_admin_review** | **bool** |  | [optional]
+**admin_review_reason** | **string** |  | [optional]
 **event** | [**\Idealogic\RegistrationAPI\Model\EventDTO**](EventDTO.md) |  |
 **series** | [**\Idealogic\RegistrationAPI\Model\SeriesDTO**](SeriesDTO.md) |  | [optional]
 **person** | [**\Idealogic\RegistrationAPI\Model\PersonDTO**](PersonDTO.md) |  |

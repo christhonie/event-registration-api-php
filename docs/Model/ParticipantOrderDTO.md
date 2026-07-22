@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **payment_processor** | [**\Idealogic\RegistrationAPI\Model\PaymentProcessorDTO**](PaymentProcessorDTO.md) |  | [optional]
 **line_items** | **mixed** | Line items in this order | [optional]
 **total_amount** | **mixed** | Total amount for the order | [optional]
+**discount** | **mixed** | Order-level coupon discount total | [optional]
+**refund_amount** | **mixed** | Cumulative refund amount | [optional]
 **available_payment_methods** | **mixed** | Available payment methods for this order | [optional]
 **reference_code** | **mixed** | Reference code for EFT and manual payments | [optional]
 **event_participants** | **mixed** |  | [optional]

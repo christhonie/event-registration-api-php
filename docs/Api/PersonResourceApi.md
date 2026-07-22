@@ -1,6 +1,6 @@
 # Idealogic\RegistrationAPI\PersonResourceApi
 
-All URIs are relative to http://localhost:12504, except if the operation defines another base path.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
@@ -217,7 +217,7 @@ try {
 ## `findByIdDetails()`
 
 ```php
-findByIdDetails($person_match_dto, $organisation_id): \Idealogic\RegistrationAPI\Model\PersonDTO[]
+findByIdDetails($person_match_dto): \Idealogic\RegistrationAPI\Model\PersonDTO[]
 ```
 
 
@@ -245,10 +245,9 @@ $apiInstance = new Idealogic\RegistrationAPI\Api\PersonResourceApi(
     $config
 );
 $person_match_dto = new \Idealogic\RegistrationAPI\Model\PersonMatchDTO(); // \Idealogic\RegistrationAPI\Model\PersonMatchDTO
-$organisation_id = 56; // int
 
 try {
-    $result = $apiInstance->findByIdDetails($person_match_dto, $organisation_id);
+    $result = $apiInstance->findByIdDetails($person_match_dto);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PersonResourceApi->findByIdDetails: ', $e->getMessage(), PHP_EOL;
@@ -260,7 +259,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **person_match_dto** | [**\Idealogic\RegistrationAPI\Model\PersonMatchDTO**](../Model/PersonMatchDTO.md)|  | |
-| **organisation_id** | **int**|  | [optional] |
 
 ### Return type
 
@@ -309,7 +307,7 @@ $apiInstance = new Idealogic\RegistrationAPI\Api\PersonResourceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$user_key = 'user_key_example'; // string
+$user_key = NULL; // mixed
 $organisation_id = 56; // int
 
 try {
@@ -324,7 +322,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **user_key** | **string**|  | |
+| **user_key** | [**mixed**](../Model/.md)|  | |
 | **organisation_id** | **int**|  | [optional] |
 
 ### Return type
@@ -347,7 +345,7 @@ try {
 ## `getAllLinkedOrgUsersByPrincipal()`
 
 ```php
-getAllLinkedOrgUsersByPrincipal($arg0, $user_key, $organisation_id): mixed
+getAllLinkedOrgUsersByPrincipal($arg0, $organisation_id, $user_key): mixed
 ```
 
 
@@ -375,11 +373,11 @@ $apiInstance = new Idealogic\RegistrationAPI\Api\PersonResourceApi(
     $config
 );
 $arg0 = new \Idealogic\RegistrationAPI\Model\Pageable(); // Pageable
-$user_key = 'user_key_example'; // string
 $organisation_id = 56; // int
+$user_key = 'user_key_example'; // string
 
 try {
-    $result = $apiInstance->getAllLinkedOrgUsersByPrincipal($arg0, $user_key, $organisation_id);
+    $result = $apiInstance->getAllLinkedOrgUsersByPrincipal($arg0, $organisation_id, $user_key);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PersonResourceApi->getAllLinkedOrgUsersByPrincipal: ', $e->getMessage(), PHP_EOL;
@@ -391,8 +389,8 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **arg0** | [**Pageable**](../Model/.md)|  | |
-| **user_key** | **string**|  | |
 | **organisation_id** | **int**|  | [optional] |
+| **user_key** | **string**|  | [optional] |
 
 ### Return type
 
@@ -414,7 +412,7 @@ try {
 ## `getAllPeople()`
 
 ```php
-getAllPeople($organisation_id, $page, $size, $sort, $eagerload): \Idealogic\RegistrationAPI\Model\PersonDTO[]
+getAllPeople($page, $size, $sort): \Idealogic\RegistrationAPI\Model\PersonDTO[]
 ```
 
 
@@ -441,14 +439,12 @@ $apiInstance = new Idealogic\RegistrationAPI\Api\PersonResourceApi(
     new GuzzleHttp\Client(),
     $config
 );
-$organisation_id = 56; // int
 $page = 0; // int | Zero-based page index (0..N)
 $size = 20; // int | The size of the page to be returned
 $sort = array('sort_example'); // string[] | Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
-$eagerload = true; // bool
 
 try {
-    $result = $apiInstance->getAllPeople($organisation_id, $page, $size, $sort, $eagerload);
+    $result = $apiInstance->getAllPeople($page, $size, $sort);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PersonResourceApi->getAllPeople: ', $e->getMessage(), PHP_EOL;
@@ -459,11 +455,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **organisation_id** | **int**|  | [optional] |
 | **page** | **int**| Zero-based page index (0..N) | [optional] [default to 0] |
 | **size** | **int**| The size of the page to be returned | [optional] [default to 20] |
 | **sort** | [**string[]**](../Model/string.md)| Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. | [optional] |
-| **eagerload** | **bool**|  | [optional] [default to true] |
 
 ### Return type
 
