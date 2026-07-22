@@ -1,0 +1,137 @@
+name: '🔄 Regenerate from Spec Update'
+# Triggered by admin-service's openapi-spec.yml (repository_dispatch) after a
+# fresh spec is pushed to admin-service's `openapi-spec` branch. Fetches the new
+# spec, regenerates the PHP client, and commits openapi.json + the regenerated
+# client in a single commit on main.
+#
+# Unlike the TypeScript client (registration-api-ts), there is NO version-bump /
+# registry-publish stage: the payment plugin consumes this client as composer
+# `dev-main` by git ref, so landing the regenerated client on `main` IS the
+# publish. Consumers pick it up with `composer update idealogic/event-registration-api`.
+#
+# Models registration-api-ts/regenerate-on-spec-update.yaml (US #615 / #622),
+# simplified for the composer-by-ref distribution model.
+
+on:
+  repository_dispatch:
+    types: [ems-admin-service-spec-updated]
+
+  # Manual resync if the dispatch chain breaks (PAT rotated, API outage,
+  # dispatch step failed). Pulls the current spec from admin-service's
+  # openapi-spec branch and commits any drift.
+  workflow_dispatch:
+
+# Serialise runs: two rapid admin-service commits → two dispatches would
+# otherwise race for `git push origin main` and the loser fails on non-fast-
+# forward. Never drop a dispatch — the worst case is one no-op run at the back
+# of the queue.
+concurrency:
+  group: spec-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    name: '🔄 Sync Spec, Regen, Commit'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up JDK
+        # openapi-generator-maven-plugin produces the PHP client. server-id
+        # matches pom's distributionManagement so MAVEN_USERNAME / MAVEN_PASSWORD
+        # authenticate the parent-POM download from GitHub Packages Maven.
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: 'temurin'
+          cache: maven
+          server-id: github-christhonie
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+
+      - name: Fetch latest spec from admin-service
+        env:
+          GH_TOKEN: ${{ secrets.EVENT_PACKAGE_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+          # Contents API with `Accept: raw` (not raw.githubusercontent.com) —
+          # works for the private admin-service repo and uses the auth rate pool.
+          curl -sSf \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github.raw" \
+            "https://api.github.com/repos/christhonie/event-admin-service/contents/openapi.json?ref=openapi-spec" \
+            -o openapi.json
+          echo "Fetched spec: $(wc -c < openapi.json) bytes"
+
+      - name: Short-circuit on byte-identical spec
+        # Most admin-service commits don't touch the API surface; skip the whole
+        # regen when openapi.json is unchanged.
+        id: spec_diff
+        run: |
+          set -euo pipefail
+          if git diff --exit-code -- openapi.json; then
+            echo "spec_changed=false" >> "$GITHUB_OUTPUT"
+            echo "Spec unchanged — nothing to regenerate."
+          else
+            echo "spec_changed=true" >> "$GITHUB_OUTPUT"
+            echo "Spec changed; proceeding to regen."
+          fi
+
+      - name: Regenerate PHP client
+        if: steps.spec_diff.outputs.spec_changed == 'true'
+        run: mvn clean compile --batch-mode --no-transfer-progress
+        env:
+          MAVEN_USERNAME: christhonie
+          MAVEN_PASSWORD: ${{ secrets.EVENT_PACKAGE_REPO_TOKEN }}
+
+      - name: Short-circuit on generated-output unchanged
+        # Second guard: spec changed bytes but produced byte-identical client
+        # (e.g. description-only spec drift). Diff scope is the generated client
+        # source (lib/, docs/); package/README noise is excluded from the guard
+        # but still committed below.
+        id: client_diff
+        if: steps.spec_diff.outputs.spec_changed == 'true'
+        run: |
+          set -euo pipefail
+          if git diff --exit-code -- lib/ docs/; then
+            echo "client_changed=false" >> "$GITHUB_OUTPUT"
+            echo "Regen produced byte-identical client; spec drift was cosmetic. Nothing to publish."
+          else
+            echo "client_changed=true" >> "$GITHUB_OUTPUT"
+            echo "Client changed; proceeding to commit."
+          fi
+
+      - name: Commit spec + regenerated client
+        # Pushes with the default GITHUB_TOKEN. By GitHub's loop-guard design this
+        # does NOT trigger generate-api-client.yaml (which regenerates on manual
+        # pushes to main) — avoiding a redundant second regen. The commit landing
+        # on main is the publish for composer dev-main consumers.
+        if: steps.client_diff.outputs.client_changed == 'true'
+        env:
+          SOURCE_SHA: ${{ github.event.client_payload.source_sha }}
+        run: |
+          set -euo pipefail
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "GitHub Actions"
+
+          if [[ "${SOURCE_SHA:-}" =~ ^[0-9a-f]{7,40}$ ]]; then
+            REF="${SOURCE_SHA:0:7}"
+          else
+            REF="manual-resync"
+          fi
+
+          # Stage the tracked generator output. vendor/ is not produced here
+          # (no composer install runs), so -A is safe in CI and mirrors the
+          # existing generate-api-client.yaml.
+          git add -A
+          git commit -m "chore: sync OpenAPI spec + regenerate client from admin-service@${REF}"
+          git push origin main
+          echo "Pushed regenerated client (admin-service@${REF}). Consumers: composer update idealogic/event-registration-api."
