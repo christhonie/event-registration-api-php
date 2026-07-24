@@ -64,6 +64,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_name' => 'mixed',
         'date_of_birth' => 'mixed',
         'gender' => 'mixed',
+        'phone' => 'mixed',
         'email' => 'mixed',
         'contact_number' => 'mixed',
         'identity_number' => 'mixed',
@@ -116,6 +117,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_name' => null,
         'date_of_birth' => 'date',
         'gender' => null,
+        'phone' => null,
         'email' => null,
         'contact_number' => null,
         'identity_number' => null,
@@ -166,6 +168,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_name' => true,
         'date_of_birth' => true,
         'gender' => true,
+        'phone' => true,
         'email' => true,
         'contact_number' => true,
         'identity_number' => true,
@@ -296,6 +299,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_name' => 'lastName',
         'date_of_birth' => 'dateOfBirth',
         'gender' => 'gender',
+        'phone' => 'phone',
         'email' => 'email',
         'contact_number' => 'contactNumber',
         'identity_number' => 'identityNumber',
@@ -346,6 +350,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_name' => 'setLastName',
         'date_of_birth' => 'setDateOfBirth',
         'gender' => 'setGender',
+        'phone' => 'setPhone',
         'email' => 'setEmail',
         'contact_number' => 'setContactNumber',
         'identity_number' => 'setIdentityNumber',
@@ -396,6 +401,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_name' => 'getLastName',
         'date_of_birth' => 'getDateOfBirth',
         'gender' => 'getGender',
+        'phone' => 'getPhone',
         'email' => 'getEmail',
         'contact_number' => 'getContactNumber',
         'identity_number' => 'getIdentityNumber',
@@ -531,6 +537,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('last_name', $data ?? [], null);
         $this->setIfExists('date_of_birth', $data ?? [], null);
         $this->setIfExists('gender', $data ?? [], null);
+        $this->setIfExists('phone', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('contact_number', $data ?? [], null);
         $this->setIfExists('identity_number', $data ?? [], null);
@@ -842,6 +849,40 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['gender'] = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Gets phone
+     *
+     * @return mixed|null
+     */
+    public function getPhone()
+    {
+        return $this->container['phone'];
+    }
+
+    /**
+     * Sets phone
+     *
+     * @param mixed|null $phone phone
+     *
+     * @return self
+     */
+    public function setPhone($phone)
+    {
+        if (is_null($phone)) {
+            array_push($this->openAPINullablesSetToNull, 'phone');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('phone', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['phone'] = $phone;
 
         return $this;
     }

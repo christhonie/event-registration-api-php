@@ -98,6 +98,9 @@ class PersonResourceApi
         'match' => [
             'application/json',
         ],
+        'memberSearch' => [
+            'application/json',
+        ],
         'partialUpdatePerson' => [
             'application/json',
             'application/merge-patch+json',
@@ -3016,6 +3019,449 @@ class PersonResourceApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation memberSearch
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\MemberSearchRequestDTO $member_search_request_dto member_search_request_dto (required)
+     * @param  int $organisation_id organisation_id (optional)
+     * @param  int $page Zero-based page index (0..N) (optional, default to 0)
+     * @param  int $size The size of the page to be returned (optional, default to 20)
+     * @param  string[] $sort Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['memberSearch'] to see the possible values for this operation
+     *
+     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]|\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]|\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]
+     */
+    public function memberSearch($member_search_request_dto, $organisation_id = null, $page = 0, $size = 20, $sort = null, string $contentType = self::contentTypes['memberSearch'][0])
+    {
+        list($response) = $this->memberSearchWithHttpInfo($member_search_request_dto, $organisation_id, $page, $size, $sort, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation memberSearchWithHttpInfo
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\MemberSearchRequestDTO $member_search_request_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  int $page Zero-based page index (0..N) (optional, default to 0)
+     * @param  int $size The size of the page to be returned (optional, default to 20)
+     * @param  string[] $sort Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['memberSearch'] to see the possible values for this operation
+     *
+     * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]|\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]|\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function memberSearchWithHttpInfo($member_search_request_dto, $organisation_id = null, $page = 0, $size = 20, $sort = null, string $contentType = self::contentTypes['memberSearch'][0])
+    {
+        $request = $this->memberSearchRequest($member_search_request_dto, $organisation_id, $page, $size, $sort, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 406:
+                    if ('\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 406:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation memberSearchAsync
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\MemberSearchRequestDTO $member_search_request_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  int $page Zero-based page index (0..N) (optional, default to 0)
+     * @param  int $size The size of the page to be returned (optional, default to 20)
+     * @param  string[] $sort Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['memberSearch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function memberSearchAsync($member_search_request_dto, $organisation_id = null, $page = 0, $size = 20, $sort = null, string $contentType = self::contentTypes['memberSearch'][0])
+    {
+        return $this->memberSearchAsyncWithHttpInfo($member_search_request_dto, $organisation_id, $page, $size, $sort, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation memberSearchAsyncWithHttpInfo
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\MemberSearchRequestDTO $member_search_request_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  int $page Zero-based page index (0..N) (optional, default to 0)
+     * @param  int $size The size of the page to be returned (optional, default to 20)
+     * @param  string[] $sort Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['memberSearch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function memberSearchAsyncWithHttpInfo($member_search_request_dto, $organisation_id = null, $page = 0, $size = 20, $sort = null, string $contentType = self::contentTypes['memberSearch'][0])
+    {
+        $returnType = '\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]';
+        $request = $this->memberSearchRequest($member_search_request_dto, $organisation_id, $page, $size, $sort, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'memberSearch'
+     *
+     * @param  \Idealogic\RegistrationAPI\Model\MemberSearchRequestDTO $member_search_request_dto (required)
+     * @param  int $organisation_id (optional)
+     * @param  int $page Zero-based page index (0..N) (optional, default to 0)
+     * @param  int $size The size of the page to be returned (optional, default to 20)
+     * @param  string[] $sort Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['memberSearch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function memberSearchRequest($member_search_request_dto, $organisation_id = null, $page = 0, $size = 20, $sort = null, string $contentType = self::contentTypes['memberSearch'][0])
+    {
+
+        // verify the required parameter 'member_search_request_dto' is set
+        if ($member_search_request_dto === null || (is_array($member_search_request_dto) && count($member_search_request_dto) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $member_search_request_dto when calling memberSearch'
+            );
+        }
+
+
+        if ($page !== null && $page < 0) {
+            throw new \InvalidArgumentException('invalid value for "$page" when calling PersonResourceApi.memberSearch, must be bigger than or equal to 0.');
+        }
+        
+        if ($size !== null && $size < 1) {
+            throw new \InvalidArgumentException('invalid value for "$size" when calling PersonResourceApi.memberSearch, must be bigger than or equal to 1.');
+        }
+        
+
+
+        $resourcePath = '/api/people/member-search';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $organisation_id,
+            'organisationId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $page,
+            'page', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $size,
+            'size', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $sort,
+            'sort', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($member_search_request_dto)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($member_search_request_dto));
+            } else {
+                $httpBody = $member_search_request_dto;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
+        if ($apiKey !== null) {
+            $headers['X-API-KEY'] = $apiKey;
+        }
+        // this endpoint requires Bearer (JWT) authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

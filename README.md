@@ -109,6 +109,7 @@ Class | Method | HTTP request | Description
 *PersonResourceApi* | [**getAllPeople**](docs/Api/PersonResourceApi.md#getallpeople) | **GET** /api/people | 
 *PersonResourceApi* | [**getPerson**](docs/Api/PersonResourceApi.md#getperson) | **GET** /api/people/{id} | 
 *PersonResourceApi* | [**match**](docs/Api/PersonResourceApi.md#match) | **GET** /api/people/match | 
+*PersonResourceApi* | [**memberSearch**](docs/Api/PersonResourceApi.md#membersearch) | **POST** /api/people/member-search | 
 *PersonResourceApi* | [**partialUpdatePerson**](docs/Api/PersonResourceApi.md#partialupdateperson) | **PATCH** /api/people/{id} | 
 *PersonResourceApi* | [**queryPerson**](docs/Api/PersonResourceApi.md#queryperson) | **GET** /api/people/query | 
 *PersonResourceApi* | [**updatePerson**](docs/Api/PersonResourceApi.md#updateperson) | **PUT** /api/people/{id} | 

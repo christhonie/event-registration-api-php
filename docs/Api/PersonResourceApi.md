@@ -13,6 +13,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**getAllPeople()**](PersonResourceApi.md#getAllPeople) | **GET** /api/people |  |
 | [**getPerson()**](PersonResourceApi.md#getPerson) | **GET** /api/people/{id} |  |
 | [**match()**](PersonResourceApi.md#match) | **GET** /api/people/match |  |
+| [**memberSearch()**](PersonResourceApi.md#memberSearch) | **POST** /api/people/member-search |  |
 | [**partialUpdatePerson()**](PersonResourceApi.md#partialUpdatePerson) | **PATCH** /api/people/{id} |  |
 | [**queryPerson()**](PersonResourceApi.md#queryPerson) | **GET** /api/people/query |  |
 | [**updatePerson()**](PersonResourceApi.md#updatePerson) | **PUT** /api/people/{id} |  |
@@ -590,6 +591,77 @@ try {
 ### Return type
 
 [**\Idealogic\RegistrationAPI\Model\PersonDTO[]**](../Model/PersonDTO.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `*/*`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `memberSearch()`
+
+```php
+memberSearch($member_search_request_dto, $organisation_id, $page, $size, $sort): \Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+
+// Configure Bearer (JWT) authorization: jwt
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Idealogic\RegistrationAPI\Api\PersonResourceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$member_search_request_dto = new \Idealogic\RegistrationAPI\Model\MemberSearchRequestDTO(); // \Idealogic\RegistrationAPI\Model\MemberSearchRequestDTO
+$organisation_id = 56; // int
+$page = 0; // int | Zero-based page index (0..N)
+$size = 20; // int | The size of the page to be returned
+$sort = array('sort_example'); // string[] | Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+
+try {
+    $result = $apiInstance->memberSearch($member_search_request_dto, $organisation_id, $page, $size, $sort);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PersonResourceApi->memberSearch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **member_search_request_dto** | [**\Idealogic\RegistrationAPI\Model\MemberSearchRequestDTO**](../Model/MemberSearchRequestDTO.md)|  | |
+| **organisation_id** | **int**|  | [optional] |
+| **page** | **int**| Zero-based page index (0..N) | [optional] [default to 0] |
+| **size** | **int**| The size of the page to be returned | [optional] [default to 20] |
+| **sort** | [**string[]**](../Model/string.md)| Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. | [optional] |
+
+### Return type
+
+[**\Idealogic\RegistrationAPI\Model\PersonSummaryDTO[]**](../Model/PersonSummaryDTO.md)
 
 ### Authorization
 
