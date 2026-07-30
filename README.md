@@ -107,6 +107,7 @@ Class | Method | HTTP request | Description
 *PersonResourceApi* | [**findByUserKeyOrCreate**](docs/Api/PersonResourceApi.md#findbyuserkeyorcreate) | **GET** /api/people/findByUserKeyOrCreate | 
 *PersonResourceApi* | [**getAllLinkedOrgUsersByPrincipal**](docs/Api/PersonResourceApi.md#getalllinkedorgusersbyprincipal) | **GET** /api/people/linked-to-principal | 
 *PersonResourceApi* | [**getAllPeople**](docs/Api/PersonResourceApi.md#getallpeople) | **GET** /api/people | 
+*PersonResourceApi* | [**getMemberView**](docs/Api/PersonResourceApi.md#getmemberview) | **GET** /api/people/{id}/member-view | 
 *PersonResourceApi* | [**getPerson**](docs/Api/PersonResourceApi.md#getperson) | **GET** /api/people/{id} | 
 *PersonResourceApi* | [**match**](docs/Api/PersonResourceApi.md#match) | **GET** /api/people/match | 
 *PersonResourceApi* | [**memberSearch**](docs/Api/PersonResourceApi.md#membersearch) | **POST** /api/people/member-search | 

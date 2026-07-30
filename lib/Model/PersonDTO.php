@@ -66,6 +66,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'gender' => 'mixed',
         'phone' => 'mixed',
         'email' => 'mixed',
+        'membership_number' => 'mixed',
         'contact_number' => 'mixed',
         'identity_number' => 'mixed',
         'identity_type' => 'mixed',
@@ -119,6 +120,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'gender' => null,
         'phone' => null,
         'email' => null,
+        'membership_number' => null,
         'contact_number' => null,
         'identity_number' => null,
         'identity_type' => null,
@@ -170,6 +172,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'gender' => true,
         'phone' => true,
         'email' => true,
+        'membership_number' => true,
         'contact_number' => true,
         'identity_number' => true,
         'identity_type' => true,
@@ -301,6 +304,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'gender' => 'gender',
         'phone' => 'phone',
         'email' => 'email',
+        'membership_number' => 'membershipNumber',
         'contact_number' => 'contactNumber',
         'identity_number' => 'identityNumber',
         'identity_type' => 'identityType',
@@ -352,6 +356,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'gender' => 'setGender',
         'phone' => 'setPhone',
         'email' => 'setEmail',
+        'membership_number' => 'setMembershipNumber',
         'contact_number' => 'setContactNumber',
         'identity_number' => 'setIdentityNumber',
         'identity_type' => 'setIdentityType',
@@ -403,6 +408,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'gender' => 'getGender',
         'phone' => 'getPhone',
         'email' => 'getEmail',
+        'membership_number' => 'getMembershipNumber',
         'contact_number' => 'getContactNumber',
         'identity_number' => 'getIdentityNumber',
         'identity_type' => 'getIdentityType',
@@ -539,6 +545,7 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('gender', $data ?? [], null);
         $this->setIfExists('phone', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('membership_number', $data ?? [], null);
         $this->setIfExists('contact_number', $data ?? [], null);
         $this->setIfExists('identity_number', $data ?? [], null);
         $this->setIfExists('identity_type', $data ?? [], null);
@@ -917,6 +924,40 @@ class PersonDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets membership_number
+     *
+     * @return mixed|null
+     */
+    public function getMembershipNumber()
+    {
+        return $this->container['membership_number'];
+    }
+
+    /**
+     * Sets membership_number
+     *
+     * @param mixed|null $membership_number membership_number
+     *
+     * @return self
+     */
+    public function setMembershipNumber($membership_number)
+    {
+        if (is_null($membership_number)) {
+            array_push($this->openAPINullablesSetToNull, 'membership_number');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('membership_number', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['membership_number'] = $membership_number;
 
         return $this;
     }

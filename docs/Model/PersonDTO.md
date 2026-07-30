@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **gender** | **mixed** |  | [optional]
 **phone** | **mixed** |  | [optional]
 **email** | **mixed** |  | [optional]
+**membership_number** | **mixed** |  | [optional]
 **contact_number** | **mixed** | Telephone number. Usually a cellphone number. | [optional]
 **identity_number** | **mixed** | Number associated with the identification type. | [optional]
 **identity_type** | **mixed** | Identificaiton type, such as a national ID or passport. | [optional]

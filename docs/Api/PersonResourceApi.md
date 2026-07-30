@@ -11,6 +11,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**findByUserKeyOrCreate()**](PersonResourceApi.md#findByUserKeyOrCreate) | **GET** /api/people/findByUserKeyOrCreate |  |
 | [**getAllLinkedOrgUsersByPrincipal()**](PersonResourceApi.md#getAllLinkedOrgUsersByPrincipal) | **GET** /api/people/linked-to-principal |  |
 | [**getAllPeople()**](PersonResourceApi.md#getAllPeople) | **GET** /api/people |  |
+| [**getMemberView()**](PersonResourceApi.md#getMemberView) | **GET** /api/people/{id}/member-view |  |
 | [**getPerson()**](PersonResourceApi.md#getPerson) | **GET** /api/people/{id} |  |
 | [**match()**](PersonResourceApi.md#match) | **GET** /api/people/match |  |
 | [**memberSearch()**](PersonResourceApi.md#memberSearch) | **POST** /api/people/member-search |  |
@@ -463,6 +464,71 @@ try {
 ### Return type
 
 [**\Idealogic\RegistrationAPI\Model\PersonDTO[]**](../Model/PersonDTO.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [jwt](../../README.md#jwt)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `*/*`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getMemberView()`
+
+```php
+getMemberView($id, $organisation_id): \Idealogic\RegistrationAPI\Model\MemberViewDTO
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+
+// Configure Bearer (JWT) authorization: jwt
+$config = Idealogic\RegistrationAPI\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Idealogic\RegistrationAPI\Api\PersonResourceApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 56; // int
+$organisation_id = 56; // int
+
+try {
+    $result = $apiInstance->getMemberView($id, $organisation_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PersonResourceApi->getMemberView: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **int**|  | |
+| **organisation_id** | **int**|  | [optional] |
+
+### Return type
+
+[**\Idealogic\RegistrationAPI\Model\MemberViewDTO**](../Model/MemberViewDTO.md)
 
 ### Authorization
 
