@@ -105,6 +105,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'product_number_first' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
         'product_tag_add' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
         'product_tag_first' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
+        'product_day_license' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
         'custom_list1' => '\Idealogic\RegistrationAPI\Model\CustomListDTO',
         'custom_list2' => '\Idealogic\RegistrationAPI\Model\CustomListDTO',
         'custom_list3' => '\Idealogic\RegistrationAPI\Model\CustomListDTO',
@@ -168,6 +169,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'product_number_first' => null,
         'product_tag_add' => null,
         'product_tag_first' => null,
+        'product_day_license' => null,
         'custom_list1' => null,
         'custom_list2' => null,
         'custom_list3' => null,
@@ -229,6 +231,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'product_number_first' => false,
         'product_tag_add' => false,
         'product_tag_first' => false,
+        'product_day_license' => false,
         'custom_list1' => false,
         'custom_list2' => false,
         'custom_list3' => false,
@@ -370,6 +373,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'product_number_first' => 'productNumberFirst',
         'product_tag_add' => 'productTagAdd',
         'product_tag_first' => 'productTagFirst',
+        'product_day_license' => 'productDayLicense',
         'custom_list1' => 'customList1',
         'custom_list2' => 'customList2',
         'custom_list3' => 'customList3',
@@ -431,6 +435,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'product_number_first' => 'setProductNumberFirst',
         'product_tag_add' => 'setProductTagAdd',
         'product_tag_first' => 'setProductTagFirst',
+        'product_day_license' => 'setProductDayLicense',
         'custom_list1' => 'setCustomList1',
         'custom_list2' => 'setCustomList2',
         'custom_list3' => 'setCustomList3',
@@ -492,6 +497,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'product_number_first' => 'getProductNumberFirst',
         'product_tag_add' => 'getProductTagAdd',
         'product_tag_first' => 'getProductTagFirst',
+        'product_day_license' => 'getProductDayLicense',
         'custom_list1' => 'getCustomList1',
         'custom_list2' => 'getCustomList2',
         'custom_list3' => 'getCustomList3',
@@ -640,6 +646,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('product_number_first', $data ?? [], null);
         $this->setIfExists('product_tag_add', $data ?? [], null);
         $this->setIfExists('product_tag_first', $data ?? [], null);
+        $this->setIfExists('product_day_license', $data ?? [], null);
         $this->setIfExists('custom_list1', $data ?? [], null);
         $this->setIfExists('custom_list2', $data ?? [], null);
         $this->setIfExists('custom_list3', $data ?? [], null);
@@ -2487,6 +2494,33 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable product_tag_first cannot be null');
         }
         $this->container['product_tag_first'] = $product_tag_first;
+
+        return $this;
+    }
+
+    /**
+     * Gets product_day_license
+     *
+     * @return \Idealogic\RegistrationAPI\Model\ProductDTO|null
+     */
+    public function getProductDayLicense()
+    {
+        return $this->container['product_day_license'];
+    }
+
+    /**
+     * Sets product_day_license
+     *
+     * @param \Idealogic\RegistrationAPI\Model\ProductDTO|null $product_day_license The product billed for a CSA day licence. If set it overrides the value set in the Series.
+     *
+     * @return self
+     */
+    public function setProductDayLicense($product_day_license)
+    {
+        if (is_null($product_day_license)) {
+            throw new \InvalidArgumentException('non-nullable product_day_license cannot be null');
+        }
+        $this->container['product_day_license'] = $product_day_license;
 
         return $this;
     }

@@ -51,6 +51,7 @@ Name | Type | Description | Notes
 **product_number_first** | [**\Idealogic\RegistrationAPI\Model\ProductDTO**](ProductDTO.md) | The product to use when adding the first number. If set it overrides the value set in the Series. | [optional]
 **product_tag_add** | [**\Idealogic\RegistrationAPI\Model\ProductDTO**](ProductDTO.md) | The product to use when adding an additional tag. If set it overrides the value set in the Series. | [optional]
 **product_tag_first** | [**\Idealogic\RegistrationAPI\Model\ProductDTO**](ProductDTO.md) | The product to use when adding the first tag. If set it overrides the value set in the Series. | [optional]
+**product_day_license** | [**\Idealogic\RegistrationAPI\Model\ProductDTO**](ProductDTO.md) | The product billed for a CSA day licence. If set it overrides the value set in the Series. | [optional]
 **custom_list1** | [**\Idealogic\RegistrationAPI\Model\CustomListDTO**](CustomListDTO.md) | Custom code list 1 - Codes from this list can be used for participant list_1 entries. | [optional]
 **custom_list2** | [**\Idealogic\RegistrationAPI\Model\CustomListDTO**](CustomListDTO.md) | Custom code list 2 - Codes from this list can be used for participant list_2 entries. | [optional]
 **custom_list3** | [**\Idealogic\RegistrationAPI\Model\CustomListDTO**](CustomListDTO.md) | Custom code list 3 - Codes from this list can be used for participant list_3 entries. | [optional]
