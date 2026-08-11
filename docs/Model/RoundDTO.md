@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **finish_duration_milli_seconds** | **mixed** | The race duration in milli seconds of the fastest Participant in this group. | [optional]
 **race** | [**\Idealogic\RegistrationAPI\Model\RaceDTO**](RaceDTO.md) | The Race this round is associated with. |
 **round_type** | [**\Idealogic\RegistrationAPI\Model\RoundTypeDTO**](RoundTypeDTO.md) | Configuration defining this round instance. |
-**parent** | **mixed** | Used to create child rounds. | [optional]
-**prev_round** | **mixed** | The previous round in this Race. | [optional]
+**parent** | [**\Idealogic\RegistrationAPI\Model\RoundDTO**](RoundDTO.md) | Used to create child rounds. | [optional]
+**prev_round** | [**\Idealogic\RegistrationAPI\Model\RoundDTO**](RoundDTO.md) | The previous round in this Race. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
