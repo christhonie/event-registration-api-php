@@ -1,7 +1,7 @@
 {
     "name": "idealogic/event-registration-api",
     "version": "2.2.2",
-    "description": "API documentation",
+    "description": "Administrative services for managing events and members",
     "keywords": [
         "openapitools",
         "openapi-generator",
