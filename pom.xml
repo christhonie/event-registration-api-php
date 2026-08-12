@@ -88,8 +88,16 @@
 					<apisToGenerate>
 						OrganisationResource,PersonResource,ResultSet,RaceResult,CustomList,CustomListValue,OrderResourceEx,MembershipResourceEx
 					</apisToGenerate>
+					<!-- MUST be closed under $ref: every model reachable from a listed model has to be
+					     listed too. The generator emits a reference to an unlisted model without emitting
+					     the class, so the omission is invisible at build time and only surfaces at runtime
+					     as `Class "...\Model\XxxDTO" not found` the first time a payload carries that
+					     field. That is how ADO Bug #918 reached production: `ParticipantOrderDTO.buyer`
+					     referenced `PersonNameDTO`, which was never generated, so deserialising a
+					     perfectly good 200 response threw and every order sync was reported as failed.
+					     `scripts/check-model-closure.py` enforces this in CI — run it after editing. -->
 					<modelsToGenerate>
-						OrganisationDTO,DisciplineDTO,PersonDTO,SeriesDTO,EventDTO,CategoryDTO,EventCategoryDTO,CourseTypeDTO,CourseDTO,EventRaceTypeDTO,StartGroupDTO,RaceDTO,RoundDTO,ProductDTO,OrderDTO,ParticipantOrderDTO,EventParticipantDTO,StartGroupParticipantDTO,ResultSetDTO,RaceResultDTO,CustomListDTO,CustomListValueDTO,NumberTypeDTO,TagTypeDTO,MembershipStatusDTO,MembershipStatus,LatestPeriodMembershipStatusResponseDTO,MembershipAddResponseDTO,MembershipOrderUpdateRequestDTO,OrderStatus,MembershipOrderLineItemDTO,MembershipOrderUpdateResponseDTO,RegistrationSystemDTO
+						OrganisationDTO,DisciplineDTO,PersonDTO,SeriesDTO,EventDTO,CategoryDTO,EventCategoryDTO,CourseTypeDTO,CourseDTO,EventRaceTypeDTO,StartGroupDTO,RaceDTO,RoundDTO,ProductDTO,OrderDTO,ParticipantOrderDTO,EventParticipantDTO,StartGroupParticipantDTO,ResultSetDTO,RaceResultDTO,CustomListDTO,CustomListValueDTO,NumberTypeDTO,TagTypeDTO,MembershipStatusDTO,LatestPeriodMembershipStatusResponseDTO,MembershipAddResponseDTO,MembershipOrderUpdateRequestDTO,MembershipOrderLineItemDTO,MembershipOrderUpdateResponseDTO,RegistrationSystemDTO,BankingDetailsDTO,CountryDTO,GlAccountDTO,MembershipCriteriaDTO,MembershipDTO,MembershipPeriodDTO,MembershipTypeDTO,OrderLineItemDTO,OrgPermissionDTO,OrgUserDTO,PaymentMethod,PaymentProcessorDTO,PersonNameDTO,ProcessDefinitionDTO,ProcessInstanceDTO,ProcessStepDTO,ProgramEntryDTO,RaceNumberDTO,RaceTypeConfigDTO,RaceTypeDTO,ResultMetaTypeDTO,RoundTypeDTO,TagDTO
 					</modelsToGenerate>
 				</configuration>
 				<executions>
