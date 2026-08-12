@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **active** | **mixed** | To remove the entry from the program it can be set as disabled. | [optional]
 **seq** | **mixed** | The sequence of this event within the overall event program. | [optional]
 **date_time** | **mixed** |  | [optional]
-**next** | **mixed** | The next related event in the program, i.e. for multi-round races. | [optional]
-**prev** | **mixed** | The previous related event in the program, i.e. for multi-round races. | [optional]
+**next** | [**\Idealogic\RegistrationAPI\Model\ProgramEntryDTO**](ProgramEntryDTO.md) | The next related event in the program, i.e. for multi-round races. | [optional]
+**prev** | [**\Idealogic\RegistrationAPI\Model\ProgramEntryDTO**](ProgramEntryDTO.md) | The previous related event in the program, i.e. for multi-round races. | [optional]
 **event** | [**\Idealogic\RegistrationAPI\Model\EventDTO**](EventDTO.md) | The Event this ProgramEntry item is related to. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

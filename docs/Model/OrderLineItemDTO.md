@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **order** | [**\Idealogic\RegistrationAPI\Model\OrderDTO**](OrderDTO.md) |  |
 **product** | [**\Idealogic\RegistrationAPI\Model\ProductDTO**](ProductDTO.md) |  | [optional]
 **person** | [**\Idealogic\RegistrationAPI\Model\PersonNameDTO**](PersonNameDTO.md) | Person linked to this item, if applicable | [optional]
-**event_participant** | **mixed** | EventParticipant linked to this item, if applicable | [optional]
+**event_participant** | [**\Idealogic\RegistrationAPI\Model\EventParticipantDTO**](EventParticipantDTO.md) | EventParticipant linked to this item, if applicable | [optional]
 **membership** | [**\Idealogic\RegistrationAPI\Model\MembershipDTO**](MembershipDTO.md) | Membership linked to this item, if applicable | [optional]
 **number** | [**\Idealogic\RegistrationAPI\Model\RaceNumberDTO**](RaceNumberDTO.md) | Number linked to this item, if applicable | [optional]
 **tag** | [**\Idealogic\RegistrationAPI\Model\TagDTO**](TagDTO.md) | Tag linked to this item, if applicable | [optional]
