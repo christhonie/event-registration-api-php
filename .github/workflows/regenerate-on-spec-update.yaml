@@ -97,7 +97,7 @@ jobs:
         # fresh regen, so a hand-edited pom or a spec that grew a new $ref is caught
         # on every dispatch. openapi-generator honours <modelsToGenerate> literally —
         # a $ref to an unlisted model emits the reference but never the class, and
-        # nothing fails until a payload carries that field at runtime (ADO Bug #918).
+        # nothing fails until a payload carries that field at runtime (ADO Bug #919).
         # When this fails, the spec has introduced a model the list does not cover:
         # run `python3 scripts/check-model-closure.py --fix`, regenerate, commit.
         run: python3 scripts/check-model-closure.py

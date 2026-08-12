@@ -13,7 +13,7 @@ field, because ObjectSerializer::deserialize() resolves the class lazily:
 
     $instance->$propertySetter(self::deserialize($propertyValue, $type, null));
 
-That is ADO Bug #918. `ParticipantOrderDTO.buyer` referenced `PersonNameDTO`, which was
+That is ADO Bug #919. `ParticipantOrderDTO.buyer` referenced `PersonNameDTO`, which was
 never generated. Every participant order sync PATCHed successfully, admin-service returned
 200, and then the client threw `Class "Idealogic\RegistrationAPI\Model\PersonNameDTO" not
 found` while reading the reply — so a succeeding call was reported to the operator as

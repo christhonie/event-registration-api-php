@@ -37,7 +37,7 @@ jobs:
       # Gates the commit. openapi-generator honours <modelsToGenerate> literally: a
       # $ref to an unlisted model still emits the reference but not the class, and
       # nothing downstream notices until a payload carries that field at runtime
-      # (ADO Bug #918). Fail here rather than publish a client with a dangling type.
+      # (ADO Bug #919). Fail here rather than publish a client with a dangling type.
       run: python3 scripts/check-model-closure.py
 
     - name: Commit Changes
