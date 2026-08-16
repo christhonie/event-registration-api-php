@@ -59,8 +59,13 @@ class OrgPermissionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'mixed',
-        'name' => 'mixed',
-        'org_users' => 'mixed'
+        'org_user' => '\Idealogic\RegistrationAPI\Model\OrgUserDTO',
+        'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
+        'role' => 'mixed',
+        'active' => 'mixed',
+        'valid_from' => 'mixed',
+        'valid_to' => 'mixed',
+        'notes' => 'mixed'
     ];
 
     /**
@@ -72,8 +77,13 @@ class OrgPermissionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'id' => 'int64',
-        'name' => null,
-        'org_users' => null
+        'org_user' => null,
+        'organisation' => null,
+        'role' => null,
+        'active' => null,
+        'valid_from' => 'date-time',
+        'valid_to' => 'date-time',
+        'notes' => null
     ];
 
     /**
@@ -83,8 +93,13 @@ class OrgPermissionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'id' => true,
-        'name' => true,
-        'org_users' => true
+        'org_user' => false,
+        'organisation' => false,
+        'role' => true,
+        'active' => true,
+        'valid_from' => true,
+        'valid_to' => true,
+        'notes' => true
     ];
 
     /**
@@ -174,8 +189,13 @@ class OrgPermissionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'name' => 'name',
-        'org_users' => 'orgUsers'
+        'org_user' => 'orgUser',
+        'organisation' => 'organisation',
+        'role' => 'role',
+        'active' => 'active',
+        'valid_from' => 'validFrom',
+        'valid_to' => 'validTo',
+        'notes' => 'notes'
     ];
 
     /**
@@ -185,8 +205,13 @@ class OrgPermissionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
-        'name' => 'setName',
-        'org_users' => 'setOrgUsers'
+        'org_user' => 'setOrgUser',
+        'organisation' => 'setOrganisation',
+        'role' => 'setRole',
+        'active' => 'setActive',
+        'valid_from' => 'setValidFrom',
+        'valid_to' => 'setValidTo',
+        'notes' => 'setNotes'
     ];
 
     /**
@@ -196,8 +221,13 @@ class OrgPermissionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
-        'name' => 'getName',
-        'org_users' => 'getOrgUsers'
+        'org_user' => 'getOrgUser',
+        'organisation' => 'getOrganisation',
+        'role' => 'getRole',
+        'active' => 'getActive',
+        'valid_from' => 'getValidFrom',
+        'valid_to' => 'getValidTo',
+        'notes' => 'getNotes'
     ];
 
     /**
@@ -241,6 +271,27 @@ class OrgPermissionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const ROLE_TENANT_ADMIN = 'TENANT_ADMIN';
+    public const ROLE_EVENT_MANAGER = 'EVENT_MANAGER';
+    public const ROLE_RESULTS_OFFICER = 'RESULTS_OFFICER';
+    public const ROLE_MEMBERSHIP_ADMIN = 'MEMBERSHIP_ADMIN';
+    public const ROLE_STAFF = 'STAFF';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getRoleAllowableValues()
+    {
+        return [
+            self::ROLE_TENANT_ADMIN,
+            self::ROLE_EVENT_MANAGER,
+            self::ROLE_RESULTS_OFFICER,
+            self::ROLE_MEMBERSHIP_ADMIN,
+            self::ROLE_STAFF,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -258,8 +309,13 @@ class OrgPermissionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('org_users', $data ?? [], null);
+        $this->setIfExists('org_user', $data ?? [], null);
+        $this->setIfExists('organisation', $data ?? [], null);
+        $this->setIfExists('role', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('valid_from', $data ?? [], null);
+        $this->setIfExists('valid_to', $data ?? [], null);
+        $this->setIfExists('notes', $data ?? [], null);
     }
 
     /**
@@ -289,17 +345,27 @@ class OrgPermissionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['org_user'] === null) {
+            $invalidProperties[] = "'org_user' can't be null";
         }
-        if ((mb_strlen($this->container['name']) > 100)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 100.";
+        if ($this->container['organisation'] === null) {
+            $invalidProperties[] = "'organisation' can't be null";
+        }
+        if ($this->container['role'] === null) {
+            $invalidProperties[] = "'role' can't be null";
+        }
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!is_null($this->container['role']) && !in_array($this->container['role'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'role', must be one of '%s'",
+                $this->container['role'],
+                implode("', '", $allowedValues)
+            );
         }
 
-        if ((mb_strlen($this->container['name']) < 0)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 0.";
+        if ($this->container['active'] === null) {
+            $invalidProperties[] = "'active' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -350,78 +416,235 @@ class OrgPermissionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets name
+     * Gets org_user
      *
-     * @return mixed
+     * @return \Idealogic\RegistrationAPI\Model\OrgUserDTO
      */
-    public function getName()
+    public function getOrgUser()
     {
-        return $this->container['name'];
+        return $this->container['org_user'];
     }
 
     /**
-     * Sets name
+     * Sets org_user
      *
-     * @param mixed $name name
+     * @param \Idealogic\RegistrationAPI\Model\OrgUserDTO $org_user org_user
      *
      * @return self
      */
-    public function setName($name)
+    public function setOrgUser($org_user)
     {
-        if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($org_user)) {
+            throw new \InvalidArgumentException('non-nullable org_user cannot be null');
         }
-        if (!is_null($name) && (mb_strlen($name) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling OrgPermissionDTO., must be smaller than or equal to 100.');
-        }
-        if (!is_null($name) && (mb_strlen($name) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling OrgPermissionDTO., must be bigger than or equal to 0.');
-        }
-
-        $this->container['name'] = $name;
+        $this->container['org_user'] = $org_user;
 
         return $this;
     }
 
     /**
-     * Gets org_users
+     * Gets organisation
      *
-     * @return mixed|null
+     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO
      */
-    public function getOrgUsers()
+    public function getOrganisation()
     {
-        return $this->container['org_users'];
+        return $this->container['organisation'];
     }
 
     /**
-     * Sets org_users
+     * Sets organisation
      *
-     * @param mixed|null $org_users org_users
+     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO $organisation organisation
      *
      * @return self
      */
-    public function setOrgUsers($org_users)
+    public function setOrganisation($organisation)
     {
-        if (is_null($org_users)) {
-            array_push($this->openAPINullablesSetToNull, 'org_users');
+        if (is_null($organisation)) {
+            throw new \InvalidArgumentException('non-nullable organisation cannot be null');
+        }
+        $this->container['organisation'] = $organisation;
+
+        return $this;
+    }
+
+    /**
+     * Gets role
+     *
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->container['role'];
+    }
+
+    /**
+     * Sets role
+     *
+     * @param mixed $role role
+     *
+     * @return self
+     */
+    public function setRole($role)
+    {
+        if (is_null($role)) {
+            array_push($this->openAPINullablesSetToNull, 'role');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('org_users', $nullablesSetToNull);
+            $index = array_search('role', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!is_null($role) && !in_array($role, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'role', must be one of '%s'",
+                    $role,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['role'] = $role;
 
+        return $this;
+    }
 
-        $this->container['org_users'] = $org_users;
+    /**
+     * Gets active
+     *
+     * @return mixed
+     */
+    public function getActive()
+    {
+        return $this->container['active'];
+    }
+
+    /**
+     * Sets active
+     *
+     * @param mixed $active active
+     *
+     * @return self
+     */
+    public function setActive($active)
+    {
+        if (is_null($active)) {
+            array_push($this->openAPINullablesSetToNull, 'active');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('active', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['active'] = $active;
+
+        return $this;
+    }
+
+    /**
+     * Gets valid_from
+     *
+     * @return mixed|null
+     */
+    public function getValidFrom()
+    {
+        return $this->container['valid_from'];
+    }
+
+    /**
+     * Sets valid_from
+     *
+     * @param mixed|null $valid_from valid_from
+     *
+     * @return self
+     */
+    public function setValidFrom($valid_from)
+    {
+        if (is_null($valid_from)) {
+            array_push($this->openAPINullablesSetToNull, 'valid_from');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('valid_from', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['valid_from'] = $valid_from;
+
+        return $this;
+    }
+
+    /**
+     * Gets valid_to
+     *
+     * @return mixed|null
+     */
+    public function getValidTo()
+    {
+        return $this->container['valid_to'];
+    }
+
+    /**
+     * Sets valid_to
+     *
+     * @param mixed|null $valid_to valid_to
+     *
+     * @return self
+     */
+    public function setValidTo($valid_to)
+    {
+        if (is_null($valid_to)) {
+            array_push($this->openAPINullablesSetToNull, 'valid_to');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('valid_to', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['valid_to'] = $valid_to;
+
+        return $this;
+    }
+
+    /**
+     * Gets notes
+     *
+     * @return mixed|null
+     */
+    public function getNotes()
+    {
+        return $this->container['notes'];
+    }
+
+    /**
+     * Sets notes
+     *
+     * @param mixed|null $notes notes
+     *
+     * @return self
+     */
+    public function setNotes($notes)
+    {
+        if (is_null($notes)) {
+            array_push($this->openAPINullablesSetToNull, 'notes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('notes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['notes'] = $notes;
 
         return $this;
     }
