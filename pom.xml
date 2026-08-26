@@ -88,17 +88,30 @@
 					<apisToGenerate>
 						OrganisationResource,PersonResource,ResultSet,RaceResult,CustomList,CustomListValue,OrderResourceEx,MembershipResourceEx
 					</apisToGenerate>
-					<!-- MUST be closed under $ref: every model reachable from a listed model has to be
-					     listed too. The generator emits a reference to an unlisted model without emitting
-					     the class, so the omission is invisible at build time and only surfaces at runtime
-					     as `Class "...\Model\XxxDTO" not found` the first time a payload carries that
-					     field. That is how ADO Bug #919 reached production: `ParticipantOrderDTO.buyer`
-					     referenced `PersonNameDTO`, which was never generated, so deserialising a
-					     perfectly good 200 response threw and every order sync was reported as failed.
-					     `scripts/check-model-closure.py` enforces this in CI — run it after editing. -->
-					<modelsToGenerate>
-						OrganisationDTO,DisciplineDTO,PersonDTO,SeriesDTO,EventDTO,CategoryDTO,EventCategoryDTO,CourseTypeDTO,CourseDTO,EventRaceTypeDTO,StartGroupDTO,RaceDTO,RoundDTO,ProductDTO,OrderDTO,ParticipantOrderDTO,EventParticipantDTO,StartGroupParticipantDTO,ResultSetDTO,RaceResultDTO,CustomListDTO,CustomListValueDTO,NumberTypeDTO,TagTypeDTO,MembershipStatusDTO,LatestPeriodMembershipStatusResponseDTO,MembershipAddResponseDTO,MembershipOrderUpdateRequestDTO,MembershipOrderLineItemDTO,MembershipOrderUpdateResponseDTO,RegistrationSystemDTO,BankingDetailsDTO,CountryDTO,GlAccountDTO,MembershipCriteriaDTO,MembershipDTO,MembershipPeriodDTO,MembershipTypeDTO,OrderLineItemDTO,OrgPermissionDTO,OrgUserDTO,PaymentMethod,PaymentProcessorDTO,PersonNameDTO,ProcessDefinitionDTO,ProcessInstanceDTO,ProcessStepDTO,ProgramEntryDTO,RaceNumberDTO,RaceTypeConfigDTO,RaceTypeDTO,ResultMetaTypeDTO,RoundTypeDTO,TagDTO
-					</modelsToGenerate>
+					<!-- No <modelsToGenerate>: every schema in the spec is generated, deliberately.
+
+					     The allowlist had to be closed under $ref by hand — every model reachable
+					     from a listed one had to be listed too — and it silently was not. The
+					     generator emits a reference to an unlisted model without emitting the class,
+					     and PHP has no compile step, so the omission only surfaces at runtime, the
+					     first time a payload carries that field, as
+					     `Class "...\Model\XxxDTO" not found`. That is ADO Bug #919: ParticipantOrderDTO.buyer
+					     referenced PersonNameDTO, which was never generated, so deserialising a
+					     perfectly good 200 threw and every order sync was reported to the operator as
+					     failed. It went unnoticed in production for months.
+
+					     #919 was fixed by closing the list by hand. It came straight back: by
+					     2026-08-26 the list was missing 19 models, 9 of them referenced by generated
+					     Api classes with no file on disk. Hand-maintaining a transitive closure
+					     against a spec that changes weekly is not a thing that stays correct.
+
+					     Dropping the list removes the failure mode rather than re-policing it. It
+					     costs repo size and nothing else: PHP autoloads lazily, so a class no caller
+					     touches is never read. <apisToGenerate> is kept and still governs the surface
+					     that matters — this client speaks to a small subset of admin-service, the two
+					     filters are independent, and removing this one left the generated API set at
+					     exactly the same 4 classes. -->
+					<!-- <modelsToGenerate> intentionally omitted; see above. -->
 				</configuration>
 				<executions>
 					<execution>
