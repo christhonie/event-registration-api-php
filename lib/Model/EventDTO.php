@@ -112,7 +112,8 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list3' => '\Idealogic\RegistrationAPI\Model\CustomListDTO',
         'enrol_process' => '\Idealogic\RegistrationAPI\Model\ProcessDefinitionDTO',
         'categories' => 'mixed',
-        'event_race_types' => 'mixed'
+        'event_race_types' => 'mixed',
+        'participant_count' => 'mixed'
     ];
 
     /**
@@ -176,7 +177,8 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list3' => null,
         'enrol_process' => null,
         'categories' => null,
-        'event_race_types' => null
+        'event_race_types' => null,
+        'participant_count' => 'int64'
     ];
 
     /**
@@ -238,7 +240,8 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list3' => false,
         'enrol_process' => false,
         'categories' => true,
-        'event_race_types' => true
+        'event_race_types' => true,
+        'participant_count' => true
     ];
 
     /**
@@ -380,7 +383,8 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list3' => 'customList3',
         'enrol_process' => 'enrolProcess',
         'categories' => 'categories',
-        'event_race_types' => 'eventRaceTypes'
+        'event_race_types' => 'eventRaceTypes',
+        'participant_count' => 'participantCount'
     ];
 
     /**
@@ -442,7 +446,8 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list3' => 'setCustomList3',
         'enrol_process' => 'setEnrolProcess',
         'categories' => 'setCategories',
-        'event_race_types' => 'setEventRaceTypes'
+        'event_race_types' => 'setEventRaceTypes',
+        'participant_count' => 'setParticipantCount'
     ];
 
     /**
@@ -504,7 +509,8 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list3' => 'getCustomList3',
         'enrol_process' => 'getEnrolProcess',
         'categories' => 'getCategories',
-        'event_race_types' => 'getEventRaceTypes'
+        'event_race_types' => 'getEventRaceTypes',
+        'participant_count' => 'getParticipantCount'
     ];
 
     /**
@@ -654,6 +660,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('enrol_process', $data ?? [], null);
         $this->setIfExists('categories', $data ?? [], null);
         $this->setIfExists('event_race_types', $data ?? [], null);
+        $this->setIfExists('participant_count', $data ?? [], null);
     }
 
     /**
@@ -2702,6 +2709,40 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
         $this->container['event_race_types'] = $event_race_types;
+
+        return $this;
+    }
+
+    /**
+     * Gets participant_count
+     *
+     * @return mixed|null
+     */
+    public function getParticipantCount()
+    {
+        return $this->container['participant_count'];
+    }
+
+    /**
+     * Sets participant_count
+     *
+     * @param mixed|null $participant_count Active participants entered for this event. Derived per request; ignored on write.
+     *
+     * @return self
+     */
+    public function setParticipantCount($participant_count)
+    {
+        if (is_null($participant_count)) {
+            array_push($this->openAPINullablesSetToNull, 'participant_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('participant_count', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['participant_count'] = $participant_count;
 
         return $this;
     }

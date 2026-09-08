@@ -58,5 +58,6 @@ Name | Type | Description | Notes
 **enrol_process** | [**\Idealogic\RegistrationAPI\Model\ProcessDefinitionDTO**](ProcessDefinitionDTO.md) |  | [optional]
 **categories** | **mixed** | Categories used by the event. | [optional]
 **event_race_types** | **mixed** |  | [optional]
+**participant_count** | **mixed** | Active participants entered for this event. Derived per request; ignored on write. | [optional] [readonly]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
