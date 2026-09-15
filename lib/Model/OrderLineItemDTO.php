@@ -60,7 +60,6 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'id' => 'mixed',
         'price' => 'mixed',
-        'gross' => 'mixed',
         'discount' => 'mixed',
         'fee' => 'mixed',
         'net' => 'mixed',
@@ -88,7 +87,6 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'id' => 'int64',
         'price' => null,
-        'gross' => null,
         'discount' => null,
         'fee' => null,
         'net' => null,
@@ -114,7 +112,6 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'id' => true,
         'price' => true,
-        'gross' => true,
         'discount' => true,
         'fee' => true,
         'net' => true,
@@ -220,7 +217,6 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'id' => 'id',
         'price' => 'price',
-        'gross' => 'gross',
         'discount' => 'discount',
         'fee' => 'fee',
         'net' => 'net',
@@ -246,7 +242,6 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'id' => 'setId',
         'price' => 'setPrice',
-        'gross' => 'setGross',
         'discount' => 'setDiscount',
         'fee' => 'setFee',
         'net' => 'setNet',
@@ -272,7 +267,6 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'id' => 'getId',
         'price' => 'getPrice',
-        'gross' => 'getGross',
         'discount' => 'getDiscount',
         'fee' => 'getFee',
         'net' => 'getNet',
@@ -349,7 +343,6 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
-        $this->setIfExists('gross', $data ?? [], null);
         $this->setIfExists('discount', $data ?? [], null);
         $this->setIfExists('fee', $data ?? [], null);
         $this->setIfExists('net', $data ?? [], null);
@@ -479,40 +472,6 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['price'] = $price;
-
-        return $this;
-    }
-
-    /**
-     * Gets gross
-     *
-     * @return mixed|null
-     */
-    public function getGross()
-    {
-        return $this->container['gross'];
-    }
-
-    /**
-     * Sets gross
-     *
-     * @param mixed|null $gross gross
-     *
-     * @return self
-     */
-    public function setGross($gross)
-    {
-        if (is_null($gross)) {
-            array_push($this->openAPINullablesSetToNull, 'gross');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('gross', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['gross'] = $gross;
 
         return $this;
     }

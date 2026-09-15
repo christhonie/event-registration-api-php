@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **mixed** |  | [optional]
 **price** | **mixed** |  |
-**gross** | **mixed** |  | [optional]
 **discount** | **mixed** |  | [optional]
 **fee** | **mixed** |  | [optional]
 **net** | **mixed** |  | [optional]
