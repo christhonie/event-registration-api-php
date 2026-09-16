@@ -1,6 +1,6 @@
 <?php
 /**
- * PersonMergeRequestDTO
+ * PersonMergeEligibilityDTO
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * PersonMergeRequestDTO Class Doc Comment
+ * PersonMergeEligibilityDTO Class Doc Comment
  *
  * @category Class
  * @package  Idealogic\RegistrationAPI
@@ -41,7 +41,7 @@ use \Idealogic\RegistrationAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class PersonMergeEligibilityDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PersonMergeRequestDTO';
+    protected static $openAPIModelName = 'PersonMergeEligibilityDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,7 +60,9 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPITypes = [
         'source_person_id' => 'mixed',
         'target_person_id' => 'mixed',
-        'confirmed' => 'mixed'
+        'eligible' => 'mixed',
+        'agreeing' => 'mixed',
+        'disagreeing' => 'mixed'
     ];
 
     /**
@@ -73,7 +75,9 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPIFormats = [
         'source_person_id' => 'int64',
         'target_person_id' => 'int64',
-        'confirmed' => null
+        'eligible' => null,
+        'agreeing' => null,
+        'disagreeing' => null
     ];
 
     /**
@@ -84,7 +88,9 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static array $openAPINullables = [
         'source_person_id' => true,
         'target_person_id' => true,
-        'confirmed' => true
+        'eligible' => true,
+        'agreeing' => true,
+        'disagreeing' => true
     ];
 
     /**
@@ -175,7 +181,9 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $attributeMap = [
         'source_person_id' => 'sourcePersonId',
         'target_person_id' => 'targetPersonId',
-        'confirmed' => 'confirmed'
+        'eligible' => 'eligible',
+        'agreeing' => 'agreeing',
+        'disagreeing' => 'disagreeing'
     ];
 
     /**
@@ -186,7 +194,9 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $setters = [
         'source_person_id' => 'setSourcePersonId',
         'target_person_id' => 'setTargetPersonId',
-        'confirmed' => 'setConfirmed'
+        'eligible' => 'setEligible',
+        'agreeing' => 'setAgreeing',
+        'disagreeing' => 'setDisagreeing'
     ];
 
     /**
@@ -197,7 +207,9 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $getters = [
         'source_person_id' => 'getSourcePersonId',
         'target_person_id' => 'getTargetPersonId',
-        'confirmed' => 'getConfirmed'
+        'eligible' => 'getEligible',
+        'agreeing' => 'getAgreeing',
+        'disagreeing' => 'getDisagreeing'
     ];
 
     /**
@@ -259,7 +271,9 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $this->setIfExists('source_person_id', $data ?? [], null);
         $this->setIfExists('target_person_id', $data ?? [], null);
-        $this->setIfExists('confirmed', $data ?? [], null);
+        $this->setIfExists('eligible', $data ?? [], null);
+        $this->setIfExists('agreeing', $data ?? [], null);
+        $this->setIfExists('disagreeing', $data ?? [], null);
     }
 
     /**
@@ -289,12 +303,6 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['source_person_id'] === null) {
-            $invalidProperties[] = "'source_person_id' can't be null";
-        }
-        if ($this->container['target_person_id'] === null) {
-            $invalidProperties[] = "'target_person_id' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -313,7 +321,7 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets source_person_id
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function getSourcePersonId()
     {
@@ -323,7 +331,7 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets source_person_id
      *
-     * @param mixed $source_person_id source_person_id
+     * @param mixed|null $source_person_id source_person_id
      *
      * @return self
      */
@@ -347,7 +355,7 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets target_person_id
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function getTargetPersonId()
     {
@@ -357,7 +365,7 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets target_person_id
      *
-     * @param mixed $target_person_id target_person_id
+     * @param mixed|null $target_person_id target_person_id
      *
      * @return self
      */
@@ -379,35 +387,103 @@ class PersonMergeRequestDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
-     * Gets confirmed
+     * Gets eligible
      *
      * @return mixed|null
      */
-    public function getConfirmed()
+    public function getEligible()
     {
-        return $this->container['confirmed'];
+        return $this->container['eligible'];
     }
 
     /**
-     * Sets confirmed
+     * Sets eligible
      *
-     * @param mixed|null $confirmed confirmed
+     * @param mixed|null $eligible eligible
      *
      * @return self
      */
-    public function setConfirmed($confirmed)
+    public function setEligible($eligible)
     {
-        if (is_null($confirmed)) {
-            array_push($this->openAPINullablesSetToNull, 'confirmed');
+        if (is_null($eligible)) {
+            array_push($this->openAPINullablesSetToNull, 'eligible');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('confirmed', $nullablesSetToNull);
+            $index = array_search('eligible', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['confirmed'] = $confirmed;
+        $this->container['eligible'] = $eligible;
+
+        return $this;
+    }
+
+    /**
+     * Gets agreeing
+     *
+     * @return mixed|null
+     */
+    public function getAgreeing()
+    {
+        return $this->container['agreeing'];
+    }
+
+    /**
+     * Sets agreeing
+     *
+     * @param mixed|null $agreeing agreeing
+     *
+     * @return self
+     */
+    public function setAgreeing($agreeing)
+    {
+        if (is_null($agreeing)) {
+            array_push($this->openAPINullablesSetToNull, 'agreeing');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('agreeing', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['agreeing'] = $agreeing;
+
+        return $this;
+    }
+
+    /**
+     * Gets disagreeing
+     *
+     * @return mixed|null
+     */
+    public function getDisagreeing()
+    {
+        return $this->container['disagreeing'];
+    }
+
+    /**
+     * Sets disagreeing
+     *
+     * @param mixed|null $disagreeing disagreeing
+     *
+     * @return self
+     */
+    public function setDisagreeing($disagreeing)
+    {
+        if (is_null($disagreeing)) {
+            array_push($this->openAPINullablesSetToNull, 'disagreeing');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('disagreeing', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['disagreeing'] = $disagreeing;
 
         return $this;
     }

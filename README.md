@@ -258,6 +258,7 @@ Class | Method | HTTP request | Description
 - [PersonMergeCandidateDetailDTO](docs/Model/PersonMergeCandidateDetailDTO.md)
 - [PersonMergeCandidatePersonDTO](docs/Model/PersonMergeCandidatePersonDTO.md)
 - [PersonMergeCandidateRejectDTO](docs/Model/PersonMergeCandidateRejectDTO.md)
+- [PersonMergeEligibilityDTO](docs/Model/PersonMergeEligibilityDTO.md)
 - [PersonMergeLogDTO](docs/Model/PersonMergeLogDTO.md)
 - [PersonMergeRequestDTO](docs/Model/PersonMergeRequestDTO.md)
 - [PersonMergeResultDTO](docs/Model/PersonMergeResultDTO.md)
