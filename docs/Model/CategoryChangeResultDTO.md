@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **start_groups_removed** | **mixed** |  | [optional]
 **number_detached** | **mixed** |  | [optional]
 **detached_number** | **mixed** |  | [optional]
+**number_detach_outcome** | **mixed** |  | [optional]
 **eligibility_overridden** | **mixed** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
