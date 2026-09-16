@@ -71,6 +71,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'context_summary' => 'mixed',
         'dedup_key' => 'mixed',
         'override_send' => 'mixed',
+        'message_id' => 'mixed',
+        'relay_response' => 'mixed',
         'event_participant_id' => 'mixed',
         'membership_id' => 'mixed',
         'order_id' => 'mixed',
@@ -99,6 +101,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'context_summary' => null,
         'dedup_key' => null,
         'override_send' => null,
+        'message_id' => null,
+        'relay_response' => null,
         'event_participant_id' => 'int64',
         'membership_id' => 'int64',
         'order_id' => 'int64',
@@ -125,6 +129,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'context_summary' => true,
         'dedup_key' => true,
         'override_send' => true,
+        'message_id' => true,
+        'relay_response' => true,
         'event_participant_id' => true,
         'membership_id' => true,
         'order_id' => true,
@@ -231,6 +237,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'context_summary' => 'contextSummary',
         'dedup_key' => 'dedupKey',
         'override_send' => 'overrideSend',
+        'message_id' => 'messageId',
+        'relay_response' => 'relayResponse',
         'event_participant_id' => 'eventParticipantId',
         'membership_id' => 'membershipId',
         'order_id' => 'orderId',
@@ -257,6 +265,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'context_summary' => 'setContextSummary',
         'dedup_key' => 'setDedupKey',
         'override_send' => 'setOverrideSend',
+        'message_id' => 'setMessageId',
+        'relay_response' => 'setRelayResponse',
         'event_participant_id' => 'setEventParticipantId',
         'membership_id' => 'setMembershipId',
         'order_id' => 'setOrderId',
@@ -283,6 +293,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'context_summary' => 'getContextSummary',
         'dedup_key' => 'getDedupKey',
         'override_send' => 'getOverrideSend',
+        'message_id' => 'getMessageId',
+        'relay_response' => 'getRelayResponse',
         'event_participant_id' => 'getEventParticipantId',
         'membership_id' => 'getMembershipId',
         'order_id' => 'getOrderId',
@@ -396,6 +408,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('context_summary', $data ?? [], null);
         $this->setIfExists('dedup_key', $data ?? [], null);
         $this->setIfExists('override_send', $data ?? [], null);
+        $this->setIfExists('message_id', $data ?? [], null);
+        $this->setIfExists('relay_response', $data ?? [], null);
         $this->setIfExists('event_participant_id', $data ?? [], null);
         $this->setIfExists('membership_id', $data ?? [], null);
         $this->setIfExists('order_id', $data ?? [], null);
@@ -888,6 +902,74 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['override_send'] = $override_send;
+
+        return $this;
+    }
+
+    /**
+     * Gets message_id
+     *
+     * @return mixed|null
+     */
+    public function getMessageId()
+    {
+        return $this->container['message_id'];
+    }
+
+    /**
+     * Sets message_id
+     *
+     * @param mixed|null $message_id message_id
+     *
+     * @return self
+     */
+    public function setMessageId($message_id)
+    {
+        if (is_null($message_id)) {
+            array_push($this->openAPINullablesSetToNull, 'message_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('message_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['message_id'] = $message_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets relay_response
+     *
+     * @return mixed|null
+     */
+    public function getRelayResponse()
+    {
+        return $this->container['relay_response'];
+    }
+
+    /**
+     * Sets relay_response
+     *
+     * @param mixed|null $relay_response relay_response
+     *
+     * @return self
+     */
+    public function setRelayResponse($relay_response)
+    {
+        if (is_null($relay_response)) {
+            array_push($this->openAPINullablesSetToNull, 'relay_response');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('relay_response', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['relay_response'] = $relay_response;
 
         return $this;
     }

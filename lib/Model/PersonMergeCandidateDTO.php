@@ -1,6 +1,6 @@
 <?php
 /**
- * DeliveryResult
+ * PersonMergeCandidateDTO
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * DeliveryResult Class Doc Comment
+ * PersonMergeCandidateDTO Class Doc Comment
  *
  * @category Class
  * @package  Idealogic\RegistrationAPI
@@ -41,7 +41,7 @@ use \Idealogic\RegistrationAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
+class PersonMergeCandidateDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DeliveryResult';
+    protected static $openAPIModelName = 'PersonMergeCandidateDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,14 +58,17 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'id' => 'mixed',
+        'source_person_id' => 'mixed',
+        'source_person_name' => 'mixed',
+        'target_person_id' => 'mixed',
+        'target_person_name' => 'mixed',
+        'score' => 'mixed',
         'status' => 'mixed',
-        'error_message' => 'mixed',
-        'sent_message' => '\Idealogic\RegistrationAPI\Model\EmailMessage',
-        'already_sent' => 'mixed',
-        'message_id' => 'mixed',
-        'relay_response' => 'mixed',
-        'success' => 'mixed',
-        'permanent_failure' => 'mixed'
+        'detection_reason' => 'mixed',
+        'detected_at' => 'mixed',
+        'resolved_at' => 'mixed',
+        'resolved_by' => 'mixed'
     ];
 
     /**
@@ -76,14 +79,17 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'id' => 'int64',
+        'source_person_id' => 'int64',
+        'source_person_name' => null,
+        'target_person_id' => 'int64',
+        'target_person_name' => null,
+        'score' => 'int32',
         'status' => null,
-        'error_message' => null,
-        'sent_message' => null,
-        'already_sent' => null,
-        'message_id' => null,
-        'relay_response' => null,
-        'success' => null,
-        'permanent_failure' => null
+        'detection_reason' => null,
+        'detected_at' => 'date-time',
+        'resolved_at' => 'date-time',
+        'resolved_by' => null
     ];
 
     /**
@@ -92,14 +98,17 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'id' => true,
+        'source_person_id' => true,
+        'source_person_name' => true,
+        'target_person_id' => true,
+        'target_person_name' => true,
+        'score' => true,
         'status' => true,
-        'error_message' => true,
-        'sent_message' => false,
-        'already_sent' => true,
-        'message_id' => true,
-        'relay_response' => true,
-        'success' => true,
-        'permanent_failure' => true
+        'detection_reason' => true,
+        'detected_at' => true,
+        'resolved_at' => true,
+        'resolved_by' => true
     ];
 
     /**
@@ -188,14 +197,17 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
+        'source_person_id' => 'sourcePersonId',
+        'source_person_name' => 'sourcePersonName',
+        'target_person_id' => 'targetPersonId',
+        'target_person_name' => 'targetPersonName',
+        'score' => 'score',
         'status' => 'status',
-        'error_message' => 'errorMessage',
-        'sent_message' => 'sentMessage',
-        'already_sent' => 'alreadySent',
-        'message_id' => 'messageId',
-        'relay_response' => 'relayResponse',
-        'success' => 'success',
-        'permanent_failure' => 'permanentFailure'
+        'detection_reason' => 'detectionReason',
+        'detected_at' => 'detectedAt',
+        'resolved_at' => 'resolvedAt',
+        'resolved_by' => 'resolvedBy'
     ];
 
     /**
@@ -204,14 +216,17 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
+        'source_person_id' => 'setSourcePersonId',
+        'source_person_name' => 'setSourcePersonName',
+        'target_person_id' => 'setTargetPersonId',
+        'target_person_name' => 'setTargetPersonName',
+        'score' => 'setScore',
         'status' => 'setStatus',
-        'error_message' => 'setErrorMessage',
-        'sent_message' => 'setSentMessage',
-        'already_sent' => 'setAlreadySent',
-        'message_id' => 'setMessageId',
-        'relay_response' => 'setRelayResponse',
-        'success' => 'setSuccess',
-        'permanent_failure' => 'setPermanentFailure'
+        'detection_reason' => 'setDetectionReason',
+        'detected_at' => 'setDetectedAt',
+        'resolved_at' => 'setResolvedAt',
+        'resolved_by' => 'setResolvedBy'
     ];
 
     /**
@@ -220,14 +235,17 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
+        'source_person_id' => 'getSourcePersonId',
+        'source_person_name' => 'getSourcePersonName',
+        'target_person_id' => 'getTargetPersonId',
+        'target_person_name' => 'getTargetPersonName',
+        'score' => 'getScore',
         'status' => 'getStatus',
-        'error_message' => 'getErrorMessage',
-        'sent_message' => 'getSentMessage',
-        'already_sent' => 'getAlreadySent',
-        'message_id' => 'getMessageId',
-        'relay_response' => 'getRelayResponse',
-        'success' => 'getSuccess',
-        'permanent_failure' => 'getPermanentFailure'
+        'detection_reason' => 'getDetectionReason',
+        'detected_at' => 'getDetectedAt',
+        'resolved_at' => 'getResolvedAt',
+        'resolved_by' => 'getResolvedBy'
     ];
 
     /**
@@ -271,25 +289,6 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const STATUS_PENDING = 'PENDING';
-    public const STATUS_SENT = 'SENT';
-    public const STATUS_FAILED = 'FAILED';
-    public const STATUS_BOUNCED = 'BOUNCED';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_PENDING,
-            self::STATUS_SENT,
-            self::STATUS_FAILED,
-            self::STATUS_BOUNCED,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -306,14 +305,17 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('source_person_id', $data ?? [], null);
+        $this->setIfExists('source_person_name', $data ?? [], null);
+        $this->setIfExists('target_person_id', $data ?? [], null);
+        $this->setIfExists('target_person_name', $data ?? [], null);
+        $this->setIfExists('score', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('error_message', $data ?? [], null);
-        $this->setIfExists('sent_message', $data ?? [], null);
-        $this->setIfExists('already_sent', $data ?? [], null);
-        $this->setIfExists('message_id', $data ?? [], null);
-        $this->setIfExists('relay_response', $data ?? [], null);
-        $this->setIfExists('success', $data ?? [], null);
-        $this->setIfExists('permanent_failure', $data ?? [], null);
+        $this->setIfExists('detection_reason', $data ?? [], null);
+        $this->setIfExists('detected_at', $data ?? [], null);
+        $this->setIfExists('resolved_at', $data ?? [], null);
+        $this->setIfExists('resolved_by', $data ?? [], null);
     }
 
     /**
@@ -343,15 +345,6 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -366,6 +359,210 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets id
+     *
+     * @return mixed|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param mixed|null $id id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            array_push($this->openAPINullablesSetToNull, 'id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets source_person_id
+     *
+     * @return mixed|null
+     */
+    public function getSourcePersonId()
+    {
+        return $this->container['source_person_id'];
+    }
+
+    /**
+     * Sets source_person_id
+     *
+     * @param mixed|null $source_person_id source_person_id
+     *
+     * @return self
+     */
+    public function setSourcePersonId($source_person_id)
+    {
+        if (is_null($source_person_id)) {
+            array_push($this->openAPINullablesSetToNull, 'source_person_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('source_person_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['source_person_id'] = $source_person_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets source_person_name
+     *
+     * @return mixed|null
+     */
+    public function getSourcePersonName()
+    {
+        return $this->container['source_person_name'];
+    }
+
+    /**
+     * Sets source_person_name
+     *
+     * @param mixed|null $source_person_name source_person_name
+     *
+     * @return self
+     */
+    public function setSourcePersonName($source_person_name)
+    {
+        if (is_null($source_person_name)) {
+            array_push($this->openAPINullablesSetToNull, 'source_person_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('source_person_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['source_person_name'] = $source_person_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets target_person_id
+     *
+     * @return mixed|null
+     */
+    public function getTargetPersonId()
+    {
+        return $this->container['target_person_id'];
+    }
+
+    /**
+     * Sets target_person_id
+     *
+     * @param mixed|null $target_person_id target_person_id
+     *
+     * @return self
+     */
+    public function setTargetPersonId($target_person_id)
+    {
+        if (is_null($target_person_id)) {
+            array_push($this->openAPINullablesSetToNull, 'target_person_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('target_person_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['target_person_id'] = $target_person_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets target_person_name
+     *
+     * @return mixed|null
+     */
+    public function getTargetPersonName()
+    {
+        return $this->container['target_person_name'];
+    }
+
+    /**
+     * Sets target_person_name
+     *
+     * @param mixed|null $target_person_name target_person_name
+     *
+     * @return self
+     */
+    public function setTargetPersonName($target_person_name)
+    {
+        if (is_null($target_person_name)) {
+            array_push($this->openAPINullablesSetToNull, 'target_person_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('target_person_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['target_person_name'] = $target_person_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets score
+     *
+     * @return mixed|null
+     */
+    public function getScore()
+    {
+        return $this->container['score'];
+    }
+
+    /**
+     * Sets score
+     *
+     * @param mixed|null $score score
+     *
+     * @return self
+     */
+    public function setScore($score)
+    {
+        if (is_null($score)) {
+            array_push($this->openAPINullablesSetToNull, 'score');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('score', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['score'] = $score;
+
+        return $this;
+    }
 
     /**
      * Gets status
@@ -396,248 +593,143 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['status'] = $status;
 
         return $this;
     }
 
     /**
-     * Gets error_message
+     * Gets detection_reason
      *
      * @return mixed|null
      */
-    public function getErrorMessage()
+    public function getDetectionReason()
     {
-        return $this->container['error_message'];
+        return $this->container['detection_reason'];
     }
 
     /**
-     * Sets error_message
+     * Sets detection_reason
      *
-     * @param mixed|null $error_message error_message
+     * @param mixed|null $detection_reason detection_reason
      *
      * @return self
      */
-    public function setErrorMessage($error_message)
+    public function setDetectionReason($detection_reason)
     {
-        if (is_null($error_message)) {
-            array_push($this->openAPINullablesSetToNull, 'error_message');
+        if (is_null($detection_reason)) {
+            array_push($this->openAPINullablesSetToNull, 'detection_reason');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('error_message', $nullablesSetToNull);
+            $index = array_search('detection_reason', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['error_message'] = $error_message;
+        $this->container['detection_reason'] = $detection_reason;
 
         return $this;
     }
 
     /**
-     * Gets sent_message
-     *
-     * @return \Idealogic\RegistrationAPI\Model\EmailMessage|null
-     */
-    public function getSentMessage()
-    {
-        return $this->container['sent_message'];
-    }
-
-    /**
-     * Sets sent_message
-     *
-     * @param \Idealogic\RegistrationAPI\Model\EmailMessage|null $sent_message sent_message
-     *
-     * @return self
-     */
-    public function setSentMessage($sent_message)
-    {
-        if (is_null($sent_message)) {
-            throw new \InvalidArgumentException('non-nullable sent_message cannot be null');
-        }
-        $this->container['sent_message'] = $sent_message;
-
-        return $this;
-    }
-
-    /**
-     * Gets already_sent
+     * Gets detected_at
      *
      * @return mixed|null
      */
-    public function getAlreadySent()
+    public function getDetectedAt()
     {
-        return $this->container['already_sent'];
+        return $this->container['detected_at'];
     }
 
     /**
-     * Sets already_sent
+     * Sets detected_at
      *
-     * @param mixed|null $already_sent already_sent
+     * @param mixed|null $detected_at detected_at
      *
      * @return self
      */
-    public function setAlreadySent($already_sent)
+    public function setDetectedAt($detected_at)
     {
-        if (is_null($already_sent)) {
-            array_push($this->openAPINullablesSetToNull, 'already_sent');
+        if (is_null($detected_at)) {
+            array_push($this->openAPINullablesSetToNull, 'detected_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('already_sent', $nullablesSetToNull);
+            $index = array_search('detected_at', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['already_sent'] = $already_sent;
+        $this->container['detected_at'] = $detected_at;
 
         return $this;
     }
 
     /**
-     * Gets message_id
+     * Gets resolved_at
      *
      * @return mixed|null
      */
-    public function getMessageId()
+    public function getResolvedAt()
     {
-        return $this->container['message_id'];
+        return $this->container['resolved_at'];
     }
 
     /**
-     * Sets message_id
+     * Sets resolved_at
      *
-     * @param mixed|null $message_id message_id
+     * @param mixed|null $resolved_at resolved_at
      *
      * @return self
      */
-    public function setMessageId($message_id)
+    public function setResolvedAt($resolved_at)
     {
-        if (is_null($message_id)) {
-            array_push($this->openAPINullablesSetToNull, 'message_id');
+        if (is_null($resolved_at)) {
+            array_push($this->openAPINullablesSetToNull, 'resolved_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('message_id', $nullablesSetToNull);
+            $index = array_search('resolved_at', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['message_id'] = $message_id;
+        $this->container['resolved_at'] = $resolved_at;
 
         return $this;
     }
 
     /**
-     * Gets relay_response
+     * Gets resolved_by
      *
      * @return mixed|null
      */
-    public function getRelayResponse()
+    public function getResolvedBy()
     {
-        return $this->container['relay_response'];
+        return $this->container['resolved_by'];
     }
 
     /**
-     * Sets relay_response
+     * Sets resolved_by
      *
-     * @param mixed|null $relay_response relay_response
+     * @param mixed|null $resolved_by resolved_by
      *
      * @return self
      */
-    public function setRelayResponse($relay_response)
+    public function setResolvedBy($resolved_by)
     {
-        if (is_null($relay_response)) {
-            array_push($this->openAPINullablesSetToNull, 'relay_response');
+        if (is_null($resolved_by)) {
+            array_push($this->openAPINullablesSetToNull, 'resolved_by');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('relay_response', $nullablesSetToNull);
+            $index = array_search('resolved_by', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['relay_response'] = $relay_response;
-
-        return $this;
-    }
-
-    /**
-     * Gets success
-     *
-     * @return mixed|null
-     */
-    public function getSuccess()
-    {
-        return $this->container['success'];
-    }
-
-    /**
-     * Sets success
-     *
-     * @param mixed|null $success success
-     *
-     * @return self
-     */
-    public function setSuccess($success)
-    {
-        if (is_null($success)) {
-            array_push($this->openAPINullablesSetToNull, 'success');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('success', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['success'] = $success;
-
-        return $this;
-    }
-
-    /**
-     * Gets permanent_failure
-     *
-     * @return mixed|null
-     */
-    public function getPermanentFailure()
-    {
-        return $this->container['permanent_failure'];
-    }
-
-    /**
-     * Sets permanent_failure
-     *
-     * @param mixed|null $permanent_failure permanent_failure
-     *
-     * @return self
-     */
-    public function setPermanentFailure($permanent_failure)
-    {
-        if (is_null($permanent_failure)) {
-            array_push($this->openAPINullablesSetToNull, 'permanent_failure');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('permanent_failure', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['permanent_failure'] = $permanent_failure;
+        $this->container['resolved_by'] = $resolved_by;
 
         return $this;
     }

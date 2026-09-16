@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **context_summary** | **mixed** |  | [optional]
 **dedup_key** | **mixed** |  | [optional]
 **override_send** | **mixed** |  | [optional]
+**message_id** | **mixed** |  | [optional]
+**relay_response** | **mixed** |  | [optional]
 **event_participant_id** | **mixed** |  | [optional]
 **membership_id** | **mixed** |  | [optional]
 **order_id** | **mixed** |  | [optional]

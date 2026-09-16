@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **error_message** | **mixed** |  | [optional]
 **sent_message** | [**\Idealogic\RegistrationAPI\Model\EmailMessage**](EmailMessage.md) |  | [optional]
 **already_sent** | **mixed** |  | [optional]
+**message_id** | **mixed** |  | [optional]
+**relay_response** | **mixed** |  | [optional]
 **success** | **mixed** |  | [optional]
 **permanent_failure** | **mixed** |  | [optional]
 

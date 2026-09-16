@@ -1,6 +1,6 @@
 <?php
 /**
- * DeliveryResult
+ * PersonMergeCandidateBulkApproveResultDTO
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * DeliveryResult Class Doc Comment
+ * PersonMergeCandidateBulkApproveResultDTO Class Doc Comment
  *
  * @category Class
  * @package  Idealogic\RegistrationAPI
@@ -41,7 +41,7 @@ use \Idealogic\RegistrationAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
+class PersonMergeCandidateBulkApproveResultDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DeliveryResult';
+    protected static $openAPIModelName = 'PersonMergeCandidateBulkApproveResultDTO';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,14 +58,10 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'status' => 'mixed',
-        'error_message' => 'mixed',
-        'sent_message' => '\Idealogic\RegistrationAPI\Model\EmailMessage',
-        'already_sent' => 'mixed',
-        'message_id' => 'mixed',
-        'relay_response' => 'mixed',
-        'success' => 'mixed',
-        'permanent_failure' => 'mixed'
+        'total' => 'mixed',
+        'succeeded' => 'mixed',
+        'failed' => 'mixed',
+        'results' => 'mixed'
     ];
 
     /**
@@ -76,14 +72,10 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'status' => null,
-        'error_message' => null,
-        'sent_message' => null,
-        'already_sent' => null,
-        'message_id' => null,
-        'relay_response' => null,
-        'success' => null,
-        'permanent_failure' => null
+        'total' => 'int32',
+        'succeeded' => 'int32',
+        'failed' => 'int32',
+        'results' => null
     ];
 
     /**
@@ -92,14 +84,10 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'status' => true,
-        'error_message' => true,
-        'sent_message' => false,
-        'already_sent' => true,
-        'message_id' => true,
-        'relay_response' => true,
-        'success' => true,
-        'permanent_failure' => true
+        'total' => true,
+        'succeeded' => true,
+        'failed' => true,
+        'results' => true
     ];
 
     /**
@@ -188,14 +176,10 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'status' => 'status',
-        'error_message' => 'errorMessage',
-        'sent_message' => 'sentMessage',
-        'already_sent' => 'alreadySent',
-        'message_id' => 'messageId',
-        'relay_response' => 'relayResponse',
-        'success' => 'success',
-        'permanent_failure' => 'permanentFailure'
+        'total' => 'total',
+        'succeeded' => 'succeeded',
+        'failed' => 'failed',
+        'results' => 'results'
     ];
 
     /**
@@ -204,14 +188,10 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'status' => 'setStatus',
-        'error_message' => 'setErrorMessage',
-        'sent_message' => 'setSentMessage',
-        'already_sent' => 'setAlreadySent',
-        'message_id' => 'setMessageId',
-        'relay_response' => 'setRelayResponse',
-        'success' => 'setSuccess',
-        'permanent_failure' => 'setPermanentFailure'
+        'total' => 'setTotal',
+        'succeeded' => 'setSucceeded',
+        'failed' => 'setFailed',
+        'results' => 'setResults'
     ];
 
     /**
@@ -220,14 +200,10 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'status' => 'getStatus',
-        'error_message' => 'getErrorMessage',
-        'sent_message' => 'getSentMessage',
-        'already_sent' => 'getAlreadySent',
-        'message_id' => 'getMessageId',
-        'relay_response' => 'getRelayResponse',
-        'success' => 'getSuccess',
-        'permanent_failure' => 'getPermanentFailure'
+        'total' => 'getTotal',
+        'succeeded' => 'getSucceeded',
+        'failed' => 'getFailed',
+        'results' => 'getResults'
     ];
 
     /**
@@ -271,25 +247,6 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const STATUS_PENDING = 'PENDING';
-    public const STATUS_SENT = 'SENT';
-    public const STATUS_FAILED = 'FAILED';
-    public const STATUS_BOUNCED = 'BOUNCED';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_PENDING,
-            self::STATUS_SENT,
-            self::STATUS_FAILED,
-            self::STATUS_BOUNCED,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -306,14 +263,10 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('error_message', $data ?? [], null);
-        $this->setIfExists('sent_message', $data ?? [], null);
-        $this->setIfExists('already_sent', $data ?? [], null);
-        $this->setIfExists('message_id', $data ?? [], null);
-        $this->setIfExists('relay_response', $data ?? [], null);
-        $this->setIfExists('success', $data ?? [], null);
-        $this->setIfExists('permanent_failure', $data ?? [], null);
+        $this->setIfExists('total', $data ?? [], null);
+        $this->setIfExists('succeeded', $data ?? [], null);
+        $this->setIfExists('failed', $data ?? [], null);
+        $this->setIfExists('results', $data ?? [], null);
     }
 
     /**
@@ -343,15 +296,6 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -368,276 +312,137 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets status
+     * Gets total
      *
      * @return mixed|null
      */
-    public function getStatus()
+    public function getTotal()
     {
-        return $this->container['status'];
+        return $this->container['total'];
     }
 
     /**
-     * Sets status
+     * Sets total
      *
-     * @param mixed|null $status status
+     * @param mixed|null $total total
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setTotal($total)
     {
-        if (is_null($status)) {
-            array_push($this->openAPINullablesSetToNull, 'status');
+        if (is_null($total)) {
+            array_push($this->openAPINullablesSetToNull, 'total');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('status', $nullablesSetToNull);
+            $index = array_search('total', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['total'] = $total;
 
         return $this;
     }
 
     /**
-     * Gets error_message
+     * Gets succeeded
      *
      * @return mixed|null
      */
-    public function getErrorMessage()
+    public function getSucceeded()
     {
-        return $this->container['error_message'];
+        return $this->container['succeeded'];
     }
 
     /**
-     * Sets error_message
+     * Sets succeeded
      *
-     * @param mixed|null $error_message error_message
+     * @param mixed|null $succeeded succeeded
      *
      * @return self
      */
-    public function setErrorMessage($error_message)
+    public function setSucceeded($succeeded)
     {
-        if (is_null($error_message)) {
-            array_push($this->openAPINullablesSetToNull, 'error_message');
+        if (is_null($succeeded)) {
+            array_push($this->openAPINullablesSetToNull, 'succeeded');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('error_message', $nullablesSetToNull);
+            $index = array_search('succeeded', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['error_message'] = $error_message;
+        $this->container['succeeded'] = $succeeded;
 
         return $this;
     }
 
     /**
-     * Gets sent_message
-     *
-     * @return \Idealogic\RegistrationAPI\Model\EmailMessage|null
-     */
-    public function getSentMessage()
-    {
-        return $this->container['sent_message'];
-    }
-
-    /**
-     * Sets sent_message
-     *
-     * @param \Idealogic\RegistrationAPI\Model\EmailMessage|null $sent_message sent_message
-     *
-     * @return self
-     */
-    public function setSentMessage($sent_message)
-    {
-        if (is_null($sent_message)) {
-            throw new \InvalidArgumentException('non-nullable sent_message cannot be null');
-        }
-        $this->container['sent_message'] = $sent_message;
-
-        return $this;
-    }
-
-    /**
-     * Gets already_sent
+     * Gets failed
      *
      * @return mixed|null
      */
-    public function getAlreadySent()
+    public function getFailed()
     {
-        return $this->container['already_sent'];
+        return $this->container['failed'];
     }
 
     /**
-     * Sets already_sent
+     * Sets failed
      *
-     * @param mixed|null $already_sent already_sent
+     * @param mixed|null $failed failed
      *
      * @return self
      */
-    public function setAlreadySent($already_sent)
+    public function setFailed($failed)
     {
-        if (is_null($already_sent)) {
-            array_push($this->openAPINullablesSetToNull, 'already_sent');
+        if (is_null($failed)) {
+            array_push($this->openAPINullablesSetToNull, 'failed');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('already_sent', $nullablesSetToNull);
+            $index = array_search('failed', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['already_sent'] = $already_sent;
+        $this->container['failed'] = $failed;
 
         return $this;
     }
 
     /**
-     * Gets message_id
+     * Gets results
      *
      * @return mixed|null
      */
-    public function getMessageId()
+    public function getResults()
     {
-        return $this->container['message_id'];
+        return $this->container['results'];
     }
 
     /**
-     * Sets message_id
+     * Sets results
      *
-     * @param mixed|null $message_id message_id
+     * @param mixed|null $results results
      *
      * @return self
      */
-    public function setMessageId($message_id)
+    public function setResults($results)
     {
-        if (is_null($message_id)) {
-            array_push($this->openAPINullablesSetToNull, 'message_id');
+        if (is_null($results)) {
+            array_push($this->openAPINullablesSetToNull, 'results');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('message_id', $nullablesSetToNull);
+            $index = array_search('results', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['message_id'] = $message_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets relay_response
-     *
-     * @return mixed|null
-     */
-    public function getRelayResponse()
-    {
-        return $this->container['relay_response'];
-    }
-
-    /**
-     * Sets relay_response
-     *
-     * @param mixed|null $relay_response relay_response
-     *
-     * @return self
-     */
-    public function setRelayResponse($relay_response)
-    {
-        if (is_null($relay_response)) {
-            array_push($this->openAPINullablesSetToNull, 'relay_response');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('relay_response', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['relay_response'] = $relay_response;
-
-        return $this;
-    }
-
-    /**
-     * Gets success
-     *
-     * @return mixed|null
-     */
-    public function getSuccess()
-    {
-        return $this->container['success'];
-    }
-
-    /**
-     * Sets success
-     *
-     * @param mixed|null $success success
-     *
-     * @return self
-     */
-    public function setSuccess($success)
-    {
-        if (is_null($success)) {
-            array_push($this->openAPINullablesSetToNull, 'success');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('success', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['success'] = $success;
-
-        return $this;
-    }
-
-    /**
-     * Gets permanent_failure
-     *
-     * @return mixed|null
-     */
-    public function getPermanentFailure()
-    {
-        return $this->container['permanent_failure'];
-    }
-
-    /**
-     * Sets permanent_failure
-     *
-     * @param mixed|null $permanent_failure permanent_failure
-     *
-     * @return self
-     */
-    public function setPermanentFailure($permanent_failure)
-    {
-        if (is_null($permanent_failure)) {
-            array_push($this->openAPINullablesSetToNull, 'permanent_failure');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('permanent_failure', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['permanent_failure'] = $permanent_failure;
+        $this->container['results'] = $results;
 
         return $this;
     }
