@@ -60,10 +60,25 @@ def collect_refs(node, out: set[str]) -> None:
             collect_refs(value, out)
 
 
-def read_listed_models(pom_text: str) -> list[str]:
-    match = re.search(r"<modelsToGenerate>(.*?)</modelsToGenerate>", pom_text, re.S)
+def read_listed_models(pom_text: str) -> list[str] | None:
+    """<modelsToGenerate>, or None when the element is absent.
+
+    Absent is not an error: with no list the generator emits every schema in the spec,
+    which is what this pom now does deliberately. A closure cannot be violated when
+    everything is generated, so the checks below become "did the generator emit them
+    all" rather than "is the hand-maintained list still closed".
+
+    Comments are stripped first because the comment ABOVE this element explains it and
+    therefore names it, and a non-greedy search would otherwise run from the comment's
+    mention to the real closing tag and swallow the prose as entries.
+    """
+    match = re.search(
+        r"<modelsToGenerate>(.*?)</modelsToGenerate>",
+        re.sub(r"<!--.*?-->", "", pom_text, flags=re.S),
+        re.S,
+    )
     if not match:
-        raise SystemExit("could not find <modelsToGenerate> in the pom")
+        return None
     return [m.strip() for m in match.group(1).split(",") if m.strip()]
 
 
@@ -82,6 +97,35 @@ def closure_of(seeds: list[str], schemas: dict) -> set[str]:
         collect_refs(schema, refs)
         queue.extend(refs - seen)
     return seen
+
+
+def read_invoker_package(pom_text: str) -> str:
+    match = re.search(r"<invokerPackage>(.*?)</invokerPackage>", pom_text, re.S)
+    return match.group(1).strip() if match else "Idealogic\\RegistrationAPI"
+
+
+def dangling_model_references(lib_dir: Path, model_dir: Path, invoker: str) -> dict[str, list[str]]:
+    r"""Model classes the generated code names but that have no file -> who names them.
+
+    This is the invariant that actually matters, and the only one PHP itself will never
+    check: `Class "...\Model\XxxDTO" not found`, thrown lazily by
+    ObjectSerializer::deserialize the first time a payload carries the field. Neither
+    composer, nor php -l, nor autoloading sees it coming.
+
+    Scanning generated output rather than the spec deliberately: it asks what the code
+    in front of us actually needs, so it holds regardless of how the generator resolved
+    the spec — including schemas it declined to emit. StreamingResponseBody, for
+    instance, is `{}` in the spec, produces no class, and is referenced by nothing;
+    asserting "every schema has a file" would fail on it for no reason.
+    """
+    pattern = re.compile(re.escape("\\" + invoker.replace("\\", "\\") + "\\Model\\") + r"([A-Za-z0-9_]+)")
+    present = {f.stem for f in model_dir.glob("*.php")}
+    out: dict[str, list[str]] = {}
+    for php in sorted(lib_dir.rglob("*.php")):
+        for name in set(pattern.findall(php.read_text())):
+            if name not in present:
+                out.setdefault(name, []).append(str(php))
+    return {k: sorted(v) for k, v in out.items()}
 
 
 def main() -> int:
@@ -105,6 +149,35 @@ def main() -> int:
 
     pom_text = pom_path.read_text()
     listed = read_listed_models(pom_text)
+    model_dir = Path(args.model_dir)
+
+    if listed is None:
+        # No allowlist: the generator emits every schema, so there is no closure to
+        # violate. The one thing still worth asserting is that it actually did.
+        if not model_dir.is_dir():
+            print(f"OK: no <modelsToGenerate> — the generator emits all {len(schemas)} "
+                  f"schemas. ({model_dir} not present, so emission was not checked.)")
+            return 0
+        dangling = dangling_model_references(
+            model_dir.parent, model_dir, read_invoker_package(pom_text)
+        )
+        if dangling:
+            print(f"FAIL: {len(dangling)} model class(es) are referenced by generated code "
+                  f"but have no file in {model_dir}:")
+            for model, users in sorted(dangling.items()):
+                shown = ", ".join(users[:2])
+                if len(users) > 2:
+                    shown += f", +{len(users) - 2} more"
+                print(f"  - {model:<34} named by: {shown}")
+            print("\nEach one throws `Class \"...\\Model\\<name>\" not found` at runtime, and only")
+            print("once a payload actually carries that field — nothing before then sees it.")
+            return 1
+        emitted = len(list(model_dir.glob("*.php")))
+        print(f"OK: no <modelsToGenerate> — the generator emits every schema it can "
+              f"({emitted} classes in {model_dir}), and no generated file references a "
+              f"class that is missing.")
+        return 0
+
     failed = False
 
     # 1. Unknown models: listed but absent from the spec (typo, or removed upstream).
@@ -132,7 +205,6 @@ def main() -> int:
         print("once a payload actually carries that field. Add them (or run with --fix).")
 
     # 3. Emission: every listed model must have produced a PHP class.
-    model_dir = Path(args.model_dir)
     if model_dir.is_dir():
         not_emitted = sorted(m for m in listed if not (model_dir / f"{m}.php").is_file())
         if not_emitted:
