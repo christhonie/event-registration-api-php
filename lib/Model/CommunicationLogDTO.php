@@ -73,6 +73,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'override_send' => 'mixed',
         'message_id' => 'mixed',
         'relay_response' => 'mixed',
+        'resolved_by' => 'mixed',
+        'resolved_on' => 'mixed',
         'event_participant_id' => 'mixed',
         'membership_id' => 'mixed',
         'order_id' => 'mixed',
@@ -103,6 +105,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'override_send' => null,
         'message_id' => null,
         'relay_response' => null,
+        'resolved_by' => null,
+        'resolved_on' => 'date-time',
         'event_participant_id' => 'int64',
         'membership_id' => 'int64',
         'order_id' => 'int64',
@@ -131,6 +135,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'override_send' => true,
         'message_id' => true,
         'relay_response' => true,
+        'resolved_by' => true,
+        'resolved_on' => true,
         'event_participant_id' => true,
         'membership_id' => true,
         'order_id' => true,
@@ -239,6 +245,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'override_send' => 'overrideSend',
         'message_id' => 'messageId',
         'relay_response' => 'relayResponse',
+        'resolved_by' => 'resolvedBy',
+        'resolved_on' => 'resolvedOn',
         'event_participant_id' => 'eventParticipantId',
         'membership_id' => 'membershipId',
         'order_id' => 'orderId',
@@ -267,6 +275,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'override_send' => 'setOverrideSend',
         'message_id' => 'setMessageId',
         'relay_response' => 'setRelayResponse',
+        'resolved_by' => 'setResolvedBy',
+        'resolved_on' => 'setResolvedOn',
         'event_participant_id' => 'setEventParticipantId',
         'membership_id' => 'setMembershipId',
         'order_id' => 'setOrderId',
@@ -295,6 +305,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'override_send' => 'getOverrideSend',
         'message_id' => 'getMessageId',
         'relay_response' => 'getRelayResponse',
+        'resolved_by' => 'getResolvedBy',
+        'resolved_on' => 'getResolvedOn',
         'event_participant_id' => 'getEventParticipantId',
         'membership_id' => 'getMembershipId',
         'order_id' => 'getOrderId',
@@ -412,6 +424,8 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('override_send', $data ?? [], null);
         $this->setIfExists('message_id', $data ?? [], null);
         $this->setIfExists('relay_response', $data ?? [], null);
+        $this->setIfExists('resolved_by', $data ?? [], null);
+        $this->setIfExists('resolved_on', $data ?? [], null);
         $this->setIfExists('event_participant_id', $data ?? [], null);
         $this->setIfExists('membership_id', $data ?? [], null);
         $this->setIfExists('order_id', $data ?? [], null);
@@ -972,6 +986,74 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['relay_response'] = $relay_response;
+
+        return $this;
+    }
+
+    /**
+     * Gets resolved_by
+     *
+     * @return mixed|null
+     */
+    public function getResolvedBy()
+    {
+        return $this->container['resolved_by'];
+    }
+
+    /**
+     * Sets resolved_by
+     *
+     * @param mixed|null $resolved_by resolved_by
+     *
+     * @return self
+     */
+    public function setResolvedBy($resolved_by)
+    {
+        if (is_null($resolved_by)) {
+            array_push($this->openAPINullablesSetToNull, 'resolved_by');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('resolved_by', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['resolved_by'] = $resolved_by;
+
+        return $this;
+    }
+
+    /**
+     * Gets resolved_on
+     *
+     * @return mixed|null
+     */
+    public function getResolvedOn()
+    {
+        return $this->container['resolved_on'];
+    }
+
+    /**
+     * Sets resolved_on
+     *
+     * @param mixed|null $resolved_on resolved_on
+     *
+     * @return self
+     */
+    public function setResolvedOn($resolved_on)
+    {
+        if (is_null($resolved_on)) {
+            array_push($this->openAPINullablesSetToNull, 'resolved_on');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('resolved_on', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['resolved_on'] = $resolved_on;
 
         return $this;
     }

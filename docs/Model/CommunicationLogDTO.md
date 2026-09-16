@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **override_send** | **mixed** |  | [optional]
 **message_id** | **mixed** |  | [optional]
 **relay_response** | **mixed** |  | [optional]
+**resolved_by** | **mixed** |  | [optional]
+**resolved_on** | **mixed** |  | [optional]
 **event_participant_id** | **mixed** |  | [optional]
 **membership_id** | **mixed** |  | [optional]
 **order_id** | **mixed** |  | [optional]

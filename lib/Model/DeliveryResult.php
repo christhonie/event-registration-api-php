@@ -65,6 +65,7 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         'message_id' => 'mixed',
         'relay_response' => 'mixed',
         'success' => 'mixed',
+        'in_doubt' => 'mixed',
         'permanent_failure' => 'mixed'
     ];
 
@@ -83,6 +84,7 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         'message_id' => null,
         'relay_response' => null,
         'success' => null,
+        'in_doubt' => null,
         'permanent_failure' => null
     ];
 
@@ -99,6 +101,7 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         'message_id' => true,
         'relay_response' => true,
         'success' => true,
+        'in_doubt' => true,
         'permanent_failure' => true
     ];
 
@@ -195,6 +198,7 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         'message_id' => 'messageId',
         'relay_response' => 'relayResponse',
         'success' => 'success',
+        'in_doubt' => 'inDoubt',
         'permanent_failure' => 'permanentFailure'
     ];
 
@@ -211,6 +215,7 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         'message_id' => 'setMessageId',
         'relay_response' => 'setRelayResponse',
         'success' => 'setSuccess',
+        'in_doubt' => 'setInDoubt',
         'permanent_failure' => 'setPermanentFailure'
     ];
 
@@ -227,6 +232,7 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         'message_id' => 'getMessageId',
         'relay_response' => 'getRelayResponse',
         'success' => 'getSuccess',
+        'in_doubt' => 'getInDoubt',
         'permanent_failure' => 'getPermanentFailure'
     ];
 
@@ -315,6 +321,7 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('message_id', $data ?? [], null);
         $this->setIfExists('relay_response', $data ?? [], null);
         $this->setIfExists('success', $data ?? [], null);
+        $this->setIfExists('in_doubt', $data ?? [], null);
         $this->setIfExists('permanent_failure', $data ?? [], null);
     }
 
@@ -606,6 +613,40 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['success'] = $success;
+
+        return $this;
+    }
+
+    /**
+     * Gets in_doubt
+     *
+     * @return mixed|null
+     */
+    public function getInDoubt()
+    {
+        return $this->container['in_doubt'];
+    }
+
+    /**
+     * Sets in_doubt
+     *
+     * @param mixed|null $in_doubt in_doubt
+     *
+     * @return self
+     */
+    public function setInDoubt($in_doubt)
+    {
+        if (is_null($in_doubt)) {
+            array_push($this->openAPINullablesSetToNull, 'in_doubt');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('in_doubt', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['in_doubt'] = $in_doubt;
 
         return $this;
     }
