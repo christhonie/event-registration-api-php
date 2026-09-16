@@ -351,6 +351,7 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     public const DELIVERY_STATUS_SENT = 'SENT';
     public const DELIVERY_STATUS_FAILED = 'FAILED';
     public const DELIVERY_STATUS_BOUNCED = 'BOUNCED';
+    public const DELIVERY_STATUS_IN_DOUBT = 'IN_DOUBT';
 
     /**
      * Gets allowable values of the enum
@@ -378,6 +379,7 @@ class CommunicationLogDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             self::DELIVERY_STATUS_SENT,
             self::DELIVERY_STATUS_FAILED,
             self::DELIVERY_STATUS_BOUNCED,
+            self::DELIVERY_STATUS_IN_DOUBT,
         ];
     }
 

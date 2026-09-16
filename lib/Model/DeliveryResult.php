@@ -275,6 +275,7 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_SENT = 'SENT';
     public const STATUS_FAILED = 'FAILED';
     public const STATUS_BOUNCED = 'BOUNCED';
+    public const STATUS_IN_DOUBT = 'IN_DOUBT';
 
     /**
      * Gets allowable values of the enum
@@ -288,6 +289,7 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_SENT,
             self::STATUS_FAILED,
             self::STATUS_BOUNCED,
+            self::STATUS_IN_DOUBT,
         ];
     }
 
