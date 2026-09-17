@@ -14,5 +14,6 @@ Name | Type | Description | Notes
 **operator** | **mixed** |  | [optional]
 **field_provenance** | **mixed** |  | [optional]
 **fk_updates** | **mixed** |  | [optional]
+**eligibility** | **mixed** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

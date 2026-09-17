@@ -67,7 +67,8 @@ class PersonMergeLogDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         'trigger_type' => 'mixed',
         'operator' => 'mixed',
         'field_provenance' => 'mixed',
-        'fk_updates' => 'mixed'
+        'fk_updates' => 'mixed',
+        'eligibility' => 'mixed'
     ];
 
     /**
@@ -87,7 +88,8 @@ class PersonMergeLogDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         'trigger_type' => null,
         'operator' => null,
         'field_provenance' => null,
-        'fk_updates' => null
+        'fk_updates' => null,
+        'eligibility' => null
     ];
 
     /**
@@ -105,7 +107,8 @@ class PersonMergeLogDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         'trigger_type' => true,
         'operator' => true,
         'field_provenance' => true,
-        'fk_updates' => true
+        'fk_updates' => true,
+        'eligibility' => true
     ];
 
     /**
@@ -203,7 +206,8 @@ class PersonMergeLogDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         'trigger_type' => 'triggerType',
         'operator' => 'operator',
         'field_provenance' => 'fieldProvenance',
-        'fk_updates' => 'fkUpdates'
+        'fk_updates' => 'fkUpdates',
+        'eligibility' => 'eligibility'
     ];
 
     /**
@@ -221,7 +225,8 @@ class PersonMergeLogDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         'trigger_type' => 'setTriggerType',
         'operator' => 'setOperator',
         'field_provenance' => 'setFieldProvenance',
-        'fk_updates' => 'setFkUpdates'
+        'fk_updates' => 'setFkUpdates',
+        'eligibility' => 'setEligibility'
     ];
 
     /**
@@ -239,7 +244,8 @@ class PersonMergeLogDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         'trigger_type' => 'getTriggerType',
         'operator' => 'getOperator',
         'field_provenance' => 'getFieldProvenance',
-        'fk_updates' => 'getFkUpdates'
+        'fk_updates' => 'getFkUpdates',
+        'eligibility' => 'getEligibility'
     ];
 
     /**
@@ -309,6 +315,7 @@ class PersonMergeLogDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('operator', $data ?? [], null);
         $this->setIfExists('field_provenance', $data ?? [], null);
         $this->setIfExists('fk_updates', $data ?? [], null);
+        $this->setIfExists('eligibility', $data ?? [], null);
     }
 
     /**
@@ -689,6 +696,40 @@ class PersonMergeLogDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
             }
         }
         $this->container['fk_updates'] = $fk_updates;
+
+        return $this;
+    }
+
+    /**
+     * Gets eligibility
+     *
+     * @return mixed|null
+     */
+    public function getEligibility()
+    {
+        return $this->container['eligibility'];
+    }
+
+    /**
+     * Sets eligibility
+     *
+     * @param mixed|null $eligibility eligibility
+     *
+     * @return self
+     */
+    public function setEligibility($eligibility)
+    {
+        if (is_null($eligibility)) {
+            array_push($this->openAPINullablesSetToNull, 'eligibility');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('eligibility', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['eligibility'] = $eligibility;
 
         return $this;
     }
