@@ -64,6 +64,7 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_sweep_at' => 'mixed',
         'enabled' => '\Idealogic\RegistrationAPI\Model\TristateFlagDTO',
         'dry_run' => '\Idealogic\RegistrationAPI\Model\TristateFlagDTO',
+        'sweep_enabled' => 'mixed',
         'organisation_scoped' => 'mixed',
         'organisations' => '\Idealogic\RegistrationAPI\Model\OrganisationSetDTO'
     ];
@@ -82,6 +83,7 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_sweep_at' => 'date-time',
         'enabled' => null,
         'dry_run' => null,
+        'sweep_enabled' => null,
         'organisation_scoped' => null,
         'organisations' => null
     ];
@@ -98,6 +100,7 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_sweep_at' => true,
         'enabled' => false,
         'dry_run' => false,
+        'sweep_enabled' => true,
         'organisation_scoped' => true,
         'organisations' => false
     ];
@@ -194,6 +197,7 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_sweep_at' => 'lastSweepAt',
         'enabled' => 'enabled',
         'dry_run' => 'dryRun',
+        'sweep_enabled' => 'sweepEnabled',
         'organisation_scoped' => 'organisationScoped',
         'organisations' => 'organisations'
     ];
@@ -210,6 +214,7 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_sweep_at' => 'setLastSweepAt',
         'enabled' => 'setEnabled',
         'dry_run' => 'setDryRun',
+        'sweep_enabled' => 'setSweepEnabled',
         'organisation_scoped' => 'setOrganisationScoped',
         'organisations' => 'setOrganisations'
     ];
@@ -226,6 +231,7 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_sweep_at' => 'getLastSweepAt',
         'enabled' => 'getEnabled',
         'dry_run' => 'getDryRun',
+        'sweep_enabled' => 'getSweepEnabled',
         'organisation_scoped' => 'getOrganisationScoped',
         'organisations' => 'getOrganisations'
     ];
@@ -293,6 +299,7 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('last_sweep_at', $data ?? [], null);
         $this->setIfExists('enabled', $data ?? [], null);
         $this->setIfExists('dry_run', $data ?? [], null);
+        $this->setIfExists('sweep_enabled', $data ?? [], null);
         $this->setIfExists('organisation_scoped', $data ?? [], null);
         $this->setIfExists('organisations', $data ?? [], null);
     }
@@ -527,6 +534,40 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable dry_run cannot be null');
         }
         $this->container['dry_run'] = $dry_run;
+
+        return $this;
+    }
+
+    /**
+     * Gets sweep_enabled
+     *
+     * @return mixed|null
+     */
+    public function getSweepEnabled()
+    {
+        return $this->container['sweep_enabled'];
+    }
+
+    /**
+     * Sets sweep_enabled
+     *
+     * @param mixed|null $sweep_enabled sweep_enabled
+     *
+     * @return self
+     */
+    public function setSweepEnabled($sweep_enabled)
+    {
+        if (is_null($sweep_enabled)) {
+            array_push($this->openAPINullablesSetToNull, 'sweep_enabled');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sweep_enabled', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['sweep_enabled'] = $sweep_enabled;
 
         return $this;
     }

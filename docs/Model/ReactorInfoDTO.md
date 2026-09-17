@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **last_sweep_at** | **mixed** |  | [optional]
 **enabled** | [**\Idealogic\RegistrationAPI\Model\TristateFlagDTO**](TristateFlagDTO.md) |  | [optional]
 **dry_run** | [**\Idealogic\RegistrationAPI\Model\TristateFlagDTO**](TristateFlagDTO.md) |  | [optional]
+**sweep_enabled** | **mixed** |  | [optional]
 **organisation_scoped** | **mixed** |  | [optional]
 **organisations** | [**\Idealogic\RegistrationAPI\Model\OrganisationSetDTO**](OrganisationSetDTO.md) |  | [optional]
 
