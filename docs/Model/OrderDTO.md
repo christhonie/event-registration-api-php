@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **url** | **mixed** |  | [optional]
 **transaction_date_time** | **mixed** |  |
 **payment_date_time** | **mixed** |  | [optional]
+**payment_amount** | **mixed** |  | [optional]
 **cancel_date_time** | **mixed** |  | [optional]
 **organisation** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) |  |
 **buyer** | [**\Idealogic\RegistrationAPI\Model\PersonNameDTO**](PersonNameDTO.md) |  | [optional]

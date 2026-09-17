@@ -66,6 +66,7 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'url' => 'mixed',
         'transaction_date_time' => 'mixed',
         'payment_date_time' => 'mixed',
+        'payment_amount' => 'mixed',
         'cancel_date_time' => 'mixed',
         'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
         'buyer' => '\Idealogic\RegistrationAPI\Model\PersonNameDTO',
@@ -96,6 +97,7 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'url' => null,
         'transaction_date_time' => 'date-time',
         'payment_date_time' => 'date-time',
+        'payment_amount' => null,
         'cancel_date_time' => 'date-time',
         'organisation' => null,
         'buyer' => null,
@@ -124,6 +126,7 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'url' => true,
         'transaction_date_time' => true,
         'payment_date_time' => true,
+        'payment_amount' => true,
         'cancel_date_time' => true,
         'organisation' => false,
         'buyer' => false,
@@ -232,6 +235,7 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'url' => 'url',
         'transaction_date_time' => 'transactionDateTime',
         'payment_date_time' => 'paymentDateTime',
+        'payment_amount' => 'paymentAmount',
         'cancel_date_time' => 'cancelDateTime',
         'organisation' => 'organisation',
         'buyer' => 'buyer',
@@ -260,6 +264,7 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'url' => 'setUrl',
         'transaction_date_time' => 'setTransactionDateTime',
         'payment_date_time' => 'setPaymentDateTime',
+        'payment_amount' => 'setPaymentAmount',
         'cancel_date_time' => 'setCancelDateTime',
         'organisation' => 'setOrganisation',
         'buyer' => 'setBuyer',
@@ -288,6 +293,7 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'url' => 'getUrl',
         'transaction_date_time' => 'getTransactionDateTime',
         'payment_date_time' => 'getPaymentDateTime',
+        'payment_amount' => 'getPaymentAmount',
         'cancel_date_time' => 'getCancelDateTime',
         'organisation' => 'getOrganisation',
         'buyer' => 'getBuyer',
@@ -388,6 +394,7 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('transaction_date_time', $data ?? [], null);
         $this->setIfExists('payment_date_time', $data ?? [], null);
+        $this->setIfExists('payment_amount', $data ?? [], null);
         $this->setIfExists('cancel_date_time', $data ?? [], null);
         $this->setIfExists('organisation', $data ?? [], null);
         $this->setIfExists('buyer', $data ?? [], null);
@@ -808,6 +815,40 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['payment_date_time'] = $payment_date_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets payment_amount
+     *
+     * @return mixed|null
+     */
+    public function getPaymentAmount()
+    {
+        return $this->container['payment_amount'];
+    }
+
+    /**
+     * Sets payment_amount
+     *
+     * @param mixed|null $payment_amount payment_amount
+     *
+     * @return self
+     */
+    public function setPaymentAmount($payment_amount)
+    {
+        if (is_null($payment_amount)) {
+            array_push($this->openAPINullablesSetToNull, 'payment_amount');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payment_amount', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['payment_amount'] = $payment_amount;
 
         return $this;
     }
