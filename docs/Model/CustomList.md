@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **display_name** | **mixed** |  | [optional]
 **display_code** | **mixed** |  |
 **meta_key** | **mixed** |  | [optional]
+**value_convention** | **mixed** |  |
 **organisation_id** | **mixed** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

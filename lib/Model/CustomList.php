@@ -63,6 +63,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_name' => 'mixed',
         'display_code' => 'mixed',
         'meta_key' => 'mixed',
+        'value_convention' => 'mixed',
         'organisation_id' => 'mixed'
     ];
 
@@ -79,6 +80,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_name' => null,
         'display_code' => null,
         'meta_key' => null,
+        'value_convention' => null,
         'organisation_id' => 'int64'
     ];
 
@@ -93,6 +95,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_name' => true,
         'display_code' => true,
         'meta_key' => true,
+        'value_convention' => true,
         'organisation_id' => true
     ];
 
@@ -187,6 +190,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_name' => 'displayName',
         'display_code' => 'displayCode',
         'meta_key' => 'metaKey',
+        'value_convention' => 'valueConvention',
         'organisation_id' => 'organisationId'
     ];
 
@@ -201,6 +205,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_name' => 'setDisplayName',
         'display_code' => 'setDisplayCode',
         'meta_key' => 'setMetaKey',
+        'value_convention' => 'setValueConvention',
         'organisation_id' => 'setOrganisationId'
     ];
 
@@ -215,6 +220,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_name' => 'getDisplayName',
         'display_code' => 'getDisplayCode',
         'meta_key' => 'getMetaKey',
+        'value_convention' => 'getValueConvention',
         'organisation_id' => 'getOrganisationId'
     ];
 
@@ -259,6 +265,21 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const VALUE_CONVENTION_NAME = 'NAME';
+    public const VALUE_CONVENTION_ID = 'ID';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getValueConventionAllowableValues()
+    {
+        return [
+            self::VALUE_CONVENTION_NAME,
+            self::VALUE_CONVENTION_ID,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -280,6 +301,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('display_name', $data ?? [], null);
         $this->setIfExists('display_code', $data ?? [], null);
         $this->setIfExists('meta_key', $data ?? [], null);
+        $this->setIfExists('value_convention', $data ?? [], null);
         $this->setIfExists('organisation_id', $data ?? [], null);
     }
 
@@ -338,6 +360,18 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['meta_key']) && (mb_strlen($this->container['meta_key']) < 0)) {
             $invalidProperties[] = "invalid value for 'meta_key', the character length must be bigger than or equal to 0.";
+        }
+
+        if ($this->container['value_convention'] === null) {
+            $invalidProperties[] = "'value_convention' can't be null";
+        }
+        $allowedValues = $this->getValueConventionAllowableValues();
+        if (!is_null($this->container['value_convention']) && !in_array($this->container['value_convention'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'value_convention', must be one of '%s'",
+                $this->container['value_convention'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -542,6 +576,50 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['meta_key'] = $meta_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets value_convention
+     *
+     * @return mixed
+     */
+    public function getValueConvention()
+    {
+        return $this->container['value_convention'];
+    }
+
+    /**
+     * Sets value_convention
+     *
+     * @param mixed $value_convention value_convention
+     *
+     * @return self
+     */
+    public function setValueConvention($value_convention)
+    {
+        if (is_null($value_convention)) {
+            array_push($this->openAPINullablesSetToNull, 'value_convention');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('value_convention', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getValueConventionAllowableValues();
+        if (!is_null($value_convention) && !in_array($value_convention, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'value_convention', must be one of '%s'",
+                    $value_convention,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['value_convention'] = $value_convention;
 
         return $this;
     }
