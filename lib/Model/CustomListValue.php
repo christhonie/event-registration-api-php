@@ -60,7 +60,8 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'id' => 'mixed',
         'name' => 'mixed',
-        'code' => 'mixed'
+        'code' => 'mixed',
+        'derived_from' => '\Idealogic\RegistrationAPI\Model\CustomListValue'
     ];
 
     /**
@@ -73,7 +74,8 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'id' => 'int64',
         'name' => null,
-        'code' => null
+        'code' => null,
+        'derived_from' => null
     ];
 
     /**
@@ -84,7 +86,8 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'id' => true,
         'name' => true,
-        'code' => true
+        'code' => true,
+        'derived_from' => false
     ];
 
     /**
@@ -175,7 +178,8 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'id' => 'id',
         'name' => 'name',
-        'code' => 'code'
+        'code' => 'code',
+        'derived_from' => 'derivedFrom'
     ];
 
     /**
@@ -186,7 +190,8 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'id' => 'setId',
         'name' => 'setName',
-        'code' => 'setCode'
+        'code' => 'setCode',
+        'derived_from' => 'setDerivedFrom'
     ];
 
     /**
@@ -197,7 +202,8 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'id' => 'getId',
         'name' => 'getName',
-        'code' => 'getCode'
+        'code' => 'getCode',
+        'derived_from' => 'getDerivedFrom'
     ];
 
     /**
@@ -260,6 +266,7 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('derived_from', $data ?? [], null);
     }
 
     /**
@@ -435,6 +442,33 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['code'] = $code;
+
+        return $this;
+    }
+
+    /**
+     * Gets derived_from
+     *
+     * @return \Idealogic\RegistrationAPI\Model\CustomListValue|null
+     */
+    public function getDerivedFrom()
+    {
+        return $this->container['derived_from'];
+    }
+
+    /**
+     * Sets derived_from
+     *
+     * @param \Idealogic\RegistrationAPI\Model\CustomListValue|null $derived_from derived_from
+     *
+     * @return self
+     */
+    public function setDerivedFrom($derived_from)
+    {
+        if (is_null($derived_from)) {
+            throw new \InvalidArgumentException('non-nullable derived_from cannot be null');
+        }
+        $this->container['derived_from'] = $derived_from;
 
         return $this;
     }

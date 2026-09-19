@@ -64,6 +64,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_code' => 'mixed',
         'meta_key' => 'mixed',
         'value_convention' => 'mixed',
+        'derived_from' => '\Idealogic\RegistrationAPI\Model\CustomList',
         'organisation_id' => 'mixed'
     ];
 
@@ -81,6 +82,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_code' => null,
         'meta_key' => null,
         'value_convention' => null,
+        'derived_from' => null,
         'organisation_id' => 'int64'
     ];
 
@@ -96,6 +98,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_code' => true,
         'meta_key' => true,
         'value_convention' => true,
+        'derived_from' => false,
         'organisation_id' => true
     ];
 
@@ -191,6 +194,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_code' => 'displayCode',
         'meta_key' => 'metaKey',
         'value_convention' => 'valueConvention',
+        'derived_from' => 'derivedFrom',
         'organisation_id' => 'organisationId'
     ];
 
@@ -206,6 +210,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_code' => 'setDisplayCode',
         'meta_key' => 'setMetaKey',
         'value_convention' => 'setValueConvention',
+        'derived_from' => 'setDerivedFrom',
         'organisation_id' => 'setOrganisationId'
     ];
 
@@ -221,6 +226,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_code' => 'getDisplayCode',
         'meta_key' => 'getMetaKey',
         'value_convention' => 'getValueConvention',
+        'derived_from' => 'getDerivedFrom',
         'organisation_id' => 'getOrganisationId'
     ];
 
@@ -302,6 +308,7 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('display_code', $data ?? [], null);
         $this->setIfExists('meta_key', $data ?? [], null);
         $this->setIfExists('value_convention', $data ?? [], null);
+        $this->setIfExists('derived_from', $data ?? [], null);
         $this->setIfExists('organisation_id', $data ?? [], null);
     }
 
@@ -620,6 +627,33 @@ class CustomList implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['value_convention'] = $value_convention;
+
+        return $this;
+    }
+
+    /**
+     * Gets derived_from
+     *
+     * @return \Idealogic\RegistrationAPI\Model\CustomList|null
+     */
+    public function getDerivedFrom()
+    {
+        return $this->container['derived_from'];
+    }
+
+    /**
+     * Sets derived_from
+     *
+     * @param \Idealogic\RegistrationAPI\Model\CustomList|null $derived_from derived_from
+     *
+     * @return self
+     */
+    public function setDerivedFrom($derived_from)
+    {
+        if (is_null($derived_from)) {
+            throw new \InvalidArgumentException('non-nullable derived_from cannot be null');
+        }
+        $this->container['derived_from'] = $derived_from;
 
         return $this;
     }
