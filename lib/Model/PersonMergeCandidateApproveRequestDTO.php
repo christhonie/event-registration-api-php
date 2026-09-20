@@ -58,7 +58,8 @@ class PersonMergeCandidateApproveRequestDTO implements ModelInterface, ArrayAcce
       * @var string[]
       */
     protected static $openAPITypes = [
-        'survivor_person_id' => 'mixed'
+        'survivor_person_id' => 'mixed',
+        'confirmed' => 'mixed'
     ];
 
     /**
@@ -69,7 +70,8 @@ class PersonMergeCandidateApproveRequestDTO implements ModelInterface, ArrayAcce
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'survivor_person_id' => 'int64'
+        'survivor_person_id' => 'int64',
+        'confirmed' => null
     ];
 
     /**
@@ -78,7 +80,8 @@ class PersonMergeCandidateApproveRequestDTO implements ModelInterface, ArrayAcce
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'survivor_person_id' => true
+        'survivor_person_id' => true,
+        'confirmed' => true
     ];
 
     /**
@@ -167,7 +170,8 @@ class PersonMergeCandidateApproveRequestDTO implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $attributeMap = [
-        'survivor_person_id' => 'survivorPersonId'
+        'survivor_person_id' => 'survivorPersonId',
+        'confirmed' => 'confirmed'
     ];
 
     /**
@@ -176,7 +180,8 @@ class PersonMergeCandidateApproveRequestDTO implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $setters = [
-        'survivor_person_id' => 'setSurvivorPersonId'
+        'survivor_person_id' => 'setSurvivorPersonId',
+        'confirmed' => 'setConfirmed'
     ];
 
     /**
@@ -185,7 +190,8 @@ class PersonMergeCandidateApproveRequestDTO implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $getters = [
-        'survivor_person_id' => 'getSurvivorPersonId'
+        'survivor_person_id' => 'getSurvivorPersonId',
+        'confirmed' => 'getConfirmed'
     ];
 
     /**
@@ -246,6 +252,7 @@ class PersonMergeCandidateApproveRequestDTO implements ModelInterface, ArrayAcce
     public function __construct(array $data = null)
     {
         $this->setIfExists('survivor_person_id', $data ?? [], null);
+        $this->setIfExists('confirmed', $data ?? [], null);
     }
 
     /**
@@ -320,6 +327,40 @@ class PersonMergeCandidateApproveRequestDTO implements ModelInterface, ArrayAcce
             }
         }
         $this->container['survivor_person_id'] = $survivor_person_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets confirmed
+     *
+     * @return mixed|null
+     */
+    public function getConfirmed()
+    {
+        return $this->container['confirmed'];
+    }
+
+    /**
+     * Sets confirmed
+     *
+     * @param mixed|null $confirmed confirmed
+     *
+     * @return self
+     */
+    public function setConfirmed($confirmed)
+    {
+        if (is_null($confirmed)) {
+            array_push($this->openAPINullablesSetToNull, 'confirmed');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('confirmed', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['confirmed'] = $confirmed;
 
         return $this;
     }

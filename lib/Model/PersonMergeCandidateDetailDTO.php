@@ -71,7 +71,8 @@ class PersonMergeCandidateDetailDTO implements ModelInterface, ArrayAccess, \Jso
         'resolved_by' => 'mixed',
         'source_person' => '\Idealogic\RegistrationAPI\Model\PersonMergeCandidatePersonDTO',
         'target_person' => '\Idealogic\RegistrationAPI\Model\PersonMergeCandidatePersonDTO',
-        'reject_reason' => 'mixed'
+        'reject_reason' => 'mixed',
+        'eligibility' => '\Idealogic\RegistrationAPI\Model\PersonMergeEligibilityDTO'
     ];
 
     /**
@@ -95,7 +96,8 @@ class PersonMergeCandidateDetailDTO implements ModelInterface, ArrayAccess, \Jso
         'resolved_by' => null,
         'source_person' => null,
         'target_person' => null,
-        'reject_reason' => null
+        'reject_reason' => null,
+        'eligibility' => null
     ];
 
     /**
@@ -117,7 +119,8 @@ class PersonMergeCandidateDetailDTO implements ModelInterface, ArrayAccess, \Jso
         'resolved_by' => true,
         'source_person' => false,
         'target_person' => false,
-        'reject_reason' => true
+        'reject_reason' => true,
+        'eligibility' => false
     ];
 
     /**
@@ -219,7 +222,8 @@ class PersonMergeCandidateDetailDTO implements ModelInterface, ArrayAccess, \Jso
         'resolved_by' => 'resolvedBy',
         'source_person' => 'sourcePerson',
         'target_person' => 'targetPerson',
-        'reject_reason' => 'rejectReason'
+        'reject_reason' => 'rejectReason',
+        'eligibility' => 'eligibility'
     ];
 
     /**
@@ -241,7 +245,8 @@ class PersonMergeCandidateDetailDTO implements ModelInterface, ArrayAccess, \Jso
         'resolved_by' => 'setResolvedBy',
         'source_person' => 'setSourcePerson',
         'target_person' => 'setTargetPerson',
-        'reject_reason' => 'setRejectReason'
+        'reject_reason' => 'setRejectReason',
+        'eligibility' => 'setEligibility'
     ];
 
     /**
@@ -263,7 +268,8 @@ class PersonMergeCandidateDetailDTO implements ModelInterface, ArrayAccess, \Jso
         'resolved_by' => 'getResolvedBy',
         'source_person' => 'getSourcePerson',
         'target_person' => 'getTargetPerson',
-        'reject_reason' => 'getRejectReason'
+        'reject_reason' => 'getRejectReason',
+        'eligibility' => 'getEligibility'
     ];
 
     /**
@@ -337,6 +343,7 @@ class PersonMergeCandidateDetailDTO implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('source_person', $data ?? [], null);
         $this->setIfExists('target_person', $data ?? [], null);
         $this->setIfExists('reject_reason', $data ?? [], null);
+        $this->setIfExists('eligibility', $data ?? [], null);
     }
 
     /**
@@ -839,6 +846,33 @@ class PersonMergeCandidateDetailDTO implements ModelInterface, ArrayAccess, \Jso
             }
         }
         $this->container['reject_reason'] = $reject_reason;
+
+        return $this;
+    }
+
+    /**
+     * Gets eligibility
+     *
+     * @return \Idealogic\RegistrationAPI\Model\PersonMergeEligibilityDTO|null
+     */
+    public function getEligibility()
+    {
+        return $this->container['eligibility'];
+    }
+
+    /**
+     * Sets eligibility
+     *
+     * @param \Idealogic\RegistrationAPI\Model\PersonMergeEligibilityDTO|null $eligibility eligibility
+     *
+     * @return self
+     */
+    public function setEligibility($eligibility)
+    {
+        if (is_null($eligibility)) {
+            throw new \InvalidArgumentException('non-nullable eligibility cannot be null');
+        }
+        $this->container['eligibility'] = $eligibility;
 
         return $this;
     }

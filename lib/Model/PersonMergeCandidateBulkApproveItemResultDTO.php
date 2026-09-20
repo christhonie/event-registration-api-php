@@ -61,7 +61,8 @@ class PersonMergeCandidateBulkApproveItemResultDTO implements ModelInterface, Ar
         'candidate_id' => 'mixed',
         'success' => 'mixed',
         'merge_log_id' => 'mixed',
-        'error' => 'mixed'
+        'error' => 'mixed',
+        'eligibility' => '\Idealogic\RegistrationAPI\Model\PersonMergeEligibilityDTO'
     ];
 
     /**
@@ -75,7 +76,8 @@ class PersonMergeCandidateBulkApproveItemResultDTO implements ModelInterface, Ar
         'candidate_id' => 'int64',
         'success' => null,
         'merge_log_id' => 'int64',
-        'error' => null
+        'error' => null,
+        'eligibility' => null
     ];
 
     /**
@@ -87,7 +89,8 @@ class PersonMergeCandidateBulkApproveItemResultDTO implements ModelInterface, Ar
         'candidate_id' => true,
         'success' => true,
         'merge_log_id' => true,
-        'error' => true
+        'error' => true,
+        'eligibility' => false
     ];
 
     /**
@@ -179,7 +182,8 @@ class PersonMergeCandidateBulkApproveItemResultDTO implements ModelInterface, Ar
         'candidate_id' => 'candidateId',
         'success' => 'success',
         'merge_log_id' => 'mergeLogId',
-        'error' => 'error'
+        'error' => 'error',
+        'eligibility' => 'eligibility'
     ];
 
     /**
@@ -191,7 +195,8 @@ class PersonMergeCandidateBulkApproveItemResultDTO implements ModelInterface, Ar
         'candidate_id' => 'setCandidateId',
         'success' => 'setSuccess',
         'merge_log_id' => 'setMergeLogId',
-        'error' => 'setError'
+        'error' => 'setError',
+        'eligibility' => 'setEligibility'
     ];
 
     /**
@@ -203,7 +208,8 @@ class PersonMergeCandidateBulkApproveItemResultDTO implements ModelInterface, Ar
         'candidate_id' => 'getCandidateId',
         'success' => 'getSuccess',
         'merge_log_id' => 'getMergeLogId',
-        'error' => 'getError'
+        'error' => 'getError',
+        'eligibility' => 'getEligibility'
     ];
 
     /**
@@ -267,6 +273,7 @@ class PersonMergeCandidateBulkApproveItemResultDTO implements ModelInterface, Ar
         $this->setIfExists('success', $data ?? [], null);
         $this->setIfExists('merge_log_id', $data ?? [], null);
         $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('eligibility', $data ?? [], null);
     }
 
     /**
@@ -443,6 +450,33 @@ class PersonMergeCandidateBulkApproveItemResultDTO implements ModelInterface, Ar
             }
         }
         $this->container['error'] = $error;
+
+        return $this;
+    }
+
+    /**
+     * Gets eligibility
+     *
+     * @return \Idealogic\RegistrationAPI\Model\PersonMergeEligibilityDTO|null
+     */
+    public function getEligibility()
+    {
+        return $this->container['eligibility'];
+    }
+
+    /**
+     * Sets eligibility
+     *
+     * @param \Idealogic\RegistrationAPI\Model\PersonMergeEligibilityDTO|null $eligibility eligibility
+     *
+     * @return self
+     */
+    public function setEligibility($eligibility)
+    {
+        if (is_null($eligibility)) {
+            throw new \InvalidArgumentException('non-nullable eligibility cannot be null');
+        }
+        $this->container['eligibility'] = $eligibility;
 
         return $this;
     }
