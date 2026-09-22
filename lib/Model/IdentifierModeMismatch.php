@@ -1,6 +1,6 @@
 <?php
 /**
- * ResultImportSummaryDTO
+ * IdentifierModeMismatch
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * ResultImportSummaryDTO Class Doc Comment
+ * IdentifierModeMismatch Class Doc Comment
  *
  * @category Class
  * @package  Idealogic\RegistrationAPI
@@ -41,7 +41,7 @@ use \Idealogic\RegistrationAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class IdentifierModeMismatch implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ResultImportSummaryDTO';
+    protected static $openAPIModelName = 'IdentifierModeMismatch';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,16 +58,10 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'job' => '\Idealogic\RegistrationAPI\Model\ImportJobDTO',
-        'counts' => '\Idealogic\RegistrationAPI\Model\Counts',
-        'per_category' => 'mixed',
-        'number_changes' => 'mixed',
-        'unresolved_eps' => 'mixed',
-        'dnf_rows' => 'mixed',
-        'non_data_lines' => '\Idealogic\RegistrationAPI\Model\NonDataLines',
-        'rows' => 'mixed',
-        'resolution_failure_rates' => 'mixed',
-        'identifier_mode_mismatches' => 'mixed'
+        'configured_mode' => 'mixed',
+        'candidate_mode' => 'mixed',
+        'rows_affected' => 'mixed',
+        'sample' => 'mixed'
     ];
 
     /**
@@ -78,16 +72,10 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'job' => null,
-        'counts' => null,
-        'per_category' => null,
-        'number_changes' => null,
-        'unresolved_eps' => null,
-        'dnf_rows' => null,
-        'non_data_lines' => null,
-        'rows' => null,
-        'resolution_failure_rates' => null,
-        'identifier_mode_mismatches' => null
+        'configured_mode' => null,
+        'candidate_mode' => null,
+        'rows_affected' => 'int32',
+        'sample' => null
     ];
 
     /**
@@ -96,16 +84,10 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'job' => false,
-        'counts' => false,
-        'per_category' => true,
-        'number_changes' => true,
-        'unresolved_eps' => true,
-        'dnf_rows' => true,
-        'non_data_lines' => false,
-        'rows' => true,
-        'resolution_failure_rates' => true,
-        'identifier_mode_mismatches' => true
+        'configured_mode' => true,
+        'candidate_mode' => true,
+        'rows_affected' => true,
+        'sample' => true
     ];
 
     /**
@@ -194,16 +176,10 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'job' => 'job',
-        'counts' => 'counts',
-        'per_category' => 'perCategory',
-        'number_changes' => 'numberChanges',
-        'unresolved_eps' => 'unresolvedEps',
-        'dnf_rows' => 'dnfRows',
-        'non_data_lines' => 'nonDataLines',
-        'rows' => 'rows',
-        'resolution_failure_rates' => 'resolutionFailureRates',
-        'identifier_mode_mismatches' => 'identifierModeMismatches'
+        'configured_mode' => 'configuredMode',
+        'candidate_mode' => 'candidateMode',
+        'rows_affected' => 'rowsAffected',
+        'sample' => 'sample'
     ];
 
     /**
@@ -212,16 +188,10 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'job' => 'setJob',
-        'counts' => 'setCounts',
-        'per_category' => 'setPerCategory',
-        'number_changes' => 'setNumberChanges',
-        'unresolved_eps' => 'setUnresolvedEps',
-        'dnf_rows' => 'setDnfRows',
-        'non_data_lines' => 'setNonDataLines',
-        'rows' => 'setRows',
-        'resolution_failure_rates' => 'setResolutionFailureRates',
-        'identifier_mode_mismatches' => 'setIdentifierModeMismatches'
+        'configured_mode' => 'setConfiguredMode',
+        'candidate_mode' => 'setCandidateMode',
+        'rows_affected' => 'setRowsAffected',
+        'sample' => 'setSample'
     ];
 
     /**
@@ -230,16 +200,10 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'job' => 'getJob',
-        'counts' => 'getCounts',
-        'per_category' => 'getPerCategory',
-        'number_changes' => 'getNumberChanges',
-        'unresolved_eps' => 'getUnresolvedEps',
-        'dnf_rows' => 'getDnfRows',
-        'non_data_lines' => 'getNonDataLines',
-        'rows' => 'getRows',
-        'resolution_failure_rates' => 'getResolutionFailureRates',
-        'identifier_mode_mismatches' => 'getIdentifierModeMismatches'
+        'configured_mode' => 'getConfiguredMode',
+        'candidate_mode' => 'getCandidateMode',
+        'rows_affected' => 'getRowsAffected',
+        'sample' => 'getSample'
     ];
 
     /**
@@ -299,16 +263,10 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('job', $data ?? [], null);
-        $this->setIfExists('counts', $data ?? [], null);
-        $this->setIfExists('per_category', $data ?? [], null);
-        $this->setIfExists('number_changes', $data ?? [], null);
-        $this->setIfExists('unresolved_eps', $data ?? [], null);
-        $this->setIfExists('dnf_rows', $data ?? [], null);
-        $this->setIfExists('non_data_lines', $data ?? [], null);
-        $this->setIfExists('rows', $data ?? [], null);
-        $this->setIfExists('resolution_failure_rates', $data ?? [], null);
-        $this->setIfExists('identifier_mode_mismatches', $data ?? [], null);
+        $this->setIfExists('configured_mode', $data ?? [], null);
+        $this->setIfExists('candidate_mode', $data ?? [], null);
+        $this->setIfExists('rows_affected', $data ?? [], null);
+        $this->setIfExists('sample', $data ?? [], null);
     }
 
     /**
@@ -354,320 +312,137 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets job
-     *
-     * @return \Idealogic\RegistrationAPI\Model\ImportJobDTO|null
-     */
-    public function getJob()
-    {
-        return $this->container['job'];
-    }
-
-    /**
-     * Sets job
-     *
-     * @param \Idealogic\RegistrationAPI\Model\ImportJobDTO|null $job job
-     *
-     * @return self
-     */
-    public function setJob($job)
-    {
-        if (is_null($job)) {
-            throw new \InvalidArgumentException('non-nullable job cannot be null');
-        }
-        $this->container['job'] = $job;
-
-        return $this;
-    }
-
-    /**
-     * Gets counts
-     *
-     * @return \Idealogic\RegistrationAPI\Model\Counts|null
-     */
-    public function getCounts()
-    {
-        return $this->container['counts'];
-    }
-
-    /**
-     * Sets counts
-     *
-     * @param \Idealogic\RegistrationAPI\Model\Counts|null $counts counts
-     *
-     * @return self
-     */
-    public function setCounts($counts)
-    {
-        if (is_null($counts)) {
-            throw new \InvalidArgumentException('non-nullable counts cannot be null');
-        }
-        $this->container['counts'] = $counts;
-
-        return $this;
-    }
-
-    /**
-     * Gets per_category
+     * Gets configured_mode
      *
      * @return mixed|null
      */
-    public function getPerCategory()
+    public function getConfiguredMode()
     {
-        return $this->container['per_category'];
+        return $this->container['configured_mode'];
     }
 
     /**
-     * Sets per_category
+     * Sets configured_mode
      *
-     * @param mixed|null $per_category per_category
+     * @param mixed|null $configured_mode configured_mode
      *
      * @return self
      */
-    public function setPerCategory($per_category)
+    public function setConfiguredMode($configured_mode)
     {
-        if (is_null($per_category)) {
-            array_push($this->openAPINullablesSetToNull, 'per_category');
+        if (is_null($configured_mode)) {
+            array_push($this->openAPINullablesSetToNull, 'configured_mode');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('per_category', $nullablesSetToNull);
+            $index = array_search('configured_mode', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['per_category'] = $per_category;
+        $this->container['configured_mode'] = $configured_mode;
 
         return $this;
     }
 
     /**
-     * Gets number_changes
+     * Gets candidate_mode
      *
      * @return mixed|null
      */
-    public function getNumberChanges()
+    public function getCandidateMode()
     {
-        return $this->container['number_changes'];
+        return $this->container['candidate_mode'];
     }
 
     /**
-     * Sets number_changes
+     * Sets candidate_mode
      *
-     * @param mixed|null $number_changes number_changes
+     * @param mixed|null $candidate_mode candidate_mode
      *
      * @return self
      */
-    public function setNumberChanges($number_changes)
+    public function setCandidateMode($candidate_mode)
     {
-        if (is_null($number_changes)) {
-            array_push($this->openAPINullablesSetToNull, 'number_changes');
+        if (is_null($candidate_mode)) {
+            array_push($this->openAPINullablesSetToNull, 'candidate_mode');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('number_changes', $nullablesSetToNull);
+            $index = array_search('candidate_mode', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['number_changes'] = $number_changes;
+        $this->container['candidate_mode'] = $candidate_mode;
 
         return $this;
     }
 
     /**
-     * Gets unresolved_eps
+     * Gets rows_affected
      *
      * @return mixed|null
      */
-    public function getUnresolvedEps()
+    public function getRowsAffected()
     {
-        return $this->container['unresolved_eps'];
+        return $this->container['rows_affected'];
     }
 
     /**
-     * Sets unresolved_eps
+     * Sets rows_affected
      *
-     * @param mixed|null $unresolved_eps unresolved_eps
+     * @param mixed|null $rows_affected rows_affected
      *
      * @return self
      */
-    public function setUnresolvedEps($unresolved_eps)
+    public function setRowsAffected($rows_affected)
     {
-        if (is_null($unresolved_eps)) {
-            array_push($this->openAPINullablesSetToNull, 'unresolved_eps');
+        if (is_null($rows_affected)) {
+            array_push($this->openAPINullablesSetToNull, 'rows_affected');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('unresolved_eps', $nullablesSetToNull);
+            $index = array_search('rows_affected', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['unresolved_eps'] = $unresolved_eps;
+        $this->container['rows_affected'] = $rows_affected;
 
         return $this;
     }
 
     /**
-     * Gets dnf_rows
+     * Gets sample
      *
      * @return mixed|null
      */
-    public function getDnfRows()
+    public function getSample()
     {
-        return $this->container['dnf_rows'];
+        return $this->container['sample'];
     }
 
     /**
-     * Sets dnf_rows
+     * Sets sample
      *
-     * @param mixed|null $dnf_rows dnf_rows
+     * @param mixed|null $sample sample
      *
      * @return self
      */
-    public function setDnfRows($dnf_rows)
+    public function setSample($sample)
     {
-        if (is_null($dnf_rows)) {
-            array_push($this->openAPINullablesSetToNull, 'dnf_rows');
+        if (is_null($sample)) {
+            array_push($this->openAPINullablesSetToNull, 'sample');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('dnf_rows', $nullablesSetToNull);
+            $index = array_search('sample', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['dnf_rows'] = $dnf_rows;
-
-        return $this;
-    }
-
-    /**
-     * Gets non_data_lines
-     *
-     * @return \Idealogic\RegistrationAPI\Model\NonDataLines|null
-     */
-    public function getNonDataLines()
-    {
-        return $this->container['non_data_lines'];
-    }
-
-    /**
-     * Sets non_data_lines
-     *
-     * @param \Idealogic\RegistrationAPI\Model\NonDataLines|null $non_data_lines non_data_lines
-     *
-     * @return self
-     */
-    public function setNonDataLines($non_data_lines)
-    {
-        if (is_null($non_data_lines)) {
-            throw new \InvalidArgumentException('non-nullable non_data_lines cannot be null');
-        }
-        $this->container['non_data_lines'] = $non_data_lines;
-
-        return $this;
-    }
-
-    /**
-     * Gets rows
-     *
-     * @return mixed|null
-     */
-    public function getRows()
-    {
-        return $this->container['rows'];
-    }
-
-    /**
-     * Sets rows
-     *
-     * @param mixed|null $rows rows
-     *
-     * @return self
-     */
-    public function setRows($rows)
-    {
-        if (is_null($rows)) {
-            array_push($this->openAPINullablesSetToNull, 'rows');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rows', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['rows'] = $rows;
-
-        return $this;
-    }
-
-    /**
-     * Gets resolution_failure_rates
-     *
-     * @return mixed|null
-     */
-    public function getResolutionFailureRates()
-    {
-        return $this->container['resolution_failure_rates'];
-    }
-
-    /**
-     * Sets resolution_failure_rates
-     *
-     * @param mixed|null $resolution_failure_rates resolution_failure_rates
-     *
-     * @return self
-     */
-    public function setResolutionFailureRates($resolution_failure_rates)
-    {
-        if (is_null($resolution_failure_rates)) {
-            array_push($this->openAPINullablesSetToNull, 'resolution_failure_rates');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('resolution_failure_rates', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['resolution_failure_rates'] = $resolution_failure_rates;
-
-        return $this;
-    }
-
-    /**
-     * Gets identifier_mode_mismatches
-     *
-     * @return mixed|null
-     */
-    public function getIdentifierModeMismatches()
-    {
-        return $this->container['identifier_mode_mismatches'];
-    }
-
-    /**
-     * Sets identifier_mode_mismatches
-     *
-     * @param mixed|null $identifier_mode_mismatches identifier_mode_mismatches
-     *
-     * @return self
-     */
-    public function setIdentifierModeMismatches($identifier_mode_mismatches)
-    {
-        if (is_null($identifier_mode_mismatches)) {
-            array_push($this->openAPINullablesSetToNull, 'identifier_mode_mismatches');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('identifier_mode_mismatches', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['identifier_mode_mismatches'] = $identifier_mode_mismatches;
+        $this->container['sample'] = $sample;
 
         return $this;
     }

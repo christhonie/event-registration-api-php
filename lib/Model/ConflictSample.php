@@ -1,6 +1,6 @@
 <?php
 /**
- * BulkResultImportResponseDTO
+ * ConflictSample
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * BulkResultImportResponseDTO Class Doc Comment
+ * ConflictSample Class Doc Comment
  *
  * @category Class
  * @package  Idealogic\RegistrationAPI
@@ -41,7 +41,7 @@ use \Idealogic\RegistrationAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class ConflictSample implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BulkResultImportResponseDTO';
+    protected static $openAPIModelName = 'ConflictSample';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,16 +58,11 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'event_id' => 'mixed',
-        'file_lines' => 'mixed',
-        'summary' => '\Idealogic\RegistrationAPI\Model\Summary',
-        'total_rows' => 'mixed',
-        'imported_rows' => 'mixed',
-        'categories' => 'mixed',
-        'unmatched_categories' => 'mixed',
-        'number_changes' => 'mixed',
-        'issues' => 'mixed',
-        'identifier_mode_mismatches' => 'mixed'
+        'identifier' => 'mixed',
+        'configured_participant_id' => 'mixed',
+        'configured_participant_name' => 'mixed',
+        'candidate_participant_id' => 'mixed',
+        'candidate_participant_name' => 'mixed'
     ];
 
     /**
@@ -78,16 +73,11 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'event_id' => 'int64',
-        'file_lines' => 'int32',
-        'summary' => null,
-        'total_rows' => 'int32',
-        'imported_rows' => 'int32',
-        'categories' => null,
-        'unmatched_categories' => null,
-        'number_changes' => null,
-        'issues' => null,
-        'identifier_mode_mismatches' => null
+        'identifier' => null,
+        'configured_participant_id' => 'int64',
+        'configured_participant_name' => null,
+        'candidate_participant_id' => 'int64',
+        'candidate_participant_name' => null
     ];
 
     /**
@@ -96,16 +86,11 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'event_id' => true,
-        'file_lines' => true,
-        'summary' => false,
-        'total_rows' => true,
-        'imported_rows' => true,
-        'categories' => true,
-        'unmatched_categories' => true,
-        'number_changes' => true,
-        'issues' => true,
-        'identifier_mode_mismatches' => true
+        'identifier' => true,
+        'configured_participant_id' => true,
+        'configured_participant_name' => true,
+        'candidate_participant_id' => true,
+        'candidate_participant_name' => true
     ];
 
     /**
@@ -194,16 +179,11 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'event_id' => 'eventId',
-        'file_lines' => 'fileLines',
-        'summary' => 'summary',
-        'total_rows' => 'totalRows',
-        'imported_rows' => 'importedRows',
-        'categories' => 'categories',
-        'unmatched_categories' => 'unmatchedCategories',
-        'number_changes' => 'numberChanges',
-        'issues' => 'issues',
-        'identifier_mode_mismatches' => 'identifierModeMismatches'
+        'identifier' => 'identifier',
+        'configured_participant_id' => 'configuredParticipantId',
+        'configured_participant_name' => 'configuredParticipantName',
+        'candidate_participant_id' => 'candidateParticipantId',
+        'candidate_participant_name' => 'candidateParticipantName'
     ];
 
     /**
@@ -212,16 +192,11 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'event_id' => 'setEventId',
-        'file_lines' => 'setFileLines',
-        'summary' => 'setSummary',
-        'total_rows' => 'setTotalRows',
-        'imported_rows' => 'setImportedRows',
-        'categories' => 'setCategories',
-        'unmatched_categories' => 'setUnmatchedCategories',
-        'number_changes' => 'setNumberChanges',
-        'issues' => 'setIssues',
-        'identifier_mode_mismatches' => 'setIdentifierModeMismatches'
+        'identifier' => 'setIdentifier',
+        'configured_participant_id' => 'setConfiguredParticipantId',
+        'configured_participant_name' => 'setConfiguredParticipantName',
+        'candidate_participant_id' => 'setCandidateParticipantId',
+        'candidate_participant_name' => 'setCandidateParticipantName'
     ];
 
     /**
@@ -230,16 +205,11 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'event_id' => 'getEventId',
-        'file_lines' => 'getFileLines',
-        'summary' => 'getSummary',
-        'total_rows' => 'getTotalRows',
-        'imported_rows' => 'getImportedRows',
-        'categories' => 'getCategories',
-        'unmatched_categories' => 'getUnmatchedCategories',
-        'number_changes' => 'getNumberChanges',
-        'issues' => 'getIssues',
-        'identifier_mode_mismatches' => 'getIdentifierModeMismatches'
+        'identifier' => 'getIdentifier',
+        'configured_participant_id' => 'getConfiguredParticipantId',
+        'configured_participant_name' => 'getConfiguredParticipantName',
+        'candidate_participant_id' => 'getCandidateParticipantId',
+        'candidate_participant_name' => 'getCandidateParticipantName'
     ];
 
     /**
@@ -299,16 +269,11 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('event_id', $data ?? [], null);
-        $this->setIfExists('file_lines', $data ?? [], null);
-        $this->setIfExists('summary', $data ?? [], null);
-        $this->setIfExists('total_rows', $data ?? [], null);
-        $this->setIfExists('imported_rows', $data ?? [], null);
-        $this->setIfExists('categories', $data ?? [], null);
-        $this->setIfExists('unmatched_categories', $data ?? [], null);
-        $this->setIfExists('number_changes', $data ?? [], null);
-        $this->setIfExists('issues', $data ?? [], null);
-        $this->setIfExists('identifier_mode_mismatches', $data ?? [], null);
+        $this->setIfExists('identifier', $data ?? [], null);
+        $this->setIfExists('configured_participant_id', $data ?? [], null);
+        $this->setIfExists('configured_participant_name', $data ?? [], null);
+        $this->setIfExists('candidate_participant_id', $data ?? [], null);
+        $this->setIfExists('candidate_participant_name', $data ?? [], null);
     }
 
     /**
@@ -354,338 +319,171 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets event_id
+     * Gets identifier
      *
      * @return mixed|null
      */
-    public function getEventId()
+    public function getIdentifier()
     {
-        return $this->container['event_id'];
+        return $this->container['identifier'];
     }
 
     /**
-     * Sets event_id
+     * Sets identifier
      *
-     * @param mixed|null $event_id event_id
+     * @param mixed|null $identifier identifier
      *
      * @return self
      */
-    public function setEventId($event_id)
+    public function setIdentifier($identifier)
     {
-        if (is_null($event_id)) {
-            array_push($this->openAPINullablesSetToNull, 'event_id');
+        if (is_null($identifier)) {
+            array_push($this->openAPINullablesSetToNull, 'identifier');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('event_id', $nullablesSetToNull);
+            $index = array_search('identifier', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['event_id'] = $event_id;
+        $this->container['identifier'] = $identifier;
 
         return $this;
     }
 
     /**
-     * Gets file_lines
+     * Gets configured_participant_id
      *
      * @return mixed|null
      */
-    public function getFileLines()
+    public function getConfiguredParticipantId()
     {
-        return $this->container['file_lines'];
+        return $this->container['configured_participant_id'];
     }
 
     /**
-     * Sets file_lines
+     * Sets configured_participant_id
      *
-     * @param mixed|null $file_lines file_lines
+     * @param mixed|null $configured_participant_id configured_participant_id
      *
      * @return self
      */
-    public function setFileLines($file_lines)
+    public function setConfiguredParticipantId($configured_participant_id)
     {
-        if (is_null($file_lines)) {
-            array_push($this->openAPINullablesSetToNull, 'file_lines');
+        if (is_null($configured_participant_id)) {
+            array_push($this->openAPINullablesSetToNull, 'configured_participant_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('file_lines', $nullablesSetToNull);
+            $index = array_search('configured_participant_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['file_lines'] = $file_lines;
+        $this->container['configured_participant_id'] = $configured_participant_id;
 
         return $this;
     }
 
     /**
-     * Gets summary
-     *
-     * @return \Idealogic\RegistrationAPI\Model\Summary|null
-     */
-    public function getSummary()
-    {
-        return $this->container['summary'];
-    }
-
-    /**
-     * Sets summary
-     *
-     * @param \Idealogic\RegistrationAPI\Model\Summary|null $summary summary
-     *
-     * @return self
-     */
-    public function setSummary($summary)
-    {
-        if (is_null($summary)) {
-            throw new \InvalidArgumentException('non-nullable summary cannot be null');
-        }
-        $this->container['summary'] = $summary;
-
-        return $this;
-    }
-
-    /**
-     * Gets total_rows
+     * Gets configured_participant_name
      *
      * @return mixed|null
-     * @deprecated
      */
-    public function getTotalRows()
+    public function getConfiguredParticipantName()
     {
-        return $this->container['total_rows'];
+        return $this->container['configured_participant_name'];
     }
 
     /**
-     * Sets total_rows
+     * Sets configured_participant_name
      *
-     * @param mixed|null $total_rows total_rows
+     * @param mixed|null $configured_participant_name configured_participant_name
      *
      * @return self
-     * @deprecated
      */
-    public function setTotalRows($total_rows)
+    public function setConfiguredParticipantName($configured_participant_name)
     {
-        if (is_null($total_rows)) {
-            array_push($this->openAPINullablesSetToNull, 'total_rows');
+        if (is_null($configured_participant_name)) {
+            array_push($this->openAPINullablesSetToNull, 'configured_participant_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('total_rows', $nullablesSetToNull);
+            $index = array_search('configured_participant_name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['total_rows'] = $total_rows;
+        $this->container['configured_participant_name'] = $configured_participant_name;
 
         return $this;
     }
 
     /**
-     * Gets imported_rows
+     * Gets candidate_participant_id
      *
      * @return mixed|null
-     * @deprecated
      */
-    public function getImportedRows()
+    public function getCandidateParticipantId()
     {
-        return $this->container['imported_rows'];
+        return $this->container['candidate_participant_id'];
     }
 
     /**
-     * Sets imported_rows
+     * Sets candidate_participant_id
      *
-     * @param mixed|null $imported_rows imported_rows
+     * @param mixed|null $candidate_participant_id candidate_participant_id
      *
      * @return self
-     * @deprecated
      */
-    public function setImportedRows($imported_rows)
+    public function setCandidateParticipantId($candidate_participant_id)
     {
-        if (is_null($imported_rows)) {
-            array_push($this->openAPINullablesSetToNull, 'imported_rows');
+        if (is_null($candidate_participant_id)) {
+            array_push($this->openAPINullablesSetToNull, 'candidate_participant_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('imported_rows', $nullablesSetToNull);
+            $index = array_search('candidate_participant_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['imported_rows'] = $imported_rows;
+        $this->container['candidate_participant_id'] = $candidate_participant_id;
 
         return $this;
     }
 
     /**
-     * Gets categories
+     * Gets candidate_participant_name
      *
      * @return mixed|null
      */
-    public function getCategories()
+    public function getCandidateParticipantName()
     {
-        return $this->container['categories'];
+        return $this->container['candidate_participant_name'];
     }
 
     /**
-     * Sets categories
+     * Sets candidate_participant_name
      *
-     * @param mixed|null $categories categories
+     * @param mixed|null $candidate_participant_name candidate_participant_name
      *
      * @return self
      */
-    public function setCategories($categories)
+    public function setCandidateParticipantName($candidate_participant_name)
     {
-        if (is_null($categories)) {
-            array_push($this->openAPINullablesSetToNull, 'categories');
+        if (is_null($candidate_participant_name)) {
+            array_push($this->openAPINullablesSetToNull, 'candidate_participant_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('categories', $nullablesSetToNull);
+            $index = array_search('candidate_participant_name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['categories'] = $categories;
-
-        return $this;
-    }
-
-    /**
-     * Gets unmatched_categories
-     *
-     * @return mixed|null
-     */
-    public function getUnmatchedCategories()
-    {
-        return $this->container['unmatched_categories'];
-    }
-
-    /**
-     * Sets unmatched_categories
-     *
-     * @param mixed|null $unmatched_categories unmatched_categories
-     *
-     * @return self
-     */
-    public function setUnmatchedCategories($unmatched_categories)
-    {
-        if (is_null($unmatched_categories)) {
-            array_push($this->openAPINullablesSetToNull, 'unmatched_categories');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('unmatched_categories', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['unmatched_categories'] = $unmatched_categories;
-
-        return $this;
-    }
-
-    /**
-     * Gets number_changes
-     *
-     * @return mixed|null
-     */
-    public function getNumberChanges()
-    {
-        return $this->container['number_changes'];
-    }
-
-    /**
-     * Sets number_changes
-     *
-     * @param mixed|null $number_changes number_changes
-     *
-     * @return self
-     */
-    public function setNumberChanges($number_changes)
-    {
-        if (is_null($number_changes)) {
-            array_push($this->openAPINullablesSetToNull, 'number_changes');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('number_changes', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['number_changes'] = $number_changes;
-
-        return $this;
-    }
-
-    /**
-     * Gets issues
-     *
-     * @return mixed|null
-     */
-    public function getIssues()
-    {
-        return $this->container['issues'];
-    }
-
-    /**
-     * Sets issues
-     *
-     * @param mixed|null $issues issues
-     *
-     * @return self
-     */
-    public function setIssues($issues)
-    {
-        if (is_null($issues)) {
-            array_push($this->openAPINullablesSetToNull, 'issues');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('issues', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['issues'] = $issues;
-
-        return $this;
-    }
-
-    /**
-     * Gets identifier_mode_mismatches
-     *
-     * @return mixed|null
-     */
-    public function getIdentifierModeMismatches()
-    {
-        return $this->container['identifier_mode_mismatches'];
-    }
-
-    /**
-     * Sets identifier_mode_mismatches
-     *
-     * @param mixed|null $identifier_mode_mismatches identifier_mode_mismatches
-     *
-     * @return self
-     */
-    public function setIdentifierModeMismatches($identifier_mode_mismatches)
-    {
-        if (is_null($identifier_mode_mismatches)) {
-            array_push($this->openAPINullablesSetToNull, 'identifier_mode_mismatches');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('identifier_mode_mismatches', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['identifier_mode_mismatches'] = $identifier_mode_mismatches;
+        $this->container['candidate_participant_name'] = $candidate_participant_name;
 
         return $this;
     }
