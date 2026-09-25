@@ -439,6 +439,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     public const ADMIN_REVIEW_REASON_CSA_OFFLINE = 'CSA_OFFLINE';
     public const ADMIN_REVIEW_REASON_CSA_NOT_FOUND = 'CSA_NOT_FOUND';
     public const ADMIN_REVIEW_REASON_ID_MISMATCH = 'ID_MISMATCH';
+    public const ADMIN_REVIEW_REASON_DAY_LICENSE_NOT_ISSUED = 'DAY_LICENSE_NOT_ISSUED';
 
     /**
      * Gets allowable values of the enum
@@ -498,6 +499,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             self::ADMIN_REVIEW_REASON_CSA_OFFLINE,
             self::ADMIN_REVIEW_REASON_CSA_NOT_FOUND,
             self::ADMIN_REVIEW_REASON_ID_MISMATCH,
+            self::ADMIN_REVIEW_REASON_DAY_LICENSE_NOT_ISSUED,
         ];
     }
 

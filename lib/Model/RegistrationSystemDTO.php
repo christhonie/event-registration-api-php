@@ -346,9 +346,6 @@ class RegistrationSystemDTO implements ModelInterface, ArrayAccess, \JsonSeriali
             $invalidProperties[] = "invalid value for 'type', the character length must be bigger than or equal to 0.";
         }
 
-        if ($this->container['organisation'] === null) {
-            $invalidProperties[] = "'organisation' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -578,7 +575,7 @@ class RegistrationSystemDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets organisation
      *
-     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO
+     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO|null
      */
     public function getOrganisation()
     {
@@ -588,7 +585,7 @@ class RegistrationSystemDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets organisation
      *
-     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO $organisation organisation
+     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO|null $organisation Owning organisation, absent for a platform-level channel such as the Admin Portal
      *
      * @return self
      */
