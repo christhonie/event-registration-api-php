@@ -85,6 +85,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'csa_license_required' => 'mixed',
         'csa_strict_registration' => 'mixed',
         'csa_day_license_disallow' => 'mixed',
+        'csa_event_id' => 'mixed',
         'form_id' => 'mixed',
         'product_mode' => 'mixed',
         'custom_list1_required' => 'bool',
@@ -150,6 +151,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'csa_license_required' => null,
         'csa_strict_registration' => null,
         'csa_day_license_disallow' => null,
+        'csa_event_id' => null,
         'form_id' => 'int64',
         'product_mode' => null,
         'custom_list1_required' => null,
@@ -213,6 +215,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'csa_license_required' => true,
         'csa_strict_registration' => true,
         'csa_day_license_disallow' => true,
+        'csa_event_id' => true,
         'form_id' => true,
         'product_mode' => true,
         'custom_list1_required' => false,
@@ -356,6 +359,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'csa_license_required' => 'csaLicenseRequired',
         'csa_strict_registration' => 'csaStrictRegistration',
         'csa_day_license_disallow' => 'csaDayLicenseDisallow',
+        'csa_event_id' => 'csaEventId',
         'form_id' => 'formId',
         'product_mode' => 'productMode',
         'custom_list1_required' => 'customList1Required',
@@ -419,6 +423,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'csa_license_required' => 'setCsaLicenseRequired',
         'csa_strict_registration' => 'setCsaStrictRegistration',
         'csa_day_license_disallow' => 'setCsaDayLicenseDisallow',
+        'csa_event_id' => 'setCsaEventId',
         'form_id' => 'setFormId',
         'product_mode' => 'setProductMode',
         'custom_list1_required' => 'setCustomList1Required',
@@ -482,6 +487,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'csa_license_required' => 'getCsaLicenseRequired',
         'csa_strict_registration' => 'getCsaStrictRegistration',
         'csa_day_license_disallow' => 'getCsaDayLicenseDisallow',
+        'csa_event_id' => 'getCsaEventId',
         'form_id' => 'getFormId',
         'product_mode' => 'getProductMode',
         'custom_list1_required' => 'getCustomList1Required',
@@ -632,6 +638,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('csa_license_required', $data ?? [], null);
         $this->setIfExists('csa_strict_registration', $data ?? [], null);
         $this->setIfExists('csa_day_license_disallow', $data ?? [], null);
+        $this->setIfExists('csa_event_id', $data ?? [], null);
         $this->setIfExists('form_id', $data ?? [], null);
         $this->setIfExists('product_mode', $data ?? [], null);
         $this->setIfExists('custom_list1_required', $data ?? [], null);
@@ -837,6 +844,14 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['csa_day_license_disallow'] === null) {
             $invalidProperties[] = "'csa_day_license_disallow' can't be null";
         }
+        if (!is_null($this->container['csa_event_id']) && (mb_strlen($this->container['csa_event_id']) > 64)) {
+            $invalidProperties[] = "invalid value for 'csa_event_id', the character length must be smaller than or equal to 64.";
+        }
+
+        if (!is_null($this->container['csa_event_id']) && (mb_strlen($this->container['csa_event_id']) < 0)) {
+            $invalidProperties[] = "invalid value for 'csa_event_id', the character length must be bigger than or equal to 0.";
+        }
+
         $allowedValues = $this->getProductModeAllowableValues();
         if (!is_null($this->container['product_mode']) && !in_array($this->container['product_mode'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -1845,6 +1860,47 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['csa_day_license_disallow'] = $csa_day_license_disallow;
+
+        return $this;
+    }
+
+    /**
+     * Gets csa_event_id
+     *
+     * @return mixed|null
+     */
+    public function getCsaEventId()
+    {
+        return $this->container['csa_event_id'];
+    }
+
+    /**
+     * Sets csa_event_id
+     *
+     * @param mixed|null $csa_event_id CSA's own identifier for this event, sent with CSA membership and licence checks and required to issue a day licence. Event-level only: no Series value and no global fallback. Null when not configured.
+     *
+     * @return self
+     */
+    public function setCsaEventId($csa_event_id)
+    {
+        if (is_null($csa_event_id)) {
+            array_push($this->openAPINullablesSetToNull, 'csa_event_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('csa_event_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($csa_event_id) && (mb_strlen($csa_event_id) > 64)) {
+            throw new \InvalidArgumentException('invalid length for $csa_event_id when calling EventDTO., must be smaller than or equal to 64.');
+        }
+        if (!is_null($csa_event_id) && (mb_strlen($csa_event_id) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $csa_event_id when calling EventDTO., must be bigger than or equal to 0.');
+        }
+
+        $this->container['csa_event_id'] = $csa_event_id;
 
         return $this;
     }

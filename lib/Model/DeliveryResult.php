@@ -65,8 +65,8 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         'message_id' => 'mixed',
         'relay_response' => 'mixed',
         'success' => 'mixed',
-        'permanent_failure' => 'mixed',
-        'in_doubt' => 'mixed'
+        'in_doubt' => 'mixed',
+        'permanent_failure' => 'mixed'
     ];
 
     /**
@@ -84,8 +84,8 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         'message_id' => null,
         'relay_response' => null,
         'success' => null,
-        'permanent_failure' => null,
-        'in_doubt' => null
+        'in_doubt' => null,
+        'permanent_failure' => null
     ];
 
     /**
@@ -101,8 +101,8 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         'message_id' => true,
         'relay_response' => true,
         'success' => true,
-        'permanent_failure' => true,
-        'in_doubt' => true
+        'in_doubt' => true,
+        'permanent_failure' => true
     ];
 
     /**
@@ -198,8 +198,8 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         'message_id' => 'messageId',
         'relay_response' => 'relayResponse',
         'success' => 'success',
-        'permanent_failure' => 'permanentFailure',
-        'in_doubt' => 'inDoubt'
+        'in_doubt' => 'inDoubt',
+        'permanent_failure' => 'permanentFailure'
     ];
 
     /**
@@ -215,8 +215,8 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         'message_id' => 'setMessageId',
         'relay_response' => 'setRelayResponse',
         'success' => 'setSuccess',
-        'permanent_failure' => 'setPermanentFailure',
-        'in_doubt' => 'setInDoubt'
+        'in_doubt' => 'setInDoubt',
+        'permanent_failure' => 'setPermanentFailure'
     ];
 
     /**
@@ -232,8 +232,8 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         'message_id' => 'getMessageId',
         'relay_response' => 'getRelayResponse',
         'success' => 'getSuccess',
-        'permanent_failure' => 'getPermanentFailure',
-        'in_doubt' => 'getInDoubt'
+        'in_doubt' => 'getInDoubt',
+        'permanent_failure' => 'getPermanentFailure'
     ];
 
     /**
@@ -321,8 +321,8 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('message_id', $data ?? [], null);
         $this->setIfExists('relay_response', $data ?? [], null);
         $this->setIfExists('success', $data ?? [], null);
-        $this->setIfExists('permanent_failure', $data ?? [], null);
         $this->setIfExists('in_doubt', $data ?? [], null);
+        $this->setIfExists('permanent_failure', $data ?? [], null);
     }
 
     /**
@@ -618,40 +618,6 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets permanent_failure
-     *
-     * @return mixed|null
-     */
-    public function getPermanentFailure()
-    {
-        return $this->container['permanent_failure'];
-    }
-
-    /**
-     * Sets permanent_failure
-     *
-     * @param mixed|null $permanent_failure permanent_failure
-     *
-     * @return self
-     */
-    public function setPermanentFailure($permanent_failure)
-    {
-        if (is_null($permanent_failure)) {
-            array_push($this->openAPINullablesSetToNull, 'permanent_failure');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('permanent_failure', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['permanent_failure'] = $permanent_failure;
-
-        return $this;
-    }
-
-    /**
      * Gets in_doubt
      *
      * @return mixed|null
@@ -681,6 +647,40 @@ class DeliveryResult implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['in_doubt'] = $in_doubt;
+
+        return $this;
+    }
+
+    /**
+     * Gets permanent_failure
+     *
+     * @return mixed|null
+     */
+    public function getPermanentFailure()
+    {
+        return $this->container['permanent_failure'];
+    }
+
+    /**
+     * Sets permanent_failure
+     *
+     * @param mixed|null $permanent_failure permanent_failure
+     *
+     * @return self
+     */
+    public function setPermanentFailure($permanent_failure)
+    {
+        if (is_null($permanent_failure)) {
+            array_push($this->openAPINullablesSetToNull, 'permanent_failure');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('permanent_failure', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['permanent_failure'] = $permanent_failure;
 
         return $this;
     }
