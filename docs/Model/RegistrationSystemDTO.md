@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **base_url** | **mixed** | Base URL of the system | [optional]
 **auth_key** | **mixed** | Auth username or client/service key | [optional]
 **auth_secret** | **mixed** | Auth password or token | [optional]
-**organisation** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) | Owning organisation, absent for a platform-level channel such as the Admin Portal | [optional]
+**organisation** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) |  |
 **banking_details** | [**\Idealogic\RegistrationAPI\Model\BankingDetailsDTO**](BankingDetailsDTO.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
