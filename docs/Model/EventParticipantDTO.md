@@ -23,6 +23,9 @@ Name | Type | Description | Notes
 **compliance_status** | **mixed** |  | [optional]
 **requires_admin_review** | **mixed** |  | [optional]
 **admin_review_reason** | **mixed** |  | [optional]
+**day_license_id** | **mixed** | Day-licence id CSA returned on issuance. Null when no licence was issued. Server-owned: ignored on create/update. | [optional] [readonly]
+**day_license_issued_at** | **mixed** | When the day licence was issued at CSA. Non-null exactly when a licence was issued. Server-owned: ignored on create/update. | [optional] [readonly]
+**day_license_failure** | **mixed** | Why a paid day licence was not issued at CSA; pairs with adminReviewReason DAY_LICENSE_NOT_ISSUED. Server-owned: ignored on create/update. | [optional] [readonly]
 **event** | [**\Idealogic\RegistrationAPI\Model\EventDTO**](EventDTO.md) |  |
 **series** | [**\Idealogic\RegistrationAPI\Model\SeriesDTO**](SeriesDTO.md) |  | [optional]
 **person** | [**\Idealogic\RegistrationAPI\Model\PersonDTO**](PersonDTO.md) |  |
