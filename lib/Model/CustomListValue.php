@@ -61,7 +61,8 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'mixed',
         'name' => 'mixed',
         'code' => 'mixed',
-        'derived_from' => '\Idealogic\RegistrationAPI\Model\CustomListValue'
+        'derived_from' => '\Idealogic\RegistrationAPI\Model\CustomListValue',
+        'excluded' => 'mixed'
     ];
 
     /**
@@ -75,7 +76,8 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'int64',
         'name' => null,
         'code' => null,
-        'derived_from' => null
+        'derived_from' => null,
+        'excluded' => null
     ];
 
     /**
@@ -87,7 +89,8 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => true,
         'name' => true,
         'code' => true,
-        'derived_from' => false
+        'derived_from' => false,
+        'excluded' => true
     ];
 
     /**
@@ -179,7 +182,8 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'id',
         'name' => 'name',
         'code' => 'code',
-        'derived_from' => 'derivedFrom'
+        'derived_from' => 'derivedFrom',
+        'excluded' => 'excluded'
     ];
 
     /**
@@ -191,7 +195,8 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'setId',
         'name' => 'setName',
         'code' => 'setCode',
-        'derived_from' => 'setDerivedFrom'
+        'derived_from' => 'setDerivedFrom',
+        'excluded' => 'setExcluded'
     ];
 
     /**
@@ -203,7 +208,8 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'getId',
         'name' => 'getName',
         'code' => 'getCode',
-        'derived_from' => 'getDerivedFrom'
+        'derived_from' => 'getDerivedFrom',
+        'excluded' => 'getExcluded'
     ];
 
     /**
@@ -267,6 +273,7 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('code', $data ?? [], null);
         $this->setIfExists('derived_from', $data ?? [], null);
+        $this->setIfExists('excluded', $data ?? [], null);
     }
 
     /**
@@ -469,6 +476,40 @@ class CustomListValue implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable derived_from cannot be null');
         }
         $this->container['derived_from'] = $derived_from;
+
+        return $this;
+    }
+
+    /**
+     * Gets excluded
+     *
+     * @return mixed|null
+     */
+    public function getExcluded()
+    {
+        return $this->container['excluded'];
+    }
+
+    /**
+     * Sets excluded
+     *
+     * @param mixed|null $excluded excluded
+     *
+     * @return self
+     */
+    public function setExcluded($excluded)
+    {
+        if (is_null($excluded)) {
+            array_push($this->openAPINullablesSetToNull, 'excluded');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('excluded', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['excluded'] = $excluded;
 
         return $this;
     }

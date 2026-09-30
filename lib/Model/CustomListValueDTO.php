@@ -61,6 +61,7 @@ class CustomListValueDTO implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'mixed',
         'name' => 'mixed',
         'code' => 'mixed',
+        'excluded' => 'mixed',
         'list' => '\Idealogic\RegistrationAPI\Model\CustomListDTO'
     ];
 
@@ -75,6 +76,7 @@ class CustomListValueDTO implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'int64',
         'name' => null,
         'code' => null,
+        'excluded' => null,
         'list' => null
     ];
 
@@ -87,6 +89,7 @@ class CustomListValueDTO implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => true,
         'name' => true,
         'code' => true,
+        'excluded' => true,
         'list' => false
     ];
 
@@ -179,6 +182,7 @@ class CustomListValueDTO implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'id',
         'name' => 'name',
         'code' => 'code',
+        'excluded' => 'excluded',
         'list' => 'list'
     ];
 
@@ -191,6 +195,7 @@ class CustomListValueDTO implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'setId',
         'name' => 'setName',
         'code' => 'setCode',
+        'excluded' => 'setExcluded',
         'list' => 'setList'
     ];
 
@@ -203,6 +208,7 @@ class CustomListValueDTO implements ModelInterface, ArrayAccess, \JsonSerializab
         'id' => 'getId',
         'name' => 'getName',
         'code' => 'getCode',
+        'excluded' => 'getExcluded',
         'list' => 'getList'
     ];
 
@@ -266,6 +272,7 @@ class CustomListValueDTO implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('excluded', $data ?? [], null);
         $this->setIfExists('list', $data ?? [], null);
     }
 
@@ -445,6 +452,40 @@ class CustomListValueDTO implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['code'] = $code;
+
+        return $this;
+    }
+
+    /**
+     * Gets excluded
+     *
+     * @return mixed|null
+     */
+    public function getExcluded()
+    {
+        return $this->container['excluded'];
+    }
+
+    /**
+     * Sets excluded
+     *
+     * @param mixed|null $excluded The value is not a competing entity and is dropped from any leaderboard grouped by this list, e.g. 'Home School'.
+     *
+     * @return self
+     */
+    public function setExcluded($excluded)
+    {
+        if (is_null($excluded)) {
+            array_push($this->openAPINullablesSetToNull, 'excluded');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('excluded', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['excluded'] = $excluded;
 
         return $this;
     }

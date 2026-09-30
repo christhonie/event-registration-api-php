@@ -70,6 +70,8 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list2_name' => 'mixed',
         'custom_list3_name' => 'mixed',
         'last_update' => 'mixed',
+        'replaced_on' => 'mixed',
+        'leaderboard_id' => 'mixed',
         'replaces' => '\Idealogic\RegistrationAPI\Model\ResultSetDTO',
         'series' => '\Idealogic\RegistrationAPI\Model\SeriesDTO',
         'event' => '\Idealogic\RegistrationAPI\Model\EventDTO',
@@ -100,6 +102,8 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list2_name' => null,
         'custom_list3_name' => null,
         'last_update' => 'date-time',
+        'replaced_on' => 'date-time',
+        'leaderboard_id' => 'int64',
         'replaces' => null,
         'series' => null,
         'event' => null,
@@ -128,6 +132,8 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list2_name' => true,
         'custom_list3_name' => true,
         'last_update' => true,
+        'replaced_on' => true,
+        'leaderboard_id' => true,
         'replaces' => false,
         'series' => false,
         'event' => false,
@@ -236,6 +242,8 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list2_name' => 'customList2Name',
         'custom_list3_name' => 'customList3Name',
         'last_update' => 'lastUpdate',
+        'replaced_on' => 'replacedOn',
+        'leaderboard_id' => 'leaderboardId',
         'replaces' => 'replaces',
         'series' => 'series',
         'event' => 'event',
@@ -264,6 +272,8 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list2_name' => 'setCustomList2Name',
         'custom_list3_name' => 'setCustomList3Name',
         'last_update' => 'setLastUpdate',
+        'replaced_on' => 'setReplacedOn',
+        'leaderboard_id' => 'setLeaderboardId',
         'replaces' => 'setReplaces',
         'series' => 'setSeries',
         'event' => 'setEvent',
@@ -292,6 +302,8 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'custom_list2_name' => 'getCustomList2Name',
         'custom_list3_name' => 'getCustomList3Name',
         'last_update' => 'getLastUpdate',
+        'replaced_on' => 'getReplacedOn',
+        'leaderboard_id' => 'getLeaderboardId',
         'replaces' => 'getReplaces',
         'series' => 'getSeries',
         'event' => 'getEvent',
@@ -411,6 +423,8 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('custom_list2_name', $data ?? [], null);
         $this->setIfExists('custom_list3_name', $data ?? [], null);
         $this->setIfExists('last_update', $data ?? [], null);
+        $this->setIfExists('replaced_on', $data ?? [], null);
+        $this->setIfExists('leaderboard_id', $data ?? [], null);
         $this->setIfExists('replaces', $data ?? [], null);
         $this->setIfExists('series', $data ?? [], null);
         $this->setIfExists('event', $data ?? [], null);
@@ -950,6 +964,74 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['last_update'] = $last_update;
+
+        return $this;
+    }
+
+    /**
+     * Gets replaced_on
+     *
+     * @return mixed|null
+     */
+    public function getReplacedOn()
+    {
+        return $this->container['replaced_on'];
+    }
+
+    /**
+     * Sets replaced_on
+     *
+     * @param mixed|null $replaced_on When this version was superseded by a clone. Null while it is the current version. Set only when the version is retired.
+     *
+     * @return self
+     */
+    public function setReplacedOn($replaced_on)
+    {
+        if (is_null($replaced_on)) {
+            array_push($this->openAPINullablesSetToNull, 'replaced_on');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('replaced_on', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['replaced_on'] = $replaced_on;
+
+        return $this;
+    }
+
+    /**
+     * Gets leaderboard_id
+     *
+     * @return mixed|null
+     */
+    public function getLeaderboardId()
+    {
+        return $this->container['leaderboard_id'];
+    }
+
+    /**
+     * Sets leaderboard_id
+     *
+     * @param mixed|null $leaderboard_id The leaderboard this standing materialises. Null for result sets that are not standings. Set only by leaderboard materialisation.
+     *
+     * @return self
+     */
+    public function setLeaderboardId($leaderboard_id)
+    {
+        if (is_null($leaderboard_id)) {
+            array_push($this->openAPINullablesSetToNull, 'leaderboard_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('leaderboard_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['leaderboard_id'] = $leaderboard_id;
 
         return $this;
     }

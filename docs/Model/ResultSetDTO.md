@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **custom_list2_name** | **mixed** |  | [optional]
 **custom_list3_name** | **mixed** |  | [optional]
 **last_update** | **mixed** |  | [optional]
+**replaced_on** | **mixed** | When this version was superseded by a clone. Null while it is the current version. Set only when the version is retired. | [optional] [readonly]
+**leaderboard_id** | **mixed** | The leaderboard this standing materialises. Null for result sets that are not standings. Set only by leaderboard materialisation. | [optional] [readonly]
 **replaces** | [**\Idealogic\RegistrationAPI\Model\ResultSetDTO**](ResultSetDTO.md) |  | [optional]
 **series** | [**\Idealogic\RegistrationAPI\Model\SeriesDTO**](SeriesDTO.md) |  | [optional]
 **event** | [**\Idealogic\RegistrationAPI\Model\EventDTO**](EventDTO.md) |  | [optional]
