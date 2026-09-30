@@ -305,6 +305,7 @@ class CsaMembershipResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public const STATUS_EXPIRED = 'EXPIRED';
     public const STATUS_INACTIVE = 'INACTIVE';
     public const STATUS_OFFLINE = 'OFFLINE';
+    public const STATUS_UNAVAILABLE = 'UNAVAILABLE';
     public const STATUS_NOT_FOUND = 'NOT_FOUND';
     public const STATUS_SUSPENDED = 'SUSPENDED';
 
@@ -320,6 +321,7 @@ class CsaMembershipResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::STATUS_EXPIRED,
             self::STATUS_INACTIVE,
             self::STATUS_OFFLINE,
+            self::STATUS_UNAVAILABLE,
             self::STATUS_NOT_FOUND,
             self::STATUS_SUSPENDED,
         ];

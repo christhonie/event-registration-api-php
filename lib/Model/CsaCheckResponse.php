@@ -311,12 +311,14 @@ class CsaCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     public const MEMBERSHIP_STATUS_EXPIRED = 'EXPIRED';
     public const MEMBERSHIP_STATUS_INACTIVE = 'INACTIVE';
     public const MEMBERSHIP_STATUS_OFFLINE = 'OFFLINE';
+    public const MEMBERSHIP_STATUS_UNAVAILABLE = 'UNAVAILABLE';
     public const MEMBERSHIP_STATUS_NOT_FOUND = 'NOT_FOUND';
     public const MEMBERSHIP_STATUS_SUSPENDED = 'SUSPENDED';
     public const LICENCE_STATUS_ACTIVE = 'ACTIVE';
     public const LICENCE_STATUS_EXPIRED = 'EXPIRED';
     public const LICENCE_STATUS_INACTIVE = 'INACTIVE';
     public const LICENCE_STATUS_OFFLINE = 'OFFLINE';
+    public const LICENCE_STATUS_UNAVAILABLE = 'UNAVAILABLE';
     public const LICENCE_STATUS_NOT_FOUND = 'NOT_FOUND';
     public const LICENCE_STATUS_SUSPENDED = 'SUSPENDED';
 
@@ -332,6 +334,7 @@ class CsaCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             self::MEMBERSHIP_STATUS_EXPIRED,
             self::MEMBERSHIP_STATUS_INACTIVE,
             self::MEMBERSHIP_STATUS_OFFLINE,
+            self::MEMBERSHIP_STATUS_UNAVAILABLE,
             self::MEMBERSHIP_STATUS_NOT_FOUND,
             self::MEMBERSHIP_STATUS_SUSPENDED,
         ];
@@ -349,6 +352,7 @@ class CsaCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             self::LICENCE_STATUS_EXPIRED,
             self::LICENCE_STATUS_INACTIVE,
             self::LICENCE_STATUS_OFFLINE,
+            self::LICENCE_STATUS_UNAVAILABLE,
             self::LICENCE_STATUS_NOT_FOUND,
             self::LICENCE_STATUS_SUSPENDED,
         ];

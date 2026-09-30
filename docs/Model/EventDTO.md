@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **csa_day_license_disallow** | **mixed** | Set to TRUE to disapply CSA day licenses for this event. If set it overrides the value set in the Series. |
 **csa_event_id** | **mixed** | CSA&#39;s own identifier for this event, sent with CSA membership and licence checks and required to issue a day licence. Event-level only: no Series value and no global fallback. Null when not configured. | [optional]
 **form_id** | **mixed** | Set the Person questionnaire form to be used during registration. If set it overrides the value set in the Series. | [optional]
-**product_mode** | **mixed** | Determines how category products will be handled. If set it overrides the value set in the Series. | [optional]
+**product_mode** | **mixed** | Determines how category products will be handled. If set it overrides the value set in the Series. |
 **custom_list1_required** | **bool** |  |
 **custom_list2_required** | **bool** |  |
 **custom_list3_required** | **bool** |  |

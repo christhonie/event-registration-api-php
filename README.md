@@ -267,6 +267,7 @@ Class | Method | HTTP request | Description
 - [PersonMergeResultDTO](docs/Model/PersonMergeResultDTO.md)
 - [PersonNameDTO](docs/Model/PersonNameDTO.md)
 - [PersonSummaryDTO](docs/Model/PersonSummaryDTO.md)
+- [PlatformAccessDTO](docs/Model/PlatformAccessDTO.md)
 - [PrintManifestEntryDTO](docs/Model/PrintManifestEntryDTO.md)
 - [ProcessDataDTO](docs/Model/ProcessDataDTO.md)
 - [ProcessDefinitionDTO](docs/Model/ProcessDefinitionDTO.md)

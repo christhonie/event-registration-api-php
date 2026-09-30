@@ -852,6 +852,9 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'csa_event_id', the character length must be bigger than or equal to 0.";
         }
 
+        if ($this->container['product_mode'] === null) {
+            $invalidProperties[] = "'product_mode' can't be null";
+        }
         $allowedValues = $this->getProductModeAllowableValues();
         if (!is_null($this->container['product_mode']) && !in_array($this->container['product_mode'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -1942,7 +1945,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets product_mode
      *
-     * @return mixed|null
+     * @return mixed
      */
     public function getProductMode()
     {
@@ -1952,7 +1955,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets product_mode
      *
-     * @param mixed|null $product_mode Determines how category products will be handled. If set it overrides the value set in the Series.
+     * @param mixed $product_mode Determines how category products will be handled. If set it overrides the value set in the Series.
      *
      * @return self
      */
