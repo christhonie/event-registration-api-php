@@ -1,6 +1,6 @@
 <?php
 /**
- * BulkResultImportResponseDTO
+ * UnfitNumberWarning
  *
  * PHP version 7.4
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Idealogic\RegistrationAPI\ObjectSerializer;
 
 /**
- * BulkResultImportResponseDTO Class Doc Comment
+ * UnfitNumberWarning Class Doc Comment
  *
  * @category Class
  * @package  Idealogic\RegistrationAPI
@@ -41,7 +41,7 @@ use \Idealogic\RegistrationAPI\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonSerializable
+class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BulkResultImportResponseDTO';
+    protected static $openAPIModelName = 'UnfitNumberWarning';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,17 +58,14 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'event_id' => 'mixed',
-        'file_lines' => 'mixed',
-        'summary' => '\Idealogic\RegistrationAPI\Model\Summary',
-        'total_rows' => 'mixed',
-        'imported_rows' => 'mixed',
-        'categories' => 'mixed',
-        'unmatched_categories' => 'mixed',
-        'number_changes' => 'mixed',
-        'issues' => 'mixed',
-        'identifier_mode_mismatches' => 'mixed',
-        'unfit_numbers' => 'mixed'
+        'event_participant_id' => 'mixed',
+        'participant_name' => 'mixed',
+        'number_id' => 'mixed',
+        'number' => 'mixed',
+        'tag_barcode' => 'mixed',
+        'holder_person_id' => 'mixed',
+        'holder_name' => 'mixed',
+        'message' => 'mixed'
     ];
 
     /**
@@ -79,17 +76,14 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'event_id' => 'int64',
-        'file_lines' => 'int32',
-        'summary' => null,
-        'total_rows' => 'int32',
-        'imported_rows' => 'int32',
-        'categories' => null,
-        'unmatched_categories' => null,
-        'number_changes' => null,
-        'issues' => null,
-        'identifier_mode_mismatches' => null,
-        'unfit_numbers' => null
+        'event_participant_id' => 'int64',
+        'participant_name' => null,
+        'number_id' => 'int64',
+        'number' => null,
+        'tag_barcode' => null,
+        'holder_person_id' => 'int64',
+        'holder_name' => null,
+        'message' => null
     ];
 
     /**
@@ -98,17 +92,14 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'event_id' => true,
-        'file_lines' => true,
-        'summary' => false,
-        'total_rows' => true,
-        'imported_rows' => true,
-        'categories' => true,
-        'unmatched_categories' => true,
-        'number_changes' => true,
-        'issues' => true,
-        'identifier_mode_mismatches' => true,
-        'unfit_numbers' => true
+        'event_participant_id' => true,
+        'participant_name' => true,
+        'number_id' => true,
+        'number' => true,
+        'tag_barcode' => true,
+        'holder_person_id' => true,
+        'holder_name' => true,
+        'message' => true
     ];
 
     /**
@@ -197,17 +188,14 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'event_id' => 'eventId',
-        'file_lines' => 'fileLines',
-        'summary' => 'summary',
-        'total_rows' => 'totalRows',
-        'imported_rows' => 'importedRows',
-        'categories' => 'categories',
-        'unmatched_categories' => 'unmatchedCategories',
-        'number_changes' => 'numberChanges',
-        'issues' => 'issues',
-        'identifier_mode_mismatches' => 'identifierModeMismatches',
-        'unfit_numbers' => 'unfitNumbers'
+        'event_participant_id' => 'eventParticipantId',
+        'participant_name' => 'participantName',
+        'number_id' => 'numberId',
+        'number' => 'number',
+        'tag_barcode' => 'tagBarcode',
+        'holder_person_id' => 'holderPersonId',
+        'holder_name' => 'holderName',
+        'message' => 'message'
     ];
 
     /**
@@ -216,17 +204,14 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'event_id' => 'setEventId',
-        'file_lines' => 'setFileLines',
-        'summary' => 'setSummary',
-        'total_rows' => 'setTotalRows',
-        'imported_rows' => 'setImportedRows',
-        'categories' => 'setCategories',
-        'unmatched_categories' => 'setUnmatchedCategories',
-        'number_changes' => 'setNumberChanges',
-        'issues' => 'setIssues',
-        'identifier_mode_mismatches' => 'setIdentifierModeMismatches',
-        'unfit_numbers' => 'setUnfitNumbers'
+        'event_participant_id' => 'setEventParticipantId',
+        'participant_name' => 'setParticipantName',
+        'number_id' => 'setNumberId',
+        'number' => 'setNumber',
+        'tag_barcode' => 'setTagBarcode',
+        'holder_person_id' => 'setHolderPersonId',
+        'holder_name' => 'setHolderName',
+        'message' => 'setMessage'
     ];
 
     /**
@@ -235,17 +220,14 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'event_id' => 'getEventId',
-        'file_lines' => 'getFileLines',
-        'summary' => 'getSummary',
-        'total_rows' => 'getTotalRows',
-        'imported_rows' => 'getImportedRows',
-        'categories' => 'getCategories',
-        'unmatched_categories' => 'getUnmatchedCategories',
-        'number_changes' => 'getNumberChanges',
-        'issues' => 'getIssues',
-        'identifier_mode_mismatches' => 'getIdentifierModeMismatches',
-        'unfit_numbers' => 'getUnfitNumbers'
+        'event_participant_id' => 'getEventParticipantId',
+        'participant_name' => 'getParticipantName',
+        'number_id' => 'getNumberId',
+        'number' => 'getNumber',
+        'tag_barcode' => 'getTagBarcode',
+        'holder_person_id' => 'getHolderPersonId',
+        'holder_name' => 'getHolderName',
+        'message' => 'getMessage'
     ];
 
     /**
@@ -305,17 +287,14 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('event_id', $data ?? [], null);
-        $this->setIfExists('file_lines', $data ?? [], null);
-        $this->setIfExists('summary', $data ?? [], null);
-        $this->setIfExists('total_rows', $data ?? [], null);
-        $this->setIfExists('imported_rows', $data ?? [], null);
-        $this->setIfExists('categories', $data ?? [], null);
-        $this->setIfExists('unmatched_categories', $data ?? [], null);
-        $this->setIfExists('number_changes', $data ?? [], null);
-        $this->setIfExists('issues', $data ?? [], null);
-        $this->setIfExists('identifier_mode_mismatches', $data ?? [], null);
-        $this->setIfExists('unfit_numbers', $data ?? [], null);
+        $this->setIfExists('event_participant_id', $data ?? [], null);
+        $this->setIfExists('participant_name', $data ?? [], null);
+        $this->setIfExists('number_id', $data ?? [], null);
+        $this->setIfExists('number', $data ?? [], null);
+        $this->setIfExists('tag_barcode', $data ?? [], null);
+        $this->setIfExists('holder_person_id', $data ?? [], null);
+        $this->setIfExists('holder_name', $data ?? [], null);
+        $this->setIfExists('message', $data ?? [], null);
     }
 
     /**
@@ -361,372 +340,273 @@ class BulkResultImportResponseDTO implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets event_id
+     * Gets event_participant_id
      *
      * @return mixed|null
      */
-    public function getEventId()
+    public function getEventParticipantId()
     {
-        return $this->container['event_id'];
+        return $this->container['event_participant_id'];
     }
 
     /**
-     * Sets event_id
+     * Sets event_participant_id
      *
-     * @param mixed|null $event_id event_id
+     * @param mixed|null $event_participant_id event_participant_id
      *
      * @return self
      */
-    public function setEventId($event_id)
+    public function setEventParticipantId($event_participant_id)
     {
-        if (is_null($event_id)) {
-            array_push($this->openAPINullablesSetToNull, 'event_id');
+        if (is_null($event_participant_id)) {
+            array_push($this->openAPINullablesSetToNull, 'event_participant_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('event_id', $nullablesSetToNull);
+            $index = array_search('event_participant_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['event_id'] = $event_id;
+        $this->container['event_participant_id'] = $event_participant_id;
 
         return $this;
     }
 
     /**
-     * Gets file_lines
+     * Gets participant_name
      *
      * @return mixed|null
      */
-    public function getFileLines()
+    public function getParticipantName()
     {
-        return $this->container['file_lines'];
+        return $this->container['participant_name'];
     }
 
     /**
-     * Sets file_lines
+     * Sets participant_name
      *
-     * @param mixed|null $file_lines file_lines
+     * @param mixed|null $participant_name participant_name
      *
      * @return self
      */
-    public function setFileLines($file_lines)
+    public function setParticipantName($participant_name)
     {
-        if (is_null($file_lines)) {
-            array_push($this->openAPINullablesSetToNull, 'file_lines');
+        if (is_null($participant_name)) {
+            array_push($this->openAPINullablesSetToNull, 'participant_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('file_lines', $nullablesSetToNull);
+            $index = array_search('participant_name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['file_lines'] = $file_lines;
+        $this->container['participant_name'] = $participant_name;
 
         return $this;
     }
 
     /**
-     * Gets summary
-     *
-     * @return \Idealogic\RegistrationAPI\Model\Summary|null
-     */
-    public function getSummary()
-    {
-        return $this->container['summary'];
-    }
-
-    /**
-     * Sets summary
-     *
-     * @param \Idealogic\RegistrationAPI\Model\Summary|null $summary summary
-     *
-     * @return self
-     */
-    public function setSummary($summary)
-    {
-        if (is_null($summary)) {
-            throw new \InvalidArgumentException('non-nullable summary cannot be null');
-        }
-        $this->container['summary'] = $summary;
-
-        return $this;
-    }
-
-    /**
-     * Gets total_rows
+     * Gets number_id
      *
      * @return mixed|null
-     * @deprecated
      */
-    public function getTotalRows()
+    public function getNumberId()
     {
-        return $this->container['total_rows'];
+        return $this->container['number_id'];
     }
 
     /**
-     * Sets total_rows
+     * Sets number_id
      *
-     * @param mixed|null $total_rows total_rows
+     * @param mixed|null $number_id number_id
      *
      * @return self
-     * @deprecated
      */
-    public function setTotalRows($total_rows)
+    public function setNumberId($number_id)
     {
-        if (is_null($total_rows)) {
-            array_push($this->openAPINullablesSetToNull, 'total_rows');
+        if (is_null($number_id)) {
+            array_push($this->openAPINullablesSetToNull, 'number_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('total_rows', $nullablesSetToNull);
+            $index = array_search('number_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['total_rows'] = $total_rows;
+        $this->container['number_id'] = $number_id;
 
         return $this;
     }
 
     /**
-     * Gets imported_rows
+     * Gets number
      *
      * @return mixed|null
-     * @deprecated
      */
-    public function getImportedRows()
+    public function getNumber()
     {
-        return $this->container['imported_rows'];
+        return $this->container['number'];
     }
 
     /**
-     * Sets imported_rows
+     * Sets number
      *
-     * @param mixed|null $imported_rows imported_rows
+     * @param mixed|null $number number
      *
      * @return self
-     * @deprecated
      */
-    public function setImportedRows($imported_rows)
+    public function setNumber($number)
     {
-        if (is_null($imported_rows)) {
-            array_push($this->openAPINullablesSetToNull, 'imported_rows');
+        if (is_null($number)) {
+            array_push($this->openAPINullablesSetToNull, 'number');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('imported_rows', $nullablesSetToNull);
+            $index = array_search('number', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['imported_rows'] = $imported_rows;
+        $this->container['number'] = $number;
 
         return $this;
     }
 
     /**
-     * Gets categories
+     * Gets tag_barcode
      *
      * @return mixed|null
      */
-    public function getCategories()
+    public function getTagBarcode()
     {
-        return $this->container['categories'];
+        return $this->container['tag_barcode'];
     }
 
     /**
-     * Sets categories
+     * Sets tag_barcode
      *
-     * @param mixed|null $categories categories
+     * @param mixed|null $tag_barcode tag_barcode
      *
      * @return self
      */
-    public function setCategories($categories)
+    public function setTagBarcode($tag_barcode)
     {
-        if (is_null($categories)) {
-            array_push($this->openAPINullablesSetToNull, 'categories');
+        if (is_null($tag_barcode)) {
+            array_push($this->openAPINullablesSetToNull, 'tag_barcode');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('categories', $nullablesSetToNull);
+            $index = array_search('tag_barcode', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['categories'] = $categories;
+        $this->container['tag_barcode'] = $tag_barcode;
 
         return $this;
     }
 
     /**
-     * Gets unmatched_categories
+     * Gets holder_person_id
      *
      * @return mixed|null
      */
-    public function getUnmatchedCategories()
+    public function getHolderPersonId()
     {
-        return $this->container['unmatched_categories'];
+        return $this->container['holder_person_id'];
     }
 
     /**
-     * Sets unmatched_categories
+     * Sets holder_person_id
      *
-     * @param mixed|null $unmatched_categories unmatched_categories
+     * @param mixed|null $holder_person_id holder_person_id
      *
      * @return self
      */
-    public function setUnmatchedCategories($unmatched_categories)
+    public function setHolderPersonId($holder_person_id)
     {
-        if (is_null($unmatched_categories)) {
-            array_push($this->openAPINullablesSetToNull, 'unmatched_categories');
+        if (is_null($holder_person_id)) {
+            array_push($this->openAPINullablesSetToNull, 'holder_person_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('unmatched_categories', $nullablesSetToNull);
+            $index = array_search('holder_person_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['unmatched_categories'] = $unmatched_categories;
+        $this->container['holder_person_id'] = $holder_person_id;
 
         return $this;
     }
 
     /**
-     * Gets number_changes
+     * Gets holder_name
      *
      * @return mixed|null
      */
-    public function getNumberChanges()
+    public function getHolderName()
     {
-        return $this->container['number_changes'];
+        return $this->container['holder_name'];
     }
 
     /**
-     * Sets number_changes
+     * Sets holder_name
      *
-     * @param mixed|null $number_changes number_changes
+     * @param mixed|null $holder_name holder_name
      *
      * @return self
      */
-    public function setNumberChanges($number_changes)
+    public function setHolderName($holder_name)
     {
-        if (is_null($number_changes)) {
-            array_push($this->openAPINullablesSetToNull, 'number_changes');
+        if (is_null($holder_name)) {
+            array_push($this->openAPINullablesSetToNull, 'holder_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('number_changes', $nullablesSetToNull);
+            $index = array_search('holder_name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['number_changes'] = $number_changes;
+        $this->container['holder_name'] = $holder_name;
 
         return $this;
     }
 
     /**
-     * Gets issues
+     * Gets message
      *
      * @return mixed|null
      */
-    public function getIssues()
+    public function getMessage()
     {
-        return $this->container['issues'];
+        return $this->container['message'];
     }
 
     /**
-     * Sets issues
+     * Sets message
      *
-     * @param mixed|null $issues issues
+     * @param mixed|null $message message
      *
      * @return self
      */
-    public function setIssues($issues)
+    public function setMessage($message)
     {
-        if (is_null($issues)) {
-            array_push($this->openAPINullablesSetToNull, 'issues');
+        if (is_null($message)) {
+            array_push($this->openAPINullablesSetToNull, 'message');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('issues', $nullablesSetToNull);
+            $index = array_search('message', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['issues'] = $issues;
-
-        return $this;
-    }
-
-    /**
-     * Gets identifier_mode_mismatches
-     *
-     * @return mixed|null
-     */
-    public function getIdentifierModeMismatches()
-    {
-        return $this->container['identifier_mode_mismatches'];
-    }
-
-    /**
-     * Sets identifier_mode_mismatches
-     *
-     * @param mixed|null $identifier_mode_mismatches identifier_mode_mismatches
-     *
-     * @return self
-     */
-    public function setIdentifierModeMismatches($identifier_mode_mismatches)
-    {
-        if (is_null($identifier_mode_mismatches)) {
-            array_push($this->openAPINullablesSetToNull, 'identifier_mode_mismatches');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('identifier_mode_mismatches', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['identifier_mode_mismatches'] = $identifier_mode_mismatches;
-
-        return $this;
-    }
-
-    /**
-     * Gets unfit_numbers
-     *
-     * @return mixed|null
-     */
-    public function getUnfitNumbers()
-    {
-        return $this->container['unfit_numbers'];
-    }
-
-    /**
-     * Sets unfit_numbers
-     *
-     * @param mixed|null $unfit_numbers unfit_numbers
-     *
-     * @return self
-     */
-    public function setUnfitNumbers($unfit_numbers)
-    {
-        if (is_null($unfit_numbers)) {
-            array_push($this->openAPINullablesSetToNull, 'unfit_numbers');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('unfit_numbers', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['unfit_numbers'] = $unfit_numbers;
+        $this->container['message'] = $message;
 
         return $this;
     }
