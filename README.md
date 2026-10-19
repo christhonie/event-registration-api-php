@@ -328,6 +328,7 @@ Class | Method | HTTP request | Description
 - [TemplateMapping](docs/Model/TemplateMapping.md)
 - [TestDTO](docs/Model/TestDTO.md)
 - [TristateFlagDTO](docs/Model/TristateFlagDTO.md)
+- [UnfitNumber](docs/Model/UnfitNumber.md)
 - [UnfitNumberWarning](docs/Model/UnfitNumberWarning.md)
 - [UnfitReportDTO](docs/Model/UnfitReportDTO.md)
 - [UnresolvedEp](docs/Model/UnresolvedEp.md)

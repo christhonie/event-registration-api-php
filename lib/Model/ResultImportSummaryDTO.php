@@ -67,7 +67,8 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
         'non_data_lines' => '\Idealogic\RegistrationAPI\Model\NonDataLines',
         'rows' => 'mixed',
         'resolution_failure_rates' => 'mixed',
-        'identifier_mode_mismatches' => 'mixed'
+        'identifier_mode_mismatches' => 'mixed',
+        'unfit_numbers' => 'mixed'
     ];
 
     /**
@@ -87,7 +88,8 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
         'non_data_lines' => null,
         'rows' => null,
         'resolution_failure_rates' => null,
-        'identifier_mode_mismatches' => null
+        'identifier_mode_mismatches' => null,
+        'unfit_numbers' => null
     ];
 
     /**
@@ -105,7 +107,8 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
         'non_data_lines' => false,
         'rows' => true,
         'resolution_failure_rates' => true,
-        'identifier_mode_mismatches' => true
+        'identifier_mode_mismatches' => true,
+        'unfit_numbers' => true
     ];
 
     /**
@@ -203,7 +206,8 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
         'non_data_lines' => 'nonDataLines',
         'rows' => 'rows',
         'resolution_failure_rates' => 'resolutionFailureRates',
-        'identifier_mode_mismatches' => 'identifierModeMismatches'
+        'identifier_mode_mismatches' => 'identifierModeMismatches',
+        'unfit_numbers' => 'unfitNumbers'
     ];
 
     /**
@@ -221,7 +225,8 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
         'non_data_lines' => 'setNonDataLines',
         'rows' => 'setRows',
         'resolution_failure_rates' => 'setResolutionFailureRates',
-        'identifier_mode_mismatches' => 'setIdentifierModeMismatches'
+        'identifier_mode_mismatches' => 'setIdentifierModeMismatches',
+        'unfit_numbers' => 'setUnfitNumbers'
     ];
 
     /**
@@ -239,7 +244,8 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
         'non_data_lines' => 'getNonDataLines',
         'rows' => 'getRows',
         'resolution_failure_rates' => 'getResolutionFailureRates',
-        'identifier_mode_mismatches' => 'getIdentifierModeMismatches'
+        'identifier_mode_mismatches' => 'getIdentifierModeMismatches',
+        'unfit_numbers' => 'getUnfitNumbers'
     ];
 
     /**
@@ -309,6 +315,7 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('rows', $data ?? [], null);
         $this->setIfExists('resolution_failure_rates', $data ?? [], null);
         $this->setIfExists('identifier_mode_mismatches', $data ?? [], null);
+        $this->setIfExists('unfit_numbers', $data ?? [], null);
     }
 
     /**
@@ -668,6 +675,40 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
             }
         }
         $this->container['identifier_mode_mismatches'] = $identifier_mode_mismatches;
+
+        return $this;
+    }
+
+    /**
+     * Gets unfit_numbers
+     *
+     * @return mixed|null
+     */
+    public function getUnfitNumbers()
+    {
+        return $this->container['unfit_numbers'];
+    }
+
+    /**
+     * Sets unfit_numbers
+     *
+     * @param mixed|null $unfit_numbers unfit_numbers
+     *
+     * @return self
+     */
+    public function setUnfitNumbers($unfit_numbers)
+    {
+        if (is_null($unfit_numbers)) {
+            array_push($this->openAPINullablesSetToNull, 'unfit_numbers');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('unfit_numbers', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['unfit_numbers'] = $unfit_numbers;
 
         return $this;
     }

@@ -58,14 +58,14 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'event_participant_id' => 'mixed',
-        'participant_name' => 'mixed',
-        'number_id' => 'mixed',
-        'number' => 'mixed',
-        'tag_barcode' => 'mixed',
-        'holder_person_id' => 'mixed',
-        'holder_name' => 'mixed',
-        'message' => 'mixed'
+        'event_participant_id' => 'int',
+        'participant_name' => 'string',
+        'number_id' => 'int',
+        'number' => 'string',
+        'tag_barcode' => 'string',
+        'holder_person_id' => 'int',
+        'holder_name' => 'string',
+        'message' => 'string'
     ];
 
     /**
@@ -92,14 +92,14 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'event_participant_id' => true,
-        'participant_name' => true,
-        'number_id' => true,
-        'number' => true,
-        'tag_barcode' => true,
-        'holder_person_id' => true,
-        'holder_name' => true,
-        'message' => true
+        'event_participant_id' => false,
+        'participant_name' => false,
+        'number_id' => false,
+        'number' => false,
+        'tag_barcode' => false,
+        'holder_person_id' => false,
+        'holder_name' => false,
+        'message' => false
     ];
 
     /**
@@ -342,7 +342,7 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets event_participant_id
      *
-     * @return mixed|null
+     * @return int|null
      */
     public function getEventParticipantId()
     {
@@ -352,21 +352,14 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets event_participant_id
      *
-     * @param mixed|null $event_participant_id event_participant_id
+     * @param int|null $event_participant_id event_participant_id
      *
      * @return self
      */
     public function setEventParticipantId($event_participant_id)
     {
         if (is_null($event_participant_id)) {
-            array_push($this->openAPINullablesSetToNull, 'event_participant_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('event_participant_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable event_participant_id cannot be null');
         }
         $this->container['event_participant_id'] = $event_participant_id;
 
@@ -376,7 +369,7 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets participant_name
      *
-     * @return mixed|null
+     * @return string|null
      */
     public function getParticipantName()
     {
@@ -386,21 +379,14 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets participant_name
      *
-     * @param mixed|null $participant_name participant_name
+     * @param string|null $participant_name participant_name
      *
      * @return self
      */
     public function setParticipantName($participant_name)
     {
         if (is_null($participant_name)) {
-            array_push($this->openAPINullablesSetToNull, 'participant_name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('participant_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable participant_name cannot be null');
         }
         $this->container['participant_name'] = $participant_name;
 
@@ -410,7 +396,7 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets number_id
      *
-     * @return mixed|null
+     * @return int|null
      */
     public function getNumberId()
     {
@@ -420,21 +406,14 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets number_id
      *
-     * @param mixed|null $number_id number_id
+     * @param int|null $number_id number_id
      *
      * @return self
      */
     public function setNumberId($number_id)
     {
         if (is_null($number_id)) {
-            array_push($this->openAPINullablesSetToNull, 'number_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('number_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable number_id cannot be null');
         }
         $this->container['number_id'] = $number_id;
 
@@ -444,7 +423,7 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets number
      *
-     * @return mixed|null
+     * @return string|null
      */
     public function getNumber()
     {
@@ -454,21 +433,14 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets number
      *
-     * @param mixed|null $number number
+     * @param string|null $number number
      *
      * @return self
      */
     public function setNumber($number)
     {
         if (is_null($number)) {
-            array_push($this->openAPINullablesSetToNull, 'number');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('number', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable number cannot be null');
         }
         $this->container['number'] = $number;
 
@@ -478,7 +450,7 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets tag_barcode
      *
-     * @return mixed|null
+     * @return string|null
      */
     public function getTagBarcode()
     {
@@ -488,21 +460,14 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets tag_barcode
      *
-     * @param mixed|null $tag_barcode tag_barcode
+     * @param string|null $tag_barcode tag_barcode
      *
      * @return self
      */
     public function setTagBarcode($tag_barcode)
     {
         if (is_null($tag_barcode)) {
-            array_push($this->openAPINullablesSetToNull, 'tag_barcode');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('tag_barcode', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable tag_barcode cannot be null');
         }
         $this->container['tag_barcode'] = $tag_barcode;
 
@@ -512,7 +477,7 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets holder_person_id
      *
-     * @return mixed|null
+     * @return int|null
      */
     public function getHolderPersonId()
     {
@@ -522,21 +487,14 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets holder_person_id
      *
-     * @param mixed|null $holder_person_id holder_person_id
+     * @param int|null $holder_person_id holder_person_id
      *
      * @return self
      */
     public function setHolderPersonId($holder_person_id)
     {
         if (is_null($holder_person_id)) {
-            array_push($this->openAPINullablesSetToNull, 'holder_person_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('holder_person_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable holder_person_id cannot be null');
         }
         $this->container['holder_person_id'] = $holder_person_id;
 
@@ -546,7 +504,7 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets holder_name
      *
-     * @return mixed|null
+     * @return string|null
      */
     public function getHolderName()
     {
@@ -556,21 +514,14 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets holder_name
      *
-     * @param mixed|null $holder_name holder_name
+     * @param string|null $holder_name holder_name
      *
      * @return self
      */
     public function setHolderName($holder_name)
     {
         if (is_null($holder_name)) {
-            array_push($this->openAPINullablesSetToNull, 'holder_name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('holder_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable holder_name cannot be null');
         }
         $this->container['holder_name'] = $holder_name;
 
@@ -580,7 +531,7 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets message
      *
-     * @return mixed|null
+     * @return string|null
      */
     public function getMessage()
     {
@@ -590,21 +541,14 @@ class UnfitNumberWarning implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets message
      *
-     * @param mixed|null $message message
+     * @param string|null $message message
      *
      * @return self
      */
     public function setMessage($message)
     {
         if (is_null($message)) {
-            array_push($this->openAPINullablesSetToNull, 'message');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('message', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable message cannot be null');
         }
         $this->container['message'] = $message;
 
