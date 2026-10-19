@@ -61,7 +61,8 @@ class CloseBatchResponseDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         'batch' => '\Idealogic\RegistrationAPI\Model\OperationalBatchDTO',
         'line_count' => 'mixed',
         'missing_count' => 'mixed',
-        'missing_ids' => 'mixed'
+        'missing_ids' => 'mixed',
+        'already_closed' => 'mixed'
     ];
 
     /**
@@ -75,7 +76,8 @@ class CloseBatchResponseDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         'batch' => null,
         'line_count' => 'int64',
         'missing_count' => 'int64',
-        'missing_ids' => null
+        'missing_ids' => null,
+        'already_closed' => null
     ];
 
     /**
@@ -87,7 +89,8 @@ class CloseBatchResponseDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         'batch' => false,
         'line_count' => true,
         'missing_count' => true,
-        'missing_ids' => true
+        'missing_ids' => true,
+        'already_closed' => true
     ];
 
     /**
@@ -179,7 +182,8 @@ class CloseBatchResponseDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         'batch' => 'batch',
         'line_count' => 'lineCount',
         'missing_count' => 'missingCount',
-        'missing_ids' => 'missingIds'
+        'missing_ids' => 'missingIds',
+        'already_closed' => 'alreadyClosed'
     ];
 
     /**
@@ -191,7 +195,8 @@ class CloseBatchResponseDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         'batch' => 'setBatch',
         'line_count' => 'setLineCount',
         'missing_count' => 'setMissingCount',
-        'missing_ids' => 'setMissingIds'
+        'missing_ids' => 'setMissingIds',
+        'already_closed' => 'setAlreadyClosed'
     ];
 
     /**
@@ -203,7 +208,8 @@ class CloseBatchResponseDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         'batch' => 'getBatch',
         'line_count' => 'getLineCount',
         'missing_count' => 'getMissingCount',
-        'missing_ids' => 'getMissingIds'
+        'missing_ids' => 'getMissingIds',
+        'already_closed' => 'getAlreadyClosed'
     ];
 
     /**
@@ -267,6 +273,7 @@ class CloseBatchResponseDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('line_count', $data ?? [], null);
         $this->setIfExists('missing_count', $data ?? [], null);
         $this->setIfExists('missing_ids', $data ?? [], null);
+        $this->setIfExists('already_closed', $data ?? [], null);
     }
 
     /**
@@ -436,6 +443,40 @@ class CloseBatchResponseDTO implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['missing_ids'] = $missing_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets already_closed
+     *
+     * @return mixed|null
+     */
+    public function getAlreadyClosed()
+    {
+        return $this->container['already_closed'];
+    }
+
+    /**
+     * Sets already_closed
+     *
+     * @param mixed|null $already_closed True when the batch was already CLOSED before this call: nothing was changed, and a note sent with this call was not recorded. The batch is returned as the earlier close left it.
+     *
+     * @return self
+     */
+    public function setAlreadyClosed($already_closed)
+    {
+        if (is_null($already_closed)) {
+            array_push($this->openAPINullablesSetToNull, 'already_closed');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('already_closed', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['already_closed'] = $already_closed;
 
         return $this;
     }
