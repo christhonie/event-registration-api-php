@@ -58,6 +58,8 @@ class DetachedPeer implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'reason' => 'mixed',
+        'active' => 'mixed',
         'event_participant_id' => 'mixed',
         'event_id' => 'mixed',
         'event_name' => 'mixed',
@@ -73,6 +75,8 @@ class DetachedPeer implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'reason' => null,
+        'active' => null,
         'event_participant_id' => 'int64',
         'event_id' => 'int64',
         'event_name' => null,
@@ -86,6 +90,8 @@ class DetachedPeer implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'reason' => true,
+        'active' => true,
         'event_participant_id' => true,
         'event_id' => true,
         'event_name' => true,
@@ -179,6 +185,8 @@ class DetachedPeer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'reason' => 'reason',
+        'active' => 'active',
         'event_participant_id' => 'eventParticipantId',
         'event_id' => 'eventId',
         'event_name' => 'eventName',
@@ -192,6 +200,8 @@ class DetachedPeer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'reason' => 'setReason',
+        'active' => 'setActive',
         'event_participant_id' => 'setEventParticipantId',
         'event_id' => 'setEventId',
         'event_name' => 'setEventName',
@@ -205,6 +215,8 @@ class DetachedPeer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'reason' => 'getReason',
+        'active' => 'getActive',
         'event_participant_id' => 'getEventParticipantId',
         'event_id' => 'getEventId',
         'event_name' => 'getEventName',
@@ -253,6 +265,21 @@ class DetachedPeer implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const REASON_FUTURE_PEER = 'FUTURE_PEER';
+    public const REASON_HOLDER = 'HOLDER';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getReasonAllowableValues()
+    {
+        return [
+            self::REASON_FUTURE_PEER,
+            self::REASON_HOLDER,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -269,6 +296,8 @@ class DetachedPeer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('reason', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('event_participant_id', $data ?? [], null);
         $this->setIfExists('event_id', $data ?? [], null);
         $this->setIfExists('event_name', $data ?? [], null);
@@ -303,6 +332,15 @@ class DetachedPeer implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getReasonAllowableValues();
+        if (!is_null($this->container['reason']) && !in_array($this->container['reason'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'reason', must be one of '%s'",
+                $this->container['reason'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -317,6 +355,84 @@ class DetachedPeer implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets reason
+     *
+     * @return mixed|null
+     */
+    public function getReason()
+    {
+        return $this->container['reason'];
+    }
+
+    /**
+     * Sets reason
+     *
+     * @param mixed|null $reason reason
+     *
+     * @return self
+     */
+    public function setReason($reason)
+    {
+        if (is_null($reason)) {
+            array_push($this->openAPINullablesSetToNull, 'reason');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('reason', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getReasonAllowableValues();
+        if (!is_null($reason) && !in_array($reason, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'reason', must be one of '%s'",
+                    $reason,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['reason'] = $reason;
+
+        return $this;
+    }
+
+    /**
+     * Gets active
+     *
+     * @return mixed|null
+     */
+    public function getActive()
+    {
+        return $this->container['active'];
+    }
+
+    /**
+     * Sets active
+     *
+     * @param mixed|null $active active
+     *
+     * @return self
+     */
+    public function setActive($active)
+    {
+        if (is_null($active)) {
+            array_push($this->openAPINullablesSetToNull, 'active');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('active', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['active'] = $active;
+
+        return $this;
+    }
 
     /**
      * Gets event_participant_id

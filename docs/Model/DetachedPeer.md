@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**reason** | **mixed** |  | [optional]
+**active** | **mixed** |  | [optional]
 **event_participant_id** | **mixed** |  | [optional]
 **event_id** | **mixed** |  | [optional]
 **event_name** | **mixed** |  | [optional]
