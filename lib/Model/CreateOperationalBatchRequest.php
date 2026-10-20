@@ -64,6 +64,7 @@ class CreateOperationalBatchRequest implements ModelInterface, ArrayAccess, \Jso
         'description' => 'mixed',
         'full_mode' => 'mixed',
         'number_type_id' => 'mixed',
+        'number_type_ids' => 'mixed',
         'full_mode_requested' => 'mixed'
     ];
 
@@ -81,6 +82,7 @@ class CreateOperationalBatchRequest implements ModelInterface, ArrayAccess, \Jso
         'description' => null,
         'full_mode' => null,
         'number_type_id' => 'int64',
+        'number_type_ids' => null,
         'full_mode_requested' => null
     ];
 
@@ -96,6 +98,7 @@ class CreateOperationalBatchRequest implements ModelInterface, ArrayAccess, \Jso
         'description' => true,
         'full_mode' => true,
         'number_type_id' => true,
+        'number_type_ids' => true,
         'full_mode_requested' => true
     ];
 
@@ -191,6 +194,7 @@ class CreateOperationalBatchRequest implements ModelInterface, ArrayAccess, \Jso
         'description' => 'description',
         'full_mode' => 'fullMode',
         'number_type_id' => 'numberTypeId',
+        'number_type_ids' => 'numberTypeIds',
         'full_mode_requested' => 'fullModeRequested'
     ];
 
@@ -206,6 +210,7 @@ class CreateOperationalBatchRequest implements ModelInterface, ArrayAccess, \Jso
         'description' => 'setDescription',
         'full_mode' => 'setFullMode',
         'number_type_id' => 'setNumberTypeId',
+        'number_type_ids' => 'setNumberTypeIds',
         'full_mode_requested' => 'setFullModeRequested'
     ];
 
@@ -221,6 +226,7 @@ class CreateOperationalBatchRequest implements ModelInterface, ArrayAccess, \Jso
         'description' => 'getDescription',
         'full_mode' => 'getFullMode',
         'number_type_id' => 'getNumberTypeId',
+        'number_type_ids' => 'getNumberTypeIds',
         'full_mode_requested' => 'getFullModeRequested'
     ];
 
@@ -310,6 +316,7 @@ class CreateOperationalBatchRequest implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('full_mode', $data ?? [], null);
         $this->setIfExists('number_type_id', $data ?? [], null);
+        $this->setIfExists('number_type_ids', $data ?? [], null);
         $this->setIfExists('full_mode_requested', $data ?? [], null);
     }
 
@@ -584,6 +591,7 @@ class CreateOperationalBatchRequest implements ModelInterface, ArrayAccess, \Jso
      * Gets number_type_id
      *
      * @return mixed|null
+     * @deprecated
      */
     public function getNumberTypeId()
     {
@@ -593,9 +601,10 @@ class CreateOperationalBatchRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets number_type_id
      *
-     * @param mixed|null $number_type_id STOCK_TAKE full-mode only: restrict the open-time snapshot to RaceNumbers of this NumberType. Null = all NumberTypes in the operator's tenant scope.
+     * @param mixed|null $number_type_id STOCK_TAKE full-mode: the one NumberType to stock-take. Kept for clients that send a single type; numberTypeIds supersedes it, and the two are combined when both are sent.
      *
      * @return self
+     * @deprecated
      */
     public function setNumberTypeId($number_type_id)
     {
@@ -610,6 +619,40 @@ class CreateOperationalBatchRequest implements ModelInterface, ArrayAccess, \Jso
             }
         }
         $this->container['number_type_id'] = $number_type_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets number_type_ids
+     *
+     * @return mixed|null
+     */
+    public function getNumberTypeIds()
+    {
+        return $this->container['number_type_ids'];
+    }
+
+    /**
+     * Sets number_type_ids
+     *
+     * @param mixed|null $number_type_ids STOCK_TAKE full-mode: the NumberTypes to stock-take. At least one is required when fullMode is true; every type must be visible to the caller and all must belong to one organisation. The open-time snapshot covers IN_STOCK numbers of exactly these types.
+     *
+     * @return self
+     */
+    public function setNumberTypeIds($number_type_ids)
+    {
+        if (is_null($number_type_ids)) {
+            array_push($this->openAPINullablesSetToNull, 'number_type_ids');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('number_type_ids', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['number_type_ids'] = $number_type_ids;
 
         return $this;
     }
