@@ -309,6 +309,7 @@ Class | Method | HTTP request | Description
 - [RoundTypeDTO](docs/Model/RoundTypeDTO.md)
 - [RowFailureMetadata](docs/Model/RowFailureMetadata.md)
 - [RowFinding](docs/Model/RowFinding.md)
+- [ScanRequest](docs/Model/ScanRequest.md)
 - [Series](docs/Model/Series.md)
 - [SeriesDTO](docs/Model/SeriesDTO.md)
 - [SignalDTO](docs/Model/SignalDTO.md)

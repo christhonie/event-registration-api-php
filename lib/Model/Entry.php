@@ -63,7 +63,8 @@ class Entry implements ModelInterface, ArrayAccess, \JsonSerializable
         'old_state' => 'mixed',
         'new_state' => 'mixed',
         'outcome' => 'mixed',
-        'message' => 'mixed'
+        'message' => 'mixed',
+        'detached_participants' => 'mixed'
     ];
 
     /**
@@ -79,7 +80,8 @@ class Entry implements ModelInterface, ArrayAccess, \JsonSerializable
         'old_state' => null,
         'new_state' => null,
         'outcome' => null,
-        'message' => null
+        'message' => null,
+        'detached_participants' => null
     ];
 
     /**
@@ -93,7 +95,8 @@ class Entry implements ModelInterface, ArrayAccess, \JsonSerializable
         'old_state' => true,
         'new_state' => true,
         'outcome' => true,
-        'message' => true
+        'message' => true,
+        'detached_participants' => true
     ];
 
     /**
@@ -187,7 +190,8 @@ class Entry implements ModelInterface, ArrayAccess, \JsonSerializable
         'old_state' => 'oldState',
         'new_state' => 'newState',
         'outcome' => 'outcome',
-        'message' => 'message'
+        'message' => 'message',
+        'detached_participants' => 'detachedParticipants'
     ];
 
     /**
@@ -201,7 +205,8 @@ class Entry implements ModelInterface, ArrayAccess, \JsonSerializable
         'old_state' => 'setOldState',
         'new_state' => 'setNewState',
         'outcome' => 'setOutcome',
-        'message' => 'setMessage'
+        'message' => 'setMessage',
+        'detached_participants' => 'setDetachedParticipants'
     ];
 
     /**
@@ -215,7 +220,8 @@ class Entry implements ModelInterface, ArrayAccess, \JsonSerializable
         'old_state' => 'getOldState',
         'new_state' => 'getNewState',
         'outcome' => 'getOutcome',
-        'message' => 'getMessage'
+        'message' => 'getMessage',
+        'detached_participants' => 'getDetachedParticipants'
     ];
 
     /**
@@ -327,6 +333,7 @@ class Entry implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('new_state', $data ?? [], null);
         $this->setIfExists('outcome', $data ?? [], null);
         $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('detached_participants', $data ?? [], null);
     }
 
     /**
@@ -609,6 +616,40 @@ class Entry implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['message'] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Gets detached_participants
+     *
+     * @return mixed|null
+     */
+    public function getDetachedParticipants()
+    {
+        return $this->container['detached_participants'];
+    }
+
+    /**
+     * Sets detached_participants
+     *
+     * @param mixed|null $detached_participants detached_participants
+     *
+     * @return self
+     */
+    public function setDetachedParticipants($detached_participants)
+    {
+        if (is_null($detached_participants)) {
+            array_push($this->openAPINullablesSetToNull, 'detached_participants');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('detached_participants', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['detached_participants'] = $detached_participants;
 
         return $this;
     }
