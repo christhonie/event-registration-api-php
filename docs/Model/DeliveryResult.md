@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **message_id** | **mixed** |  | [optional]
 **relay_response** | **mixed** |  | [optional]
 **success** | **mixed** |  | [optional]
-**in_doubt** | **mixed** |  | [optional]
 **permanent_failure** | **mixed** |  | [optional]
+**in_doubt** | **mixed** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

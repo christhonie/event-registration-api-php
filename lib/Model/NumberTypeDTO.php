@@ -64,7 +64,8 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'format' => 'mixed',
         'valid_from' => 'mixed',
         'valid_to' => 'mixed',
-        'parent' => '\Idealogic\RegistrationAPI\Model\NumberTypeDTO'
+        'parent' => '\Idealogic\RegistrationAPI\Model\NumberTypeDTO',
+        'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO'
     ];
 
     /**
@@ -81,7 +82,8 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'format' => null,
         'valid_from' => 'date-time',
         'valid_to' => 'date-time',
-        'parent' => null
+        'parent' => null,
+        'organisation' => null
     ];
 
     /**
@@ -96,7 +98,8 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'format' => true,
         'valid_from' => true,
         'valid_to' => true,
-        'parent' => false
+        'parent' => false,
+        'organisation' => false
     ];
 
     /**
@@ -191,7 +194,8 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'format' => 'format',
         'valid_from' => 'validFrom',
         'valid_to' => 'validTo',
-        'parent' => 'parent'
+        'parent' => 'parent',
+        'organisation' => 'organisation'
     ];
 
     /**
@@ -206,7 +210,8 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'format' => 'setFormat',
         'valid_from' => 'setValidFrom',
         'valid_to' => 'setValidTo',
-        'parent' => 'setParent'
+        'parent' => 'setParent',
+        'organisation' => 'setOrganisation'
     ];
 
     /**
@@ -221,7 +226,8 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'format' => 'getFormat',
         'valid_from' => 'getValidFrom',
         'valid_to' => 'getValidTo',
-        'parent' => 'getParent'
+        'parent' => 'getParent',
+        'organisation' => 'getOrganisation'
     ];
 
     /**
@@ -288,6 +294,7 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('valid_from', $data ?? [], null);
         $this->setIfExists('valid_to', $data ?? [], null);
         $this->setIfExists('parent', $data ?? [], null);
+        $this->setIfExists('organisation', $data ?? [], null);
     }
 
     /**
@@ -343,6 +350,9 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if ($this->container['valid_from'] === null) {
             $invalidProperties[] = "'valid_from' can't be null";
+        }
+        if ($this->container['organisation'] === null) {
+            $invalidProperties[] = "'organisation' can't be null";
         }
         return $invalidProperties;
     }
@@ -600,6 +610,33 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable parent cannot be null');
         }
         $this->container['parent'] = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Gets organisation
+     *
+     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO
+     */
+    public function getOrganisation()
+    {
+        return $this->container['organisation'];
+    }
+
+    /**
+     * Sets organisation
+     *
+     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO $organisation The organisation that owns this number type.
+     *
+     * @return self
+     */
+    public function setOrganisation($organisation)
+    {
+        if (is_null($organisation)) {
+            throw new \InvalidArgumentException('non-nullable organisation cannot be null');
+        }
+        $this->container['organisation'] = $organisation;
 
         return $this;
     }

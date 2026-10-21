@@ -11,5 +11,6 @@ Name | Type | Description | Notes
 **valid_from** | **mixed** | The default and earliest date numbers of this type can be valid. |
 **valid_to** | **mixed** | The default and latest date numbers of this type can be valid. Leave blank to leave unconstrained. | [optional]
 **parent** | [**\Idealogic\RegistrationAPI\Model\NumberTypeDTO**](NumberTypeDTO.md) | Set Parent to indicate a number subtype | [optional]
+**organisation** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) | The organisation that owns this number type. |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
