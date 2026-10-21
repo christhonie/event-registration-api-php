@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **last_update** | **mixed** |  | [optional]
 **replaced_on** | **mixed** | When this version was superseded by a clone. Null while it is the current version. Set only when the version is retired. | [optional] [readonly]
 **leaderboard_id** | **mixed** | The leaderboard this standing materialises. Null for result sets that are not standings. Set only by leaderboard materialisation. | [optional] [readonly]
+**error_message** | **mixed** | On a FAILED draft, the cause of the latest failed recalculation of the standing it would replace. Null otherwise. Set only by leaderboard materialisation. | [optional] [readonly]
 **replaces** | [**\Idealogic\RegistrationAPI\Model\ResultSetDTO**](ResultSetDTO.md) |  | [optional]
 **series** | [**\Idealogic\RegistrationAPI\Model\SeriesDTO**](SeriesDTO.md) |  | [optional]
 **event** | [**\Idealogic\RegistrationAPI\Model\EventDTO**](EventDTO.md) |  | [optional]

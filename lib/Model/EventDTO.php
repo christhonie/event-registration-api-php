@@ -86,6 +86,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'csa_strict_registration' => 'mixed',
         'csa_day_license_disallow' => 'mixed',
         'csa_event_id' => 'mixed',
+        'age_calculation_date' => 'mixed',
         'form_id' => 'mixed',
         'product_mode' => 'mixed',
         'custom_list1_required' => 'bool',
@@ -152,6 +153,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'csa_strict_registration' => null,
         'csa_day_license_disallow' => null,
         'csa_event_id' => null,
+        'age_calculation_date' => 'date',
         'form_id' => 'int64',
         'product_mode' => null,
         'custom_list1_required' => null,
@@ -216,6 +218,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'csa_strict_registration' => true,
         'csa_day_license_disallow' => true,
         'csa_event_id' => true,
+        'age_calculation_date' => true,
         'form_id' => true,
         'product_mode' => true,
         'custom_list1_required' => false,
@@ -360,6 +363,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'csa_strict_registration' => 'csaStrictRegistration',
         'csa_day_license_disallow' => 'csaDayLicenseDisallow',
         'csa_event_id' => 'csaEventId',
+        'age_calculation_date' => 'ageCalculationDate',
         'form_id' => 'formId',
         'product_mode' => 'productMode',
         'custom_list1_required' => 'customList1Required',
@@ -424,6 +428,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'csa_strict_registration' => 'setCsaStrictRegistration',
         'csa_day_license_disallow' => 'setCsaDayLicenseDisallow',
         'csa_event_id' => 'setCsaEventId',
+        'age_calculation_date' => 'setAgeCalculationDate',
         'form_id' => 'setFormId',
         'product_mode' => 'setProductMode',
         'custom_list1_required' => 'setCustomList1Required',
@@ -488,6 +493,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'csa_strict_registration' => 'getCsaStrictRegistration',
         'csa_day_license_disallow' => 'getCsaDayLicenseDisallow',
         'csa_event_id' => 'getCsaEventId',
+        'age_calculation_date' => 'getAgeCalculationDate',
         'form_id' => 'getFormId',
         'product_mode' => 'getProductMode',
         'custom_list1_required' => 'getCustomList1Required',
@@ -639,6 +645,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('csa_strict_registration', $data ?? [], null);
         $this->setIfExists('csa_day_license_disallow', $data ?? [], null);
         $this->setIfExists('csa_event_id', $data ?? [], null);
+        $this->setIfExists('age_calculation_date', $data ?? [], null);
         $this->setIfExists('form_id', $data ?? [], null);
         $this->setIfExists('product_mode', $data ?? [], null);
         $this->setIfExists('custom_list1_required', $data ?? [], null);
@@ -1904,6 +1911,40 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['csa_event_id'] = $csa_event_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets age_calculation_date
+     *
+     * @return mixed|null
+     */
+    public function getAgeCalculationDate()
+    {
+        return $this->container['age_calculation_date'];
+    }
+
+    /**
+     * Sets age_calculation_date
+     *
+     * @param mixed|null $age_calculation_date The date every age for this event is calculated on, e.g. 31 December of the race year under CSA rules. Null keeps each path's historical rule: today for category eligibility, 31 December of the event's start year for stored ages and import matching.
+     *
+     * @return self
+     */
+    public function setAgeCalculationDate($age_calculation_date)
+    {
+        if (is_null($age_calculation_date)) {
+            array_push($this->openAPINullablesSetToNull, 'age_calculation_date');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('age_calculation_date', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['age_calculation_date'] = $age_calculation_date;
 
         return $this;
     }

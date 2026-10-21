@@ -72,6 +72,7 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_update' => 'mixed',
         'replaced_on' => 'mixed',
         'leaderboard_id' => 'mixed',
+        'error_message' => 'mixed',
         'replaces' => '\Idealogic\RegistrationAPI\Model\ResultSetDTO',
         'series' => '\Idealogic\RegistrationAPI\Model\SeriesDTO',
         'event' => '\Idealogic\RegistrationAPI\Model\EventDTO',
@@ -104,6 +105,7 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_update' => 'date-time',
         'replaced_on' => 'date-time',
         'leaderboard_id' => 'int64',
+        'error_message' => null,
         'replaces' => null,
         'series' => null,
         'event' => null,
@@ -134,6 +136,7 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_update' => true,
         'replaced_on' => true,
         'leaderboard_id' => true,
+        'error_message' => true,
         'replaces' => false,
         'series' => false,
         'event' => false,
@@ -244,6 +247,7 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_update' => 'lastUpdate',
         'replaced_on' => 'replacedOn',
         'leaderboard_id' => 'leaderboardId',
+        'error_message' => 'errorMessage',
         'replaces' => 'replaces',
         'series' => 'series',
         'event' => 'event',
@@ -274,6 +278,7 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_update' => 'setLastUpdate',
         'replaced_on' => 'setReplacedOn',
         'leaderboard_id' => 'setLeaderboardId',
+        'error_message' => 'setErrorMessage',
         'replaces' => 'setReplaces',
         'series' => 'setSeries',
         'event' => 'setEvent',
@@ -304,6 +309,7 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'last_update' => 'getLastUpdate',
         'replaced_on' => 'getReplacedOn',
         'leaderboard_id' => 'getLeaderboardId',
+        'error_message' => 'getErrorMessage',
         'replaces' => 'getReplaces',
         'series' => 'getSeries',
         'event' => 'getEvent',
@@ -425,6 +431,7 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('last_update', $data ?? [], null);
         $this->setIfExists('replaced_on', $data ?? [], null);
         $this->setIfExists('leaderboard_id', $data ?? [], null);
+        $this->setIfExists('error_message', $data ?? [], null);
         $this->setIfExists('replaces', $data ?? [], null);
         $this->setIfExists('series', $data ?? [], null);
         $this->setIfExists('event', $data ?? [], null);
@@ -1032,6 +1039,40 @@ class ResultSetDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['leaderboard_id'] = $leaderboard_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets error_message
+     *
+     * @return mixed|null
+     */
+    public function getErrorMessage()
+    {
+        return $this->container['error_message'];
+    }
+
+    /**
+     * Sets error_message
+     *
+     * @param mixed|null $error_message On a FAILED draft, the cause of the latest failed recalculation of the standing it would replace. Null otherwise. Set only by leaderboard materialisation.
+     *
+     * @return self
+     */
+    public function setErrorMessage($error_message)
+    {
+        if (is_null($error_message)) {
+            array_push($this->openAPINullablesSetToNull, 'error_message');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('error_message', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['error_message'] = $error_message;
 
         return $this;
     }

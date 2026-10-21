@@ -31,6 +31,7 @@ Name | Type | Description | Notes
 **csa_strict_registration** | **mixed** | Set to TRUE if CSA membership and license checking cannot be skipped during registration. If set it overrides the value set in the Series. |
 **csa_day_license_disallow** | **mixed** | Set to TRUE to disapply CSA day licenses for this event. If set it overrides the value set in the Series. |
 **csa_event_id** | **mixed** | CSA&#39;s own identifier for this event, sent with CSA membership and licence checks and required to issue a day licence. Event-level only: no Series value and no global fallback. Null when not configured. | [optional]
+**age_calculation_date** | **mixed** | The date every age for this event is calculated on, e.g. 31 December of the race year under CSA rules. Null keeps each path&#39;s historical rule: today for category eligibility, 31 December of the event&#39;s start year for stored ages and import matching. | [optional]
 **form_id** | **mixed** | Set the Person questionnaire form to be used during registration. If set it overrides the value set in the Series. | [optional]
 **product_mode** | **mixed** | Determines how category products will be handled. If set it overrides the value set in the Series. |
 **custom_list1_required** | **bool** |  |
