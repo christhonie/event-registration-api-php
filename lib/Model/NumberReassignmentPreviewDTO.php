@@ -284,6 +284,8 @@ class NumberReassignmentPreviewDTO implements ModelInterface, ArrayAccess, \Json
     }
 
     public const OLD_NUMBER_DISPOSITION_FLAGGED_UNFIT = 'FLAGGED_UNFIT';
+    public const OLD_NUMBER_DISPOSITION_ALREADY_UNFIT = 'ALREADY_UNFIT';
+    public const OLD_NUMBER_DISPOSITION_ALREADY_DESTROYED = 'ALREADY_DESTROYED';
     public const OLD_NUMBER_DISPOSITION_MARKED_LOST = 'MARKED_LOST';
     public const OLD_NUMBER_DISPOSITION_RETURNED_TO_POOL = 'RETURNED_TO_POOL';
     public const OLD_NUMBER_DISPOSITION_NONE = 'NONE';
@@ -297,6 +299,8 @@ class NumberReassignmentPreviewDTO implements ModelInterface, ArrayAccess, \Json
     {
         return [
             self::OLD_NUMBER_DISPOSITION_FLAGGED_UNFIT,
+            self::OLD_NUMBER_DISPOSITION_ALREADY_UNFIT,
+            self::OLD_NUMBER_DISPOSITION_ALREADY_DESTROYED,
             self::OLD_NUMBER_DISPOSITION_MARKED_LOST,
             self::OLD_NUMBER_DISPOSITION_RETURNED_TO_POOL,
             self::OLD_NUMBER_DISPOSITION_NONE,

@@ -64,6 +64,7 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'status' => 'mixed',
         'event_id' => 'mixed',
         'event_name' => 'mixed',
+        'organisation_id' => 'mixed',
         'opened_by' => 'mixed',
         'opened_by_display_name' => 'mixed',
         'opened_on' => 'mixed',
@@ -88,6 +89,7 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'status' => null,
         'event_id' => 'int64',
         'event_name' => null,
+        'organisation_id' => 'int64',
         'opened_by' => null,
         'opened_by_display_name' => null,
         'opened_on' => 'date-time',
@@ -110,6 +112,7 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'status' => true,
         'event_id' => true,
         'event_name' => true,
+        'organisation_id' => true,
         'opened_by' => true,
         'opened_by_display_name' => true,
         'opened_on' => true,
@@ -212,6 +215,7 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'status' => 'status',
         'event_id' => 'eventId',
         'event_name' => 'eventName',
+        'organisation_id' => 'organisationId',
         'opened_by' => 'openedBy',
         'opened_by_display_name' => 'openedByDisplayName',
         'opened_on' => 'openedOn',
@@ -234,6 +238,7 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'status' => 'setStatus',
         'event_id' => 'setEventId',
         'event_name' => 'setEventName',
+        'organisation_id' => 'setOrganisationId',
         'opened_by' => 'setOpenedBy',
         'opened_by_display_name' => 'setOpenedByDisplayName',
         'opened_on' => 'setOpenedOn',
@@ -256,6 +261,7 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'status' => 'getStatus',
         'event_id' => 'getEventId',
         'event_name' => 'getEventName',
+        'organisation_id' => 'getOrganisationId',
         'opened_by' => 'getOpenedBy',
         'opened_by_display_name' => 'getOpenedByDisplayName',
         'opened_on' => 'getOpenedOn',
@@ -369,6 +375,7 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('event_id', $data ?? [], null);
         $this->setIfExists('event_name', $data ?? [], null);
+        $this->setIfExists('organisation_id', $data ?? [], null);
         $this->setIfExists('opened_by', $data ?? [], null);
         $this->setIfExists('opened_by_display_name', $data ?? [], null);
         $this->setIfExists('opened_on', $data ?? [], null);
@@ -694,6 +701,40 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['event_name'] = $event_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets organisation_id
+     *
+     * @return mixed|null
+     */
+    public function getOrganisationId()
+    {
+        return $this->container['organisation_id'];
+    }
+
+    /**
+     * Sets organisation_id
+     *
+     * @param mixed|null $organisation_id organisation_id
+     *
+     * @return self
+     */
+    public function setOrganisationId($organisation_id)
+    {
+        if (is_null($organisation_id)) {
+            array_push($this->openAPINullablesSetToNull, 'organisation_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('organisation_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['organisation_id'] = $organisation_id;
 
         return $this;
     }
