@@ -6,6 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **mixed** |  | [optional]
 **race_number_id** | **mixed** |  | [optional]
+**race_number_face_value** | **mixed** | The race number&#39;s face value, as printed on the board (RaceNumber.number). | [optional]
+**number_type_id** | **mixed** | Id of the race number&#39;s type. | [optional]
+**number_type_name** | **mixed** | Name of the race number&#39;s type. | [optional]
 **old_state** | **mixed** |  | [optional]
 **new_state** | **mixed** |  | [optional]
 **reason** | **mixed** |  | [optional]

@@ -60,6 +60,9 @@ class RaceNumberStateLogDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPITypes = [
         'id' => 'mixed',
         'race_number_id' => 'mixed',
+        'race_number_face_value' => 'mixed',
+        'number_type_id' => 'mixed',
+        'number_type_name' => 'mixed',
         'old_state' => 'mixed',
         'new_state' => 'mixed',
         'reason' => 'mixed',
@@ -83,6 +86,9 @@ class RaceNumberStateLogDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPIFormats = [
         'id' => 'int64',
         'race_number_id' => 'int64',
+        'race_number_face_value' => null,
+        'number_type_id' => 'int64',
+        'number_type_name' => null,
         'old_state' => null,
         'new_state' => null,
         'reason' => null,
@@ -104,6 +110,9 @@ class RaceNumberStateLogDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static array $openAPINullables = [
         'id' => true,
         'race_number_id' => true,
+        'race_number_face_value' => true,
+        'number_type_id' => true,
+        'number_type_name' => true,
         'old_state' => true,
         'new_state' => true,
         'reason' => true,
@@ -205,6 +214,9 @@ class RaceNumberStateLogDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $attributeMap = [
         'id' => 'id',
         'race_number_id' => 'raceNumberId',
+        'race_number_face_value' => 'raceNumberFaceValue',
+        'number_type_id' => 'numberTypeId',
+        'number_type_name' => 'numberTypeName',
         'old_state' => 'oldState',
         'new_state' => 'newState',
         'reason' => 'reason',
@@ -226,6 +238,9 @@ class RaceNumberStateLogDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $setters = [
         'id' => 'setId',
         'race_number_id' => 'setRaceNumberId',
+        'race_number_face_value' => 'setRaceNumberFaceValue',
+        'number_type_id' => 'setNumberTypeId',
+        'number_type_name' => 'setNumberTypeName',
         'old_state' => 'setOldState',
         'new_state' => 'setNewState',
         'reason' => 'setReason',
@@ -247,6 +262,9 @@ class RaceNumberStateLogDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $getters = [
         'id' => 'getId',
         'race_number_id' => 'getRaceNumberId',
+        'race_number_face_value' => 'getRaceNumberFaceValue',
+        'number_type_id' => 'getNumberTypeId',
+        'number_type_name' => 'getNumberTypeName',
         'old_state' => 'getOldState',
         'new_state' => 'getNewState',
         'reason' => 'getReason',
@@ -400,6 +418,9 @@ class RaceNumberStateLogDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('race_number_id', $data ?? [], null);
+        $this->setIfExists('race_number_face_value', $data ?? [], null);
+        $this->setIfExists('number_type_id', $data ?? [], null);
+        $this->setIfExists('number_type_name', $data ?? [], null);
         $this->setIfExists('old_state', $data ?? [], null);
         $this->setIfExists('new_state', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
@@ -546,6 +567,108 @@ class RaceNumberStateLogDTO implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['race_number_id'] = $race_number_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets race_number_face_value
+     *
+     * @return mixed|null
+     */
+    public function getRaceNumberFaceValue()
+    {
+        return $this->container['race_number_face_value'];
+    }
+
+    /**
+     * Sets race_number_face_value
+     *
+     * @param mixed|null $race_number_face_value The race number's face value, as printed on the board (RaceNumber.number).
+     *
+     * @return self
+     */
+    public function setRaceNumberFaceValue($race_number_face_value)
+    {
+        if (is_null($race_number_face_value)) {
+            array_push($this->openAPINullablesSetToNull, 'race_number_face_value');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('race_number_face_value', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['race_number_face_value'] = $race_number_face_value;
+
+        return $this;
+    }
+
+    /**
+     * Gets number_type_id
+     *
+     * @return mixed|null
+     */
+    public function getNumberTypeId()
+    {
+        return $this->container['number_type_id'];
+    }
+
+    /**
+     * Sets number_type_id
+     *
+     * @param mixed|null $number_type_id Id of the race number's type.
+     *
+     * @return self
+     */
+    public function setNumberTypeId($number_type_id)
+    {
+        if (is_null($number_type_id)) {
+            array_push($this->openAPINullablesSetToNull, 'number_type_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('number_type_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['number_type_id'] = $number_type_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets number_type_name
+     *
+     * @return mixed|null
+     */
+    public function getNumberTypeName()
+    {
+        return $this->container['number_type_name'];
+    }
+
+    /**
+     * Sets number_type_name
+     *
+     * @param mixed|null $number_type_name Name of the race number's type.
+     *
+     * @return self
+     */
+    public function setNumberTypeName($number_type_name)
+    {
+        if (is_null($number_type_name)) {
+            array_push($this->openAPINullablesSetToNull, 'number_type_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('number_type_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['number_type_name'] = $number_type_name;
 
         return $this;
     }

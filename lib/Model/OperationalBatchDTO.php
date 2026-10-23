@@ -65,8 +65,10 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'event_id' => 'mixed',
         'event_name' => 'mixed',
         'opened_by' => 'mixed',
+        'opened_by_display_name' => 'mixed',
         'opened_on' => 'mixed',
         'closed_by' => 'mixed',
+        'closed_by_display_name' => 'mixed',
         'closed_on' => 'mixed',
         'description' => 'mixed',
         'full_mode' => 'mixed'
@@ -87,8 +89,10 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'event_id' => 'int64',
         'event_name' => null,
         'opened_by' => null,
+        'opened_by_display_name' => null,
         'opened_on' => 'date-time',
         'closed_by' => null,
+        'closed_by_display_name' => null,
         'closed_on' => 'date-time',
         'description' => null,
         'full_mode' => null
@@ -107,8 +111,10 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'event_id' => true,
         'event_name' => true,
         'opened_by' => true,
+        'opened_by_display_name' => true,
         'opened_on' => true,
         'closed_by' => true,
+        'closed_by_display_name' => true,
         'closed_on' => true,
         'description' => true,
         'full_mode' => true
@@ -207,8 +213,10 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'event_id' => 'eventId',
         'event_name' => 'eventName',
         'opened_by' => 'openedBy',
+        'opened_by_display_name' => 'openedByDisplayName',
         'opened_on' => 'openedOn',
         'closed_by' => 'closedBy',
+        'closed_by_display_name' => 'closedByDisplayName',
         'closed_on' => 'closedOn',
         'description' => 'description',
         'full_mode' => 'fullMode'
@@ -227,8 +235,10 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'event_id' => 'setEventId',
         'event_name' => 'setEventName',
         'opened_by' => 'setOpenedBy',
+        'opened_by_display_name' => 'setOpenedByDisplayName',
         'opened_on' => 'setOpenedOn',
         'closed_by' => 'setClosedBy',
+        'closed_by_display_name' => 'setClosedByDisplayName',
         'closed_on' => 'setClosedOn',
         'description' => 'setDescription',
         'full_mode' => 'setFullMode'
@@ -247,8 +257,10 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'event_id' => 'getEventId',
         'event_name' => 'getEventName',
         'opened_by' => 'getOpenedBy',
+        'opened_by_display_name' => 'getOpenedByDisplayName',
         'opened_on' => 'getOpenedOn',
         'closed_by' => 'getClosedBy',
+        'closed_by_display_name' => 'getClosedByDisplayName',
         'closed_on' => 'getClosedOn',
         'description' => 'getDescription',
         'full_mode' => 'getFullMode'
@@ -358,8 +370,10 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('event_id', $data ?? [], null);
         $this->setIfExists('event_name', $data ?? [], null);
         $this->setIfExists('opened_by', $data ?? [], null);
+        $this->setIfExists('opened_by_display_name', $data ?? [], null);
         $this->setIfExists('opened_on', $data ?? [], null);
         $this->setIfExists('closed_by', $data ?? [], null);
+        $this->setIfExists('closed_by_display_name', $data ?? [], null);
         $this->setIfExists('closed_on', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('full_mode', $data ?? [], null);
@@ -697,7 +711,7 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets opened_by
      *
-     * @param mixed|null $opened_by opened_by
+     * @param mixed|null $opened_by Who opened the batch, as stored: a signed-in user's subject (identity-provider object id), an API key's audit label (api-key:<description>), or null. Prefer openedByDisplayName for display.
      *
      * @return self
      */
@@ -714,6 +728,40 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['opened_by'] = $opened_by;
+
+        return $this;
+    }
+
+    /**
+     * Gets opened_by_display_name
+     *
+     * @return mixed|null
+     */
+    public function getOpenedByDisplayName()
+    {
+        return $this->container['opened_by_display_name'];
+    }
+
+    /**
+     * Sets opened_by_display_name
+     *
+     * @param mixed|null $opened_by_display_name Display name of whoever opened the batch: the person a user subject resolves to, or an API key's audit label as stored. Null when openedBy is null or resolves to no person.
+     *
+     * @return self
+     */
+    public function setOpenedByDisplayName($opened_by_display_name)
+    {
+        if (is_null($opened_by_display_name)) {
+            array_push($this->openAPINullablesSetToNull, 'opened_by_display_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('opened_by_display_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['opened_by_display_name'] = $opened_by_display_name;
 
         return $this;
     }
@@ -765,7 +813,7 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets closed_by
      *
-     * @param mixed|null $closed_by closed_by
+     * @param mixed|null $closed_by Who closed or cancelled the batch, stored as openedBy is. Prefer closedByDisplayName for display.
      *
      * @return self
      */
@@ -782,6 +830,40 @@ class OperationalBatchDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['closed_by'] = $closed_by;
+
+        return $this;
+    }
+
+    /**
+     * Gets closed_by_display_name
+     *
+     * @return mixed|null
+     */
+    public function getClosedByDisplayName()
+    {
+        return $this->container['closed_by_display_name'];
+    }
+
+    /**
+     * Sets closed_by_display_name
+     *
+     * @param mixed|null $closed_by_display_name Display name of whoever closed or cancelled the batch, resolved as openedByDisplayName is.
+     *
+     * @return self
+     */
+    public function setClosedByDisplayName($closed_by_display_name)
+    {
+        if (is_null($closed_by_display_name)) {
+            array_push($this->openAPINullablesSetToNull, 'closed_by_display_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('closed_by_display_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['closed_by_display_name'] = $closed_by_display_name;
 
         return $this;
     }
