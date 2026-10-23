@@ -59,6 +59,7 @@ class EventParticipantRegistrationDTO implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static $openAPITypes = [
+        'payment_methods' => 'mixed',
         'event' => '\Idealogic\RegistrationAPI\Model\EventDTO',
         'participants' => 'mixed',
         'order' => '\Idealogic\RegistrationAPI\Model\OrderDTO',
@@ -77,6 +78,7 @@ class EventParticipantRegistrationDTO implements ModelInterface, ArrayAccess, \J
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'payment_methods' => null,
         'event' => null,
         'participants' => null,
         'order' => null,
@@ -93,6 +95,7 @@ class EventParticipantRegistrationDTO implements ModelInterface, ArrayAccess, \J
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'payment_methods' => true,
         'event' => false,
         'participants' => true,
         'order' => false,
@@ -189,6 +192,7 @@ class EventParticipantRegistrationDTO implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $attributeMap = [
+        'payment_methods' => 'paymentMethods',
         'event' => 'event',
         'participants' => 'participants',
         'order' => 'order',
@@ -205,6 +209,7 @@ class EventParticipantRegistrationDTO implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $setters = [
+        'payment_methods' => 'setPaymentMethods',
         'event' => 'setEvent',
         'participants' => 'setParticipants',
         'order' => 'setOrder',
@@ -221,6 +226,7 @@ class EventParticipantRegistrationDTO implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $getters = [
+        'payment_methods' => 'getPaymentMethods',
         'event' => 'getEvent',
         'participants' => 'getParticipants',
         'order' => 'getOrder',
@@ -288,6 +294,7 @@ class EventParticipantRegistrationDTO implements ModelInterface, ArrayAccess, \J
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('payment_methods', $data ?? [], null);
         $this->setIfExists('event', $data ?? [], null);
         $this->setIfExists('participants', $data ?? [], null);
         $this->setIfExists('order', $data ?? [], null);
@@ -339,6 +346,40 @@ class EventParticipantRegistrationDTO implements ModelInterface, ArrayAccess, \J
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets payment_methods
+     *
+     * @return mixed|null
+     */
+    public function getPaymentMethods()
+    {
+        return $this->container['payment_methods'];
+    }
+
+    /**
+     * Sets payment_methods
+     *
+     * @param mixed|null $payment_methods Payment method codes the registration link allowed, comma-separated: O online, E EFT, M pay at counter (the link's ?paymentMethods= value, e.g. \"M\" for the walk-in QR code). Optional; absent means no restriction. Recorded on the order when it is created; the methods offered are the registration system's intersected with these. Unknown codes are ignored. US #1526.
+     *
+     * @return self
+     */
+    public function setPaymentMethods($payment_methods)
+    {
+        if (is_null($payment_methods)) {
+            array_push($this->openAPINullablesSetToNull, 'payment_methods');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payment_methods', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['payment_methods'] = $payment_methods;
+
+        return $this;
+    }
 
     /**
      * Gets event

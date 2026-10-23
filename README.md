@@ -270,6 +270,7 @@ Class | Method | HTTP request | Description
 - [PersonSummaryDTO](docs/Model/PersonSummaryDTO.md)
 - [PlatformAccessDTO](docs/Model/PlatformAccessDTO.md)
 - [PrintManifestEntryDTO](docs/Model/PrintManifestEntryDTO.md)
+- [ProblemDetail](docs/Model/ProblemDetail.md)
 - [ProcessDataDTO](docs/Model/ProcessDataDTO.md)
 - [ProcessDefinitionDTO](docs/Model/ProcessDefinitionDTO.md)
 - [ProcessInstanceDTO](docs/Model/ProcessInstanceDTO.md)

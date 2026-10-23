@@ -61,6 +61,7 @@ class FormDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'process_id' => 'mixed',
         'process_state' => 'mixed',
         'people' => 'mixed',
+        'payment_methods' => 'mixed',
         'step' => 'mixed',
         'phase' => 'mixed',
         'title' => 'mixed',
@@ -84,6 +85,7 @@ class FormDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'process_id' => null,
         'process_state' => null,
         'people' => null,
+        'payment_methods' => null,
         'step' => 'int64',
         'phase' => null,
         'title' => null,
@@ -105,6 +107,7 @@ class FormDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'process_id' => true,
         'process_state' => true,
         'people' => true,
+        'payment_methods' => true,
         'step' => true,
         'phase' => true,
         'title' => true,
@@ -206,6 +209,7 @@ class FormDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'process_id' => 'processId',
         'process_state' => 'processState',
         'people' => 'people',
+        'payment_methods' => 'paymentMethods',
         'step' => 'step',
         'phase' => 'phase',
         'title' => 'title',
@@ -227,6 +231,7 @@ class FormDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'process_id' => 'setProcessId',
         'process_state' => 'setProcessState',
         'people' => 'setPeople',
+        'payment_methods' => 'setPaymentMethods',
         'step' => 'setStep',
         'phase' => 'setPhase',
         'title' => 'setTitle',
@@ -248,6 +253,7 @@ class FormDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'process_id' => 'getProcessId',
         'process_state' => 'getProcessState',
         'people' => 'getPeople',
+        'payment_methods' => 'getPaymentMethods',
         'step' => 'getStep',
         'phase' => 'getPhase',
         'title' => 'getTitle',
@@ -320,6 +326,7 @@ class FormDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('process_id', $data ?? [], null);
         $this->setIfExists('process_state', $data ?? [], null);
         $this->setIfExists('people', $data ?? [], null);
+        $this->setIfExists('payment_methods', $data ?? [], null);
         $this->setIfExists('step', $data ?? [], null);
         $this->setIfExists('phase', $data ?? [], null);
         $this->setIfExists('title', $data ?? [], null);
@@ -477,6 +484,40 @@ class FormDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
         $this->container['people'] = $people;
+
+        return $this;
+    }
+
+    /**
+     * Gets payment_methods
+     *
+     * @return mixed|null
+     */
+    public function getPaymentMethods()
+    {
+        return $this->container['payment_methods'];
+    }
+
+    /**
+     * Sets payment_methods
+     *
+     * @param mixed|null $payment_methods Payment method codes the registration link allowed, comma-separated: O online, E EFT, M pay at counter (the link's ?paymentMethods= value, e.g. \"M\" for the walk-in QR code). Optional; absent means no restriction. Recorded on the order when it is created; the methods offered are the registration system's intersected with these. Unknown codes are ignored. US #1526.
+     *
+     * @return self
+     */
+    public function setPaymentMethods($payment_methods)
+    {
+        if (is_null($payment_methods)) {
+            array_push($this->openAPINullablesSetToNull, 'payment_methods');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payment_methods', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['payment_methods'] = $payment_methods;
 
         return $this;
     }
