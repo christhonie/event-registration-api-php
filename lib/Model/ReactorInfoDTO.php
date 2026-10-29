@@ -66,7 +66,8 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'dry_run' => '\Idealogic\RegistrationAPI\Model\TristateFlagDTO',
         'sweep_enabled' => 'mixed',
         'organisation_scoped' => 'mixed',
-        'organisations' => '\Idealogic\RegistrationAPI\Model\OrganisationSetDTO'
+        'organisations' => '\Idealogic\RegistrationAPI\Model\OrganisationSetDTO',
+        'counters' => 'array<string,mixed>'
     ];
 
     /**
@@ -85,7 +86,8 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'dry_run' => null,
         'sweep_enabled' => null,
         'organisation_scoped' => null,
-        'organisations' => null
+        'organisations' => null,
+        'counters' => 'int64'
     ];
 
     /**
@@ -102,7 +104,8 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'dry_run' => false,
         'sweep_enabled' => true,
         'organisation_scoped' => true,
-        'organisations' => false
+        'organisations' => false,
+        'counters' => true
     ];
 
     /**
@@ -199,7 +202,8 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'dry_run' => 'dryRun',
         'sweep_enabled' => 'sweepEnabled',
         'organisation_scoped' => 'organisationScoped',
-        'organisations' => 'organisations'
+        'organisations' => 'organisations',
+        'counters' => 'counters'
     ];
 
     /**
@@ -216,7 +220,8 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'dry_run' => 'setDryRun',
         'sweep_enabled' => 'setSweepEnabled',
         'organisation_scoped' => 'setOrganisationScoped',
-        'organisations' => 'setOrganisations'
+        'organisations' => 'setOrganisations',
+        'counters' => 'setCounters'
     ];
 
     /**
@@ -233,7 +238,8 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'dry_run' => 'getDryRun',
         'sweep_enabled' => 'getSweepEnabled',
         'organisation_scoped' => 'getOrganisationScoped',
-        'organisations' => 'getOrganisations'
+        'organisations' => 'getOrganisations',
+        'counters' => 'getCounters'
     ];
 
     /**
@@ -302,6 +308,7 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('sweep_enabled', $data ?? [], null);
         $this->setIfExists('organisation_scoped', $data ?? [], null);
         $this->setIfExists('organisations', $data ?? [], null);
+        $this->setIfExists('counters', $data ?? [], null);
     }
 
     /**
@@ -629,6 +636,40 @@ class ReactorInfoDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable organisations cannot be null');
         }
         $this->container['organisations'] = $organisations;
+
+        return $this;
+    }
+
+    /**
+     * Gets counters
+     *
+     * @return array<string,mixed>|null
+     */
+    public function getCounters()
+    {
+        return $this->container['counters'];
+    }
+
+    /**
+     * Sets counters
+     *
+     * @param array<string,mixed>|null $counters counters
+     *
+     * @return self
+     */
+    public function setCounters($counters)
+    {
+        if (is_null($counters)) {
+            array_push($this->openAPINullablesSetToNull, 'counters');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('counters', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['counters'] = $counters;
 
         return $this;
     }

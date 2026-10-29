@@ -13,5 +13,6 @@ Name | Type | Description | Notes
 **sweep_enabled** | **mixed** |  | [optional]
 **organisation_scoped** | **mixed** |  | [optional]
 **organisations** | [**\Idealogic\RegistrationAPI\Model\OrganisationSetDTO**](OrganisationSetDTO.md) |  | [optional]
+**counters** | **array<string,mixed>** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
