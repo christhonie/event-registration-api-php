@@ -323,6 +323,7 @@ Class | Method | HTTP request | Description
 - [StartGroupParticipantResultDTO](docs/Model/StartGroupParticipantResultDTO.md)
 - [StartGroupRef](docs/Model/StartGroupRef.md)
 - [StockTakeScanRequest](docs/Model/StockTakeScanRequest.md)
+- [SubtypeMismatchDTO](docs/Model/SubtypeMismatchDTO.md)
 - [Summary](docs/Model/Summary.md)
 - [TagBarcodeDTO](docs/Model/TagBarcodeDTO.md)
 - [TagDTO](docs/Model/TagDTO.md)

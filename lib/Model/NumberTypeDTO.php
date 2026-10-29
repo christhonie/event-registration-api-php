@@ -62,6 +62,8 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'mixed',
         'description' => 'mixed',
         'format' => 'mixed',
+        'virtual' => 'mixed',
+        'last_created_sequence' => 'mixed',
         'valid_from' => 'mixed',
         'valid_to' => 'mixed',
         'parent' => '\Idealogic\RegistrationAPI\Model\NumberTypeDTO',
@@ -80,6 +82,8 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => null,
         'description' => null,
         'format' => null,
+        'virtual' => null,
+        'last_created_sequence' => 'int32',
         'valid_from' => 'date-time',
         'valid_to' => 'date-time',
         'parent' => null,
@@ -96,6 +100,8 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => true,
         'description' => true,
         'format' => true,
+        'virtual' => true,
+        'last_created_sequence' => true,
         'valid_from' => true,
         'valid_to' => true,
         'parent' => false,
@@ -192,6 +198,8 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'name',
         'description' => 'description',
         'format' => 'format',
+        'virtual' => 'virtual',
+        'last_created_sequence' => 'lastCreatedSequence',
         'valid_from' => 'validFrom',
         'valid_to' => 'validTo',
         'parent' => 'parent',
@@ -208,6 +216,8 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'setName',
         'description' => 'setDescription',
         'format' => 'setFormat',
+        'virtual' => 'setVirtual',
+        'last_created_sequence' => 'setLastCreatedSequence',
         'valid_from' => 'setValidFrom',
         'valid_to' => 'setValidTo',
         'parent' => 'setParent',
@@ -224,6 +234,8 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'getName',
         'description' => 'getDescription',
         'format' => 'getFormat',
+        'virtual' => 'getVirtual',
+        'last_created_sequence' => 'getLastCreatedSequence',
         'valid_from' => 'getValidFrom',
         'valid_to' => 'getValidTo',
         'parent' => 'getParent',
@@ -291,6 +303,8 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('format', $data ?? [], null);
+        $this->setIfExists('virtual', $data ?? [], null);
+        $this->setIfExists('last_created_sequence', $data ?? [], null);
         $this->setIfExists('valid_from', $data ?? [], null);
         $this->setIfExists('valid_to', $data ?? [], null);
         $this->setIfExists('parent', $data ?? [], null);
@@ -491,7 +505,7 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets format
      *
-     * @param mixed|null $format Format string, using Java String.format() specification, to display the number based on the sequence number. A mandatory %d field has to be provided.
+     * @param mixed|null $format Pattern for the face value of a minted number: exactly one `#`, replaced by the sequence, so `HNR-#-26` mints `HNR-731-26`. Null mints the plain sequence. The pattern plus the sequence must fit the 10-character number column.
      *
      * @return self
      */
@@ -515,6 +529,74 @@ class NumberTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['format'] = $format;
+
+        return $this;
+    }
+
+    /**
+     * Gets virtual
+     *
+     * @return mixed|null
+     */
+    public function getVirtual()
+    {
+        return $this->container['virtual'];
+    }
+
+    /**
+     * Sets virtual
+     *
+     * @param mixed|null $virtual True when numbers of this type are minted by the system rather than loaded as physical stock. Omitted on update keeps the stored value.
+     *
+     * @return self
+     */
+    public function setVirtual($virtual)
+    {
+        if (is_null($virtual)) {
+            array_push($this->openAPINullablesSetToNull, 'virtual');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('virtual', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['virtual'] = $virtual;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_created_sequence
+     *
+     * @return mixed|null
+     */
+    public function getLastCreatedSequence()
+    {
+        return $this->container['last_created_sequence'];
+    }
+
+    /**
+     * Sets last_created_sequence
+     *
+     * @param mixed|null $last_created_sequence Watermark: the sequence of the last number the batch job minted. Only the batch job moves it; it is ignored on write.
+     *
+     * @return self
+     */
+    public function setLastCreatedSequence($last_created_sequence)
+    {
+        if (is_null($last_created_sequence)) {
+            array_push($this->openAPINullablesSetToNull, 'last_created_sequence');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('last_created_sequence', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['last_created_sequence'] = $last_created_sequence;
 
         return $this;
     }

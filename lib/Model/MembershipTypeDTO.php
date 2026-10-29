@@ -63,7 +63,8 @@ class MembershipTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
         'number_type' => '\Idealogic\RegistrationAPI\Model\NumberTypeDTO',
         'enrol_process' => '\Idealogic\RegistrationAPI\Model\ProcessDefinitionDTO',
-        'cross_sell_membership_type' => '\Idealogic\RegistrationAPI\Model\MembershipTypeDTO'
+        'cross_sell_membership_type' => '\Idealogic\RegistrationAPI\Model\MembershipTypeDTO',
+        'auto_assign_numbers' => 'mixed'
     ];
 
     /**
@@ -79,7 +80,8 @@ class MembershipTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         'organisation' => null,
         'number_type' => null,
         'enrol_process' => null,
-        'cross_sell_membership_type' => null
+        'cross_sell_membership_type' => null,
+        'auto_assign_numbers' => null
     ];
 
     /**
@@ -93,7 +95,8 @@ class MembershipTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         'organisation' => false,
         'number_type' => false,
         'enrol_process' => false,
-        'cross_sell_membership_type' => false
+        'cross_sell_membership_type' => false,
+        'auto_assign_numbers' => true
     ];
 
     /**
@@ -187,7 +190,8 @@ class MembershipTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         'organisation' => 'organisation',
         'number_type' => 'numberType',
         'enrol_process' => 'enrolProcess',
-        'cross_sell_membership_type' => 'crossSellMembershipType'
+        'cross_sell_membership_type' => 'crossSellMembershipType',
+        'auto_assign_numbers' => 'autoAssignNumbers'
     ];
 
     /**
@@ -201,7 +205,8 @@ class MembershipTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         'organisation' => 'setOrganisation',
         'number_type' => 'setNumberType',
         'enrol_process' => 'setEnrolProcess',
-        'cross_sell_membership_type' => 'setCrossSellMembershipType'
+        'cross_sell_membership_type' => 'setCrossSellMembershipType',
+        'auto_assign_numbers' => 'setAutoAssignNumbers'
     ];
 
     /**
@@ -215,7 +220,8 @@ class MembershipTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         'organisation' => 'getOrganisation',
         'number_type' => 'getNumberType',
         'enrol_process' => 'getEnrolProcess',
-        'cross_sell_membership_type' => 'getCrossSellMembershipType'
+        'cross_sell_membership_type' => 'getCrossSellMembershipType',
+        'auto_assign_numbers' => 'getAutoAssignNumbers'
     ];
 
     /**
@@ -281,6 +287,7 @@ class MembershipTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('number_type', $data ?? [], null);
         $this->setIfExists('enrol_process', $data ?? [], null);
         $this->setIfExists('cross_sell_membership_type', $data ?? [], null);
+        $this->setIfExists('auto_assign_numbers', $data ?? [], null);
     }
 
     /**
@@ -518,6 +525,40 @@ class MembershipTypeDTO implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable cross_sell_membership_type cannot be null');
         }
         $this->container['cross_sell_membership_type'] = $cross_sell_membership_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets auto_assign_numbers
+     *
+     * @return mixed|null
+     */
+    public function getAutoAssignNumbers()
+    {
+        return $this->container['auto_assign_numbers'];
+    }
+
+    /**
+     * Sets auto_assign_numbers
+     *
+     * @param mixed|null $auto_assign_numbers auto_assign_numbers
+     *
+     * @return self
+     */
+    public function setAutoAssignNumbers($auto_assign_numbers)
+    {
+        if (is_null($auto_assign_numbers)) {
+            array_push($this->openAPINullablesSetToNull, 'auto_assign_numbers');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('auto_assign_numbers', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['auto_assign_numbers'] = $auto_assign_numbers;
 
         return $this;
     }
