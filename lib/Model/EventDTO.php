@@ -103,6 +103,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'series' => '\Idealogic\RegistrationAPI\Model\SeriesDTO',
         'sanctioning_organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
         'organiser' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
+        'service_provider' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
         'product_default' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
         'product_number_add' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
         'product_number_first' => '\Idealogic\RegistrationAPI\Model\ProductDTO',
@@ -170,6 +171,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'series' => null,
         'sanctioning_organisation' => null,
         'organiser' => null,
+        'service_provider' => null,
         'product_default' => null,
         'product_number_add' => null,
         'product_number_first' => null,
@@ -235,6 +237,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'series' => false,
         'sanctioning_organisation' => false,
         'organiser' => false,
+        'service_provider' => false,
         'product_default' => false,
         'product_number_add' => false,
         'product_number_first' => false,
@@ -380,6 +383,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'series' => 'series',
         'sanctioning_organisation' => 'sanctioningOrganisation',
         'organiser' => 'organiser',
+        'service_provider' => 'serviceProvider',
         'product_default' => 'productDefault',
         'product_number_add' => 'productNumberAdd',
         'product_number_first' => 'productNumberFirst',
@@ -445,6 +449,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'series' => 'setSeries',
         'sanctioning_organisation' => 'setSanctioningOrganisation',
         'organiser' => 'setOrganiser',
+        'service_provider' => 'setServiceProvider',
         'product_default' => 'setProductDefault',
         'product_number_add' => 'setProductNumberAdd',
         'product_number_first' => 'setProductNumberFirst',
@@ -510,6 +515,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'series' => 'getSeries',
         'sanctioning_organisation' => 'getSanctioningOrganisation',
         'organiser' => 'getOrganiser',
+        'service_provider' => 'getServiceProvider',
         'product_default' => 'getProductDefault',
         'product_number_add' => 'getProductNumberAdd',
         'product_number_first' => 'getProductNumberFirst',
@@ -662,6 +668,7 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('series', $data ?? [], null);
         $this->setIfExists('sanctioning_organisation', $data ?? [], null);
         $this->setIfExists('organiser', $data ?? [], null);
+        $this->setIfExists('service_provider', $data ?? [], null);
         $this->setIfExists('product_default', $data ?? [], null);
         $this->setIfExists('product_number_add', $data ?? [], null);
         $this->setIfExists('product_number_first', $data ?? [], null);
@@ -2467,6 +2474,33 @@ class EventDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable organiser cannot be null');
         }
         $this->container['organiser'] = $organiser;
+
+        return $this;
+    }
+
+    /**
+     * Gets service_provider
+     *
+     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO|null
+     */
+    public function getServiceProvider()
+    {
+        return $this->container['service_provider'];
+    }
+
+    /**
+     * Sets service_provider
+     *
+     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO|null $service_provider The company that provides services to the event, such as registration or timing, and whose fee agreement applies to its income. Optional, with no default. Send it with an id to set it, or null on a full update to clear it; an id that names no organisation is refused with 400. Read back with its id and name.
+     *
+     * @return self
+     */
+    public function setServiceProvider($service_provider)
+    {
+        if (is_null($service_provider)) {
+            throw new \InvalidArgumentException('non-nullable service_provider cannot be null');
+        }
+        $this->container['service_provider'] = $service_provider;
 
         return $this;
     }

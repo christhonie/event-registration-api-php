@@ -48,6 +48,7 @@ Name | Type | Description | Notes
 **series** | [**\Idealogic\RegistrationAPI\Model\SeriesDTO**](SeriesDTO.md) |  | [optional]
 **sanctioning_organisation** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) |  |
 **organiser** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) |  |
+**service_provider** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) | The company that provides services to the event, such as registration or timing, and whose fee agreement applies to its income. Optional, with no default. Send it with an id to set it, or null on a full update to clear it; an id that names no organisation is refused with 400. Read back with its id and name. | [optional]
 **product_default** | [**\Idealogic\RegistrationAPI\Model\ProductDTO**](ProductDTO.md) | The default Product to apply when entering for the event. If set it overrides the value set in the Series. | [optional]
 **product_number_add** | [**\Idealogic\RegistrationAPI\Model\ProductDTO**](ProductDTO.md) | The product to use when adding an additional number. If set it overrides the value set in the Series. | [optional]
 **product_number_first** | [**\Idealogic\RegistrationAPI\Model\ProductDTO**](ProductDTO.md) | The product to use when adding the first number. If set it overrides the value set in the Series. | [optional]
