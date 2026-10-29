@@ -61,6 +61,7 @@ class RaceNumberStockBreakdownRowDTO implements ModelInterface, ArrayAccess, \Js
     protected static $openAPITypes = [
         'type_id' => 'mixed',
         'type_name' => 'mixed',
+        'type_virtual' => 'mixed',
         'sub_type_id' => 'mixed',
         'sub_type_name' => 'mixed',
         'counts' => 'array<string,mixed>'
@@ -76,6 +77,7 @@ class RaceNumberStockBreakdownRowDTO implements ModelInterface, ArrayAccess, \Js
     protected static $openAPIFormats = [
         'type_id' => 'int64',
         'type_name' => null,
+        'type_virtual' => null,
         'sub_type_id' => 'int64',
         'sub_type_name' => null,
         'counts' => 'int64'
@@ -89,6 +91,7 @@ class RaceNumberStockBreakdownRowDTO implements ModelInterface, ArrayAccess, \Js
     protected static array $openAPINullables = [
         'type_id' => true,
         'type_name' => true,
+        'type_virtual' => true,
         'sub_type_id' => true,
         'sub_type_name' => true,
         'counts' => true
@@ -182,6 +185,7 @@ class RaceNumberStockBreakdownRowDTO implements ModelInterface, ArrayAccess, \Js
     protected static $attributeMap = [
         'type_id' => 'typeId',
         'type_name' => 'typeName',
+        'type_virtual' => 'typeVirtual',
         'sub_type_id' => 'subTypeId',
         'sub_type_name' => 'subTypeName',
         'counts' => 'counts'
@@ -195,6 +199,7 @@ class RaceNumberStockBreakdownRowDTO implements ModelInterface, ArrayAccess, \Js
     protected static $setters = [
         'type_id' => 'setTypeId',
         'type_name' => 'setTypeName',
+        'type_virtual' => 'setTypeVirtual',
         'sub_type_id' => 'setSubTypeId',
         'sub_type_name' => 'setSubTypeName',
         'counts' => 'setCounts'
@@ -208,6 +213,7 @@ class RaceNumberStockBreakdownRowDTO implements ModelInterface, ArrayAccess, \Js
     protected static $getters = [
         'type_id' => 'getTypeId',
         'type_name' => 'getTypeName',
+        'type_virtual' => 'getTypeVirtual',
         'sub_type_id' => 'getSubTypeId',
         'sub_type_name' => 'getSubTypeName',
         'counts' => 'getCounts'
@@ -272,6 +278,7 @@ class RaceNumberStockBreakdownRowDTO implements ModelInterface, ArrayAccess, \Js
     {
         $this->setIfExists('type_id', $data ?? [], null);
         $this->setIfExists('type_name', $data ?? [], null);
+        $this->setIfExists('type_virtual', $data ?? [], null);
         $this->setIfExists('sub_type_id', $data ?? [], null);
         $this->setIfExists('sub_type_name', $data ?? [], null);
         $this->setIfExists('counts', $data ?? [], null);
@@ -383,6 +390,40 @@ class RaceNumberStockBreakdownRowDTO implements ModelInterface, ArrayAccess, \Js
             }
         }
         $this->container['type_name'] = $type_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets type_virtual
+     *
+     * @return mixed|null
+     */
+    public function getTypeVirtual()
+    {
+        return $this->container['type_virtual'];
+    }
+
+    /**
+     * Sets type_virtual
+     *
+     * @param mixed|null $type_virtual Whether the type is virtual: minted numbers that are never handed over physically, so issue, return, stock take, flag-unfit and dispose do not apply to them (ADO #1491).
+     *
+     * @return self
+     */
+    public function setTypeVirtual($type_virtual)
+    {
+        if (is_null($type_virtual)) {
+            array_push($this->openAPINullablesSetToNull, 'type_virtual');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('type_virtual', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['type_virtual'] = $type_virtual;
 
         return $this;
     }

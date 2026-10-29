@@ -61,6 +61,7 @@ class EventRaceNumberAssignmentDTO implements ModelInterface, ArrayAccess, \Json
     protected static $openAPITypes = [
         'number' => 'mixed',
         'type' => 'mixed',
+        'type_virtual' => 'mixed',
         'person_name' => 'mixed',
         'state' => 'mixed',
         'last_used' => 'mixed'
@@ -76,6 +77,7 @@ class EventRaceNumberAssignmentDTO implements ModelInterface, ArrayAccess, \Json
     protected static $openAPIFormats = [
         'number' => null,
         'type' => null,
+        'type_virtual' => null,
         'person_name' => null,
         'state' => null,
         'last_used' => 'date-time'
@@ -89,6 +91,7 @@ class EventRaceNumberAssignmentDTO implements ModelInterface, ArrayAccess, \Json
     protected static array $openAPINullables = [
         'number' => true,
         'type' => true,
+        'type_virtual' => true,
         'person_name' => true,
         'state' => true,
         'last_used' => true
@@ -182,6 +185,7 @@ class EventRaceNumberAssignmentDTO implements ModelInterface, ArrayAccess, \Json
     protected static $attributeMap = [
         'number' => 'number',
         'type' => 'type',
+        'type_virtual' => 'typeVirtual',
         'person_name' => 'personName',
         'state' => 'state',
         'last_used' => 'lastUsed'
@@ -195,6 +199,7 @@ class EventRaceNumberAssignmentDTO implements ModelInterface, ArrayAccess, \Json
     protected static $setters = [
         'number' => 'setNumber',
         'type' => 'setType',
+        'type_virtual' => 'setTypeVirtual',
         'person_name' => 'setPersonName',
         'state' => 'setState',
         'last_used' => 'setLastUsed'
@@ -208,6 +213,7 @@ class EventRaceNumberAssignmentDTO implements ModelInterface, ArrayAccess, \Json
     protected static $getters = [
         'number' => 'getNumber',
         'type' => 'getType',
+        'type_virtual' => 'getTypeVirtual',
         'person_name' => 'getPersonName',
         'state' => 'getState',
         'last_used' => 'getLastUsed'
@@ -295,6 +301,7 @@ class EventRaceNumberAssignmentDTO implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('number', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('type_virtual', $data ?? [], null);
         $this->setIfExists('person_name', $data ?? [], null);
         $this->setIfExists('state', $data ?? [], null);
         $this->setIfExists('last_used', $data ?? [], null);
@@ -415,6 +422,40 @@ class EventRaceNumberAssignmentDTO implements ModelInterface, ArrayAccess, \Json
             }
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets type_virtual
+     *
+     * @return mixed|null
+     */
+    public function getTypeVirtual()
+    {
+        return $this->container['type_virtual'];
+    }
+
+    /**
+     * Sets type_virtual
+     *
+     * @param mixed|null $type_virtual Whether the number's type is virtual (minted, never handed over), so the stock list can mark it (ADO #1491).
+     *
+     * @return self
+     */
+    public function setTypeVirtual($type_virtual)
+    {
+        if (is_null($type_virtual)) {
+            array_push($this->openAPINullablesSetToNull, 'type_virtual');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('type_virtual', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['type_virtual'] = $type_virtual;
 
         return $this;
     }
