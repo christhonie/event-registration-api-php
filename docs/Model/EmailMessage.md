@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **from_address** | **mixed** |  | [optional]
 **from_name** | **mixed** |  | [optional]
 **target_description** | **mixed** |  | [optional]
+**attachments** | **mixed** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

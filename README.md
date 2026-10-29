@@ -159,6 +159,7 @@ Class | Method | HTTP request | Description
 - [DetachedPeer](docs/Model/DetachedPeer.md)
 - [DisciplineDTO](docs/Model/DisciplineDTO.md)
 - [DnfRow](docs/Model/DnfRow.md)
+- [EmailAttachment](docs/Model/EmailAttachment.md)
 - [EmailMessage](docs/Model/EmailMessage.md)
 - [EmailRecipient](docs/Model/EmailRecipient.md)
 - [EmailTemplateDTO](docs/Model/EmailTemplateDTO.md)

@@ -65,7 +65,8 @@ class EmailMessage implements ModelInterface, ArrayAccess, \JsonSerializable
         'text_body' => 'mixed',
         'from_address' => 'mixed',
         'from_name' => 'mixed',
-        'target_description' => 'mixed'
+        'target_description' => 'mixed',
+        'attachments' => 'mixed'
     ];
 
     /**
@@ -83,7 +84,8 @@ class EmailMessage implements ModelInterface, ArrayAccess, \JsonSerializable
         'text_body' => null,
         'from_address' => null,
         'from_name' => null,
-        'target_description' => null
+        'target_description' => null,
+        'attachments' => null
     ];
 
     /**
@@ -99,7 +101,8 @@ class EmailMessage implements ModelInterface, ArrayAccess, \JsonSerializable
         'text_body' => true,
         'from_address' => true,
         'from_name' => true,
-        'target_description' => true
+        'target_description' => true,
+        'attachments' => true
     ];
 
     /**
@@ -195,7 +198,8 @@ class EmailMessage implements ModelInterface, ArrayAccess, \JsonSerializable
         'text_body' => 'textBody',
         'from_address' => 'fromAddress',
         'from_name' => 'fromName',
-        'target_description' => 'targetDescription'
+        'target_description' => 'targetDescription',
+        'attachments' => 'attachments'
     ];
 
     /**
@@ -211,7 +215,8 @@ class EmailMessage implements ModelInterface, ArrayAccess, \JsonSerializable
         'text_body' => 'setTextBody',
         'from_address' => 'setFromAddress',
         'from_name' => 'setFromName',
-        'target_description' => 'setTargetDescription'
+        'target_description' => 'setTargetDescription',
+        'attachments' => 'setAttachments'
     ];
 
     /**
@@ -227,7 +232,8 @@ class EmailMessage implements ModelInterface, ArrayAccess, \JsonSerializable
         'text_body' => 'getTextBody',
         'from_address' => 'getFromAddress',
         'from_name' => 'getFromName',
-        'target_description' => 'getTargetDescription'
+        'target_description' => 'getTargetDescription',
+        'attachments' => 'getAttachments'
     ];
 
     /**
@@ -295,6 +301,7 @@ class EmailMessage implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('from_address', $data ?? [], null);
         $this->setIfExists('from_name', $data ?? [], null);
         $this->setIfExists('target_description', $data ?? [], null);
+        $this->setIfExists('attachments', $data ?? [], null);
     }
 
     /**
@@ -600,6 +607,40 @@ class EmailMessage implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['target_description'] = $target_description;
+
+        return $this;
+    }
+
+    /**
+     * Gets attachments
+     *
+     * @return mixed|null
+     */
+    public function getAttachments()
+    {
+        return $this->container['attachments'];
+    }
+
+    /**
+     * Sets attachments
+     *
+     * @param mixed|null $attachments attachments
+     *
+     * @return self
+     */
+    public function setAttachments($attachments)
+    {
+        if (is_null($attachments)) {
+            array_push($this->openAPINullablesSetToNull, 'attachments');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('attachments', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['attachments'] = $attachments;
 
         return $this;
     }
