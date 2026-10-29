@@ -2419,7 +2419,7 @@ class MembershipResourceExApi
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Idealogic\RegistrationAPI\Model\ImportJobDTO
+     * @return \Idealogic\RegistrationAPI\Model\ImportJobDTO|\Idealogic\RegistrationAPI\Model\ImportJobDTO|\Idealogic\RegistrationAPI\Model\ImportJobDTO|\Idealogic\RegistrationAPI\Model\ImportJobDTO|\Idealogic\RegistrationAPI\Model\ImportJobDTO
      */
     public function importMemberships($period_id, $sheet_index = 0, $org_id = null, $import_results_request = null, string $contentType = self::contentTypes['importMemberships'][0])
     {
@@ -2438,7 +2438,7 @@ class MembershipResourceExApi
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Idealogic\RegistrationAPI\Model\ImportJobDTO, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Idealogic\RegistrationAPI\Model\ImportJobDTO|\Idealogic\RegistrationAPI\Model\ImportJobDTO|\Idealogic\RegistrationAPI\Model\ImportJobDTO|\Idealogic\RegistrationAPI\Model\ImportJobDTO|\Idealogic\RegistrationAPI\Model\ImportJobDTO, HTTP status code, HTTP response headers (array of strings)
      */
     public function importMembershipsWithHttpInfo($period_id, $sheet_index = 0, $org_id = null, $import_results_request = null, string $contentType = self::contentTypes['importMemberships'][0])
     {
@@ -2480,7 +2480,115 @@ class MembershipResourceExApi
             }
 
             switch($statusCode) {
-                case 200:
+                case 202:
+                    if ('\Idealogic\RegistrationAPI\Model\ImportJobDTO' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\ImportJobDTO' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\ImportJobDTO', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Idealogic\RegistrationAPI\Model\ImportJobDTO' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\ImportJobDTO' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\ImportJobDTO', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Idealogic\RegistrationAPI\Model\ImportJobDTO' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\ImportJobDTO' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\ImportJobDTO', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\Idealogic\RegistrationAPI\Model\ImportJobDTO' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\ImportJobDTO' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\ImportJobDTO', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
                     if ('\Idealogic\RegistrationAPI\Model\ImportJobDTO' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -2539,7 +2647,39 @@ class MembershipResourceExApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
+                case 202:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\ImportJobDTO',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\ImportJobDTO',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\ImportJobDTO',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\ImportJobDTO',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Idealogic\RegistrationAPI\Model\ImportJobDTO',
