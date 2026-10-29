@@ -71,6 +71,7 @@ class ProcessStepDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'value_pattern' => 'mixed',
         'value_true' => 'mixed',
         'value_false' => 'mixed',
+        'sensitive' => 'mixed',
         'definition' => '\Idealogic\RegistrationAPI\Model\ProcessDefinitionDTO'
     ];
 
@@ -95,6 +96,7 @@ class ProcessStepDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'value_pattern' => null,
         'value_true' => null,
         'value_false' => null,
+        'sensitive' => null,
         'definition' => null
     ];
 
@@ -117,6 +119,7 @@ class ProcessStepDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'value_pattern' => true,
         'value_true' => true,
         'value_false' => true,
+        'sensitive' => true,
         'definition' => false
     ];
 
@@ -219,6 +222,7 @@ class ProcessStepDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'value_pattern' => 'valuePattern',
         'value_true' => 'valueTrue',
         'value_false' => 'valueFalse',
+        'sensitive' => 'sensitive',
         'definition' => 'definition'
     ];
 
@@ -241,6 +245,7 @@ class ProcessStepDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'value_pattern' => 'setValuePattern',
         'value_true' => 'setValueTrue',
         'value_false' => 'setValueFalse',
+        'sensitive' => 'setSensitive',
         'definition' => 'setDefinition'
     ];
 
@@ -263,6 +268,7 @@ class ProcessStepDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'value_pattern' => 'getValuePattern',
         'value_true' => 'getValueTrue',
         'value_false' => 'getValueFalse',
+        'sensitive' => 'getSensitive',
         'definition' => 'getDefinition'
     ];
 
@@ -336,6 +342,7 @@ class ProcessStepDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('value_pattern', $data ?? [], null);
         $this->setIfExists('value_true', $data ?? [], null);
         $this->setIfExists('value_false', $data ?? [], null);
+        $this->setIfExists('sensitive', $data ?? [], null);
         $this->setIfExists('definition', $data ?? [], null);
     }
 
@@ -906,6 +913,40 @@ class ProcessStepDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['value_false'] = $value_false;
+
+        return $this;
+    }
+
+    /**
+     * Gets sensitive
+     *
+     * @return mixed|null
+     */
+    public function getSensitive()
+    {
+        return $this->container['sensitive'];
+    }
+
+    /**
+     * Sets sensitive
+     *
+     * @param mixed|null $sensitive sensitive
+     *
+     * @return self
+     */
+    public function setSensitive($sensitive)
+    {
+        if (is_null($sensitive)) {
+            array_push($this->openAPINullablesSetToNull, 'sensitive');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sensitive', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['sensitive'] = $sensitive;
 
         return $this;
     }
