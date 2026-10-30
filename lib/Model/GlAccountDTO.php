@@ -266,6 +266,17 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_ACCOUNT_RECEIVABLE = 'ACCOUNT_RECEIVABLE';
     public const TYPE_INCOME = 'INCOME';
     public const TYPE_EXPENSE = 'EXPENSE';
+    public const ROLE_ENTRY_INCOME = 'ENTRY_INCOME';
+    public const ROLE_DISCOUNT_ALLOWED = 'DISCOUNT_ALLOWED';
+    public const ROLE_RECEIVABLE = 'RECEIVABLE';
+    public const ROLE_CUSTOMER_CREDIT = 'CUSTOMER_CREDIT';
+    public const ROLE_HELD_BY_SERVICE_PROVIDER = 'HELD_BY_SERVICE_PROVIDER';
+    public const ROLE_SERVICE_FEES = 'SERVICE_FEES';
+    public const ROLE_EVENT_EXPENSES = 'EVENT_EXPENSES';
+    public const ROLE_PROVIDER_FEES = 'PROVIDER_FEES';
+    public const ROLE_DUE_TO_ORGANISER = 'DUE_TO_ORGANISER';
+    public const ROLE_SERVICE_FEE_INCOME = 'SERVICE_FEE_INCOME';
+    public const ROLE_BANK_CHARGES = 'BANK_CHARGES';
 
     /**
      * Gets allowable values of the enum
@@ -282,6 +293,28 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_ACCOUNT_RECEIVABLE,
             self::TYPE_INCOME,
             self::TYPE_EXPENSE,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getRoleAllowableValues()
+    {
+        return [
+            self::ROLE_ENTRY_INCOME,
+            self::ROLE_DISCOUNT_ALLOWED,
+            self::ROLE_RECEIVABLE,
+            self::ROLE_CUSTOMER_CREDIT,
+            self::ROLE_HELD_BY_SERVICE_PROVIDER,
+            self::ROLE_SERVICE_FEES,
+            self::ROLE_EVENT_EXPENSES,
+            self::ROLE_PROVIDER_FEES,
+            self::ROLE_DUE_TO_ORGANISER,
+            self::ROLE_SERVICE_FEE_INCOME,
+            self::ROLE_BANK_CHARGES,
         ];
     }
 
@@ -358,12 +391,13 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['organisation'] === null) {
             $invalidProperties[] = "'organisation' can't be null";
         }
-        if (!is_null($this->container['role']) && (mb_strlen($this->container['role']) > 30)) {
-            $invalidProperties[] = "invalid value for 'role', the character length must be smaller than or equal to 30.";
-        }
-
-        if (!is_null($this->container['role']) && (mb_strlen($this->container['role']) < 0)) {
-            $invalidProperties[] = "invalid value for 'role', the character length must be bigger than or equal to 0.";
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!is_null($this->container['role']) && !in_array($this->container['role'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'role', must be one of '%s'",
+                $this->container['role'],
+                implode("', '", $allowedValues)
+            );
         }
 
         if (!is_null($this->container['export_code']) && (mb_strlen($this->container['export_code']) > 30)) {
@@ -557,13 +591,16 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        if (!is_null($role) && (mb_strlen($role) > 30)) {
-            throw new \InvalidArgumentException('invalid length for $role when calling GlAccountDTO., must be smaller than or equal to 30.');
+        $allowedValues = $this->getRoleAllowableValues();
+        if (!is_null($role) && !in_array($role, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'role', must be one of '%s'",
+                    $role,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
-        if (!is_null($role) && (mb_strlen($role) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $role when calling GlAccountDTO., must be bigger than or equal to 0.');
-        }
-
         $this->container['role'] = $role;
 
         return $this;
