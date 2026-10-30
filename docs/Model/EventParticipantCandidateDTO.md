@@ -40,6 +40,7 @@ Name | Type | Description | Notes
 **teams** | **mixed** |  | [optional]
 **event_race_types** | **mixed** |  | [optional]
 **orders** | **mixed** |  | [optional]
+**races** | **mixed** | The races the participant is in, one entry per start group record, read from their start groups. Read-only: ignored on POST, PUT and PATCH. Empty when the participant holds no start group. | [optional] [readonly]
 **members** | **mixed** |  | [optional]
 **questions** | **mixed** |  | [optional]
 **answer** | **mixed** |  | [optional]

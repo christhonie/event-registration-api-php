@@ -95,6 +95,7 @@ class EventParticipantCandidateDTO implements ModelInterface, ArrayAccess, \Json
         'teams' => 'mixed',
         'event_race_types' => 'mixed',
         'orders' => 'mixed',
+        'races' => 'mixed',
         'members' => 'mixed',
         'questions' => 'mixed',
         'answer' => 'mixed',
@@ -148,6 +149,7 @@ class EventParticipantCandidateDTO implements ModelInterface, ArrayAccess, \Json
         'teams' => null,
         'event_race_types' => null,
         'orders' => null,
+        'races' => null,
         'members' => null,
         'questions' => null,
         'answer' => null,
@@ -199,6 +201,7 @@ class EventParticipantCandidateDTO implements ModelInterface, ArrayAccess, \Json
         'teams' => true,
         'event_race_types' => true,
         'orders' => true,
+        'races' => true,
         'members' => true,
         'questions' => true,
         'answer' => true,
@@ -330,6 +333,7 @@ class EventParticipantCandidateDTO implements ModelInterface, ArrayAccess, \Json
         'teams' => 'teams',
         'event_race_types' => 'eventRaceTypes',
         'orders' => 'orders',
+        'races' => 'races',
         'members' => 'members',
         'questions' => 'questions',
         'answer' => 'answer',
@@ -381,6 +385,7 @@ class EventParticipantCandidateDTO implements ModelInterface, ArrayAccess, \Json
         'teams' => 'setTeams',
         'event_race_types' => 'setEventRaceTypes',
         'orders' => 'setOrders',
+        'races' => 'setRaces',
         'members' => 'setMembers',
         'questions' => 'setQuestions',
         'answer' => 'setAnswer',
@@ -432,6 +437,7 @@ class EventParticipantCandidateDTO implements ModelInterface, ArrayAccess, \Json
         'teams' => 'getTeams',
         'event_race_types' => 'getEventRaceTypes',
         'orders' => 'getOrders',
+        'races' => 'getRaces',
         'members' => 'getMembers',
         'questions' => 'getQuestions',
         'answer' => 'getAnswer',
@@ -635,6 +641,7 @@ class EventParticipantCandidateDTO implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('teams', $data ?? [], null);
         $this->setIfExists('event_race_types', $data ?? [], null);
         $this->setIfExists('orders', $data ?? [], null);
+        $this->setIfExists('races', $data ?? [], null);
         $this->setIfExists('members', $data ?? [], null);
         $this->setIfExists('questions', $data ?? [], null);
         $this->setIfExists('answer', $data ?? [], null);
@@ -2020,6 +2027,40 @@ class EventParticipantCandidateDTO implements ModelInterface, ArrayAccess, \Json
 
 
         $this->container['orders'] = $orders;
+
+        return $this;
+    }
+
+    /**
+     * Gets races
+     *
+     * @return mixed|null
+     */
+    public function getRaces()
+    {
+        return $this->container['races'];
+    }
+
+    /**
+     * Sets races
+     *
+     * @param mixed|null $races The races the participant is in, one entry per start group record, read from their start groups. Read-only: ignored on POST, PUT and PATCH. Empty when the participant holds no start group.
+     *
+     * @return self
+     */
+    public function setRaces($races)
+    {
+        if (is_null($races)) {
+            array_push($this->openAPINullablesSetToNull, 'races');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('races', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['races'] = $races;
 
         return $this;
     }

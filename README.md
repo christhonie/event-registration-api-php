@@ -173,6 +173,7 @@ Class | Method | HTTP request | Description
 - [EventParticipantCandidateDTO](docs/Model/EventParticipantCandidateDTO.md)
 - [EventParticipantDTO](docs/Model/EventParticipantDTO.md)
 - [EventParticipantImportResultDTO](docs/Model/EventParticipantImportResultDTO.md)
+- [EventParticipantRaceDTO](docs/Model/EventParticipantRaceDTO.md)
 - [EventParticipantRegistrationDTO](docs/Model/EventParticipantRegistrationDTO.md)
 - [EventParticipantRosterDTO](docs/Model/EventParticipantRosterDTO.md)
 - [EventParticipantRosterEntryDTO](docs/Model/EventParticipantRosterEntryDTO.md)

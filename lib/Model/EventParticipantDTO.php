@@ -94,6 +94,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'enrol_instance' => '\Idealogic\RegistrationAPI\Model\ProcessInstanceDTO',
         'teams' => 'mixed',
         'orders' => 'mixed',
+        'races' => 'mixed',
         'members' => 'mixed'
     ];
 
@@ -140,6 +141,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'enrol_instance' => null,
         'teams' => null,
         'orders' => null,
+        'races' => null,
         'members' => null
     ];
 
@@ -184,6 +186,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'enrol_instance' => false,
         'teams' => true,
         'orders' => true,
+        'races' => true,
         'members' => true
     ];
 
@@ -308,6 +311,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'enrol_instance' => 'enrolInstance',
         'teams' => 'teams',
         'orders' => 'orders',
+        'races' => 'races',
         'members' => 'members'
     ];
 
@@ -352,6 +356,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'enrol_instance' => 'setEnrolInstance',
         'teams' => 'setTeams',
         'orders' => 'setOrders',
+        'races' => 'setRaces',
         'members' => 'setMembers'
     ];
 
@@ -396,6 +401,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'enrol_instance' => 'getEnrolInstance',
         'teams' => 'getTeams',
         'orders' => 'getOrders',
+        'races' => 'getRaces',
         'members' => 'getMembers'
     ];
 
@@ -592,6 +598,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('enrol_instance', $data ?? [], null);
         $this->setIfExists('teams', $data ?? [], null);
         $this->setIfExists('orders', $data ?? [], null);
+        $this->setIfExists('races', $data ?? [], null);
         $this->setIfExists('members', $data ?? [], null);
     }
 
@@ -1935,6 +1942,40 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
         $this->container['orders'] = $orders;
+
+        return $this;
+    }
+
+    /**
+     * Gets races
+     *
+     * @return mixed|null
+     */
+    public function getRaces()
+    {
+        return $this->container['races'];
+    }
+
+    /**
+     * Sets races
+     *
+     * @param mixed|null $races The races the participant is in, one entry per start group record, read from their start groups. Read-only: ignored on POST, PUT and PATCH. Empty when the participant holds no start group.
+     *
+     * @return self
+     */
+    public function setRaces($races)
+    {
+        if (is_null($races)) {
+            array_push($this->openAPINullablesSetToNull, 'races');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('races', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['races'] = $races;
 
         return $this;
     }
