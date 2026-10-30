@@ -2909,7 +2909,7 @@ class MembershipResourceExApi
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO
+     * @return \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO|\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO|\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO
      */
     public function updateMembershipOrder($membership_order_update_request_dto, $organisation_id = null, string $contentType = self::contentTypes['updateMembershipOrder'][0])
     {
@@ -2926,7 +2926,7 @@ class MembershipResourceExApi
      *
      * @throws \Idealogic\RegistrationAPI\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO|\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO|\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateMembershipOrderWithHttpInfo($membership_order_update_request_dto, $organisation_id = null, string $contentType = self::contentTypes['updateMembershipOrder'][0])
     {
@@ -2995,6 +2995,60 @@ class MembershipResourceExApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 404:
+                    if ('\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO';
@@ -3028,6 +3082,22 @@ class MembershipResourceExApi
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Idealogic\RegistrationAPI\Model\MembershipOrderUpdateResponseDTO',
