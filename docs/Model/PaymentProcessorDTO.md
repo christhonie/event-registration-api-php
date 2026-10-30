@@ -4,8 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **mixed** |  | [optional]
+**id** | **int** |  | [optional]
 **name** | **mixed** |  |
-**bank_account** | [**\Idealogic\RegistrationAPI\Model\GlAccountDTO**](GlAccountDTO.md) |  |
+**bank_account** | [**\Idealogic\RegistrationAPI\Model\GlAccountDTO**](GlAccountDTO.md) | Ledger bank account. Optional: Financials adds a processor&#39;s accounts (US #1335). | [optional]
+**type** | **mixed** | Online payment provider, card machine, bank account or cash box. The processor is how a payment was made as well as where it landed. |
+**organisation** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) | Owner: the organisation whose money the processor holds. |
+**active** | **mixed** | False once retired: a retired processor takes no new payments. Defaults to true. | [optional]
+**registration_system** | [**\Idealogic\RegistrationAPI\Model\RegistrationSystemDTO**](RegistrationSystemDTO.md) | External key, part 1: the registration system an online processor serves. | [optional]
+**gateway_id** | **mixed** | External key, part 2: the payment gateway&#39;s identifier in that registration system. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -58,9 +58,14 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'mixed',
+        'id' => 'int',
         'name' => 'mixed',
-        'bank_account' => '\Idealogic\RegistrationAPI\Model\GlAccountDTO'
+        'bank_account' => '\Idealogic\RegistrationAPI\Model\GlAccountDTO',
+        'type' => 'mixed',
+        'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
+        'active' => 'mixed',
+        'registration_system' => '\Idealogic\RegistrationAPI\Model\RegistrationSystemDTO',
+        'gateway_id' => 'mixed'
     ];
 
     /**
@@ -73,7 +78,12 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPIFormats = [
         'id' => 'int64',
         'name' => null,
-        'bank_account' => null
+        'bank_account' => null,
+        'type' => null,
+        'organisation' => null,
+        'active' => null,
+        'registration_system' => null,
+        'gateway_id' => null
     ];
 
     /**
@@ -82,9 +92,14 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => true,
+        'id' => false,
         'name' => true,
-        'bank_account' => false
+        'bank_account' => false,
+        'type' => true,
+        'organisation' => false,
+        'active' => true,
+        'registration_system' => false,
+        'gateway_id' => true
     ];
 
     /**
@@ -175,7 +190,12 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $attributeMap = [
         'id' => 'id',
         'name' => 'name',
-        'bank_account' => 'bankAccount'
+        'bank_account' => 'bankAccount',
+        'type' => 'type',
+        'organisation' => 'organisation',
+        'active' => 'active',
+        'registration_system' => 'registrationSystem',
+        'gateway_id' => 'gatewayId'
     ];
 
     /**
@@ -186,7 +206,12 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $setters = [
         'id' => 'setId',
         'name' => 'setName',
-        'bank_account' => 'setBankAccount'
+        'bank_account' => 'setBankAccount',
+        'type' => 'setType',
+        'organisation' => 'setOrganisation',
+        'active' => 'setActive',
+        'registration_system' => 'setRegistrationSystem',
+        'gateway_id' => 'setGatewayId'
     ];
 
     /**
@@ -197,7 +222,12 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $getters = [
         'id' => 'getId',
         'name' => 'getName',
-        'bank_account' => 'getBankAccount'
+        'bank_account' => 'getBankAccount',
+        'type' => 'getType',
+        'organisation' => 'getOrganisation',
+        'active' => 'getActive',
+        'registration_system' => 'getRegistrationSystem',
+        'gateway_id' => 'getGatewayId'
     ];
 
     /**
@@ -241,6 +271,25 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
+    public const TYPE_ONLINE = 'ONLINE';
+    public const TYPE_CARD_MACHINE = 'CARD_MACHINE';
+    public const TYPE_BANK_ACCOUNT = 'BANK_ACCOUNT';
+    public const TYPE_CASH_BOX = 'CASH_BOX';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_ONLINE,
+            self::TYPE_CARD_MACHINE,
+            self::TYPE_BANK_ACCOUNT,
+            self::TYPE_CASH_BOX,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -260,6 +309,11 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('bank_account', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('organisation', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('registration_system', $data ?? [], null);
+        $this->setIfExists('gateway_id', $data ?? [], null);
     }
 
     /**
@@ -300,9 +354,29 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 0.";
         }
 
-        if ($this->container['bank_account'] === null) {
-            $invalidProperties[] = "'bank_account' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['organisation'] === null) {
+            $invalidProperties[] = "'organisation' can't be null";
+        }
+        if (!is_null($this->container['gateway_id']) && (mb_strlen($this->container['gateway_id']) > 50)) {
+            $invalidProperties[] = "invalid value for 'gateway_id', the character length must be smaller than or equal to 50.";
+        }
+
+        if (!is_null($this->container['gateway_id']) && (mb_strlen($this->container['gateway_id']) < 0)) {
+            $invalidProperties[] = "invalid value for 'gateway_id', the character length must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -321,7 +395,7 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets id
      *
-     * @return mixed|null
+     * @return int|null
      */
     public function getId()
     {
@@ -331,21 +405,14 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets id
      *
-     * @param mixed|null $id id
+     * @param int|null $id id
      *
      * @return self
      */
     public function setId($id)
     {
         if (is_null($id)) {
-            array_push($this->openAPINullablesSetToNull, 'id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -396,7 +463,7 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets bank_account
      *
-     * @return \Idealogic\RegistrationAPI\Model\GlAccountDTO
+     * @return \Idealogic\RegistrationAPI\Model\GlAccountDTO|null
      */
     public function getBankAccount()
     {
@@ -406,7 +473,7 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets bank_account
      *
-     * @param \Idealogic\RegistrationAPI\Model\GlAccountDTO $bank_account bank_account
+     * @param \Idealogic\RegistrationAPI\Model\GlAccountDTO|null $bank_account Ledger bank account. Optional: Financials adds a processor's accounts (US #1335).
      *
      * @return self
      */
@@ -416,6 +483,179 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable bank_account cannot be null');
         }
         $this->container['bank_account'] = $bank_account;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param mixed $type Online payment provider, card machine, bank account or cash box. The processor is how a payment was made as well as where it landed.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            array_push($this->openAPINullablesSetToNull, 'type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('type', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($type) && !in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets organisation
+     *
+     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO
+     */
+    public function getOrganisation()
+    {
+        return $this->container['organisation'];
+    }
+
+    /**
+     * Sets organisation
+     *
+     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO $organisation Owner: the organisation whose money the processor holds.
+     *
+     * @return self
+     */
+    public function setOrganisation($organisation)
+    {
+        if (is_null($organisation)) {
+            throw new \InvalidArgumentException('non-nullable organisation cannot be null');
+        }
+        $this->container['organisation'] = $organisation;
+
+        return $this;
+    }
+
+    /**
+     * Gets active
+     *
+     * @return mixed|null
+     */
+    public function getActive()
+    {
+        return $this->container['active'];
+    }
+
+    /**
+     * Sets active
+     *
+     * @param mixed|null $active False once retired: a retired processor takes no new payments. Defaults to true.
+     *
+     * @return self
+     */
+    public function setActive($active)
+    {
+        if (is_null($active)) {
+            array_push($this->openAPINullablesSetToNull, 'active');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('active', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['active'] = $active;
+
+        return $this;
+    }
+
+    /**
+     * Gets registration_system
+     *
+     * @return \Idealogic\RegistrationAPI\Model\RegistrationSystemDTO|null
+     */
+    public function getRegistrationSystem()
+    {
+        return $this->container['registration_system'];
+    }
+
+    /**
+     * Sets registration_system
+     *
+     * @param \Idealogic\RegistrationAPI\Model\RegistrationSystemDTO|null $registration_system External key, part 1: the registration system an online processor serves.
+     *
+     * @return self
+     */
+    public function setRegistrationSystem($registration_system)
+    {
+        if (is_null($registration_system)) {
+            throw new \InvalidArgumentException('non-nullable registration_system cannot be null');
+        }
+        $this->container['registration_system'] = $registration_system;
+
+        return $this;
+    }
+
+    /**
+     * Gets gateway_id
+     *
+     * @return mixed|null
+     */
+    public function getGatewayId()
+    {
+        return $this->container['gateway_id'];
+    }
+
+    /**
+     * Sets gateway_id
+     *
+     * @param mixed|null $gateway_id External key, part 2: the payment gateway's identifier in that registration system.
+     *
+     * @return self
+     */
+    public function setGatewayId($gateway_id)
+    {
+        if (is_null($gateway_id)) {
+            array_push($this->openAPINullablesSetToNull, 'gateway_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('gateway_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($gateway_id) && (mb_strlen($gateway_id) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $gateway_id when calling PaymentProcessorDTO., must be smaller than or equal to 50.');
+        }
+        if (!is_null($gateway_id) && (mb_strlen($gateway_id) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $gateway_id when calling PaymentProcessorDTO., must be bigger than or equal to 0.');
+        }
+
+        $this->container['gateway_id'] = $gateway_id;
 
         return $this;
     }

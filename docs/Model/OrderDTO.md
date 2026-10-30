@@ -17,7 +17,6 @@ Name | Type | Description | Notes
 **organisation** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) |  |
 **buyer** | [**\Idealogic\RegistrationAPI\Model\PersonNameDTO**](PersonNameDTO.md) |  | [optional]
 **registration_system** | [**\Idealogic\RegistrationAPI\Model\RegistrationSystemDTO**](RegistrationSystemDTO.md) |  | [optional]
-**payment_processor** | [**\Idealogic\RegistrationAPI\Model\PaymentProcessorDTO**](PaymentProcessorDTO.md) |  | [optional]
 **line_items** | **mixed** | Line items in this order | [optional]
 **total_amount** | **mixed** | Total amount for the order | [optional]
 **discount** | **mixed** | Order-level coupon discount total | [optional]

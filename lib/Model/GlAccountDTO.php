@@ -58,10 +58,12 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'mixed',
+        'id' => 'int',
         'name' => 'mixed',
         'type' => 'mixed',
-        'predefined' => 'mixed'
+        'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
+        'role' => 'mixed',
+        'export_code' => 'mixed'
     ];
 
     /**
@@ -75,7 +77,9 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'int64',
         'name' => null,
         'type' => null,
-        'predefined' => 'uuid'
+        'organisation' => null,
+        'role' => null,
+        'export_code' => null
     ];
 
     /**
@@ -84,10 +88,12 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => true,
+        'id' => false,
         'name' => true,
         'type' => true,
-        'predefined' => true
+        'organisation' => false,
+        'role' => true,
+        'export_code' => true
     ];
 
     /**
@@ -179,7 +185,9 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'id',
         'name' => 'name',
         'type' => 'type',
-        'predefined' => 'predefined'
+        'organisation' => 'organisation',
+        'role' => 'role',
+        'export_code' => 'exportCode'
     ];
 
     /**
@@ -191,7 +199,9 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'setId',
         'name' => 'setName',
         'type' => 'setType',
-        'predefined' => 'setPredefined'
+        'organisation' => 'setOrganisation',
+        'role' => 'setRole',
+        'export_code' => 'setExportCode'
     ];
 
     /**
@@ -203,7 +213,9 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'getId',
         'name' => 'getName',
         'type' => 'getType',
-        'predefined' => 'getPredefined'
+        'organisation' => 'getOrganisation',
+        'role' => 'getRole',
+        'export_code' => 'getExportCode'
     ];
 
     /**
@@ -291,7 +303,9 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('predefined', $data ?? [], null);
+        $this->setIfExists('organisation', $data ?? [], null);
+        $this->setIfExists('role', $data ?? [], null);
+        $this->setIfExists('export_code', $data ?? [], null);
     }
 
     /**
@@ -341,6 +355,25 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if ($this->container['organisation'] === null) {
+            $invalidProperties[] = "'organisation' can't be null";
+        }
+        if (!is_null($this->container['role']) && (mb_strlen($this->container['role']) > 30)) {
+            $invalidProperties[] = "invalid value for 'role', the character length must be smaller than or equal to 30.";
+        }
+
+        if (!is_null($this->container['role']) && (mb_strlen($this->container['role']) < 0)) {
+            $invalidProperties[] = "invalid value for 'role', the character length must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['export_code']) && (mb_strlen($this->container['export_code']) > 30)) {
+            $invalidProperties[] = "invalid value for 'export_code', the character length must be smaller than or equal to 30.";
+        }
+
+        if (!is_null($this->container['export_code']) && (mb_strlen($this->container['export_code']) < 0)) {
+            $invalidProperties[] = "invalid value for 'export_code', the character length must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -359,7 +392,7 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return mixed|null
+     * @return int|null
      */
     public function getId()
     {
@@ -369,21 +402,14 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param mixed|null $id id
+     * @param int|null $id id
      *
      * @return self
      */
     public function setId($id)
     {
         if (is_null($id)) {
-            array_push($this->openAPINullablesSetToNull, 'id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -476,35 +502,110 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets predefined
+     * Gets organisation
      *
-     * @return mixed|null
+     * @return \Idealogic\RegistrationAPI\Model\OrganisationDTO
      */
-    public function getPredefined()
+    public function getOrganisation()
     {
-        return $this->container['predefined'];
+        return $this->container['organisation'];
     }
 
     /**
-     * Sets predefined
+     * Sets organisation
      *
-     * @param mixed|null $predefined predefined
+     * @param \Idealogic\RegistrationAPI\Model\OrganisationDTO $organisation organisation
      *
      * @return self
      */
-    public function setPredefined($predefined)
+    public function setOrganisation($organisation)
     {
-        if (is_null($predefined)) {
-            array_push($this->openAPINullablesSetToNull, 'predefined');
+        if (is_null($organisation)) {
+            throw new \InvalidArgumentException('non-nullable organisation cannot be null');
+        }
+        $this->container['organisation'] = $organisation;
+
+        return $this;
+    }
+
+    /**
+     * Gets role
+     *
+     * @return mixed|null
+     */
+    public function getRole()
+    {
+        return $this->container['role'];
+    }
+
+    /**
+     * Sets role
+     *
+     * @param mixed|null $role role
+     *
+     * @return self
+     */
+    public function setRole($role)
+    {
+        if (is_null($role)) {
+            array_push($this->openAPINullablesSetToNull, 'role');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('predefined', $nullablesSetToNull);
+            $index = array_search('role', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['predefined'] = $predefined;
+        if (!is_null($role) && (mb_strlen($role) > 30)) {
+            throw new \InvalidArgumentException('invalid length for $role when calling GlAccountDTO., must be smaller than or equal to 30.');
+        }
+        if (!is_null($role) && (mb_strlen($role) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $role when calling GlAccountDTO., must be bigger than or equal to 0.');
+        }
+
+        $this->container['role'] = $role;
+
+        return $this;
+    }
+
+    /**
+     * Gets export_code
+     *
+     * @return mixed|null
+     */
+    public function getExportCode()
+    {
+        return $this->container['export_code'];
+    }
+
+    /**
+     * Sets export_code
+     *
+     * @param mixed|null $export_code export_code
+     *
+     * @return self
+     */
+    public function setExportCode($export_code)
+    {
+        if (is_null($export_code)) {
+            array_push($this->openAPINullablesSetToNull, 'export_code');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('export_code', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($export_code) && (mb_strlen($export_code) > 30)) {
+            throw new \InvalidArgumentException('invalid length for $export_code when calling GlAccountDTO., must be smaller than or equal to 30.');
+        }
+        if (!is_null($export_code) && (mb_strlen($export_code) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $export_code when calling GlAccountDTO., must be bigger than or equal to 0.');
+        }
+
+        $this->container['export_code'] = $export_code;
 
         return $this;
     }

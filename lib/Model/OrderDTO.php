@@ -71,7 +71,6 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
         'buyer' => '\Idealogic\RegistrationAPI\Model\PersonNameDTO',
         'registration_system' => '\Idealogic\RegistrationAPI\Model\RegistrationSystemDTO',
-        'payment_processor' => '\Idealogic\RegistrationAPI\Model\PaymentProcessorDTO',
         'line_items' => 'mixed',
         'total_amount' => 'mixed',
         'discount' => 'mixed',
@@ -101,7 +100,6 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'organisation' => null,
         'buyer' => null,
         'registration_system' => null,
-        'payment_processor' => null,
         'line_items' => null,
         'total_amount' => null,
         'discount' => null,
@@ -129,7 +127,6 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'organisation' => false,
         'buyer' => false,
         'registration_system' => false,
-        'payment_processor' => false,
         'line_items' => true,
         'total_amount' => true,
         'discount' => true,
@@ -237,7 +234,6 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'organisation' => 'organisation',
         'buyer' => 'buyer',
         'registration_system' => 'registrationSystem',
-        'payment_processor' => 'paymentProcessor',
         'line_items' => 'lineItems',
         'total_amount' => 'totalAmount',
         'discount' => 'discount',
@@ -265,7 +261,6 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'organisation' => 'setOrganisation',
         'buyer' => 'setBuyer',
         'registration_system' => 'setRegistrationSystem',
-        'payment_processor' => 'setPaymentProcessor',
         'line_items' => 'setLineItems',
         'total_amount' => 'setTotalAmount',
         'discount' => 'setDiscount',
@@ -293,7 +288,6 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'organisation' => 'getOrganisation',
         'buyer' => 'getBuyer',
         'registration_system' => 'getRegistrationSystem',
-        'payment_processor' => 'getPaymentProcessor',
         'line_items' => 'getLineItems',
         'total_amount' => 'getTotalAmount',
         'discount' => 'getDiscount',
@@ -393,7 +387,6 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('organisation', $data ?? [], null);
         $this->setIfExists('buyer', $data ?? [], null);
         $this->setIfExists('registration_system', $data ?? [], null);
-        $this->setIfExists('payment_processor', $data ?? [], null);
         $this->setIfExists('line_items', $data ?? [], null);
         $this->setIfExists('total_amount', $data ?? [], null);
         $this->setIfExists('discount', $data ?? [], null);
@@ -957,33 +950,6 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable registration_system cannot be null');
         }
         $this->container['registration_system'] = $registration_system;
-
-        return $this;
-    }
-
-    /**
-     * Gets payment_processor
-     *
-     * @return \Idealogic\RegistrationAPI\Model\PaymentProcessorDTO|null
-     */
-    public function getPaymentProcessor()
-    {
-        return $this->container['payment_processor'];
-    }
-
-    /**
-     * Sets payment_processor
-     *
-     * @param \Idealogic\RegistrationAPI\Model\PaymentProcessorDTO|null $payment_processor payment_processor
-     *
-     * @return self
-     */
-    public function setPaymentProcessor($payment_processor)
-    {
-        if (is_null($payment_processor)) {
-            throw new \InvalidArgumentException('non-nullable payment_processor cannot be null');
-        }
-        $this->container['payment_processor'] = $payment_processor;
 
         return $this;
     }

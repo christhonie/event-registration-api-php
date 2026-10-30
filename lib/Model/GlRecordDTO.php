@@ -62,7 +62,10 @@ class GlRecordDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'mixed',
         'posted_date' => 'mixed',
         'account' => '\Idealogic\RegistrationAPI\Model\GlAccountDTO',
-        'transaction' => '\Idealogic\RegistrationAPI\Model\GlTransactionDTO'
+        'transaction' => '\Idealogic\RegistrationAPI\Model\GlTransactionDTO',
+        'order_line_item_id' => 'mixed',
+        'event_id' => 'mixed',
+        'counterparty_organisation_id' => 'mixed'
     ];
 
     /**
@@ -77,7 +80,10 @@ class GlRecordDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => null,
         'posted_date' => 'date',
         'account' => null,
-        'transaction' => null
+        'transaction' => null,
+        'order_line_item_id' => 'int64',
+        'event_id' => 'int64',
+        'counterparty_organisation_id' => 'int64'
     ];
 
     /**
@@ -90,7 +96,10 @@ class GlRecordDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => true,
         'posted_date' => true,
         'account' => false,
-        'transaction' => false
+        'transaction' => false,
+        'order_line_item_id' => true,
+        'event_id' => true,
+        'counterparty_organisation_id' => true
     ];
 
     /**
@@ -183,7 +192,10 @@ class GlRecordDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'amount',
         'posted_date' => 'postedDate',
         'account' => 'account',
-        'transaction' => 'transaction'
+        'transaction' => 'transaction',
+        'order_line_item_id' => 'orderLineItemId',
+        'event_id' => 'eventId',
+        'counterparty_organisation_id' => 'counterpartyOrganisationId'
     ];
 
     /**
@@ -196,7 +208,10 @@ class GlRecordDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'setAmount',
         'posted_date' => 'setPostedDate',
         'account' => 'setAccount',
-        'transaction' => 'setTransaction'
+        'transaction' => 'setTransaction',
+        'order_line_item_id' => 'setOrderLineItemId',
+        'event_id' => 'setEventId',
+        'counterparty_organisation_id' => 'setCounterpartyOrganisationId'
     ];
 
     /**
@@ -209,7 +224,10 @@ class GlRecordDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'getAmount',
         'posted_date' => 'getPostedDate',
         'account' => 'getAccount',
-        'transaction' => 'getTransaction'
+        'transaction' => 'getTransaction',
+        'order_line_item_id' => 'getOrderLineItemId',
+        'event_id' => 'getEventId',
+        'counterparty_organisation_id' => 'getCounterpartyOrganisationId'
     ];
 
     /**
@@ -274,6 +292,9 @@ class GlRecordDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('posted_date', $data ?? [], null);
         $this->setIfExists('account', $data ?? [], null);
         $this->setIfExists('transaction', $data ?? [], null);
+        $this->setIfExists('order_line_item_id', $data ?? [], null);
+        $this->setIfExists('event_id', $data ?? [], null);
+        $this->setIfExists('counterparty_organisation_id', $data ?? [], null);
     }
 
     /**
@@ -482,6 +503,108 @@ class GlRecordDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable transaction cannot be null');
         }
         $this->container['transaction'] = $transaction;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_line_item_id
+     *
+     * @return mixed|null
+     */
+    public function getOrderLineItemId()
+    {
+        return $this->container['order_line_item_id'];
+    }
+
+    /**
+     * Sets order_line_item_id
+     *
+     * @param mixed|null $order_line_item_id The order line this posting line is for, if any.
+     *
+     * @return self
+     */
+    public function setOrderLineItemId($order_line_item_id)
+    {
+        if (is_null($order_line_item_id)) {
+            array_push($this->openAPINullablesSetToNull, 'order_line_item_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('order_line_item_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['order_line_item_id'] = $order_line_item_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets event_id
+     *
+     * @return mixed|null
+     */
+    public function getEventId()
+    {
+        return $this->container['event_id'];
+    }
+
+    /**
+     * Sets event_id
+     *
+     * @param mixed|null $event_id The event this posting line concerns, so event and series figures come from the ledger.
+     *
+     * @return self
+     */
+    public function setEventId($event_id)
+    {
+        if (is_null($event_id)) {
+            array_push($this->openAPINullablesSetToNull, 'event_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('event_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['event_id'] = $event_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets counterparty_organisation_id
+     *
+     * @return mixed|null
+     */
+    public function getCounterpartyOrganisationId()
+    {
+        return $this->container['counterparty_organisation_id'];
+    }
+
+    /**
+     * Sets counterparty_organisation_id
+     *
+     * @param mixed|null $counterparty_organisation_id The other company, on a line recording a balance with it.
+     *
+     * @return self
+     */
+    public function setCounterpartyOrganisationId($counterparty_organisation_id)
+    {
+        if (is_null($counterparty_organisation_id)) {
+            array_push($this->openAPINullablesSetToNull, 'counterparty_organisation_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('counterparty_organisation_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['counterparty_organisation_id'] = $counterparty_organisation_id;
 
         return $this;
     }

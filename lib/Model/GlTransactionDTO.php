@@ -62,7 +62,12 @@ class GlTransactionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'transaction_date' => 'mixed',
         'created_date_time' => 'mixed',
         'description' => 'mixed',
-        'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO'
+        'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
+        'transaction_type' => 'mixed',
+        'order_id' => 'mixed',
+        'payment_id' => 'mixed',
+        'corrects_id' => 'mixed',
+        'journal_id' => 'mixed'
     ];
 
     /**
@@ -77,7 +82,12 @@ class GlTransactionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'transaction_date' => 'date',
         'created_date_time' => 'date-time',
         'description' => null,
-        'organisation' => null
+        'organisation' => null,
+        'transaction_type' => null,
+        'order_id' => 'int64',
+        'payment_id' => 'int64',
+        'corrects_id' => 'int64',
+        'journal_id' => 'int64'
     ];
 
     /**
@@ -90,7 +100,12 @@ class GlTransactionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'transaction_date' => true,
         'created_date_time' => true,
         'description' => true,
-        'organisation' => false
+        'organisation' => false,
+        'transaction_type' => true,
+        'order_id' => true,
+        'payment_id' => true,
+        'corrects_id' => true,
+        'journal_id' => true
     ];
 
     /**
@@ -183,7 +198,12 @@ class GlTransactionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'transaction_date' => 'transactionDate',
         'created_date_time' => 'createdDateTime',
         'description' => 'description',
-        'organisation' => 'organisation'
+        'organisation' => 'organisation',
+        'transaction_type' => 'transactionType',
+        'order_id' => 'orderId',
+        'payment_id' => 'paymentId',
+        'corrects_id' => 'correctsId',
+        'journal_id' => 'journalId'
     ];
 
     /**
@@ -196,7 +216,12 @@ class GlTransactionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'transaction_date' => 'setTransactionDate',
         'created_date_time' => 'setCreatedDateTime',
         'description' => 'setDescription',
-        'organisation' => 'setOrganisation'
+        'organisation' => 'setOrganisation',
+        'transaction_type' => 'setTransactionType',
+        'order_id' => 'setOrderId',
+        'payment_id' => 'setPaymentId',
+        'corrects_id' => 'setCorrectsId',
+        'journal_id' => 'setJournalId'
     ];
 
     /**
@@ -209,7 +234,12 @@ class GlTransactionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'transaction_date' => 'getTransactionDate',
         'created_date_time' => 'getCreatedDateTime',
         'description' => 'getDescription',
-        'organisation' => 'getOrganisation'
+        'organisation' => 'getOrganisation',
+        'transaction_type' => 'getTransactionType',
+        'order_id' => 'getOrderId',
+        'payment_id' => 'getPaymentId',
+        'corrects_id' => 'getCorrectsId',
+        'journal_id' => 'getJournalId'
     ];
 
     /**
@@ -253,6 +283,33 @@ class GlTransactionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TRANSACTION_TYPE_ORDER = 'ORDER';
+    public const TRANSACTION_TYPE_PAYMENT = 'PAYMENT';
+    public const TRANSACTION_TYPE_JOURNAL = 'JOURNAL';
+    public const TRANSACTION_TYPE_ADJUSTMENT = 'ADJUSTMENT';
+    public const TRANSACTION_TYPE_REFUND = 'REFUND';
+    public const TRANSACTION_TYPE_TRANSFER = 'TRANSFER';
+    public const TRANSACTION_TYPE_CHARGE = 'CHARGE';
+    public const TRANSACTION_TYPE_SETTLEMENT = 'SETTLEMENT';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTransactionTypeAllowableValues()
+    {
+        return [
+            self::TRANSACTION_TYPE_ORDER,
+            self::TRANSACTION_TYPE_PAYMENT,
+            self::TRANSACTION_TYPE_JOURNAL,
+            self::TRANSACTION_TYPE_ADJUSTMENT,
+            self::TRANSACTION_TYPE_REFUND,
+            self::TRANSACTION_TYPE_TRANSFER,
+            self::TRANSACTION_TYPE_CHARGE,
+            self::TRANSACTION_TYPE_SETTLEMENT,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -274,6 +331,11 @@ class GlTransactionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('created_date_time', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('organisation', $data ?? [], null);
+        $this->setIfExists('transaction_type', $data ?? [], null);
+        $this->setIfExists('order_id', $data ?? [], null);
+        $this->setIfExists('payment_id', $data ?? [], null);
+        $this->setIfExists('corrects_id', $data ?? [], null);
+        $this->setIfExists('journal_id', $data ?? [], null);
     }
 
     /**
@@ -320,6 +382,18 @@ class GlTransactionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['organisation'] === null) {
             $invalidProperties[] = "'organisation' can't be null";
         }
+        if ($this->container['transaction_type'] === null) {
+            $invalidProperties[] = "'transaction_type' can't be null";
+        }
+        $allowedValues = $this->getTransactionTypeAllowableValues();
+        if (!is_null($this->container['transaction_type']) && !in_array($this->container['transaction_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'transaction_type', must be one of '%s'",
+                $this->container['transaction_type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -501,6 +575,186 @@ class GlTransactionDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable organisation cannot be null');
         }
         $this->container['organisation'] = $organisation;
+
+        return $this;
+    }
+
+    /**
+     * Gets transaction_type
+     *
+     * @return mixed
+     */
+    public function getTransactionType()
+    {
+        return $this->container['transaction_type'];
+    }
+
+    /**
+     * Sets transaction_type
+     *
+     * @param mixed $transaction_type transaction_type
+     *
+     * @return self
+     */
+    public function setTransactionType($transaction_type)
+    {
+        if (is_null($transaction_type)) {
+            array_push($this->openAPINullablesSetToNull, 'transaction_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('transaction_type', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getTransactionTypeAllowableValues();
+        if (!is_null($transaction_type) && !in_array($transaction_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'transaction_type', must be one of '%s'",
+                    $transaction_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['transaction_type'] = $transaction_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_id
+     *
+     * @return mixed|null
+     */
+    public function getOrderId()
+    {
+        return $this->container['order_id'];
+    }
+
+    /**
+     * Sets order_id
+     *
+     * @param mixed|null $order_id order_id
+     *
+     * @return self
+     */
+    public function setOrderId($order_id)
+    {
+        if (is_null($order_id)) {
+            array_push($this->openAPINullablesSetToNull, 'order_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('order_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['order_id'] = $order_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets payment_id
+     *
+     * @return mixed|null
+     */
+    public function getPaymentId()
+    {
+        return $this->container['payment_id'];
+    }
+
+    /**
+     * Sets payment_id
+     *
+     * @param mixed|null $payment_id payment_id
+     *
+     * @return self
+     */
+    public function setPaymentId($payment_id)
+    {
+        if (is_null($payment_id)) {
+            array_push($this->openAPINullablesSetToNull, 'payment_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payment_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['payment_id'] = $payment_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets corrects_id
+     *
+     * @return mixed|null
+     */
+    public function getCorrectsId()
+    {
+        return $this->container['corrects_id'];
+    }
+
+    /**
+     * Sets corrects_id
+     *
+     * @param mixed|null $corrects_id corrects_id
+     *
+     * @return self
+     */
+    public function setCorrectsId($corrects_id)
+    {
+        if (is_null($corrects_id)) {
+            array_push($this->openAPINullablesSetToNull, 'corrects_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('corrects_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['corrects_id'] = $corrects_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets journal_id
+     *
+     * @return mixed|null
+     */
+    public function getJournalId()
+    {
+        return $this->container['journal_id'];
+    }
+
+    /**
+     * Sets journal_id
+     *
+     * @param mixed|null $journal_id journal_id
+     *
+     * @return self
+     */
+    public function setJournalId($journal_id)
+    {
+        if (is_null($journal_id)) {
+            array_push($this->openAPINullablesSetToNull, 'journal_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('journal_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['journal_id'] = $journal_id;
 
         return $this;
     }
