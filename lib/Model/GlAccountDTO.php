@@ -58,7 +58,7 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'int',
+        'id' => 'mixed',
         'name' => 'mixed',
         'type' => 'mixed',
         'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
@@ -88,7 +88,7 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
+        'id' => true,
         'name' => true,
         'type' => true,
         'organisation' => false,
@@ -426,7 +426,7 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return int|null
+     * @return mixed|null
      */
     public function getId()
     {
@@ -436,14 +436,21 @@ class GlAccountDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param int|null $id id
+     * @param mixed|null $id id
      *
      * @return self
      */
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['id'] = $id;
 

@@ -60,7 +60,6 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPITypes = [
         'id' => 'int',
         'name' => 'mixed',
-        'bank_account' => '\Idealogic\RegistrationAPI\Model\GlAccountDTO',
         'type' => 'mixed',
         'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
         'active' => 'mixed',
@@ -79,7 +78,6 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPIFormats = [
         'id' => 'int64',
         'name' => null,
-        'bank_account' => null,
         'type' => null,
         'organisation' => null,
         'active' => null,
@@ -96,7 +94,6 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static array $openAPINullables = [
         'id' => false,
         'name' => true,
-        'bank_account' => false,
         'type' => true,
         'organisation' => false,
         'active' => true,
@@ -193,7 +190,6 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $attributeMap = [
         'id' => 'id',
         'name' => 'name',
-        'bank_account' => 'bankAccount',
         'type' => 'type',
         'organisation' => 'organisation',
         'active' => 'active',
@@ -210,7 +206,6 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $setters = [
         'id' => 'setId',
         'name' => 'setName',
-        'bank_account' => 'setBankAccount',
         'type' => 'setType',
         'organisation' => 'setOrganisation',
         'active' => 'setActive',
@@ -227,7 +222,6 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $getters = [
         'id' => 'getId',
         'name' => 'getName',
-        'bank_account' => 'getBankAccount',
         'type' => 'getType',
         'organisation' => 'getOrganisation',
         'active' => 'getActive',
@@ -329,7 +323,6 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('bank_account', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('organisation', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
@@ -487,33 +480,6 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         }
 
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets bank_account
-     *
-     * @return \Idealogic\RegistrationAPI\Model\GlAccountDTO|null
-     */
-    public function getBankAccount()
-    {
-        return $this->container['bank_account'];
-    }
-
-    /**
-     * Sets bank_account
-     *
-     * @param \Idealogic\RegistrationAPI\Model\GlAccountDTO|null $bank_account Ledger bank account. Optional: Financials adds a processor's accounts (US #1335).
-     *
-     * @return self
-     */
-    public function setBankAccount($bank_account)
-    {
-        if (is_null($bank_account)) {
-            throw new \InvalidArgumentException('non-nullable bank_account cannot be null');
-        }
-        $this->container['bank_account'] = $bank_account;
 
         return $this;
     }

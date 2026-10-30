@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional]
+**id** | **mixed** |  | [optional]
 **name** | **mixed** |  |
 **type** | **mixed** |  | [optional]
 **organisation** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) |  |

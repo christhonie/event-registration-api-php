@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional]
 **name** | **mixed** |  |
-**bank_account** | [**\Idealogic\RegistrationAPI\Model\GlAccountDTO**](GlAccountDTO.md) | Ledger bank account. Optional: Financials adds a processor&#39;s accounts (US #1335). | [optional]
 **type** | **mixed** | Online payment provider, card machine, bank account or cash box. The processor is how a payment was made as well as where it landed. |
 **organisation** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) | Owner: the organisation whose money the processor holds. |
 **active** | **mixed** | False once retired: a retired processor takes no new payments. Defaults to true. | [optional]
