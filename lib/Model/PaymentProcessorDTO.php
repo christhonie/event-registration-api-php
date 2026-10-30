@@ -65,7 +65,8 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
         'active' => 'mixed',
         'registration_system' => '\Idealogic\RegistrationAPI\Model\RegistrationSystemDTO',
-        'gateway_id' => 'mixed'
+        'gateway_id' => 'mixed',
+        'fee_source' => 'mixed'
     ];
 
     /**
@@ -83,7 +84,8 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'organisation' => null,
         'active' => null,
         'registration_system' => null,
-        'gateway_id' => null
+        'gateway_id' => null,
+        'fee_source' => null
     ];
 
     /**
@@ -99,7 +101,8 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'organisation' => false,
         'active' => true,
         'registration_system' => false,
-        'gateway_id' => true
+        'gateway_id' => true,
+        'fee_source' => true
     ];
 
     /**
@@ -195,7 +198,8 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'organisation' => 'organisation',
         'active' => 'active',
         'registration_system' => 'registrationSystem',
-        'gateway_id' => 'gatewayId'
+        'gateway_id' => 'gatewayId',
+        'fee_source' => 'feeSource'
     ];
 
     /**
@@ -211,7 +215,8 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'organisation' => 'setOrganisation',
         'active' => 'setActive',
         'registration_system' => 'setRegistrationSystem',
-        'gateway_id' => 'setGatewayId'
+        'gateway_id' => 'setGatewayId',
+        'fee_source' => 'setFeeSource'
     ];
 
     /**
@@ -227,7 +232,8 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'organisation' => 'getOrganisation',
         'active' => 'getActive',
         'registration_system' => 'getRegistrationSystem',
-        'gateway_id' => 'getGatewayId'
+        'gateway_id' => 'getGatewayId',
+        'fee_source' => 'getFeeSource'
     ];
 
     /**
@@ -275,6 +281,8 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     public const TYPE_CARD_MACHINE = 'CARD_MACHINE';
     public const TYPE_BANK_ACCOUNT = 'BANK_ACCOUNT';
     public const TYPE_CASH_BOX = 'CASH_BOX';
+    public const FEE_SOURCE_STATEMENT = 'STATEMENT';
+    public const FEE_SOURCE_SCHEDULE = 'SCHEDULE';
 
     /**
      * Gets allowable values of the enum
@@ -288,6 +296,19 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             self::TYPE_CARD_MACHINE,
             self::TYPE_BANK_ACCOUNT,
             self::TYPE_CASH_BOX,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getFeeSourceAllowableValues()
+    {
+        return [
+            self::FEE_SOURCE_STATEMENT,
+            self::FEE_SOURCE_SCHEDULE,
         ];
     }
 
@@ -314,6 +335,7 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('registration_system', $data ?? [], null);
         $this->setIfExists('gateway_id', $data ?? [], null);
+        $this->setIfExists('fee_source', $data ?? [], null);
     }
 
     /**
@@ -375,6 +397,15 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
 
         if (!is_null($this->container['gateway_id']) && (mb_strlen($this->container['gateway_id']) < 0)) {
             $invalidProperties[] = "invalid value for 'gateway_id', the character length must be bigger than or equal to 0.";
+        }
+
+        $allowedValues = $this->getFeeSourceAllowableValues();
+        if (!is_null($this->container['fee_source']) && !in_array($this->container['fee_source'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'fee_source', must be one of '%s'",
+                $this->container['fee_source'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -656,6 +687,50 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         }
 
         $this->container['gateway_id'] = $gateway_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets fee_source
+     *
+     * @return mixed|null
+     */
+    public function getFeeSource()
+    {
+        return $this->container['fee_source'];
+    }
+
+    /**
+     * Sets fee_source
+     *
+     * @param mixed|null $fee_source Where the provider's actual fees come from: STATEMENT when its statement supersedes the calculated fee, SCHEDULE when the calculated fee is final. Defaults to STATEMENT for an online payment provider and SCHEDULE otherwise.
+     *
+     * @return self
+     */
+    public function setFeeSource($fee_source)
+    {
+        if (is_null($fee_source)) {
+            array_push($this->openAPINullablesSetToNull, 'fee_source');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('fee_source', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getFeeSourceAllowableValues();
+        if (!is_null($fee_source) && !in_array($fee_source, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'fee_source', must be one of '%s'",
+                    $fee_source,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['fee_source'] = $fee_source;
 
         return $this;
     }
