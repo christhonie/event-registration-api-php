@@ -65,7 +65,8 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'active' => 'mixed',
         'registration_system' => '\Idealogic\RegistrationAPI\Model\RegistrationSystemDTO',
         'gateway_id' => 'mixed',
-        'fee_source' => 'mixed'
+        'fee_source' => 'mixed',
+        'payout_target' => '\Idealogic\RegistrationAPI\Model\PaymentProcessorDTO'
     ];
 
     /**
@@ -83,7 +84,8 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'active' => null,
         'registration_system' => null,
         'gateway_id' => null,
-        'fee_source' => null
+        'fee_source' => null,
+        'payout_target' => null
     ];
 
     /**
@@ -99,7 +101,8 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'active' => true,
         'registration_system' => false,
         'gateway_id' => true,
-        'fee_source' => true
+        'fee_source' => true,
+        'payout_target' => false
     ];
 
     /**
@@ -195,7 +198,8 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'active' => 'active',
         'registration_system' => 'registrationSystem',
         'gateway_id' => 'gatewayId',
-        'fee_source' => 'feeSource'
+        'fee_source' => 'feeSource',
+        'payout_target' => 'payoutTarget'
     ];
 
     /**
@@ -211,7 +215,8 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'active' => 'setActive',
         'registration_system' => 'setRegistrationSystem',
         'gateway_id' => 'setGatewayId',
-        'fee_source' => 'setFeeSource'
+        'fee_source' => 'setFeeSource',
+        'payout_target' => 'setPayoutTarget'
     ];
 
     /**
@@ -227,7 +232,8 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'active' => 'getActive',
         'registration_system' => 'getRegistrationSystem',
         'gateway_id' => 'getGatewayId',
-        'fee_source' => 'getFeeSource'
+        'fee_source' => 'getFeeSource',
+        'payout_target' => 'getPayoutTarget'
     ];
 
     /**
@@ -329,6 +335,7 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('registration_system', $data ?? [], null);
         $this->setIfExists('gateway_id', $data ?? [], null);
         $this->setIfExists('fee_source', $data ?? [], null);
+        $this->setIfExists('payout_target', $data ?? [], null);
     }
 
     /**
@@ -697,6 +704,33 @@ class PaymentProcessorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             );
         }
         $this->container['fee_source'] = $fee_source;
+
+        return $this;
+    }
+
+    /**
+     * Gets payout_target
+     *
+     * @return \Idealogic\RegistrationAPI\Model\PaymentProcessorDTO|null
+     */
+    public function getPayoutTarget()
+    {
+        return $this->container['payout_target'];
+    }
+
+    /**
+     * Sets payout_target
+     *
+     * @param \Idealogic\RegistrationAPI\Model\PaymentProcessorDTO|null $payout_target The processor this one's balance is paid out or banked to; only a processor of the same owner. Optional.
+     *
+     * @return self
+     */
+    public function setPayoutTarget($payout_target)
+    {
+        if (is_null($payout_target)) {
+            throw new \InvalidArgumentException('non-nullable payout_target cannot be null');
+        }
+        $this->container['payout_target'] = $payout_target;
 
         return $this;
     }
