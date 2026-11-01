@@ -38,6 +38,7 @@ Name | Type | Description | Notes
 **custom3** | [**\Idealogic\RegistrationAPI\Model\CustomListValueDTO**](CustomListValueDTO.md) |  | [optional]
 **enrol_instance** | [**\Idealogic\RegistrationAPI\Model\ProcessInstanceDTO**](ProcessInstanceDTO.md) |  | [optional]
 **teams** | **mixed** |  | [optional]
+**event_race_types** | **mixed** | The race types the participant chose at entry. | [optional]
 **orders** | **mixed** |  | [optional]
 **races** | **mixed** | The races the participant is in, one entry per start group record, read from their start groups. Read-only: ignored on POST, PUT and PATCH. Empty when the participant holds no start group. | [optional] [readonly]
 **members** | **mixed** |  | [optional]

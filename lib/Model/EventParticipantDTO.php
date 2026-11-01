@@ -93,6 +93,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'custom3' => '\Idealogic\RegistrationAPI\Model\CustomListValueDTO',
         'enrol_instance' => '\Idealogic\RegistrationAPI\Model\ProcessInstanceDTO',
         'teams' => 'mixed',
+        'event_race_types' => 'mixed',
         'orders' => 'mixed',
         'races' => 'mixed',
         'members' => 'mixed'
@@ -140,6 +141,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'custom3' => null,
         'enrol_instance' => null,
         'teams' => null,
+        'event_race_types' => null,
         'orders' => null,
         'races' => null,
         'members' => null
@@ -185,6 +187,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'custom3' => false,
         'enrol_instance' => false,
         'teams' => true,
+        'event_race_types' => true,
         'orders' => true,
         'races' => true,
         'members' => true
@@ -310,6 +313,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'custom3' => 'custom3',
         'enrol_instance' => 'enrolInstance',
         'teams' => 'teams',
+        'event_race_types' => 'eventRaceTypes',
         'orders' => 'orders',
         'races' => 'races',
         'members' => 'members'
@@ -355,6 +359,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'custom3' => 'setCustom3',
         'enrol_instance' => 'setEnrolInstance',
         'teams' => 'setTeams',
+        'event_race_types' => 'setEventRaceTypes',
         'orders' => 'setOrders',
         'races' => 'setRaces',
         'members' => 'setMembers'
@@ -400,6 +405,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'custom3' => 'getCustom3',
         'enrol_instance' => 'getEnrolInstance',
         'teams' => 'getTeams',
+        'event_race_types' => 'getEventRaceTypes',
         'orders' => 'getOrders',
         'races' => 'getRaces',
         'members' => 'getMembers'
@@ -597,6 +603,7 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('custom3', $data ?? [], null);
         $this->setIfExists('enrol_instance', $data ?? [], null);
         $this->setIfExists('teams', $data ?? [], null);
+        $this->setIfExists('event_race_types', $data ?? [], null);
         $this->setIfExists('orders', $data ?? [], null);
         $this->setIfExists('races', $data ?? [], null);
         $this->setIfExists('members', $data ?? [], null);
@@ -1906,6 +1913,42 @@ class EventParticipantDTO implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
         $this->container['teams'] = $teams;
+
+        return $this;
+    }
+
+    /**
+     * Gets event_race_types
+     *
+     * @return mixed|null
+     */
+    public function getEventRaceTypes()
+    {
+        return $this->container['event_race_types'];
+    }
+
+    /**
+     * Sets event_race_types
+     *
+     * @param mixed|null $event_race_types The race types the participant chose at entry.
+     *
+     * @return self
+     */
+    public function setEventRaceTypes($event_race_types)
+    {
+        if (is_null($event_race_types)) {
+            array_push($this->openAPINullablesSetToNull, 'event_race_types');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('event_race_types', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+
+        $this->container['event_race_types'] = $event_race_types;
 
         return $this;
     }

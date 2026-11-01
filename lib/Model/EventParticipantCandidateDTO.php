@@ -1972,7 +1972,7 @@ class EventParticipantCandidateDTO implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets event_race_types
      *
-     * @param mixed|null $event_race_types event_race_types
+     * @param mixed|null $event_race_types The race types the participant chose at entry.
      *
      * @return self
      */
