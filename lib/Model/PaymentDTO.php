@@ -59,8 +59,8 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'mixed',
-        'order_id' => 'mixed',
+        'id' => 'int',
+        'order_id' => 'int',
         'processor' => '\Idealogic\RegistrationAPI\Model\PaymentProcessorDTO',
         'amount' => 'mixed',
         'received_at' => 'mixed',
@@ -70,7 +70,8 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'fee_status' => 'mixed',
         'fee_review' => 'mixed',
         'recorded_by' => 'mixed',
-        'recorded_at' => 'mixed'
+        'recorded_at' => '\DateTime',
+        'refund_id' => 'mixed'
     ];
 
     /**
@@ -92,7 +93,8 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'fee_status' => null,
         'fee_review' => null,
         'recorded_by' => null,
-        'recorded_at' => 'date-time'
+        'recorded_at' => 'date-time',
+        'refund_id' => 'int64'
     ];
 
     /**
@@ -101,8 +103,8 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => true,
-        'order_id' => true,
+        'id' => false,
+        'order_id' => false,
         'processor' => false,
         'amount' => true,
         'received_at' => true,
@@ -112,7 +114,8 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'fee_status' => true,
         'fee_review' => true,
         'recorded_by' => true,
-        'recorded_at' => true
+        'recorded_at' => false,
+        'refund_id' => true
     ];
 
     /**
@@ -212,7 +215,8 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'fee_status' => 'feeStatus',
         'fee_review' => 'feeReview',
         'recorded_by' => 'recordedBy',
-        'recorded_at' => 'recordedAt'
+        'recorded_at' => 'recordedAt',
+        'refund_id' => 'refundId'
     ];
 
     /**
@@ -232,7 +236,8 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'fee_status' => 'setFeeStatus',
         'fee_review' => 'setFeeReview',
         'recorded_by' => 'setRecordedBy',
-        'recorded_at' => 'setRecordedAt'
+        'recorded_at' => 'setRecordedAt',
+        'refund_id' => 'setRefundId'
     ];
 
     /**
@@ -252,7 +257,8 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'fee_status' => 'getFeeStatus',
         'fee_review' => 'getFeeReview',
         'recorded_by' => 'getRecordedBy',
-        'recorded_at' => 'getRecordedAt'
+        'recorded_at' => 'getRecordedAt',
+        'refund_id' => 'getRefundId'
     ];
 
     /**
@@ -341,6 +347,7 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('fee_review', $data ?? [], null);
         $this->setIfExists('recorded_by', $data ?? [], null);
         $this->setIfExists('recorded_at', $data ?? [], null);
+        $this->setIfExists('refund_id', $data ?? [], null);
     }
 
     /**
@@ -397,7 +404,7 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return mixed|null
+     * @return int|null
      */
     public function getId()
     {
@@ -407,21 +414,14 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param mixed|null $id id
+     * @param int|null $id id
      *
      * @return self
      */
     public function setId($id)
     {
         if (is_null($id)) {
-            array_push($this->openAPINullablesSetToNull, 'id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -431,7 +431,7 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets order_id
      *
-     * @return mixed|null
+     * @return int|null
      */
     public function getOrderId()
     {
@@ -441,21 +441,14 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets order_id
      *
-     * @param mixed|null $order_id order_id
+     * @param int|null $order_id order_id
      *
      * @return self
      */
     public function setOrderId($order_id)
     {
         if (is_null($order_id)) {
-            array_push($this->openAPINullablesSetToNull, 'order_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('order_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+            throw new \InvalidArgumentException('non-nullable order_id cannot be null');
         }
         $this->container['order_id'] = $order_id;
 
@@ -502,7 +495,7 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets amount
      *
-     * @param mixed|null $amount Amount received; negative for a refund.
+     * @param mixed|null $amount Amount received; negative when money is returned.
      *
      * @return self
      */
@@ -774,7 +767,7 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets recorded_at
      *
-     * @return mixed|null
+     * @return \DateTime|null
      */
     public function getRecordedAt()
     {
@@ -784,23 +777,50 @@ class PaymentDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets recorded_at
      *
-     * @param mixed|null $recorded_at recorded_at
+     * @param \DateTime|null $recorded_at recorded_at
      *
      * @return self
      */
     public function setRecordedAt($recorded_at)
     {
         if (is_null($recorded_at)) {
-            array_push($this->openAPINullablesSetToNull, 'recorded_at');
+            throw new \InvalidArgumentException('non-nullable recorded_at cannot be null');
+        }
+        $this->container['recorded_at'] = $recorded_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets refund_id
+     *
+     * @return mixed|null
+     */
+    public function getRefundId()
+    {
+        return $this->container['refund_id'];
+    }
+
+    /**
+     * Sets refund_id
+     *
+     * @param mixed|null $refund_id The refund this negative payment returned money for; null for a payment, and for an overpayment returned on its own.
+     *
+     * @return self
+     */
+    public function setRefundId($refund_id)
+    {
+        if (is_null($refund_id)) {
+            array_push($this->openAPINullablesSetToNull, 'refund_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('recorded_at', $nullablesSetToNull);
+            $index = array_search('refund_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['recorded_at'] = $recorded_at;
+        $this->container['refund_id'] = $refund_id;
 
         return $this;
     }

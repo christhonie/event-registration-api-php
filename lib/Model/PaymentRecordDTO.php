@@ -36,7 +36,7 @@ use \Idealogic\RegistrationAPI\ObjectSerializer;
  * PaymentRecordDTO Class Doc Comment
  *
  * @category Class
- * @description A payment or refund to record against an order.
+ * @description A payment to record against an order, or credit to return from it.
  * @package  Idealogic\RegistrationAPI
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -380,7 +380,7 @@ class PaymentRecordDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets amount
      *
-     * @param mixed $amount Amount received; negative for a refund. Never zero.
+     * @param mixed $amount Amount received. Negative to return an overpayment: at most the order's credit, what has been paid less what is due. Never zero.
      *
      * @return self
      */

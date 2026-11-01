@@ -74,7 +74,9 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'person_name' => 'mixed',
         'unit_price' => 'mixed',
         'total_price' => 'mixed',
-        'assigned_number' => 'mixed'
+        'assigned_number' => 'mixed',
+        'withdrawn_at' => 'mixed',
+        'add_on' => 'mixed'
     ];
 
     /**
@@ -101,7 +103,9 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'person_name' => null,
         'unit_price' => null,
         'total_price' => null,
-        'assigned_number' => null
+        'assigned_number' => null,
+        'withdrawn_at' => 'date-time',
+        'add_on' => null
     ];
 
     /**
@@ -126,7 +130,9 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'person_name' => true,
         'unit_price' => true,
         'total_price' => true,
-        'assigned_number' => true
+        'assigned_number' => true,
+        'withdrawn_at' => true,
+        'add_on' => true
     ];
 
     /**
@@ -231,7 +237,9 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'person_name' => 'personName',
         'unit_price' => 'unitPrice',
         'total_price' => 'totalPrice',
-        'assigned_number' => 'assignedNumber'
+        'assigned_number' => 'assignedNumber',
+        'withdrawn_at' => 'withdrawnAt',
+        'add_on' => 'addOn'
     ];
 
     /**
@@ -256,7 +264,9 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'person_name' => 'setPersonName',
         'unit_price' => 'setUnitPrice',
         'total_price' => 'setTotalPrice',
-        'assigned_number' => 'setAssignedNumber'
+        'assigned_number' => 'setAssignedNumber',
+        'withdrawn_at' => 'setWithdrawnAt',
+        'add_on' => 'setAddOn'
     ];
 
     /**
@@ -281,7 +291,9 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'person_name' => 'getPersonName',
         'unit_price' => 'getUnitPrice',
         'total_price' => 'getTotalPrice',
-        'assigned_number' => 'getAssignedNumber'
+        'assigned_number' => 'getAssignedNumber',
+        'withdrawn_at' => 'getWithdrawnAt',
+        'add_on' => 'getAddOn'
     ];
 
     /**
@@ -358,6 +370,8 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('unit_price', $data ?? [], null);
         $this->setIfExists('total_price', $data ?? [], null);
         $this->setIfExists('assigned_number', $data ?? [], null);
+        $this->setIfExists('withdrawn_at', $data ?? [], null);
+        $this->setIfExists('add_on', $data ?? [], null);
     }
 
     /**
@@ -933,6 +947,74 @@ class OrderLineItemDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['assigned_number'] = $assigned_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets withdrawn_at
+     *
+     * @return mixed|null
+     */
+    public function getWithdrawnAt()
+    {
+        return $this->container['withdrawn_at'];
+    }
+
+    /**
+     * Sets withdrawn_at
+     *
+     * @param mixed|null $withdrawn_at When a refund took the line out of the sale; null while it is in the sale. Set only by a refund.
+     *
+     * @return self
+     */
+    public function setWithdrawnAt($withdrawn_at)
+    {
+        if (is_null($withdrawn_at)) {
+            array_push($this->openAPINullablesSetToNull, 'withdrawn_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('withdrawn_at', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['withdrawn_at'] = $withdrawn_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets add_on
+     *
+     * @return mixed|null
+     */
+    public function getAddOn()
+    {
+        return $this->container['add_on'];
+    }
+
+    /**
+     * Sets add_on
+     *
+     * @param mixed|null $add_on True when the line sells an add-on bought for an entry (a race number, a tag, a day licence) rather than the entry itself; withdrawing it leaves the participant entered. Read-only, set on the order detail.
+     *
+     * @return self
+     */
+    public function setAddOn($add_on)
+    {
+        if (is_null($add_on)) {
+            array_push($this->openAPINullablesSetToNull, 'add_on');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('add_on', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['add_on'] = $add_on;
 
         return $this;
     }
