@@ -187,6 +187,8 @@ Class | Method | HTTP request | Description
 - [FormDTO](docs/Model/FormDTO.md)
 - [FormPersonDTO](docs/Model/FormPersonDTO.md)
 - [FrameworkStatusDTO](docs/Model/FrameworkStatusDTO.md)
+- [GatewayPaymentDTO](docs/Model/GatewayPaymentDTO.md)
+- [GatewayRefundDTO](docs/Model/GatewayRefundDTO.md)
 - [GlAccountDTO](docs/Model/GlAccountDTO.md)
 - [GlRecordDTO](docs/Model/GlRecordDTO.md)
 - [GlTransactionDTO](docs/Model/GlTransactionDTO.md)

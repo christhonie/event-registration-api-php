@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **refund_amount** | **mixed** | Cumulative refund amount | [optional]
 **payment_date_time** | **mixed** | Date and time the payment was made | [optional]
 **payment_amount** | **mixed** | Amount paid | [optional]
+**gateway_payment** | [**\Idealogic\RegistrationAPI\Model\GatewayPaymentDTO**](GatewayPaymentDTO.md) | The payment that settled the order, sent by the storefront on a sync of a paid order (US #1527). | [optional]
+**gateway_refund** | [**\Idealogic\RegistrationAPI\Model\GatewayRefundDTO**](GatewayRefundDTO.md) | A refund made in the storefront, sent on the sync it triggers (US #1527). Logged only. | [optional]
 **line_items** | **mixed** | List of line items in the order | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

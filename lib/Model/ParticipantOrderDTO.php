@@ -77,7 +77,9 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'refund_amount' => 'mixed',
         'available_payment_methods' => 'mixed',
         'reference_code' => 'mixed',
-        'event_participants' => 'mixed'
+        'event_participants' => 'mixed',
+        'gateway_payment' => '\Idealogic\RegistrationAPI\Model\GatewayPaymentDTO',
+        'gateway_refund' => '\Idealogic\RegistrationAPI\Model\GatewayRefundDTO'
     ];
 
     /**
@@ -107,7 +109,9 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'refund_amount' => null,
         'available_payment_methods' => null,
         'reference_code' => null,
-        'event_participants' => null
+        'event_participants' => null,
+        'gateway_payment' => null,
+        'gateway_refund' => null
     ];
 
     /**
@@ -135,7 +139,9 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'refund_amount' => true,
         'available_payment_methods' => true,
         'reference_code' => true,
-        'event_participants' => true
+        'event_participants' => true,
+        'gateway_payment' => false,
+        'gateway_refund' => false
     ];
 
     /**
@@ -243,7 +249,9 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'refund_amount' => 'refundAmount',
         'available_payment_methods' => 'availablePaymentMethods',
         'reference_code' => 'referenceCode',
-        'event_participants' => 'eventParticipants'
+        'event_participants' => 'eventParticipants',
+        'gateway_payment' => 'gatewayPayment',
+        'gateway_refund' => 'gatewayRefund'
     ];
 
     /**
@@ -271,7 +279,9 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'refund_amount' => 'setRefundAmount',
         'available_payment_methods' => 'setAvailablePaymentMethods',
         'reference_code' => 'setReferenceCode',
-        'event_participants' => 'setEventParticipants'
+        'event_participants' => 'setEventParticipants',
+        'gateway_payment' => 'setGatewayPayment',
+        'gateway_refund' => 'setGatewayRefund'
     ];
 
     /**
@@ -299,7 +309,9 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'refund_amount' => 'getRefundAmount',
         'available_payment_methods' => 'getAvailablePaymentMethods',
         'reference_code' => 'getReferenceCode',
-        'event_participants' => 'getEventParticipants'
+        'event_participants' => 'getEventParticipants',
+        'gateway_payment' => 'getGatewayPayment',
+        'gateway_refund' => 'getGatewayRefund'
     ];
 
     /**
@@ -400,6 +412,8 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('available_payment_methods', $data ?? [], null);
         $this->setIfExists('reference_code', $data ?? [], null);
         $this->setIfExists('event_participants', $data ?? [], null);
+        $this->setIfExists('gateway_payment', $data ?? [], null);
+        $this->setIfExists('gateway_refund', $data ?? [], null);
     }
 
     /**
@@ -1204,6 +1218,60 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
         $this->container['event_participants'] = $event_participants;
+
+        return $this;
+    }
+
+    /**
+     * Gets gateway_payment
+     *
+     * @return \Idealogic\RegistrationAPI\Model\GatewayPaymentDTO|null
+     */
+    public function getGatewayPayment()
+    {
+        return $this->container['gateway_payment'];
+    }
+
+    /**
+     * Sets gateway_payment
+     *
+     * @param \Idealogic\RegistrationAPI\Model\GatewayPaymentDTO|null $gateway_payment The payment that settled the order, sent by the storefront on a sync of a paid order (US #1527).
+     *
+     * @return self
+     */
+    public function setGatewayPayment($gateway_payment)
+    {
+        if (is_null($gateway_payment)) {
+            throw new \InvalidArgumentException('non-nullable gateway_payment cannot be null');
+        }
+        $this->container['gateway_payment'] = $gateway_payment;
+
+        return $this;
+    }
+
+    /**
+     * Gets gateway_refund
+     *
+     * @return \Idealogic\RegistrationAPI\Model\GatewayRefundDTO|null
+     */
+    public function getGatewayRefund()
+    {
+        return $this->container['gateway_refund'];
+    }
+
+    /**
+     * Sets gateway_refund
+     *
+     * @param \Idealogic\RegistrationAPI\Model\GatewayRefundDTO|null $gateway_refund A refund made in the storefront, sent on the sync it triggers (US #1527). Logged only.
+     *
+     * @return self
+     */
+    public function setGatewayRefund($gateway_refund)
+    {
+        if (is_null($gateway_refund)) {
+            throw new \InvalidArgumentException('non-nullable gateway_refund cannot be null');
+        }
+        $this->container['gateway_refund'] = $gateway_refund;
 
         return $this;
     }

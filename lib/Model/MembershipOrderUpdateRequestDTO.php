@@ -68,6 +68,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         'refund_amount' => 'mixed',
         'payment_date_time' => 'mixed',
         'payment_amount' => 'mixed',
+        'gateway_payment' => '\Idealogic\RegistrationAPI\Model\GatewayPaymentDTO',
+        'gateway_refund' => '\Idealogic\RegistrationAPI\Model\GatewayRefundDTO',
         'line_items' => 'mixed'
     ];
 
@@ -89,6 +91,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         'refund_amount' => null,
         'payment_date_time' => 'date-time',
         'payment_amount' => null,
+        'gateway_payment' => null,
+        'gateway_refund' => null,
         'line_items' => null
     ];
 
@@ -108,6 +112,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         'refund_amount' => true,
         'payment_date_time' => true,
         'payment_amount' => true,
+        'gateway_payment' => false,
+        'gateway_refund' => false,
         'line_items' => true
     ];
 
@@ -207,6 +213,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         'refund_amount' => 'refundAmount',
         'payment_date_time' => 'paymentDateTime',
         'payment_amount' => 'paymentAmount',
+        'gateway_payment' => 'gatewayPayment',
+        'gateway_refund' => 'gatewayRefund',
         'line_items' => 'lineItems'
     ];
 
@@ -226,6 +234,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         'refund_amount' => 'setRefundAmount',
         'payment_date_time' => 'setPaymentDateTime',
         'payment_amount' => 'setPaymentAmount',
+        'gateway_payment' => 'setGatewayPayment',
+        'gateway_refund' => 'setGatewayRefund',
         'line_items' => 'setLineItems'
     ];
 
@@ -245,6 +255,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         'refund_amount' => 'getRefundAmount',
         'payment_date_time' => 'getPaymentDateTime',
         'payment_amount' => 'getPaymentAmount',
+        'gateway_payment' => 'getGatewayPayment',
+        'gateway_refund' => 'getGatewayRefund',
         'line_items' => 'getLineItems'
     ];
 
@@ -336,6 +348,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         $this->setIfExists('refund_amount', $data ?? [], null);
         $this->setIfExists('payment_date_time', $data ?? [], null);
         $this->setIfExists('payment_amount', $data ?? [], null);
+        $this->setIfExists('gateway_payment', $data ?? [], null);
+        $this->setIfExists('gateway_refund', $data ?? [], null);
         $this->setIfExists('line_items', $data ?? [], null);
     }
 
@@ -736,6 +750,60 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
             }
         }
         $this->container['payment_amount'] = $payment_amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets gateway_payment
+     *
+     * @return \Idealogic\RegistrationAPI\Model\GatewayPaymentDTO|null
+     */
+    public function getGatewayPayment()
+    {
+        return $this->container['gateway_payment'];
+    }
+
+    /**
+     * Sets gateway_payment
+     *
+     * @param \Idealogic\RegistrationAPI\Model\GatewayPaymentDTO|null $gateway_payment The payment that settled the order, sent by the storefront on a sync of a paid order (US #1527).
+     *
+     * @return self
+     */
+    public function setGatewayPayment($gateway_payment)
+    {
+        if (is_null($gateway_payment)) {
+            throw new \InvalidArgumentException('non-nullable gateway_payment cannot be null');
+        }
+        $this->container['gateway_payment'] = $gateway_payment;
+
+        return $this;
+    }
+
+    /**
+     * Gets gateway_refund
+     *
+     * @return \Idealogic\RegistrationAPI\Model\GatewayRefundDTO|null
+     */
+    public function getGatewayRefund()
+    {
+        return $this->container['gateway_refund'];
+    }
+
+    /**
+     * Sets gateway_refund
+     *
+     * @param \Idealogic\RegistrationAPI\Model\GatewayRefundDTO|null $gateway_refund A refund made in the storefront, sent on the sync it triggers (US #1527). Logged only.
+     *
+     * @return self
+     */
+    public function setGatewayRefund($gateway_refund)
+    {
+        if (is_null($gateway_refund)) {
+            throw new \InvalidArgumentException('non-nullable gateway_refund cannot be null');
+        }
+        $this->container['gateway_refund'] = $gateway_refund;
 
         return $this;
     }
