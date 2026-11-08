@@ -64,7 +64,11 @@ class SettlementDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'outstanding' => 'mixed',
         'credit' => 'mixed',
         'active_lines' => 'mixed',
-        'status' => 'mixed'
+        'status' => 'mixed',
+        'accepted_on_account_by' => 'mixed',
+        'accepted_on_account_at' => 'mixed',
+        'accepted_on_account_reason' => 'mixed',
+        'accepted_on_account_reference' => 'mixed'
     ];
 
     /**
@@ -80,7 +84,11 @@ class SettlementDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'outstanding' => null,
         'credit' => null,
         'active_lines' => 'int32',
-        'status' => null
+        'status' => null,
+        'accepted_on_account_by' => null,
+        'accepted_on_account_at' => 'date-time',
+        'accepted_on_account_reason' => null,
+        'accepted_on_account_reference' => null
     ];
 
     /**
@@ -94,7 +102,11 @@ class SettlementDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'outstanding' => true,
         'credit' => true,
         'active_lines' => true,
-        'status' => true
+        'status' => true,
+        'accepted_on_account_by' => true,
+        'accepted_on_account_at' => true,
+        'accepted_on_account_reason' => true,
+        'accepted_on_account_reference' => true
     ];
 
     /**
@@ -188,7 +200,11 @@ class SettlementDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'outstanding' => 'outstanding',
         'credit' => 'credit',
         'active_lines' => 'activeLines',
-        'status' => 'status'
+        'status' => 'status',
+        'accepted_on_account_by' => 'acceptedOnAccountBy',
+        'accepted_on_account_at' => 'acceptedOnAccountAt',
+        'accepted_on_account_reason' => 'acceptedOnAccountReason',
+        'accepted_on_account_reference' => 'acceptedOnAccountReference'
     ];
 
     /**
@@ -202,7 +218,11 @@ class SettlementDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'outstanding' => 'setOutstanding',
         'credit' => 'setCredit',
         'active_lines' => 'setActiveLines',
-        'status' => 'setStatus'
+        'status' => 'setStatus',
+        'accepted_on_account_by' => 'setAcceptedOnAccountBy',
+        'accepted_on_account_at' => 'setAcceptedOnAccountAt',
+        'accepted_on_account_reason' => 'setAcceptedOnAccountReason',
+        'accepted_on_account_reference' => 'setAcceptedOnAccountReference'
     ];
 
     /**
@@ -216,7 +236,11 @@ class SettlementDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'outstanding' => 'getOutstanding',
         'credit' => 'getCredit',
         'active_lines' => 'getActiveLines',
-        'status' => 'getStatus'
+        'status' => 'getStatus',
+        'accepted_on_account_by' => 'getAcceptedOnAccountBy',
+        'accepted_on_account_at' => 'getAcceptedOnAccountAt',
+        'accepted_on_account_reason' => 'getAcceptedOnAccountReason',
+        'accepted_on_account_reference' => 'getAcceptedOnAccountReference'
     ];
 
     /**
@@ -303,6 +327,10 @@ class SettlementDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('credit', $data ?? [], null);
         $this->setIfExists('active_lines', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('accepted_on_account_by', $data ?? [], null);
+        $this->setIfExists('accepted_on_account_at', $data ?? [], null);
+        $this->setIfExists('accepted_on_account_reason', $data ?? [], null);
+        $this->setIfExists('accepted_on_account_reference', $data ?? [], null);
     }
 
     /**
@@ -566,6 +594,142 @@ class SettlementDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets accepted_on_account_by
+     *
+     * @return mixed|null
+     */
+    public function getAcceptedOnAccountBy()
+    {
+        return $this->container['accepted_on_account_by'];
+    }
+
+    /**
+     * Sets accepted_on_account_by
+     *
+     * @param mixed|null $accepted_on_account_by Who accepted the order on account (US #1201); null unless accepted. Its sale is then owed without a payment.
+     *
+     * @return self
+     */
+    public function setAcceptedOnAccountBy($accepted_on_account_by)
+    {
+        if (is_null($accepted_on_account_by)) {
+            array_push($this->openAPINullablesSetToNull, 'accepted_on_account_by');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('accepted_on_account_by', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['accepted_on_account_by'] = $accepted_on_account_by;
+
+        return $this;
+    }
+
+    /**
+     * Gets accepted_on_account_at
+     *
+     * @return mixed|null
+     */
+    public function getAcceptedOnAccountAt()
+    {
+        return $this->container['accepted_on_account_at'];
+    }
+
+    /**
+     * Sets accepted_on_account_at
+     *
+     * @param mixed|null $accepted_on_account_at When the order was accepted on account (UTC); null unless accepted.
+     *
+     * @return self
+     */
+    public function setAcceptedOnAccountAt($accepted_on_account_at)
+    {
+        if (is_null($accepted_on_account_at)) {
+            array_push($this->openAPINullablesSetToNull, 'accepted_on_account_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('accepted_on_account_at', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['accepted_on_account_at'] = $accepted_on_account_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets accepted_on_account_reason
+     *
+     * @return mixed|null
+     */
+    public function getAcceptedOnAccountReason()
+    {
+        return $this->container['accepted_on_account_reason'];
+    }
+
+    /**
+     * Sets accepted_on_account_reason
+     *
+     * @param mixed|null $accepted_on_account_reason Why the order was accepted on account.
+     *
+     * @return self
+     */
+    public function setAcceptedOnAccountReason($accepted_on_account_reason)
+    {
+        if (is_null($accepted_on_account_reason)) {
+            array_push($this->openAPINullablesSetToNull, 'accepted_on_account_reason');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('accepted_on_account_reason', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['accepted_on_account_reason'] = $accepted_on_account_reason;
+
+        return $this;
+    }
+
+    /**
+     * Gets accepted_on_account_reference
+     *
+     * @return mixed|null
+     */
+    public function getAcceptedOnAccountReference()
+    {
+        return $this->container['accepted_on_account_reference'];
+    }
+
+    /**
+     * Sets accepted_on_account_reference
+     *
+     * @param mixed|null $accepted_on_account_reference The invoice or other reference given when the order was accepted on account, if any.
+     *
+     * @return self
+     */
+    public function setAcceptedOnAccountReference($accepted_on_account_reference)
+    {
+        if (is_null($accepted_on_account_reference)) {
+            array_push($this->openAPINullablesSetToNull, 'accepted_on_account_reference');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('accepted_on_account_reference', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['accepted_on_account_reference'] = $accepted_on_account_reference;
 
         return $this;
     }

@@ -118,6 +118,7 @@ Class | Method | HTTP request | Description
 
 ## Models
 
+- [AcceptOnAccountRequestDTO](docs/Model/AcceptOnAccountRequestDTO.md)
 - [AccessUpgradeRequest](docs/Model/AccessUpgradeRequest.md)
 - [AccessUpgradeResponse](docs/Model/AccessUpgradeResponse.md)
 - [AssignableNumbersDTO](docs/Model/AssignableNumbersDTO.md)
@@ -313,6 +314,7 @@ Class | Method | HTTP request | Description
 - [RefundRequestDTO](docs/Model/RefundRequestDTO.md)
 - [RegistrationSystemDTO](docs/Model/RegistrationSystemDTO.md)
 - [ResolutionFailureRate](docs/Model/ResolutionFailureRate.md)
+- [ResolvedServiceFeeDTO](docs/Model/ResolvedServiceFeeDTO.md)
 - [ResultImportSummaryDTO](docs/Model/ResultImportSummaryDTO.md)
 - [ResultMetaTypeDTO](docs/Model/ResultMetaTypeDTO.md)
 - [ResultProgressDTO](docs/Model/ResultProgressDTO.md)
@@ -325,6 +327,10 @@ Class | Method | HTTP request | Description
 - [ScanRequest](docs/Model/ScanRequest.md)
 - [Series](docs/Model/Series.md)
 - [SeriesDTO](docs/Model/SeriesDTO.md)
+- [ServiceFeeAbsorptionDTO](docs/Model/ServiceFeeAbsorptionDTO.md)
+- [ServiceFeeChangeDTO](docs/Model/ServiceFeeChangeDTO.md)
+- [ServiceFeeCustomerDTO](docs/Model/ServiceFeeCustomerDTO.md)
+- [ServiceFeeDTO](docs/Model/ServiceFeeDTO.md)
 - [SettlementDTO](docs/Model/SettlementDTO.md)
 - [SignalDTO](docs/Model/SignalDTO.md)
 - [SignalDetailDTO](docs/Model/SignalDetailDTO.md)

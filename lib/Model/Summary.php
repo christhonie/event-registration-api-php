@@ -61,6 +61,9 @@ class Summary implements ModelInterface, ArrayAccess, \JsonSerializable
         'data_rows' => 'mixed',
         'imported' => 'mixed',
         'skipped' => 'mixed',
+        'created' => 'mixed',
+        'updated' => 'mixed',
+        'deleted' => 'mixed',
         'non_data_rows' => '\Idealogic\RegistrationAPI\Model\NonDataRows'
     ];
 
@@ -75,6 +78,9 @@ class Summary implements ModelInterface, ArrayAccess, \JsonSerializable
         'data_rows' => 'int32',
         'imported' => 'int32',
         'skipped' => 'int32',
+        'created' => 'int32',
+        'updated' => 'int32',
+        'deleted' => 'int32',
         'non_data_rows' => null
     ];
 
@@ -87,6 +93,9 @@ class Summary implements ModelInterface, ArrayAccess, \JsonSerializable
         'data_rows' => true,
         'imported' => true,
         'skipped' => true,
+        'created' => true,
+        'updated' => true,
+        'deleted' => true,
         'non_data_rows' => false
     ];
 
@@ -179,6 +188,9 @@ class Summary implements ModelInterface, ArrayAccess, \JsonSerializable
         'data_rows' => 'dataRows',
         'imported' => 'imported',
         'skipped' => 'skipped',
+        'created' => 'created',
+        'updated' => 'updated',
+        'deleted' => 'deleted',
         'non_data_rows' => 'nonDataRows'
     ];
 
@@ -191,6 +203,9 @@ class Summary implements ModelInterface, ArrayAccess, \JsonSerializable
         'data_rows' => 'setDataRows',
         'imported' => 'setImported',
         'skipped' => 'setSkipped',
+        'created' => 'setCreated',
+        'updated' => 'setUpdated',
+        'deleted' => 'setDeleted',
         'non_data_rows' => 'setNonDataRows'
     ];
 
@@ -203,6 +218,9 @@ class Summary implements ModelInterface, ArrayAccess, \JsonSerializable
         'data_rows' => 'getDataRows',
         'imported' => 'getImported',
         'skipped' => 'getSkipped',
+        'created' => 'getCreated',
+        'updated' => 'getUpdated',
+        'deleted' => 'getDeleted',
         'non_data_rows' => 'getNonDataRows'
     ];
 
@@ -266,6 +284,9 @@ class Summary implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('data_rows', $data ?? [], null);
         $this->setIfExists('imported', $data ?? [], null);
         $this->setIfExists('skipped', $data ?? [], null);
+        $this->setIfExists('created', $data ?? [], null);
+        $this->setIfExists('updated', $data ?? [], null);
+        $this->setIfExists('deleted', $data ?? [], null);
         $this->setIfExists('non_data_rows', $data ?? [], null);
     }
 
@@ -409,6 +430,108 @@ class Summary implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['skipped'] = $skipped;
+
+        return $this;
+    }
+
+    /**
+     * Gets created
+     *
+     * @return mixed|null
+     */
+    public function getCreated()
+    {
+        return $this->container['created'];
+    }
+
+    /**
+     * Sets created
+     *
+     * @param mixed|null $created created
+     *
+     * @return self
+     */
+    public function setCreated($created)
+    {
+        if (is_null($created)) {
+            array_push($this->openAPINullablesSetToNull, 'created');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('created', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['created'] = $created;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated
+     *
+     * @return mixed|null
+     */
+    public function getUpdated()
+    {
+        return $this->container['updated'];
+    }
+
+    /**
+     * Sets updated
+     *
+     * @param mixed|null $updated updated
+     *
+     * @return self
+     */
+    public function setUpdated($updated)
+    {
+        if (is_null($updated)) {
+            array_push($this->openAPINullablesSetToNull, 'updated');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('updated', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['updated'] = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Gets deleted
+     *
+     * @return mixed|null
+     */
+    public function getDeleted()
+    {
+        return $this->container['deleted'];
+    }
+
+    /**
+     * Sets deleted
+     *
+     * @param mixed|null $deleted deleted
+     *
+     * @return self
+     */
+    public function setDeleted($deleted)
+    {
+        if (is_null($deleted)) {
+            array_push($this->openAPINullablesSetToNull, 'deleted');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('deleted', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['deleted'] = $deleted;
 
         return $this;
     }
