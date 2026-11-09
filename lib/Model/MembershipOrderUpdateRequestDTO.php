@@ -64,6 +64,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         'external_id' => 'mixed',
         'status' => 'mixed',
         'email' => 'mixed',
+        'buyer' => '\Idealogic\RegistrationAPI\Model\PersonNameDTO',
+        'buyer_phone' => 'mixed',
         'discount' => 'mixed',
         'refund_amount' => 'mixed',
         'payment_date_time' => 'mixed',
@@ -87,6 +89,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         'external_id' => null,
         'status' => null,
         'email' => null,
+        'buyer' => null,
+        'buyer_phone' => null,
         'discount' => null,
         'refund_amount' => null,
         'payment_date_time' => 'date-time',
@@ -108,6 +112,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         'external_id' => true,
         'status' => true,
         'email' => true,
+        'buyer' => false,
+        'buyer_phone' => true,
         'discount' => true,
         'refund_amount' => true,
         'payment_date_time' => true,
@@ -209,6 +215,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         'external_id' => 'externalId',
         'status' => 'status',
         'email' => 'email',
+        'buyer' => 'buyer',
+        'buyer_phone' => 'buyerPhone',
         'discount' => 'discount',
         'refund_amount' => 'refundAmount',
         'payment_date_time' => 'paymentDateTime',
@@ -230,6 +238,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         'external_id' => 'setExternalId',
         'status' => 'setStatus',
         'email' => 'setEmail',
+        'buyer' => 'setBuyer',
+        'buyer_phone' => 'setBuyerPhone',
         'discount' => 'setDiscount',
         'refund_amount' => 'setRefundAmount',
         'payment_date_time' => 'setPaymentDateTime',
@@ -251,6 +261,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         'external_id' => 'getExternalId',
         'status' => 'getStatus',
         'email' => 'getEmail',
+        'buyer' => 'getBuyer',
+        'buyer_phone' => 'getBuyerPhone',
         'discount' => 'getDiscount',
         'refund_amount' => 'getRefundAmount',
         'payment_date_time' => 'getPaymentDateTime',
@@ -344,6 +356,8 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
         $this->setIfExists('external_id', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('buyer', $data ?? [], null);
+        $this->setIfExists('buyer_phone', $data ?? [], null);
         $this->setIfExists('discount', $data ?? [], null);
         $this->setIfExists('refund_amount', $data ?? [], null);
         $this->setIfExists('payment_date_time', $data ?? [], null);
@@ -597,7 +611,7 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
     /**
      * Sets email
      *
-     * @param mixed|null $email Email address associated with the order
+     * @param mixed|null $email Email address associated with the order: the buyer's billing email
      *
      * @return self
      */
@@ -614,6 +628,67 @@ class MembershipOrderUpdateRequestDTO implements ModelInterface, ArrayAccess, \J
             }
         }
         $this->container['email'] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Gets buyer
+     *
+     * @return \Idealogic\RegistrationAPI\Model\PersonNameDTO|null
+     */
+    public function getBuyer()
+    {
+        return $this->container['buyer'];
+    }
+
+    /**
+     * Sets buyer
+     *
+     * @param \Idealogic\RegistrationAPI\Model\PersonNameDTO|null $buyer The buyer's name from the storefront's billing form (US #985). Only firstName and lastName are read; recorded on the principal where it holds none.
+     *
+     * @return self
+     */
+    public function setBuyer($buyer)
+    {
+        if (is_null($buyer)) {
+            throw new \InvalidArgumentException('non-nullable buyer cannot be null');
+        }
+        $this->container['buyer'] = $buyer;
+
+        return $this;
+    }
+
+    /**
+     * Gets buyer_phone
+     *
+     * @return mixed|null
+     */
+    public function getBuyerPhone()
+    {
+        return $this->container['buyer_phone'];
+    }
+
+    /**
+     * Sets buyer_phone
+     *
+     * @param mixed|null $buyer_phone The buyer's phone number from the storefront's billing form (US #985). Recorded on the principal if it holds none.
+     *
+     * @return self
+     */
+    public function setBuyerPhone($buyer_phone)
+    {
+        if (is_null($buyer_phone)) {
+            array_push($this->openAPINullablesSetToNull, 'buyer_phone');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('buyer_phone', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['buyer_phone'] = $buyer_phone;
 
         return $this;
     }

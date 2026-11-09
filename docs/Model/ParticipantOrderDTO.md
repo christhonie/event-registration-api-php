@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **payment_amount** | **mixed** |  | [optional]
 **cancel_date_time** | **mixed** |  | [optional]
 **organisation** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) |  |
-**buyer** | [**\Idealogic\RegistrationAPI\Model\PersonNameDTO**](PersonNameDTO.md) |  | [optional]
+**buyer** | [**\Idealogic\RegistrationAPI\Model\PersonNameDTO**](PersonNameDTO.md) | The buyer. Read: the principal&#39;s name. On a storefront sync: the billing name, recorded on the principal where blank. Never changes which principal the order belongs to. | [optional]
 **registration_system** | [**\Idealogic\RegistrationAPI\Model\RegistrationSystemDTO**](RegistrationSystemDTO.md) |  | [optional]
 **line_items** | **mixed** | Line items in this order | [optional]
 **total_amount** | **mixed** | Total amount for the order | [optional]
@@ -26,5 +26,6 @@ Name | Type | Description | Notes
 **event_participants** | **mixed** |  | [optional]
 **gateway_payment** | [**\Idealogic\RegistrationAPI\Model\GatewayPaymentDTO**](GatewayPaymentDTO.md) | The payment that settled the order, sent by the storefront on a sync of a paid order (US #1527). | [optional]
 **gateway_refund** | [**\Idealogic\RegistrationAPI\Model\GatewayRefundDTO**](GatewayRefundDTO.md) | A refund made in the storefront, sent on the sync it triggers (US #1527). Logged only. | [optional]
+**buyer_phone** | **mixed** | The buyer&#39;s phone number from the storefront&#39;s billing form, sent on the order sync (US #985). Recorded on the principal if it holds none; the buyer&#39;s name travels in buyer.firstName and buyer.lastName. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

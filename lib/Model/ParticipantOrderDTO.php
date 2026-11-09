@@ -79,7 +79,8 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'reference_code' => 'mixed',
         'event_participants' => 'mixed',
         'gateway_payment' => '\Idealogic\RegistrationAPI\Model\GatewayPaymentDTO',
-        'gateway_refund' => '\Idealogic\RegistrationAPI\Model\GatewayRefundDTO'
+        'gateway_refund' => '\Idealogic\RegistrationAPI\Model\GatewayRefundDTO',
+        'buyer_phone' => 'mixed'
     ];
 
     /**
@@ -111,7 +112,8 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'reference_code' => null,
         'event_participants' => null,
         'gateway_payment' => null,
-        'gateway_refund' => null
+        'gateway_refund' => null,
+        'buyer_phone' => null
     ];
 
     /**
@@ -141,7 +143,8 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'reference_code' => true,
         'event_participants' => true,
         'gateway_payment' => false,
-        'gateway_refund' => false
+        'gateway_refund' => false,
+        'buyer_phone' => true
     ];
 
     /**
@@ -251,7 +254,8 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'reference_code' => 'referenceCode',
         'event_participants' => 'eventParticipants',
         'gateway_payment' => 'gatewayPayment',
-        'gateway_refund' => 'gatewayRefund'
+        'gateway_refund' => 'gatewayRefund',
+        'buyer_phone' => 'buyerPhone'
     ];
 
     /**
@@ -281,7 +285,8 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'reference_code' => 'setReferenceCode',
         'event_participants' => 'setEventParticipants',
         'gateway_payment' => 'setGatewayPayment',
-        'gateway_refund' => 'setGatewayRefund'
+        'gateway_refund' => 'setGatewayRefund',
+        'buyer_phone' => 'setBuyerPhone'
     ];
 
     /**
@@ -311,7 +316,8 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         'reference_code' => 'getReferenceCode',
         'event_participants' => 'getEventParticipants',
         'gateway_payment' => 'getGatewayPayment',
-        'gateway_refund' => 'getGatewayRefund'
+        'gateway_refund' => 'getGatewayRefund',
+        'buyer_phone' => 'getBuyerPhone'
     ];
 
     /**
@@ -414,6 +420,7 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('event_participants', $data ?? [], null);
         $this->setIfExists('gateway_payment', $data ?? [], null);
         $this->setIfExists('gateway_refund', $data ?? [], null);
+        $this->setIfExists('buyer_phone', $data ?? [], null);
     }
 
     /**
@@ -934,7 +941,7 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets buyer
      *
-     * @param \Idealogic\RegistrationAPI\Model\PersonNameDTO|null $buyer buyer
+     * @param \Idealogic\RegistrationAPI\Model\PersonNameDTO|null $buyer The buyer. Read: the principal's name. On a storefront sync: the billing name, recorded on the principal where blank. Never changes which principal the order belongs to.
      *
      * @return self
      */
@@ -1272,6 +1279,40 @@ class ParticipantOrderDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable gateway_refund cannot be null');
         }
         $this->container['gateway_refund'] = $gateway_refund;
+
+        return $this;
+    }
+
+    /**
+     * Gets buyer_phone
+     *
+     * @return mixed|null
+     */
+    public function getBuyerPhone()
+    {
+        return $this->container['buyer_phone'];
+    }
+
+    /**
+     * Sets buyer_phone
+     *
+     * @param mixed|null $buyer_phone The buyer's phone number from the storefront's billing form, sent on the order sync (US #985). Recorded on the principal if it holds none; the buyer's name travels in buyer.firstName and buyer.lastName.
+     *
+     * @return self
+     */
+    public function setBuyerPhone($buyer_phone)
+    {
+        if (is_null($buyer_phone)) {
+            array_push($this->openAPINullablesSetToNull, 'buyer_phone');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('buyer_phone', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['buyer_phone'] = $buyer_phone;
 
         return $this;
     }

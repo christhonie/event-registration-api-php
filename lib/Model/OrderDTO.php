@@ -913,7 +913,7 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets buyer
      *
-     * @param \Idealogic\RegistrationAPI\Model\PersonNameDTO|null $buyer buyer
+     * @param \Idealogic\RegistrationAPI\Model\PersonNameDTO|null $buyer The buyer. Read: the principal's name. On a storefront sync: the billing name, recorded on the principal where blank. Never changes which principal the order belongs to.
      *
      * @return self
      */

@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **payment_amount** | **mixed** |  | [optional]
 **cancel_date_time** | **mixed** |  | [optional]
 **organisation** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) |  |
-**buyer** | [**\Idealogic\RegistrationAPI\Model\PersonNameDTO**](PersonNameDTO.md) |  | [optional]
+**buyer** | [**\Idealogic\RegistrationAPI\Model\PersonNameDTO**](PersonNameDTO.md) | The buyer. Read: the principal&#39;s name. On a storefront sync: the billing name, recorded on the principal where blank. Never changes which principal the order belongs to. | [optional]
 **registration_system** | [**\Idealogic\RegistrationAPI\Model\RegistrationSystemDTO**](RegistrationSystemDTO.md) |  | [optional]
 **line_items** | **mixed** | Line items in this order | [optional]
 **total_amount** | **mixed** | Total amount for the order | [optional]
