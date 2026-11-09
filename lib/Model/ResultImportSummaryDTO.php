@@ -59,6 +59,7 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'job' => '\Idealogic\RegistrationAPI\Model\ImportJobDTO',
+        'result_options' => '\Idealogic\RegistrationAPI\Model\ResultOptions',
         'counts' => '\Idealogic\RegistrationAPI\Model\Counts',
         'per_category' => 'mixed',
         'number_changes' => 'mixed',
@@ -80,6 +81,7 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPIFormats = [
         'job' => null,
+        'result_options' => null,
         'counts' => null,
         'per_category' => null,
         'number_changes' => null,
@@ -99,6 +101,7 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static array $openAPINullables = [
         'job' => false,
+        'result_options' => false,
         'counts' => false,
         'per_category' => true,
         'number_changes' => true,
@@ -198,6 +201,7 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $attributeMap = [
         'job' => 'job',
+        'result_options' => 'resultOptions',
         'counts' => 'counts',
         'per_category' => 'perCategory',
         'number_changes' => 'numberChanges',
@@ -217,6 +221,7 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $setters = [
         'job' => 'setJob',
+        'result_options' => 'setResultOptions',
         'counts' => 'setCounts',
         'per_category' => 'setPerCategory',
         'number_changes' => 'setNumberChanges',
@@ -236,6 +241,7 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $getters = [
         'job' => 'getJob',
+        'result_options' => 'getResultOptions',
         'counts' => 'getCounts',
         'per_category' => 'getPerCategory',
         'number_changes' => 'getNumberChanges',
@@ -306,6 +312,7 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
     public function __construct(array $data = null)
     {
         $this->setIfExists('job', $data ?? [], null);
+        $this->setIfExists('result_options', $data ?? [], null);
         $this->setIfExists('counts', $data ?? [], null);
         $this->setIfExists('per_category', $data ?? [], null);
         $this->setIfExists('number_changes', $data ?? [], null);
@@ -383,6 +390,33 @@ class ResultImportSummaryDTO implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable job cannot be null');
         }
         $this->container['job'] = $job;
+
+        return $this;
+    }
+
+    /**
+     * Gets result_options
+     *
+     * @return \Idealogic\RegistrationAPI\Model\ResultOptions|null
+     */
+    public function getResultOptions()
+    {
+        return $this->container['result_options'];
+    }
+
+    /**
+     * Sets result_options
+     *
+     * @param \Idealogic\RegistrationAPI\Model\ResultOptions|null $result_options result_options
+     *
+     * @return self
+     */
+    public function setResultOptions($result_options)
+    {
+        if (is_null($result_options)) {
+            throw new \InvalidArgumentException('non-nullable result_options cannot be null');
+        }
+        $this->container['result_options'] = $result_options;
 
         return $this;
     }

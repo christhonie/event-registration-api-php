@@ -317,6 +317,7 @@ Class | Method | HTTP request | Description
 - [ResolvedServiceFeeDTO](docs/Model/ResolvedServiceFeeDTO.md)
 - [ResultImportSummaryDTO](docs/Model/ResultImportSummaryDTO.md)
 - [ResultMetaTypeDTO](docs/Model/ResultMetaTypeDTO.md)
+- [ResultOptions](docs/Model/ResultOptions.md)
 - [ResultProgressDTO](docs/Model/ResultProgressDTO.md)
 - [ResultRow](docs/Model/ResultRow.md)
 - [ResultSetDTO](docs/Model/ResultSetDTO.md)

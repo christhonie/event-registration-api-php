@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **job** | [**\Idealogic\RegistrationAPI\Model\ImportJobDTO**](ImportJobDTO.md) |  | [optional]
+**result_options** | [**\Idealogic\RegistrationAPI\Model\ResultOptions**](ResultOptions.md) |  | [optional]
 **counts** | [**\Idealogic\RegistrationAPI\Model\Counts**](Counts.md) |  | [optional]
 **per_category** | **mixed** |  | [optional]
 **number_changes** | **mixed** |  | [optional]
