@@ -71,6 +71,7 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
         'buyer' => '\Idealogic\RegistrationAPI\Model\PersonNameDTO',
         'registration_system' => '\Idealogic\RegistrationAPI\Model\RegistrationSystemDTO',
+        'admin_order_url' => 'mixed',
         'line_items' => 'mixed',
         'total_amount' => 'mixed',
         'discount' => 'mixed',
@@ -100,6 +101,7 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'organisation' => null,
         'buyer' => null,
         'registration_system' => null,
+        'admin_order_url' => null,
         'line_items' => null,
         'total_amount' => null,
         'discount' => null,
@@ -127,6 +129,7 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'organisation' => false,
         'buyer' => false,
         'registration_system' => false,
+        'admin_order_url' => true,
         'line_items' => true,
         'total_amount' => true,
         'discount' => true,
@@ -234,6 +237,7 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'organisation' => 'organisation',
         'buyer' => 'buyer',
         'registration_system' => 'registrationSystem',
+        'admin_order_url' => 'adminOrderUrl',
         'line_items' => 'lineItems',
         'total_amount' => 'totalAmount',
         'discount' => 'discount',
@@ -261,6 +265,7 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'organisation' => 'setOrganisation',
         'buyer' => 'setBuyer',
         'registration_system' => 'setRegistrationSystem',
+        'admin_order_url' => 'setAdminOrderUrl',
         'line_items' => 'setLineItems',
         'total_amount' => 'setTotalAmount',
         'discount' => 'setDiscount',
@@ -288,6 +293,7 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'organisation' => 'getOrganisation',
         'buyer' => 'getBuyer',
         'registration_system' => 'getRegistrationSystem',
+        'admin_order_url' => 'getAdminOrderUrl',
         'line_items' => 'getLineItems',
         'total_amount' => 'getTotalAmount',
         'discount' => 'getDiscount',
@@ -387,6 +393,7 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('organisation', $data ?? [], null);
         $this->setIfExists('buyer', $data ?? [], null);
         $this->setIfExists('registration_system', $data ?? [], null);
+        $this->setIfExists('admin_order_url', $data ?? [], null);
         $this->setIfExists('line_items', $data ?? [], null);
         $this->setIfExists('total_amount', $data ?? [], null);
         $this->setIfExists('discount', $data ?? [], null);
@@ -950,6 +957,40 @@ class OrderDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable registration_system cannot be null');
         }
         $this->container['registration_system'] = $registration_system;
+
+        return $this;
+    }
+
+    /**
+     * Gets admin_order_url
+     *
+     * @return mixed|null
+     */
+    public function getAdminOrderUrl()
+    {
+        return $this->container['admin_order_url'];
+    }
+
+    /**
+     * Sets admin_order_url
+     *
+     * @param mixed|null $admin_order_url The order in its store's admin, e.g. WooCommerce. Worked out by the server from the registration system's admin order URL template and the order's external id; absent when either is missing.
+     *
+     * @return self
+     */
+    public function setAdminOrderUrl($admin_order_url)
+    {
+        if (is_null($admin_order_url)) {
+            array_push($this->openAPINullablesSetToNull, 'admin_order_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('admin_order_url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['admin_order_url'] = $admin_order_url;
 
         return $this;
     }

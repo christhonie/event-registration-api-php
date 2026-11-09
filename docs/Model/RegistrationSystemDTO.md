@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **auth_secret** | **mixed** | Auth password or token | [optional]
 **organisation** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) | Owning organisation, absent for a platform-level channel such as the Admin Portal | [optional]
 **banking_details** | [**\Idealogic\RegistrationAPI\Model\BankingDetailsDTO**](BankingDetailsDTO.md) |  | [optional]
+**admin_order_url_template** | **mixed** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

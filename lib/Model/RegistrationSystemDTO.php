@@ -65,7 +65,8 @@ class RegistrationSystemDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         'auth_key' => 'mixed',
         'auth_secret' => 'mixed',
         'organisation' => '\Idealogic\RegistrationAPI\Model\OrganisationDTO',
-        'banking_details' => '\Idealogic\RegistrationAPI\Model\BankingDetailsDTO'
+        'banking_details' => '\Idealogic\RegistrationAPI\Model\BankingDetailsDTO',
+        'admin_order_url_template' => 'mixed'
     ];
 
     /**
@@ -83,7 +84,8 @@ class RegistrationSystemDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         'auth_key' => null,
         'auth_secret' => null,
         'organisation' => null,
-        'banking_details' => null
+        'banking_details' => null,
+        'admin_order_url_template' => null
     ];
 
     /**
@@ -99,7 +101,8 @@ class RegistrationSystemDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         'auth_key' => true,
         'auth_secret' => true,
         'organisation' => false,
-        'banking_details' => false
+        'banking_details' => false,
+        'admin_order_url_template' => true
     ];
 
     /**
@@ -195,7 +198,8 @@ class RegistrationSystemDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         'auth_key' => 'authKey',
         'auth_secret' => 'authSecret',
         'organisation' => 'organisation',
-        'banking_details' => 'bankingDetails'
+        'banking_details' => 'bankingDetails',
+        'admin_order_url_template' => 'adminOrderUrlTemplate'
     ];
 
     /**
@@ -211,7 +215,8 @@ class RegistrationSystemDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         'auth_key' => 'setAuthKey',
         'auth_secret' => 'setAuthSecret',
         'organisation' => 'setOrganisation',
-        'banking_details' => 'setBankingDetails'
+        'banking_details' => 'setBankingDetails',
+        'admin_order_url_template' => 'setAdminOrderUrlTemplate'
     ];
 
     /**
@@ -227,7 +232,8 @@ class RegistrationSystemDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         'auth_key' => 'getAuthKey',
         'auth_secret' => 'getAuthSecret',
         'organisation' => 'getOrganisation',
-        'banking_details' => 'getBankingDetails'
+        'banking_details' => 'getBankingDetails',
+        'admin_order_url_template' => 'getAdminOrderUrlTemplate'
     ];
 
     /**
@@ -295,6 +301,7 @@ class RegistrationSystemDTO implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('auth_secret', $data ?? [], null);
         $this->setIfExists('organisation', $data ?? [], null);
         $this->setIfExists('banking_details', $data ?? [], null);
+        $this->setIfExists('admin_order_url_template', $data ?? [], null);
     }
 
     /**
@@ -344,6 +351,14 @@ class RegistrationSystemDTO implements ModelInterface, ArrayAccess, \JsonSeriali
 
         if ((mb_strlen($this->container['type']) < 0)) {
             $invalidProperties[] = "invalid value for 'type', the character length must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['admin_order_url_template']) && (mb_strlen($this->container['admin_order_url_template']) > 500)) {
+            $invalidProperties[] = "invalid value for 'admin_order_url_template', the character length must be smaller than or equal to 500.";
+        }
+
+        if (!is_null($this->container['admin_order_url_template']) && (mb_strlen($this->container['admin_order_url_template']) < 0)) {
+            $invalidProperties[] = "invalid value for 'admin_order_url_template', the character length must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -622,6 +637,47 @@ class RegistrationSystemDTO implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable banking_details cannot be null');
         }
         $this->container['banking_details'] = $banking_details;
+
+        return $this;
+    }
+
+    /**
+     * Gets admin_order_url_template
+     *
+     * @return mixed|null
+     */
+    public function getAdminOrderUrlTemplate()
+    {
+        return $this->container['admin_order_url_template'];
+    }
+
+    /**
+     * Sets admin_order_url_template
+     *
+     * @param mixed|null $admin_order_url_template admin_order_url_template
+     *
+     * @return self
+     */
+    public function setAdminOrderUrlTemplate($admin_order_url_template)
+    {
+        if (is_null($admin_order_url_template)) {
+            array_push($this->openAPINullablesSetToNull, 'admin_order_url_template');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('admin_order_url_template', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($admin_order_url_template) && (mb_strlen($admin_order_url_template) > 500)) {
+            throw new \InvalidArgumentException('invalid length for $admin_order_url_template when calling RegistrationSystemDTO., must be smaller than or equal to 500.');
+        }
+        if (!is_null($admin_order_url_template) && (mb_strlen($admin_order_url_template) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $admin_order_url_template when calling RegistrationSystemDTO., must be bigger than or equal to 0.');
+        }
+
+        $this->container['admin_order_url_template'] = $admin_order_url_template;
 
         return $this;
     }

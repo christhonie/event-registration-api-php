@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **organisation** | [**\Idealogic\RegistrationAPI\Model\OrganisationDTO**](OrganisationDTO.md) |  |
 **buyer** | [**\Idealogic\RegistrationAPI\Model\PersonNameDTO**](PersonNameDTO.md) | The buyer. Read: the principal&#39;s name. On a storefront sync: the billing name, recorded on the principal where blank. Never changes which principal the order belongs to. | [optional]
 **registration_system** | [**\Idealogic\RegistrationAPI\Model\RegistrationSystemDTO**](RegistrationSystemDTO.md) |  | [optional]
+**admin_order_url** | **mixed** | The order in its store&#39;s admin, e.g. WooCommerce. Worked out by the server from the registration system&#39;s admin order URL template and the order&#39;s external id; absent when either is missing. | [optional] [readonly]
 **line_items** | **mixed** | Line items in this order | [optional]
 **total_amount** | **mixed** | Total amount for the order | [optional]
 **discount** | **mixed** | Order-level coupon discount total | [optional]
